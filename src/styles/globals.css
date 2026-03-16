@@ -1,0 +1,232 @@
+@font-face {
+  font-family: "Museo Sans";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Museo Sans"), url("/fonts/MuseoSans_500.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Museo Sans"), url("/fonts/MuseoSans_700.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  font-style: normal;
+  font-weight: 900;
+  src: local("Museo Sans"), url("/fonts/MuseoSans_900.otf") format("opentype");
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  font-family: "Museo Sans", sans-serif;
+}
+
+/* Contenedor con márgenes responsivos */
+.contenedor {
+  margin-inline: 25px;
+}
+
+@media (min-width: 768px) {
+  .contenedor {
+    margin-inline: 100px;
+  }
+}
+
+/* Fondo con imagen fija */
+.imagenFondo {
+  background-image: url(/landing/public/fondo.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+  background-position: center;
+}
+
+/* Overlay para el hero */
+.overlay {
+  top: 0;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  height: 100%;
+  z-index: 1;
+}
+
+/* Botón principal con efecto shine */
+.buttonno {
+  position: relative;
+  transition: all 0.3s ease-in-out;
+  padding-block: 0.5rem;
+  padding-inline: 1.25rem;
+  background-color: #b11111;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  gap: 10px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  outline: none;
+  overflow: hidden;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.buttonno:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.buttonno::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  background-image: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0) 70%
+  );
+  top: 0;
+  left: -100px;
+  opacity: 0.6;
+}
+
+.buttonno:hover::before {
+  animation: shine 1.5s ease-out infinite;
+}
+
+@keyframes shine {
+  0% { left: -100px; }
+  60% { left: 100%; }
+  to { left: 100%; }
+}
+
+/* Título grande rojo */
+.bigTitle {
+  display: inline-block;
+  color: #b11111;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+@media (max-width: 576px) {
+  .bigTitle {
+    font-size: 1.3em;
+  }
+}
+
+/* Scroll horizontal automático (logos) */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-180px * 16)); }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Zoom al hacer foco en el formulario */
+.zoom-effect {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+/* Botón submit estados */
+.boton-inactivo {
+  background-color: #e0e0e0 !important;
+  color: rgb(26, 18, 18) !important;
+  cursor: not-allowed !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.boton-activo {
+  background-color: #b11111 !important;
+  color: white !important;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Selects deshabilitados */
+.boton-inactivo-form {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+/* Scroll progress bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #b11111;
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+/* Estilos benefit wrapper */
+.benefit-wrapper {
+  transform: scale(0.8);
+  opacity: 0.4;
+  filter: brightness(0%);
+  transition: all 0.5s ease;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.benefit-wrapper:hover {
+  opacity: 0.7;
+  transform: scale(0.9);
+}
+
+.benefit-wrapper.active {
+  transform: scale(2);
+  opacity: 1;
+  z-index: 10;
+  filter: drop-shadow(0 0 20px rgba(177, 17, 17, 0.6));
+}
+
+@media (max-width: 767px) {
+  .benefit-wrapper.active {
+    transform: scale(1.5);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .benefit-wrapper {
+    transform: scale(0.7);
+  }
+  .benefit-wrapper.active {
+    transform: scale(1.7);
+  }
+}
+
+/* Mapa */
+#map {
+  height: 45vh;
+}
