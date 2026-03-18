@@ -1,232 +1,431 @@
+@import "tailwindcss";
+
+:root {
+  --rojo-ucasal: #ee1818;
+  --azul-light-ucasal: #004180;
+  --azul-ucasal: #022130;
+  --ucasal-white: #ffffff;
+  --ucasal-black: #000000;
+  --ucasal-gray-light: #f8f9fa;
+  --ucasal-gray-medium: #e9ecef;
+}
+
 @font-face {
   font-family: "Museo Sans";
   font-style: normal;
   font-weight: 500;
-  src: local("Museo Sans"), url("/fonts/MuseoSans_500.otf") format("opentype");
   font-display: swap;
+  src:
+    local("Museo Sans"),
+    url("/fonts/MuseoSans_500.otf") format("truetype");
 }
 
 @font-face {
   font-family: "Museo Sans";
   font-style: normal;
   font-weight: 700;
-  src: local("Museo Sans"), url("/fonts/MuseoSans_700.otf") format("opentype");
   font-display: swap;
+  src:
+    local("Museo Sans"),
+    url("/fonts/MuseoSans_700.otf") format("truetype");
 }
 
 @font-face {
   font-family: "Museo Sans";
   font-style: normal;
   font-weight: 900;
-  src: local("Museo Sans"), url("/fonts/MuseoSans_900.otf") format("opentype");
   font-display: swap;
+  src:
+    local("Museo Sans"),
+    url("/fonts/MuseoSans_900.otf") format("truetype");
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@font-face {
+  font-family: "Museo Sans";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local("Museo Sans"),
+    url("/fonts/MuseoSans-300.otf") format("truetype");
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+@font-face {
+  font-family: "Museo Sans 900";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local("Museo Sans"),
+    url("/fonts/MuseoSans_900.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Museo Sans 500";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src:
+    local("Museo Sans"),
+    url("/fonts/MuseoSans_500.otf") format("truetype");
+}
+
+/*SI O SI DEBO DECLARAR LA ALTURA DEL MAPA*/
+#map {
+  height: 45vh;
 }
 
 body {
-  font-family: "Museo Sans", sans-serif;
+  font-family: "Museo Sans";
 }
 
-/* Contenedor con márgenes responsivos */
+.hover-button {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.hover-button img {
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.hover-button span {
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.hover-button:hover {
+  background-color: transparent;
+}
+
+/* Mobile: Desplazamiento para pantallas pequeñas */
+@media (max-width: 767px) {
+  .hover-button:hover img {
+    transform: translateX(455%) rotate(90deg);
+    z-index: 1;
+  }
+}
+
+/* Desktop: Desplazamiento para pantallas grandes */
+
+.hover-button:hover img {
+  transform: translateX(350%) rotate(90deg);
+  z-index: 1;
+  @media (max-width: 767px) {
+    transform: translateX(455%) rotate(90deg);
+    z-index: 1;
+  }
+}
+
+.hover-button:hover span {
+  transform: translateX(-15%);
+  color: white;
+  @media (max-width: 767px) {
+    transform: translateX(-10%);
+  }
+}
+
 .contenedor {
-  margin-inline: 25px;
-}
-
-@media (min-width: 768px) {
-  .contenedor {
+  margin-inline: 10px;
+  @media (min-width: 768px) {
+    margin-inline: 50px;
+  }
+  @media (min-width: 1024px) {
     margin-inline: 100px;
   }
 }
 
-/* Fondo con imagen fija */
-.imagenFondo {
-  background-image: url(/landing/public/fondo.png);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100%;
-  background-position: center;
-}
-
-/* Overlay para el hero */
-.overlay {
-  top: 0;
-  position: absolute;
-  width: 100%;
-  left: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
-  height: 100%;
-  z-index: 1;
-}
-
-/* Botón principal con efecto shine */
-.buttonno {
+/* Estilos para la NavBar */
+.nav-link {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #374151;
+  transition: all 0.3s ease;
+  border-radius: 0.25rem;
   position: relative;
-  transition: all 0.3s ease-in-out;
-  padding-block: 0.5rem;
-  padding-inline: 1.25rem;
-  background-color: #b11111;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  gap: 10px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  outline: none;
-  overflow: hidden;
-  font-size: 15px;
-  cursor: pointer;
 }
 
-.buttonno:hover {
-  transform: scale(1.05);
-  border-color: rgba(255, 255, 255, 0.6);
+.nav-link:hover {
+  color: var(--rojo-ucasal);
+  background-color: rgba(238, 24, 24, 0.05);
+  transform: translateY(-2px);
 }
 
-.buttonno::before {
+.nav-link::after {
   content: "";
   position: absolute;
-  width: 100px;
-  height: 100%;
-  background-image: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0) 30%,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0) 70%
-  );
-  top: 0;
-  left: -100px;
-  opacity: 0.6;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--rojo-ucasal), #b11111);
+  transition: width 0.3s ease;
 }
 
-.buttonno:hover::before {
-  animation: shine 1.5s ease-out infinite;
+.nav-link:hover::after {
+  width: 90%;
 }
 
-@keyframes shine {
-  0% { left: -100px; }
-  60% { left: 100%; }
-  to { left: 100%; }
+/* Estilo para enlace activo (cuando la sección está visible) */
+.nav-link.active {
+  color: var(--rojo-ucasal);
+  background-color: rgba(238, 24, 24, 0.05);
+  font-weight: 700;
+  transform: translateY(-2px);
 }
 
-/* Título grande rojo */
-.bigTitle {
-  display: inline-block;
-  color: #b11111;
-  font-weight: 900;
-  font-size: 1.5em;
+.nav-link.active::after {
+  width: 90%;
 }
 
-@media (max-width: 576px) {
-  .bigTitle {
-    font-size: 1.3em;
+/* Estilos del dropdown móvil */
+#navMenu {
+  max-height: 0px;
+  transition: max-height 0.3s ease-in-out;
+}
+
+/* Estilos para enlaces activos en móvil */
+.mobile-nav-link.active {
+  background-color: #fef2f2;
+  color: var(--rojo-ucasal);
+  border-left-color: var(--rojo-ucasal);
+}
+
+.boton-cta {
+  align-items: center;
+  justify-content: center;
+  padding: 11px 1.4em;
+  background: linear-gradient(to top right, var(--azul-ucasal), var(--rojo-ucasal), var(--azul-ucasal));
+/*   background: linear-gradient(to bottom left, var(--azul-ucasal) 10%, var(--rojo-ucasal) 40%);
+ */  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  gap: 6px;
+  border-radius: 9999px;
+  cursor: pointer;
+  @media (max-width: 1200px) {
+    padding: 10px 1em;
+    font-size: 1.05em;
+    gap: 4px;
+    border-radius: 10px;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 1em;
+    font-size: 0.8em;
+    gap: 3px;
+    border-radius: 10px;
   }
 }
 
-/* Scroll horizontal automático (logos) */
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-180px * 16)); }
-}
-
-.animate-scroll {
-  animation: scroll 30s linear infinite;
-}
-
-/* Zoom al hacer foco en el formulario */
-.zoom-effect {
+.boton-cta:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
 }
 
-/* Botón submit estados */
-.boton-inactivo {
-  background-color: #e0e0e0 !important;
-  color: rgb(26, 18, 18) !important;
-  cursor: not-allowed !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+@keyframes borderColorTransition {
+  0% {
+    border-top-color: var(--rojo-ucasal);
+    border-bottom-color: var(--azul-ucasal);
+  }
+
+  50% {
+    border-top-color: var(--azul-ucasal);
+    border-bottom-color: var(--rojo-ucasal);
+  }
+
+  100% {
+    border-top-color: var(--rojo-ucasal);
+    border-bottom-color: var(--azul-ucasal);
+  }
 }
 
-.boton-activo {
-  background-color: #b11111 !important;
-  color: white !important;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  animation: pulse 2s infinite;
+.border-gradient-animation {
+  animation: borderColorTransition 10s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+/* Borde animado con colores UCASAL (solo rojo, blanco y azul) */
+.animated-border {
+  --ab-thickness: 3px;
+  --ab-radius: 0.375rem;
+  /* ajusta para que coincida con el botón */
+  --ab-angle: 0deg;
+
+  position: relative;
+  display: inline-block;
+  padding: var(--ab-thickness);
+  border-radius: var(--ab-radius);
+  background: conic-gradient(
+    from var(--ab-angle),
+    var(--rojo-ucasal),
+    var(--ucasal-white),
+    var(--azul-ucasal),
+    var(--ucasal-white),
+    var(--rojo-ucasal)
+  );
+  animation: ab-rotate 6s linear infinite;
 }
 
-/* Selects deshabilitados */
-.boton-inactivo-form {
-  background-color: #e0e0e0;
+.animated-border > .ab-inner {
+  width: 100%;
+  border-radius: var(--ab-radius);
+  background: var(--azul-ucasal);
+  color: var(--ucasal-white);
+  border: none;
+  /* el borde 'vivo' es el contenedor */
+}
+
+/* Hover solo con colores de marca: invertimos azul/blanco */
+.animated-border > .ab-inner:hover:not(:disabled) {
+  background: var(--ucasal-white);
+  color: var(--azul-ucasal);
+}
+
+/* Accesibilidad: foco con rojo institucional */
+.animated-border > .ab-inner:focus-visible {
+  outline: 2px solid var(--rojo-ucasal);
+  outline-offset: 2px;
+}
+
+/* Estado deshabilitado con escala de grises institucional */
+.animated-border > .ab-inner:disabled {
+  background: var(--ucasal-gray-medium);
+  color: var(--ucasal-black);
   cursor: not-allowed;
 }
 
-/* Scroll progress bar */
-.scroll-progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: #b11111;
-  z-index: 9999;
-  transition: width 0.1s ease;
+/* Definición de la propiedad registrable para animación fluida */
+@property --ab-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
-/* Estilos benefit wrapper */
-.benefit-wrapper {
-  transform: scale(0.8);
-  opacity: 0.4;
-  filter: brightness(0%);
-  transition: all 0.5s ease;
-  margin: 0 10px;
+@keyframes ab-rotate {
+  to {
+    --ab-angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-border {
+    animation: none;
+  }
+}
+
+/* Estilos para validación progresiva del formulario */
+.form-section-locked {
+  opacity: 0.5;
+  pointer-events: none;
+  position: relative;
+}
+
+.form-section-locked::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.form-section-unlocked {
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.3s ease;
+}
+
+.section-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.section-indicator .step-number {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.section-indicator.pending .step-number {
+  background-color: var(--ucasal-gray-medium);
+  color: var(--ucasal-black);
+}
+
+.section-indicator.active .step-number {
+  background-color: var(--azul-ucasal);
+  color: white;
+}
+
+.section-indicator.completed .step-number {
+  background-color: #22c55e;
+  color: white;
+}
+
+.section-indicator.completed .step-number::after {
+  content: "✓";
+}
+
+.boton-activo-form {
+  background: var(--rojo-ucasal);
+  color: white;
   cursor: pointer;
 }
 
-.benefit-wrapper:hover {
-  opacity: 0.7;
-  transform: scale(0.9);
+.boton-activo-form:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(238, 24, 24, 0.4);
 }
 
-.benefit-wrapper.active {
-  transform: scale(2);
-  opacity: 1;
-  z-index: 10;
-  filter: drop-shadow(0 0 20px rgba(177, 17, 17, 0.6));
+.boton-inactivo-form {
+  background-color: var(--ucasal-gray-medium);
+  color: #6b7280;
+  cursor: not-allowed;
 }
 
-@media (max-width: 767px) {
-  .benefit-wrapper.active {
-    transform: scale(1.5);
+/* Estilos para FAQ con efecto menu-open */
+.faq-menu-open {
+  animation: faqSlideDown 0.3s ease-out;
+}
+
+@keyframes faqSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  .benefit-wrapper {
-    transform: scale(0.7);
+/* Estilos para el carrusel infinito */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
-  .benefit-wrapper.active {
-    transform: scale(1.7);
+
+  100% {
+    transform: translateX(-50%);
   }
 }
 
-/* Mapa */
-#map {
-  height: 45vh;
+.animate-infinite-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+.group-hover-pause:hover .animate-infinite-scroll {
+  animation-play-state: paused;
 }
