@@ -3,12 +3,19 @@
 :root {
   --rojo-ucasal: #ee1818;
   --azul-light-ucasal: #004180;
+  --rojo-ucasal-var1: #f8c8c86b;
+  --azul-light-ucasal-var1: #78b1eb6b;
   --azul-ucasal: #022130;
   --ucasal-white: #ffffff;
   --ucasal-black: #000000;
   --ucasal-gray-light: #f8f9fa;
   --ucasal-gray-medium: #e9ecef;
 }
+
+/* #navbar {
+  backdrop-filter: blur(10px);
+  background: linear-gradient(to right, var(--azul-light-ucasal-var1) 10%, var(--rojo-ucasal-var1) 80%);
+} */
 
 @font-face {
   font-family: "Museo Sans";
@@ -206,8 +213,7 @@ body {
   justify-content: center;
   padding: 11px 1.4em;
   background: linear-gradient(to top right, var(--azul-ucasal), var(--rojo-ucasal), var(--azul-ucasal));
-/*   background: linear-gradient(to bottom left, var(--azul-ucasal) 10%, var(--rojo-ucasal) 40%);
- */  color: white;
+  color: white;
   font-weight: 600;
   font-size: 1em;
   transition: all 0.3s ease;
