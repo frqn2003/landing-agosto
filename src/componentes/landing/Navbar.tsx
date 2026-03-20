@@ -2,18 +2,15 @@ import { useState, useEffect } from "react";
 
 function Navbar() {
     const [menuAbierto, setMenuAbierto] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
     const menu = document.getElementById("navMenu")
     const boton = document.getElementById("menu-button")
 
     function toggleMenu() {
         setMenuAbierto(!menuAbierto)
     }
-    useEffect(() => {
-        if (menu) {
-            menu.classList.toggle("hidden", !menuAbierto)
-            menu.style.maxHeight = menuAbierto ? "500px" : "0px"
-        }
-    }, [menuAbierto])
+
+    /* Manejar click fuera del menú */
     useEffect(() => {
         if (!menuAbierto) return
 
@@ -29,20 +26,49 @@ function Navbar() {
             document.removeEventListener("mousedown", clickAfuera)
         }
     }, [menuAbierto])
+    /* Maneja el navbar al hacer scroll */
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 200) {
+                setScrolled(true)
+            } else {
+                setScrolled(false)
+            }
+        }
+        window.addEventListener("scroll", handleScroll)
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [])
     return (
-        <nav className="sticky w-full z-50 top-0 transition-all duration-500 ease-in-out bg-gray-300/10 backdrop-blur-sm border-b border-gray-400/50" id="navbar">
-            <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-                <a href="#" className="flex items-center cursor-pointer">
-                    <img src="/public/ucasal-color-h.svg" alt="Logo" className="h-10 w-auto" />
-                </a>
-                <section className="hidden md:flex items-center space-x-1 lg:space-x-2">
+        <nav className={`w-full z-50 top-0 transition-all duration-500 ease-in-out ${scrolled
+            ? 'sticky bg-gray-100/20 backdrop-blur-sm nav-menu'
+            : 'bg-gray-100/40 backdrop-blur-sm'
+            }`}
+            id="navbar"
+        >
+            <div className="mx-auto px-4 py-3 grid grid-cols-2 md:grid-cols-3 items-center justify-between h-16">
+                <div className="justify-start flex items-center">
+                    {scrolled ? (
+                        <a href="#" className="text-3xl font-sans font-semibold text-(--azul-light-ucasal)">
+                            <h3>UCASAL</h3>
+                        </a>
+                    ) : (
+                        <img
+                            src="/iso.svg"
+                            alt="Logo"
+                            className="h-10 w-auto"
+                        />
+                    )}
+                </div>
+                <section className="hidden md:flex items-center justify-center space-x-1 lg:space-x-2">
                     <a href="#inicio" className="nav-link">Inicio</a>
                     <a href="#nosotros" className="nav-link">Nosotros</a>
                     <a href="#servicios" className="nav-link">Servicios</a>
                     <a href="#contacto" className="nav-link">Contacto</a>
                 </section>
 
-                <div className="flex items-center">
+                <div className="justify-end flex items-center">
                     <button className="boton-cta hidden md:flex">
                         Contacto
                     </button>
@@ -61,8 +87,19 @@ function Navbar() {
                     </button>
                 </div>
             </div>
-
-            <section id="navMenu" className="hidden bg-white/90 backdrop-blur-md border-t border-gray-200 shadow-lg overflow-hidden transition-all duration-300 ease-in-out absolute w-full" style={{ maxHeight: "0px" }}>
+            {menuAbierto && (
+                <div
+                    className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 transition-opacity duration-300"
+                    onClick={() => setMenuAbierto(false)}
+                />
+            )}
+            <section
+                id="navMenu"
+                className={`bg-white/90 backdrop-blur-md border-t border-gray-200 shadow-lg overflow-hidden absolute w-full transition-all duration-300 ease-out z-50 ${menuAbierto
+                        ? 'opacity-100 translate-y-0 max-h-96 visible'
+                        : 'opacity-0 -translate-y-4 max-h-0 invisible'
+                    }`}
+            >
                 <ul className="flex flex-col gap-4">
                     <li><a href="#inicio" className="block py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100">Inicio</a></li>
                     <li><a href="#nosotros" className="block py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100">Nosotros</a></li>

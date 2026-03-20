@@ -70,9 +70,21 @@
     url("/fonts/MuseoSans_500.otf") format("truetype");
 }
 
-/*SI O SI DEBO DECLARAR LA ALTURA DEL MAPA*/
-#map {
-  height: 45vh;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    max-height: 100vh;
+    transform: translateY(0);
+  }
+}
+
+.nav-menu {
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 body {
@@ -181,11 +193,6 @@ body {
   width: 90%;
 }
 
-/* Estilos del dropdown móvil */
-#navMenu {
-  max-height: 0px;
-  transition: max-height 0.3s ease-in-out;
-}
 
 /* Estilos para enlaces activos en móvil */
 .mobile-nav-link.active {

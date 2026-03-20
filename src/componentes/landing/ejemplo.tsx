@@ -12,7 +12,7 @@ function Navbar({ titulo }: NavbarProps) {
   // 4. ESTADO — variables que cuando cambian, re-renderizan el componente
   const [menuAbierto, setMenuAbierto] = useState(false)
 
-  // 5. EFECTOS — código que corre después del render (o cuando cambia algo)
+  // 5. EFECTOS — código que corre después del render (o cuando cambia algo) Intentar hacer que el useEffect solo maneje cosas de React o solo DOM.
   useEffect(() => {
     console.log('El componente se montó')
   }, []) // [] = solo corre una vez al montar
