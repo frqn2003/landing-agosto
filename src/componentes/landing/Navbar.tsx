@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+/* HAY UN BUG EN LA NAVBAR EN LOS PIXELES 140 a 200 , SE RENDERIZA CONSTANTEMENTE AMBOS COMPONENTES, EL SCROLLEADO Y EL NO SCROLLEADO, ARREGLAR */
 function Navbar() {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -42,10 +42,12 @@ function Navbar() {
   /* Maneja el navbar al hacer scroll */
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY >= 125) {
         setScrolled(true);
+        console.log("verda")
       } else {
         setScrolled(false);
+        console.log("fal")
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -64,13 +66,13 @@ function Navbar() {
       <nav
         className={`w-full z-50 top-0 transition-all duration-500 ease-in-out bg-white/80 ${
           scrolled
-            ? "sticky backdrop-blur-sm nav-menu"
-            : "backdrop-blur-sm fixed"
+            ? "sticky backdrop-blur-md nav-menu"
+            : "backdrop-blur-md"
         }`}
         id="navbar"
       >
         <div
-          className={`${scrolled ? "md:px-24 px-4" : "px-4"} mx-auto py-3 grid grid-cols-2 md:grid-cols-3 items-center justify-between h-18 z-50`}
+          className={`${scrolled ? "contenedor" : "px-4"} mx-auto py-3 grid grid-cols-2 md:grid-cols-3 items-center justify-between h-18 z-50`}
         >
           <div className="justify-start flex items-center">
             {scrolled ? (
