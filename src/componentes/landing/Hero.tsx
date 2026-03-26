@@ -1,5 +1,6 @@
 import Card from "./ui/Card";
 import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 import { useCallback } from "react";
 
 export default function Hero() {
@@ -52,7 +53,7 @@ export default function Hero() {
         loop: true,
         align: 'start',
         slidesToScroll: 1,
-    });
+    }, [Autoplay({ delay: 5000 })]);
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -66,20 +67,20 @@ export default function Hero() {
         <main className="snap-y snap-mandatory relative w-full h-screen overflow-hidden bg-(--azul-light-ucasal)/5">
             <div className="overlay"></div>
             <picture className="absolute top-0 left-0 w-full h-full overflow-hidden z-20">
-                <source media="(max-width: 767px)" srcSet="https://placehold.co/600x400" />
-                <source media="(min-width: 768px)" srcSet="https://placehold.co/1920x1080" />
-                <img src="https://placehold.co/1920x1080" className="w-full h-full object-cover" alt="Segundo ingreso UCASAL" />
+                <source media="(max-width: 767px)" srcSet="/public/modalidades-distancia.webp" />
+                <source media="(min-width: 768px)" srcSet="/public/modalidades-distancia.webp" />
+                <img src="/public/modalidades-distancia.webp" className="w-full h-full object-cover" alt="Segundo ingreso UCASAL" />
             </picture>
-            <section className="h-full w-full contenedor flex flex-col py-86 gap-24">
-                <div className="flex flex-row w-full items-center gap-24">
-                    <div className=" flex-start flex justify-center items-center z-30 w-[50%] h-full contenedor">
-                        <h1 className="text-4xl font-semibold text-justify">
-                            Frase para atrapar que la Angie me tiene que aconsejar sobre que poner relacionada a segundo ingreso
+            <section className="h-full w-full contenedor flex flex-col max-md:justify-end max-md:pb-12 md:pt-56 lg:pt-60 xl:pt-64 2xl:pt-80 gap-6 md:gap-30 lg:gap-40 xl:gap-60">
+                <div className="flex flex-col lg:flex-row w-full items-center gap-12 xl:gap-24">
+                    <div className="flex-start flex justify-center items-center z-30 w-full xl:w-[50%] h-full">
+                        <h1 className="2xl:text-5xl xl:text-3xl lg:text-2xl text-xl font-semibold text-justify text-white max-md:px-6">
+                            Comenzá tu camino profesional con nosotros, cuando quieras, cuando puedas
                         </h1>
                     </div>
-                    <div className="flex justify-center items-center z-30 w-[50%] h-full ">
-                        <div className="grid grid-rows-2 mb-4 items-start justify-start h-full">
-                            <h3>
+                    <div className="flex justify-center items-center z-30 w-full xl:w-[50%] h-full ">
+                        <div className="grid grid-rows-2 mb-4 items-start justify-start h-full text-white">
+                            <h3 className="text-sm md:text-base lg:text-lg">
                                 Descripción bonita de segundo ingreso
                             </h3>
                             <div className="flex flex-row gap-12 justify-center items-start h-full">
@@ -94,41 +95,43 @@ export default function Hero() {
                     </div>
                 </div>
                 {/* Componente de testimonios */}
-                <div className="relative contenedor w-full z-30">
-                    <div className="overflow-hidden" ref={emblaRef}>
-                        <div className="flex">
-                            {testimonios.map((testimonio, index) => (
-                                <div key={index} className="flex-[0_0_100%] md:flex-[0_0_50%] min-w-0 pr-6">
-                                    <Card
-                                        titulo={testimonio.nombre}
-                                        subtitulo={testimonio.subtitulo}
-                                        descripcion={testimonio.descripcion}
-                                        imagen={testimonio.imagen}
-                                    />
-                                </div>
-                            ))}
+                <div className="w-full flex justify-center z-30">
+                    <div className="relative w-full md:w-3/4 lg:w-2/3 xl:w-1/2 px-8">
+                        <div className="overflow-hidden" ref={emblaRef}>
+                            <div className="flex">
+                                {testimonios.map((testimonio, index) => (
+                                    <div key={index} className="flex-[0_0_100%] px-8 md:px-12">
+                                        <Card
+                                            titulo={testimonio.nombre}
+                                            subtitulo={testimonio.subtitulo}
+                                            descripcion={testimonio.descripcion}
+                                            imagen={testimonio.imagen}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Botones de navegación */}
-                    <button
-                        onClick={scrollPrev}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/20 hover:bg-white/30 rounded-full p-3 backdrop-blur-sm transition-all"
-                        aria-label="Anterior"
-                    >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                    <button
-                        onClick={scrollNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/20 hover:bg-white/30 rounded-full p-3 backdrop-blur-sm transition-all"
-                        aria-label="Siguiente"
-                    >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                    </button>
+                        {/* Botones de navegación */}
+                        <button
+                            onClick={scrollPrev}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white/20 hover:bg-white/30 rounded-full p-3 backdrop-blur-sm transition-all"
+                            aria-label="Anterior"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button
+                            onClick={scrollNext}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 max-sm:-translate-x-2 translate-x-2 bg-white/20 hover:bg-white/30 rounded-full p-3 backdrop-blur-sm transition-all"
+                            aria-label="Siguiente"
+                        >
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </section>
         </main>
