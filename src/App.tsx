@@ -1,7 +1,7 @@
-import './App.css'
 import Navbar from './componentes/landing/Navbar'
 import Hero from './componentes/landing/Hero'
 import Detalles from './componentes/landing/Detalles'
+import Footer from './componentes/landing/Footer'
 
 function App() {
   const parametros = new URLSearchParams(window.location.search)
@@ -18,6 +18,7 @@ function App() {
       <Navbar />
       <Hero />
       <Detalles />
+      <Footer />
     </>
   )
 }

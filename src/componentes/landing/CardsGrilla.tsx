@@ -17,20 +17,20 @@ const colorStyles: Record<string, { border: string, bg: string, bgHover: string,
 
 const mobileCards = [
   {
-    title: '¿Qué es?',
-    description: 'Una oportunidad para iniciar tu carrera en la segunda mitad del año y no perder el ciclo.',
+    title: '¿Por qué empezar en Agosto?',
+    description: 'Comenzá tu carrera universitaria sin esperar al próximo año. Aprovechá este ingreso para avanzar antes, ganar tiempo y acercarte más rápido a tu título profesional.',
     colorKey: 'rojo-ucasal',
     icon: <path strokeLinecap="round" strokeLinejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
   },
   {
-    title: '¿Cuándo?',
-    description: 'Las clases inician oficialmente en Agosto por la plataforma virtual.',
+    title: '¿Cómo podés empezar ahora?',
+    description: '¡Las inscripciones ya están abiertas! Iniciando en agosto, tenés el tiempo ideal para organizarte, completar tu admisión y dar el primer paso en esta nueva etapa académica.',
     colorKey: 'rojo-ucasal',
     icon: <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
   },
   {
-    title: 'Modalidad',
-    description: 'Modelo educativo 100% online y asincrónico integral gestionado por Campus Virtual.',
+    title: '¿Cómo vas a estudiar?',
+    description: 'Estudiá 100% online y a tu ritmo. Nuestro modelo a distancia te permite avanzar desde el primer día con total flexibilidad, gestionando tu cursada a través del Campus Virtual.',
     colorKey: 'rojo-ucasal',
     icon: <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
   }

@@ -124,9 +124,9 @@ export default function Detalles() {
                 </svg>
               </div>
               <div className="flex-1 mt-1">
-                <h3 className="text-xl font-bold text-(--azul-ucasal) mb-2">¿Qué es?</h3>
+                <h3 className="text-xl font-bold text-(--azul-ucasal) mb-2">¿Por qué empezar en Agosto?</h3>
                 <p className="text-[16px] text-(--ucasal-black) leading-[1.7] opacity-80 font-normal text-justify">
-                  Una oportunidad para iniciar o retomar tu carrera universitaria en la segunda mitad del año. Esto te permite aprovechar los meses restantes y no perder un año completo del ciclo lectivo, asegurando tu progreso académico sin demoras.
+                  Comenzá tu carrera universitaria sin esperar al próximo año. Aprovechá este ingreso para avanzar antes, ganar tiempo y acercarte más rápido a tu título profesional.
                 </p>
               </div>
             </motion.div>
@@ -145,9 +145,9 @@ export default function Detalles() {
                 </svg>
               </div>
               <div className="flex-1 mt-1">
-                <h3 className="text-xl font-bold text-(--azul-ucasal) mb-2">¿Cuándo iniciar?</h3>
+                <h3 className="text-xl font-bold text-(--azul-ucasal) mb-2">¿Cómo podés empezar ahora?</h3>
                 <p className="text-[16px] text-(--ucasal-black) leading-[1.7] opacity-80 font-normal text-justify">
-                  El periodo de inscripciones se encuentra actualmente abierto y disponible para todos los interesados. Las clases inician de manera oficial durante el mes de Agosto, dándote el tiempo necesario para organizarte y gestionar tu admisión.
+                  ¡Las inscripciones ya están abiertas! Iniciando en agosto, tenés el tiempo ideal para organizarte, completar tu admisión y dar el primer paso en esta nueva etapa académica.
                 </p>
               </div>
             </motion.div>
@@ -166,9 +166,9 @@ export default function Detalles() {
                 </svg>
               </div>
               <div className="flex-1 mt-1">
-                <h3 className="text-xl font-bold text-(--azul-ucasal) mb-2">Modalidad a Distancia</h3>
+                <h3 className="text-xl font-bold text-(--azul-ucasal) mb-2">¿Cómo vas a estudiar?</h3>
                 <p className="text-[16px] text-(--ucasal-black) leading-[1.7] opacity-80 font-normal text-justify">
-                  Disfrutá de un modelo educativo de excelencia metodológica, desarrollado 100% de manera online y con total asincronía. Todo tu progreso y las evaluaciones estarán gestionadas de forma integral a través de nuestro Campus Virtual.
+                  Estudiá 100% online y a tu ritmo. Nuestro modelo a distancia te permite avanzar desde el primer día con total flexibilidad, gestionando tu cursada a través del Campus Virtual.
                 </p>
               </div>
             </motion.div>
