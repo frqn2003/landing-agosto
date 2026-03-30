@@ -16,11 +16,40 @@ body {
 
 .contenedor {
   padding-inline: 10px;
+
   @media (min-width: 768px) {
     padding-inline: 50px;
   }
+
   @media (min-width: 1024px) {
     padding-inline: 100px;
+  }
+}
+
+@keyframes scrollInfinitoBase {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: scrollInfinitoBase 30s linear infinite;
+  will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .animate-infinite-scroll {
+    animation: scrollInfinitoBase 25s linear infinite;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .marquee-container-base:hover .animate-infinite-scroll {
+    animation-play-state: paused;
   }
 }
 
@@ -100,6 +129,7 @@ body {
     max-height: 0;
     transform: translateY(-10px);
   }
+
   100% {
     opacity: 1;
     max-height: 100vh;
@@ -144,6 +174,7 @@ body {
 .hover-button:hover img {
   transform: translateX(350%) rotate(90deg);
   z-index: 1;
+
   @media (max-width: 767px) {
     transform: translateX(455%) rotate(90deg);
     z-index: 1;
@@ -153,6 +184,7 @@ body {
 .hover-button:hover span {
   transform: translateX(-15%);
   color: white;
+
   @media (max-width: 767px) {
     transform: translateX(-10%);
   }
@@ -222,12 +254,14 @@ body {
   gap: 6px;
   border-radius: 9999px;
   cursor: pointer;
+
   @media (max-width: 1200px) {
     padding: 10px 1em;
     font-size: 1.05em;
     gap: 4px;
     border-radius: 10px;
   }
+
   @media (max-width: 768px) {
     padding: 10px 1em;
     font-size: 0.8em;
@@ -273,18 +307,16 @@ body {
   display: inline-block;
   padding: var(--ab-thickness);
   border-radius: var(--ab-radius);
-  background: conic-gradient(
-    from var(--ab-angle),
-    var(--rojo-ucasal),
-    var(--ucasal-white),
-    var(--azul-ucasal),
-    var(--ucasal-white),
-    var(--rojo-ucasal)
-  );
+  background: conic-gradient(from var(--ab-angle),
+      var(--rojo-ucasal),
+      var(--ucasal-white),
+      var(--azul-ucasal),
+      var(--ucasal-white),
+      var(--rojo-ucasal));
   animation: ab-rotate 6s linear infinite;
 }
 
-.animated-border > .ab-inner {
+.animated-border>.ab-inner {
   width: 100%;
   border-radius: var(--ab-radius);
   background: var(--azul-ucasal);
@@ -294,19 +326,19 @@ body {
 }
 
 /* Hover solo con colores de marca: invertimos azul/blanco */
-.animated-border > .ab-inner:hover:not(:disabled) {
+.animated-border>.ab-inner:hover:not(:disabled) {
   background: var(--ucasal-white);
   color: var(--azul-ucasal);
 }
 
 /* Accesibilidad: foco con rojo institucional */
-.animated-border > .ab-inner:focus-visible {
+.animated-border>.ab-inner:focus-visible {
   outline: 2px solid var(--rojo-ucasal);
   outline-offset: 2px;
 }
 
 /* Estado deshabilitado con escala de grises institucional */
-.animated-border > .ab-inner:disabled {
+.animated-border>.ab-inner:disabled {
   background: var(--ucasal-gray-medium);
   color: var(--ucasal-black);
   cursor: not-allowed;

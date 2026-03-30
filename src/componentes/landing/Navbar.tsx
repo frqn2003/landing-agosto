@@ -59,7 +59,7 @@ function Navbar() {
     <>
       {menuAbierto && (
         <div
-          className="fixed top-0 left-0 right-0 z-50 flex justify-center w-full h-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 bg-gray-700/40 backdrop-blur-sm md:p-24"
+          className="fixed top-0 left-0 right-0 z-40 flex justify-center w-full h-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 bg-gray-700/40 backdrop-blur-sm md:p-24"
           onClick={() => setMenuAbierto(false)}
         />
       )}
@@ -67,7 +67,7 @@ function Navbar() {
         className={`w-full z-50 top-0 transition-all duration-500 ease-in-out bg-white/80 ${
           scrolled
             ? "sticky backdrop-blur-md nav-menu"
-            : "backdrop-blur-md"
+            : "relative backdrop-blur-md"
         }`}
         id="navbar"
       >
@@ -110,7 +110,7 @@ function Navbar() {
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex lg:hidden items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 hover:bg-gray-100"
+              className="inline-flex md:hidden items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 hover:bg-gray-100"
               id="menu-button"
             >
               {menuAbierto ? (
