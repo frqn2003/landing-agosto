@@ -44,10 +44,8 @@ function Navbar() {
     const handleScroll = () => {
       if (window.scrollY >= 125) {
         setScrolled(true);
-        console.log("verda")
       } else {
         setScrolled(false);
-        console.log("fal")
       }
     };
     window.addEventListener("scroll", handleScroll);
@@ -92,21 +90,18 @@ function Navbar() {
           </div>
           <section className="hidden md:flex items-center justify-center space-x-1 lg:space-x-2">
             <a href="#inicio" className="nav-link">
-              Inicio
+              Modalidad
             </a>
             <a href="#nosotros" className="nav-link">
-              Nosotros
+              Carreras
             </a>
             <a href="#servicios" className="nav-link">
-              Servicios
-            </a>
-            <a href="#contacto" className="nav-link">
-              Contacto
+              Sedes
             </a>
           </section>
 
           <div className="justify-end flex items-center">
-            <button className="boton-cta hidden md:flex">Contacto</button>
+            <button className="boton-cta hidden md:flex">¡Quiero Inscribirme!</button>
             <button
               onClick={toggleMenu}
               type="button"
@@ -157,38 +152,41 @@ function Navbar() {
               : "opacity-0 -translate-y-4 max-h-0 invisible"
           }`}
         >
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col gap-2">
             <li>
               <a
                 href="#inicio"
-                className="block py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100"
+                className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                onClick={() => setMenuAbierto(false)}
               >
-                Inicio
+                Modalidad
               </a>
             </li>
             <li>
               <a
                 href="#nosotros"
-                className="block py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100"
+                className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                onClick={() => setMenuAbierto(false)}
               >
-                Nosotros
+                Carreras
               </a>
             </li>
             <li>
               <a
                 href="#servicios"
-                className="block py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100"
+                className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                onClick={() => setMenuAbierto(false)}
               >
-                Servicios
+                Sedes
               </a>
             </li>
-            <li>
-              <a
-                href="#contacto"
-                className="block py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100"
+            <li className="py-2 border-t border-gray-200 w-full">
+              <button
+                className="mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                onClick={() => setMenuAbierto(false)}
               >
-                Contacto
-              </a>
+                ¡Quiero Inscribirme!
+              </button>
             </li>
           </ul>
         </section>

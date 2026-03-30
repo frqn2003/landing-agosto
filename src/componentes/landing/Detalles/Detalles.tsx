@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import CardsGrilla from './CardsGrilla';
+import CardsGrilla from './DetallesCardsGrilla';
 
 // Tarjetas adaptadas para Segundo Ingreso
 const sliderCards = [
@@ -54,38 +54,12 @@ const sliderCards = [
   }
 ];
 
-const colorStyles: Record<string, { border: string, bg: string, bgHover: string, text: string }> = {
-  'rojo-ucasal': {
-    border: 'hover:border-[var(--rojo-ucasal)]/30',
-    bg: 'bg-[var(--rojo-ucasal)]/10',
-    bgHover: 'group-hover:bg-[var(--rojo-ucasal)]',
-    text: 'text-[var(--rojo-ucasal)]'
-  },
-  'azul-ucasal': {
-    border: 'hover:border-[var(--azul-ucasal)]/30',
-    bg: 'bg-[var(--azul-ucasal)]/10',
-    bgHover: 'group-hover:bg-[var(--azul-ucasal)]',
-    text: 'text-[var(--azul-ucasal)]'
-  }
-};
-
 export default function Detalles() {
   return (
     <section 
-      className="py-12 flex flex-col font-sans overflow-hidden bg-white"
-      style={{
-        '--rojo-ucasal': '#ee1818',
-        '--azul-light-ucasal': '#004180',
-        '--rojo-ucasal-var1': '#f8c8c86b',
-        '--azul-light-ucasal-var1': '#78b1eb6b',
-        '--azul-ucasal': '#022130',
-        '--ucasal-white': '#ffffff',
-        '--ucasal-black': '#000000',
-        '--ucasal-gray-light': '#f8f9fa',
-        '--ucasal-gray-medium': '#e9ecef',
-      } as React.CSSProperties}
+      className="py-8 flex flex-col font-sans overflow-hidden bg-white"
     >
-      <div className="contenedor mb-8 lg:mb-16">
+      <div className="contenedor">
         <div className="text-left mb-8">
           <h2 className="text-xl md:text-2xl font-bold text-(--azul-ucasal) tracking-tight">
             Inicia tu carrera en <span className="text-(--rojo-ucasal)">Agosto</span>
@@ -182,34 +156,33 @@ export default function Detalles() {
       </div>
 
       {/* SECCIÓN 2: MARQUEE CONTINUO CON HTML PROVISTO */}
-      <div className="w-full bg-white relative mt-0 lg:mt-4 mb-8">
-        <div className="contenedor text-left mb-4">
+      <div className="w-full bg-white relative mt-0 lg:mt-4 mb-8 contenedor">
+        <div className="text-left mb-4">
           <h2 className="text-xl md:text-2xl font-bold text-(--azul-ucasal) tracking-tight">
             Beneficios de iniciar en <span className="text-(--rojo-ucasal)">Agosto </span>
           </h2>
         </div>
 
-        {/* Contenedor Carrusel Infinito con class mask-gradient */}
+        {/* Contenedor Carrusel Infinito */}
         <div 
-          className="mt-8 w-full inline-flex flex-nowrap overflow-hidden marquee-container-base relative mask-gradient pb-10"
+          className="mt-6 w-full inline-flex flex-nowrap overflow-hidden group-hover-pause relative mask-gradient"
           style={{
-            maskImage: 'linear-gradient(to right, transparent, black 2%, black 98%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 2%, black 98%, transparent)'
+            maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)'
           }}
         >
 
           {/* Bloque 1 */}
-          <div className="flex shrink-0 items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll gap-6 px-3">
+          <div className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll gap-6 px-4">
             {sliderCards.map((card, idx) => {
-              const styles = colorStyles[card.colorKey] || colorStyles['rojo-ucasal'];
               return (
               <div
                 key={`block1-${idx}`}
-                className={`w-[280px] md:w-80 shrink-0 group bg-white rounded-xl p-5 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 relative mt-8 ${styles.border}`}
+                className={`w-80 flex-shrink-0 group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 relative mt-8`}
               >
-                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-14 h-14 ${styles.bg} rounded-full flex items-center justify-center ${styles.bgHover} transition-colors duration-300`}>
+                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-14 h-14 bg-(--${card.colorKey})/10 rounded-full flex items-center justify-center group-hover:bg-(--rojo-ucasal) transition-colors duration-300`}>
                   <svg 
-                    className={`w-7 h-7 ${styles.text} group-hover:text-white transition-colors duration-300`}
+                    className={`w-7 h-7 text-(--${card.colorKey}) group-hover:text-white transition-colors duration-300`}
                     fill="none" stroke="currentColor" viewBox="0 0 24 24"
                   >
                     {card.icon}
@@ -222,17 +195,16 @@ export default function Detalles() {
           </div>
 
           {/* Bloque 2 (Duplicado para efecto visual Seamless) */}
-          <div className="flex shrink-0 items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll gap-6 px-3" aria-hidden="true">
+          <div className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll gap-6 px-4" aria-hidden="true">
             {sliderCards.map((card, idx) => {
-              const styles = colorStyles[card.colorKey] || colorStyles['rojo-ucasal'];
               return (
               <div
                 key={`block2-${idx}`}
-                className={`w-[280px] md:w-80 shrink-0 group bg-white rounded-xl p-5 md:p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 relative mt-8 ${styles.border}`}
+                className={`w-80 flex-shrink-0 group bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 relative mt-8`}
               >
-                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-14 h-14 ${styles.bg} rounded-full flex items-center justify-center ${styles.bgHover} transition-colors duration-300`}>
+                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 w-14 h-14 bg-(--${card.colorKey})/10 rounded-full flex items-center justify-center group-hover:bg-(--rojo-ucasal) transition-colors duration-300`}>
                   <svg 
-                    className={`w-7 h-7 ${styles.text} group-hover:text-white transition-colors duration-300`}
+                    className={`w-7 h-7 text-(--${card.colorKey}) group-hover:text-white transition-colors duration-300`}
                     fill="none" stroke="currentColor" viewBox="0 0 24 24"
                   >
                     {card.icon}

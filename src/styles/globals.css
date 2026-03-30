@@ -15,7 +15,7 @@ body {
 }
 
 .contenedor {
-  padding-inline: 10px;
+  padding-inline: 20px;
 
   @media (min-width: 768px) {
     padding-inline: 50px;
@@ -144,6 +144,7 @@ body {
 .hover-button {
   position: relative;
   transition: all 0.3s ease;
+  width: fit-content;
 }
 
 .hover-button img {
@@ -254,19 +255,18 @@ body {
   gap: 6px;
   border-radius: 9999px;
   cursor: pointer;
+  width: fit-content;
 
   @media (max-width: 1200px) {
-    padding: 10px 1em;
+    padding: 12px 1.8em;
     font-size: 1.05em;
     gap: 4px;
-    border-radius: 10px;
   }
 
   @media (max-width: 768px) {
-    padding: 10px 1em;
-    font-size: 0.8em;
+    padding: 10px 1.5em;
+    font-size: 0.9em;
     gap: 3px;
-    border-radius: 10px;
   }
 }
 
