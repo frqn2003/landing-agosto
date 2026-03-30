@@ -20,6 +20,7 @@ function App() {
       <Navbar />
       <HeroAgosto />
       <Detalles />
+      <CardsCarreras />
       <Footer />
     </>
   )
