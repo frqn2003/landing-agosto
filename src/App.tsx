@@ -2,8 +2,7 @@ import Navbar from './componentes/landing/Navbar'
 import Hero from './componentes/landing/Hero'
 import Detalles from './componentes/landing/Detalles/Detalles'
 import Footer from './componentes/landing/Footer'
-import HeroAgosto from './componentes/landing/HeroAgosto'
-import HeroEditorial from './componentes/landing/HeroEditorial'
+import CardsCarreras from './componentes/landing/CardsCarreras'
 
 function App() {
   const parametros = new URLSearchParams(window.location.search)
@@ -18,7 +17,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <HeroAgosto />
+      <Hero />
       <Detalles />
       <CardsCarreras />
       <Footer />

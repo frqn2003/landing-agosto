@@ -1,36 +1,12 @@
-import Testimonios from "./Testimonios";
 
 export default function HeroEditorial() {
 
     return (
-        <section className="w-full min-h-full bg-(--azul-light-ucasal)/5 flex items-center py-10 px-4 contenedor">
+        <section className="w-full min-h-full bg-(--azul-light-ucasal)/15 flex items-center py-15 px-4 contenedor">
             <div className="w-full max-w-380 mx-auto">
 
                 {/* Grid principal: izquierda foto+cards / derecha copy */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-
-                    {/* ── Columna izquierda ── */}
-                    <div className="flex flex-col gap-5 max-sm:order-2">
-
-                        {/* Foto redondeada */}
-                        <div className="relative w-full aspect-4/3 rounded-3xl overflow-hidden shadow-xl max-sm:hidden ">
-                            <img
-                                src="https://placehold.co/600x400"
-                                alt="Estudiante UCASAL"
-                                className="w-full h-full object-cover object-center"
-                            />
-                            {/* Badge flotante sobre la imagen */}
-                            <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-2xl px-4 py-2 flex items-center gap-2 shadow-md">
-                                <span className="w-2.5 h-2.5 rounded-full bg-(--rojo-ucasal) animate-pulse" />
-                                <span className="text-xs font-bold text-[#022130] uppercase tracking-wide">
-                                    Inscripción Agosto abierta
-                                </span>
-                            </div>
-                        </div>
-
-                        {/* Componente de testimonios */}
-                        <Testimonios />
-                    </div>
 
                     {/* ── Columna derecha ── */}
                     <div className="flex flex-col gap-6 lg:pl-4 max-sm:order-1 max-sm:items-center max-sm:w-full">
@@ -79,6 +55,21 @@ export default function HeroEditorial() {
                                 </div>
                             ))}
                         </div>
+                    </div>
+
+                    {/* ── Columna izquierda ── */}
+                    <div className="flex flex-col gap-5 max-sm:order-2">
+
+                        {/* Foto redondeada */}
+                        <div className="relative w-full aspect-4/3 rounded-3xl overflow-hidden shadow-xl max-sm:hidden ">
+                            <img
+                                src="https://placehold.co/600x400"
+                                alt="Estudiante UCASAL"
+                                className="w-full h-full object-cover object-center"
+                            />
+                        </div>
+
+                        {/* Componente de testimonios */}
                     </div>
                 </div>
             </div>

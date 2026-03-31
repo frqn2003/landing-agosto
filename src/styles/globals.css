@@ -1,15 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --rojo-ucasal: #ee1818;
-  --azul-light-ucasal: #004180;
-  --azul-ucasal: #022130;
+  --rojo-ucasal: #d83135;
+  --rojo-dark-ucasal: #961315;
+  --azul-ucasal: #1c4d86;
+  --azul-dark-ucasal: #022130;
   --ucasal-white: #ffffff;
   --ucasal-black: #000000;
   --ucasal-gray-light: #f8f9fa;
   --ucasal-gray-medium: #e9ecef;
 }
 
+.degrade {
+  background: linear-gradient(180deg, var(--azul-ucasal), var(--azul-dark-ucasal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.degrade2 {
+  background: linear-gradient(180deg, var(--rojo-ucasal), var(--rojo-dark-ucasal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
 body {
   font-family: "Museo Sans";
 }
@@ -247,7 +262,8 @@ body {
   align-items: center;
   justify-content: center;
   padding: 11px 1.4em;
-  background: linear-gradient(to top right, var(--azul-ucasal), var(--rojo-ucasal), var(--azul-ucasal));
+  background: linear-gradient(135deg, var(--rojo-ucasal) 10%, var(--rojo-dark-ucasal) 60%);
+  /* background: linear-gradient(to bottom right, var(--azul-light-ucasal) 30%, var(--azul-ucasal) 50%, var(--azul-light-ucasal) 80%); */
   color: white;
   font-weight: 600;
   font-size: 1em;
