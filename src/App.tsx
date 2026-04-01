@@ -1,8 +1,11 @@
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './componentes/landing/Navbar'
 import Hero from './componentes/landing/Hero'
 import Detalles from './componentes/landing/Detalles/Detalles'
 import Footer from './componentes/landing/Footer'
-import CardsCarreras from './componentes/landing/CardsCarreras'
+import Carreras from './componentes/landing/Carreras/Carreras'
+import DetalleCarrera from './pages/DetalleCarrera'
+import NavbarCarreras from './componentes/landing/Carreras/NavbarCarreras'
 
 function App() {
   const parametros = new URLSearchParams(window.location.search)
@@ -15,13 +18,25 @@ function App() {
   }
   console.log(utms)
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <Detalles />
-      <CardsCarreras />
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={
+        <>
+          <Navbar />
+          <Hero />
+          <Detalles />
+          <Carreras />
+          <Footer />
+        </>
+      } />
+
+      <Route path='/carreras/:slug' element={
+        <>
+          <NavbarCarreras />
+          <DetalleCarrera />
+          <Footer />
+        </>
+      } />
+    </Routes>
   )
 }
 

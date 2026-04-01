@@ -2,18 +2,18 @@
 export default function Hero() {
 
     return (
-        <section className="w-full min-h-full bg-(--azul-light-ucasal)/15 flex items-center py-15 px-4 contenedor">
+        <section className="w-full min-h-full bg-(--azul-ucasal)/20 flex items-center pt-15 px-4 contenedor">
             <div className="w-full max-w-380 mx-auto">
 
                 {/* Grid principal: izquierda foto+cards / derecha copy */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
                     {/* ── Columna derecha ── */}
-                    <div className="flex flex-col gap-6 lg:pl-4 max-sm:order-1 max-sm:items-center max-sm:w-full">
+                    <div className="flex flex-col gap-6 lg:pl-4 max-sm:order-1 max-sm:items-center max-sm:w-full mb-12">
 
                         {/* Titular ultra-bold */}
                         <h1
-                            className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-[#0d0d0d] leading-none tracking-tighter uppercase"
+                            className="text-6xl sm:text-4xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black text-[#0d0d0d] leading-none tracking-tighter uppercase"
                             style={{ fontFamily: "Museo Sans, sans-serif" }}
                         >
                             <span className="md:block degrade">EMPEZÁ </span>
@@ -53,13 +53,14 @@ export default function Hero() {
                         </div>
 
                         {/* Stats horizontales */}
-                        <div className="flex flex-row lg:gap-16 gap-8 mt-2 border-t border-[#0d0d0d]/10 pt-6">
+                        <div className="flex flex-row lg:gap-16 gap-8 mt-2 border-t border-[#0d0d0d]/10 pt-6  w-full justify-around items-center">
                             {[
                                 { valor: "+30k", etiqueta: "Graduados" },
-                                { valor: "+50", etiqueta: "Carreras" },
-                                { valor: "40+", etiqueta: "Años" },
+                                { valor: "+30", etiqueta: "Carreras" },
+                                { valor: "+60", etiqueta: "Años" },
+                                { valor: "+30", etiqueta: "Convenios" },
                             ].map((stat, i) => (
-                                <div key={i} className="flex flex-col">
+                                <div key={i} className="flex flex-col items-center">
                                     <span className="text-2xl font-black text-[#0d0d0d]">{stat.valor}</span>
                                     <span className="text-xs text-[#0d0d0d]/50 uppercase tracking-wide">{stat.etiqueta}</span>
                                 </div>
@@ -68,14 +69,15 @@ export default function Hero() {
                     </div>
 
                     {/* ── Columna izquierda ── */}
-                    <div className="flex flex-col gap-5 max-sm:order-2">
+                    <div className="flex flex-col justify-end h-full gap-5">
 
                         {/* Foto redondeada */}
-                        <div className="relative w-full aspect-4/3 rounded-3xl overflow-hidden shadow-xl max-sm:hidden ">
+                        <div className="relative w-full max-sm:hidden">
                             <img
-                                src="https://placehold.co/600x400"
+                                src="/hero.webp"
                                 alt="Estudiante UCASAL"
-                                className="w-full h-full object-cover object-center"
+                                className="w-full h-full object-contain object-center"/* 
+                                style={{ filter: "drop-shadow(0 0 6px white) drop-shadow(0 0 2px white)" }} */
                             />
                         </div>
                     </div>

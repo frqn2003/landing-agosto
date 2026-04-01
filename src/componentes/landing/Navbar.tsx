@@ -102,6 +102,7 @@ function Navbar() {
 
           <div className="justify-end flex items-center">
             <button className="boton-cta hidden md:flex">¡Quiero Inscribirme!</button>
+            {/* Botón mobile hamburguesa */}
             <button
               onClick={toggleMenu}
               type="button"
