@@ -11,18 +11,18 @@ interface Carrera {
 
 export default function CardsCarreras(props: Carrera) {
   return (
-    <section className="bg-white/90 backdrop-blur-xl p-3 px-4 rounded-[24px] sm:rounded-[36px] shadow-sm border border-white/50 flex flex-col w-full max-w-sm transition-all duration-300 group/card has-[button:hover]:scale-105">
-      <div className="relative w-full overflow-hidden rounded-[16px] sm:rounded-[28px] aspect-square md:aspect-5/3 bg-gray-200">
+    <section className="bg-white/90 backdrop-blur-xl p-3 px-4 rounded-[24px] sm:rounded-[28px] shadow-sm border border-white/50 flex flex-col w-full max-w-sm transition-all duration-300 group/card has-[button:hover]:scale-105">
+      <div className="relative w-full overflow-hidden rounded-[16px] sm:rounded-3xl md:rounded-[26px] aspect-square md:aspect-5/3 bg-gray-200">
         <img
           src={props.img}
           alt={props.nombre}
           className="w-full h-full object-cover object-center transition-transform duration-500 group"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-100 duration-300"></div>
         {/* Título dentro de la imagen solo en mobile (<768px) */}
-        <div className="absolute bottom-0 left-0 right-0 px-2 py-2 bg-linear-to-t from-black/60 to-transparent md:hidden">
-          <h3 className="text-xs xl:text-base font-bold text-white leading-tight">
+        <div className="absolute bottom-0 left-0 right-0 px-2 py-3 bg-linear-to-t from-black/60 to-transparent sm:hidden">
+          <h3 className="text-base sm:text-lg xl:text-base font-bold leading-tight truncate text-white">
             {props.tipo} en {props.nombre} 
           </h3>
         </div>
@@ -30,13 +30,13 @@ export default function CardsCarreras(props: Carrera) {
 
       <div className="mt-3 flex-1 flex flex-col gap-3 justify-between">
         {/* Título debajo de la imagen solo en desktop (>=768px) */}
-        <div className="hidden md:flex items-center gap-2">
-          <h3 className="text-lg xl:text-xl font-bold text-gray-900 leading-tight">
+        <div className="hidden sm:flex items-center gap-2">
+          <h3 className="text-lg xl:text-xl font-bold degrade-azul leading-tight">
             {props.tipo} en {props.nombre}
           </h3>
         </div>
 
-        <p className="text-[12px] sm:text-[15px] text-gray-800 leading-relaxed">
+        <p className="text-[12px] sm:text-[13px] md:text-[15px] text-gray-800 leading-relaxed">
           {props.descripcion}
         </p>
 

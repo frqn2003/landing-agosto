@@ -70,7 +70,7 @@ function Navbar() {
         id="navbar"
       >
         <div
-          className={`${scrolled ? "contenedor" : "px-4"} mx-auto py-3 grid grid-cols-2 md:grid-cols-3 items-center justify-between h-18 z-50`}
+          className={`${scrolled ? "contenedor" : "px-4"} mx-auto py-3 grid grid-cols-2 lg:grid-cols-3 items-center justify-between h-18 z-50`}
         >
           <div className="justify-start flex items-center">
             {scrolled ? (
@@ -88,7 +88,7 @@ function Navbar() {
               <img src="/iso.svg" alt="Logo" className="h-10 w-auto" />
             )}
           </div>
-          <section className="hidden md:flex items-center justify-center space-x-1 lg:space-x-2">
+          <section className="hidden lg:flex items-center justify-center space-x-1 lg:space-x-2">
             <a href="#inicio" className="nav-link">
               Modalidad
             </a>
@@ -101,12 +101,12 @@ function Navbar() {
           </section>
 
           <div className="justify-end flex items-center">
-            <button className="boton-cta hidden md:flex">¡Quiero Inscribirme!</button>
+            <button className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</button>
             {/* Botón mobile hamburguesa */}
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex md:hidden items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 hover:bg-gray-100"
+              className="inline-flex lg:hidden items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 hover:bg-gray-100"
               id="menu-button"
             >
               {menuAbierto ? (

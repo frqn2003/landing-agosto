@@ -6,6 +6,7 @@ import Footer from './componentes/landing/Footer'
 import Carreras from './componentes/landing/Carreras/Carreras'
 import DetalleCarrera from './pages/DetalleCarrera'
 import NavbarCarreras from './componentes/landing/Carreras/NavbarCarreras'
+import BeneficiosCarrusel from './componentes/landing/Detalles/BeneficiosCarrusel'
 
 function App() {
   const parametros = new URLSearchParams(window.location.search)
@@ -23,7 +24,7 @@ function App() {
         <>
           <Navbar />
           <Hero />
-          <Detalles />
+          <BeneficiosCarrusel />
           <Carreras />
           <Footer />
         </>

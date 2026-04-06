@@ -1,22 +1,113 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
 export default function NavbarCarreras() {
-    const navigate = useNavigate()
+    const [scrolled, setScrolled] = useState(false)
+    const [menuAbierto, setMenuAbierto] = useState(false)
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY >= 80)
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
+
+    useEffect(() => {
+        if (!menuAbierto) return
+        const cerrar = () => setMenuAbierto(false)
+        window.addEventListener("scroll", cerrar)
+        return () => window.removeEventListener("scroll", cerrar)
+    }, [menuAbierto])
+
     return (
-        <nav className="w-full bg-white/80 backdrop-blur-md top-0 z-50 transition-all duration-500 ease-in-out">
-            <div className="contenedor mx-auto">
-                <div className="grid grid-cols-3 items-center justify-center w-full h-18 ">
-                    <Link to="#" onClick={() => navigate(-1)} className="text-2xl font-bold degrade flex items-center justify-start">
-                        Volver Atrás
+        <>
+            {menuAbierto && (
+                <div
+                    className="fixed inset-0 z-40 bg-gray-700/40 backdrop-blur-sm"
+                    onClick={() => setMenuAbierto(false)}
+                />
+            )}
+
+            <nav
+                className={`w-full z-50 top-0 transition-all duration-500 ease-in-out bg-white/80 backdrop-blur-md ${
+                    scrolled ? "sticky shadow-sm border-b border-gray-100 nav-menu" : "relative"
+                }`}
+            >
+                <div className={`${scrolled ? "contenedor" : "px-4"} mx-auto py-3 grid grid-cols-2 lg:grid-cols-3 items-center h-18`}>
+
+                    {/* Volver */}
+                    <Link
+                        to="/"
+                        className="flex items-center gap-2 text-sm font-semibold text-(--azul-ucasal) hover:text-(--rojo-ucasal) transition-colors"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        Volver al inicio
                     </Link>
-                    <div className="text-2xl font-bold text-(--azul-ucasal) flex items-center justify-center">
-                        <img src="/ucasal-color-h.svg" alt="UCASAL" className="h-10" />
+
+                    {/* Logo centrado */}
+                    <div className="hidden lg:flex items-center justify-center">
+                        <img src="/ucasal-color-h.svg" alt="UCASAL" className="h-10 w-auto" />
                     </div>
-                    <div className="flex items-center justify-end">
-                        <button onClick={() => window.location.href = "https://www.ucasal.edu.ar/inscripciones/"} className="boton-cta">¡Quiero Inscribirme!</button>
+
+                    {/* CTA + hamburguesa */}
+                    <div className="flex items-center justify-end gap-2">
+                        <a
+                            href="https://www.ucasal.edu.ar/inscripciones/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="boton-cta hidden lg:flex"
+                        >
+                            ¡Quiero Inscribirme!
+                        </a>
+                        <button
+                            onClick={() => setMenuAbierto(!menuAbierto)}
+                            className="inline-flex lg:hidden items-center justify-center w-10 h-10 p-2 text-gray-500 hover:bg-gray-100 rounded-lg"
+                        >
+                            {menuAbierto ? (
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1l12 12M13 1L1 13" />
+                                </svg>
+                            ) : (
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 17 14">
+                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+                                </svg>
+                            )}
+                        </button>
                     </div>
                 </div>
-            </div>
-        </nav>
+
+                {/* Menú mobile */}
+                <section
+                    className={`bg-white/90 backdrop-blur-md border-t border-gray-200 shadow-lg overflow-hidden absolute w-full transition-all duration-300 ease-out z-50 ${
+                        menuAbierto
+                            ? "opacity-100 translate-y-0 max-h-64 visible"
+                            : "opacity-0 -translate-y-4 max-h-0 invisible"
+                    }`}
+                >
+                    <ul className="flex flex-col gap-1 py-2">
+                        <li>
+                            <Link
+                                to="/"
+                                className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                                onClick={() => setMenuAbierto(false)}
+                            >
+                                ← Volver al inicio
+                            </Link>
+                        </li>
+                        <li className="py-2 border-t border-gray-200 px-4">
+                            <a
+                                href="https://www.ucasal.edu.ar/inscripciones/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="boton-cta flex justify-center"
+                            >
+                                ¡Quiero Inscribirme!
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+        </>
     )
 }

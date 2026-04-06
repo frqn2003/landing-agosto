@@ -11,14 +11,14 @@
   --ucasal-gray-medium: #e9ecef;
 }
 
-.degrade {
+.degrade-azul {
   background: linear-gradient(180deg, var(--azul-ucasal), var(--azul-dark-ucasal));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
-.degrade2 {
+.degrade-rojo {
   background: linear-gradient(180deg, var(--rojo-ucasal), var(--rojo-dark-ucasal));
   -webkit-background-clip: text;
   background-clip: text;
