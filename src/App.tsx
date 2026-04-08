@@ -7,17 +7,9 @@ import Carreras from './componentes/landing/Carreras/Carreras'
 import DetalleCarrera from './pages/DetalleCarrera'
 import NavbarCarreras from './componentes/landing/Carreras/NavbarCarreras'
 import BeneficiosCarrusel from './componentes/landing/Detalles/BeneficiosCarrusel'
+import Form from './componentes/landing/Form'
 
 function App() {
-  const parametros = new URLSearchParams(window.location.search)
-  const utms = {
-    utm_source: parametros.get('utm_source'),
-    utm_medium: parametros.get('utm_medium'),
-    utm_campaign: parametros.get('utm_campaign'),
-    utm_term: parametros.get('utm_term'),
-    utm_content: parametros.get('utm_content')
-  }
-  console.log(utms)
   return (
     <Routes>
       <Route path="/" element={
@@ -26,6 +18,7 @@ function App() {
           <Hero />
           <BeneficiosCarrusel />
           <Carreras />
+          <Form />
           <Footer />
         </>
       } />

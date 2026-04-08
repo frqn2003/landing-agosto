@@ -3,13 +3,46 @@ import { useState, useEffect } from "react";
 function Navbar() {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [seccionActiva, setSeccionActiva] = useState('')
   const menu = document.getElementById("navMenu");
   const boton = document.getElementById("menu-button");
+
+
 
   function toggleMenu() {
     setMenuAbierto(!menuAbierto);
   }
 
+  useEffect(() => {
+    const secciones = ['beneficios', 'carreras', 'sedes']
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 150)
+
+      if (window.scrollY < 150) {
+        setSeccionActiva('')
+        return
+      }
+
+      // Encontrar qué sección está más cerca del centro del viewport
+      const centro = window.innerHeight / 2
+
+      let activa = ''
+      for (const id of secciones) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= centro && rect.bottom >= centro) {
+          activa = id
+          break
+        }
+      }
+      setSeccionActiva(activa)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   /* Manejar click fuera del menú */
   useEffect(() => {
     if (!menuAbierto) return;
@@ -37,22 +70,6 @@ function Navbar() {
     };
 
   }, [menuAbierto]);
-
-
-  /* Maneja el navbar al hacer scroll */
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY >= 125) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   return (
     <>
       {menuAbierto && (
@@ -62,11 +79,10 @@ function Navbar() {
         />
       )}
       <nav
-        className={`w-full z-50 top-0 transition-all duration-500 ease-in-out bg-white/80 ${
-          scrolled
-            ? "sticky backdrop-blur-md nav-menu"
-            : "relative backdrop-blur-md"
-        }`}
+        className={`w-full z-50 top-0 transition-all duration-500 ease-in-out bg-white/80 ${scrolled
+          ? "sticky backdrop-blur-md nav-menu"
+          : "relative backdrop-blur-md"
+          }`}
         id="navbar"
       >
         <div
@@ -89,13 +105,13 @@ function Navbar() {
             )}
           </div>
           <section className="hidden lg:flex items-center justify-center space-x-1 lg:space-x-2">
-            <a href="#inicio" className="nav-link">
-              Modalidad
+            <a href="#beneficios" className={`nav-link ${seccionActiva === 'beneficios' ? 'active' : ''}`}>
+              Beneficios
             </a>
-            <a href="#nosotros" className="nav-link">
+            <a href="#carreras" className={`nav-link ${seccionActiva === 'carreras' ? 'active' : ''}`}>
               Carreras
             </a>
-            <a href="#servicios" className="nav-link">
+            <a href="#servicios" className={`nav-link ${seccionActiva === 'servicios' ? 'active' : ''}`}>
               Sedes
             </a>
           </section>
@@ -147,25 +163,24 @@ function Navbar() {
         </div>
         <section
           id="navMenu"
-          className={`bg-white/80 backdrop-blur-md border-t border-gray-200 shadow-lg overflow-hidden absolute w-full transition-all duration-300 ease-out z-50 ${
-            menuAbierto
-              ? "opacity-100 translate-y-0 max-h-96 visible"
-              : "opacity-0 -translate-y-4 max-h-0 invisible"
-          }`}
+          className={`bg-white/80 backdrop-blur-md border-t border-gray-200 shadow-lg overflow-hidden absolute w-full transition-all duration-300 ease-out z-50 ${menuAbierto
+            ? "opacity-100 translate-y-0 max-h-96 visible"
+            : "opacity-0 -translate-y-4 max-h-0 invisible"
+            }`}
         >
           <ul className="flex flex-col gap-2">
             <li>
               <a
-                href="#inicio"
+                href="#beneficios"
                 className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
                 onClick={() => setMenuAbierto(false)}
               >
-                Modalidad
+                Beneficios
               </a>
             </li>
             <li>
               <a
-                href="#nosotros"
+                href="#carreras"
                 className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
                 onClick={() => setMenuAbierto(false)}
               >

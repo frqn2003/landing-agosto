@@ -20,13 +20,6 @@ export default function NavbarCarreras() {
 
     return (
         <>
-            {menuAbierto && (
-                <div
-                    className="fixed inset-0 z-40 bg-gray-700/40 backdrop-blur-sm"
-                    onClick={() => setMenuAbierto(false)}
-                />
-            )}
-
             <nav
                 className={`w-full z-50 top-0 transition-all duration-500 ease-in-out bg-white/80 backdrop-blur-md ${
                     scrolled ? "sticky shadow-sm border-b border-gray-100 nav-menu" : "relative"
@@ -37,12 +30,14 @@ export default function NavbarCarreras() {
                     {/* Volver */}
                     <Link
                         to="/"
-                        className="flex items-center gap-2 text-sm font-semibold text-(--azul-ucasal) hover:text-(--rojo-ucasal) transition-colors"
+                        className="flex items-center gap-2 text-sm font-semibold text-(--azul-ucasal) hover:text-(--rojo-ucasal) transition-colors text-center"
                     >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
-                        Volver al inicio
+                        {scrolled ? (
+                            <div className="flex justify-items-center gap-2"> <img src="/iso.svg" alt="UCASAL" className="h-6 w-auto" /><span className="flex items-center text-center">Volver al inicio</span></div>
+                        ) : "Volver al inicio"}
                     </Link>
 
                     {/* Logo centrado */}
@@ -56,24 +51,10 @@ export default function NavbarCarreras() {
                             href="https://www.ucasal.edu.ar/inscripciones/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="boton-cta hidden lg:flex"
+                            className="boton-cta flex"
                         >
                             ¡Quiero Inscribirme!
                         </a>
-                        <button
-                            onClick={() => setMenuAbierto(!menuAbierto)}
-                            className="inline-flex lg:hidden items-center justify-center w-10 h-10 p-2 text-gray-500 hover:bg-gray-100 rounded-lg"
-                        >
-                            {menuAbierto ? (
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 14 14">
-                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1l12 12M13 1L1 13" />
-                                </svg>
-                            ) : (
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 17 14">
-                                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
-                                </svg>
-                            )}
-                        </button>
                     </div>
                 </div>
 

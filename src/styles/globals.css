@@ -11,6 +11,38 @@
   --ucasal-gray-medium: #e9ecef;
 }
 
+
+/* Animaciones Hero */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 .degrade-azul {
   background: linear-gradient(180deg, var(--azul-ucasal), var(--azul-dark-ucasal));
   -webkit-background-clip: text;
@@ -141,16 +173,24 @@ body {
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    max-height: 0;
-    transform: translateY(-10px);
   }
 
   100% {
     opacity: 1;
-    max-height: 100vh;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
     transform: translateY(0);
   }
 }
+
 
 .nav-menu {
   animation: fadeIn 0.3s ease-in-out;

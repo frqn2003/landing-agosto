@@ -1,20 +1,9 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 import data from "../data/carreras"
 /* TODO: Reemplazar con datos reales por carrera, el encabezado tendría que ser distinto, siguiendo el diseño previsto del hero ya hecho */
 // Datos placeholder — reemplazar con datos reales por carrera
-const PLACEHOLDER = {
-    descripcionLarga: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    modalidad: "100% Virtual · Asincrónica",
-    perfilEgresado: "El egresado de esta carrera estará capacitado para desempeñarse en organizaciones públicas y privadas, con habilidades para planificar, organizar y gestionar equipos de trabajo. Contará con competencias analíticas, de liderazgo y comunicación que le permitirán abordar desafíos complejos en entornos cambiantes.",
-    planEstudios: [
-        { semestre: "1° Semestre", materias: ["Introducción a la disciplina", "Metodología de estudio", "Comunicación académica", "Fundamentos teóricos I"] },
-        { semestre: "2° Semestre", materias: ["Fundamentos teóricos II", "Herramientas aplicadas I", "Estadística básica", "Ética profesional"] },
-        { semestre: "3° Semestre", materias: ["Gestión organizacional", "Herramientas aplicadas II", "Análisis cuantitativo", "Optativa I"] },
-        { semestre: "4° Semestre", materias: ["Planificación estratégica", "Legislación aplicada", "Seminario de práctica", "Optativa II"] },
-        { semestre: "5° Semestre", materias: ["Trabajo integrador", "Práctica profesional supervisada", "Optativa III", "Seminario final"] },
-    ],
-}
 
 export default function DetalleCarrera() {
     const { slug } = useParams()
@@ -26,6 +15,32 @@ export default function DetalleCarrera() {
         window.scrollTo({ top: 0, behavior: "instant" })
     }, [slug])
 
+    useEffect(() => {
+        if (modalAbierto) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+        return () => {
+            document.body.style.overflow = 'unset'
+        }
+    }, [modalAbierto])
+
+    useEffect(() => {
+        if (carrera) {
+            document.title = `Estudia ${carrera.nombre} en UCASAL`
+        }
+        return () => {
+            document.title = 'UCASAL: ¡Inicia tu Carrera en Agosto!'
+        }
+    }, [carrera])
+
+    const modalidad = carrera?.modalidad == 7 ? 'Virtual' : carrera?.modalidad == 1 ? 'Presencial' : 'Presencial'
+
+    const titulo = carrera?.nombre?.trim().split(' ') || []
+    const tituloClase = titulo?.length >= 4 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(8)_forwards]'
+    console.log(titulo, tituloClase)
+
     if (!carrera) {
         return (
             <div className="contenedor py-20 text-center">
@@ -36,45 +51,62 @@ export default function DetalleCarrera() {
 
     return (
         <>
+            <Helmet>
+                <meta name="description" content={carrera.descripcionCorta} />
+                <meta name="language" content="spanish" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta property="image" content={`https://www.ucasal.edu.ar/landing/ingreso/public/${carrera.codcar}.jpg`} />
+                <meta httpEquiv="Content-language" content="es" />
+                <meta name="author" content="Universidad Católica de Salta - UCASAL" />
+                <meta charSet="UTF-8" />
+                <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+                <meta property="og:title" content={carrera.nombre + " - UCASAL"} />
+                <meta property="og:description" content={carrera.descripcionCorta} />
+                <meta property="og:site_name" content="UCASAL - Universidad Católica de Salta" />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content={`https://www.ucasal.edu.ar/landing/ingreso/public/${carrera.codcar}.jpg`} />
+                <meta property="og:url" content={`https://www.ucasal.edu.ar/landing/ingreso/carreras/${carrera.codcar}`} />
+                <meta property="og:locale" content="es_AR" />
+            </Helmet>
             {/* ── HERO DE LA CARRERA ── */}
-            <section className="relative w-full h-80 sm:h-96 lg:h-[480px] overflow-hidden">
-                <img
-                    src={carrera.img}
-                    alt={carrera.nombre}
-                    className="w-full h-full object-cover object-center"
-                />
-                <div className="absolute inset-0 bg-linear-to-r from-[#022130]/95 via-[#022130]/70 to-[#022130]/20" />
-                <div className="absolute inset-0 bg-linear-to-t from-[#022130]/60 via-transparent to-transparent" />
-                <div className="absolute inset-0 flex items-end contenedor pb-10">
-                    <div className="flex flex-col gap-3 text-white max-w-2xl">
-                        <span className="flex items-center gap-2 self-start bg-white/10 border border-white/20 text-white/80 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full backdrop-blur-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-(--rojo-ucasal) animate-pulse" />
-                            {carrera.tipo} · {PLACEHOLDER.modalidad}
-                        </span>
-                        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-none tracking-tight uppercase">
-                            {carrera.tipo} en<br />
-                            <span className="text-(--rojo-ucasal)">{carrera.nombre}</span>
-                        </h1>
-                        <div className="flex flex-wrap items-center gap-4 mt-1 text-sm text-white/70">
-                            <span className="flex items-center gap-1.5">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                {carrera.duracion}
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                </svg>
-                                {PLACEHOLDER.modalidad}
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Título oficial
-                            </span>
+            <section className="w-full min-h-full flex items-center pt-4 px-4 contenedor">
+                <div className="w-full max-w-560 h-[600px] bg-(--azul-ucasal) p-12 rounded-2xl relative">
+                    <div className="flex flex-col h-full sm:flex-row gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center justify-center relative z-10  w-full sm:w-2/3">
+                        <div className="flex flex-col gap-3 text-black flex-1 h-full justify-center">
+                            <h1 className={`${tituloClase} font-extrabold leading-none tracking-tight uppercase text-white`}>
+                                {carrera.nombre}
+                            </h1>
+                            <div className="flex flex-wrap items-center gap-4 mt-1 text-sm text-white/70 bg-(--rojo-ucasal) w-fit px-3 py-1 rounded-lg">
+                                <span className="flex items-center gap-1.5">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    {carrera.duracion}
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    {modalidad}
+                                </span>
+                                <span className="flex items-center gap-1.5">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Título oficial
+                                </span>
+                            </div>
                         </div>
+                    </div>
+                    <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                        <img
+                            src="/Fran3.jpg"
+                            /* src={`/${carrera.codcar}.png`} */
+                            alt={carrera.nombre}
+                            className="w-full h-full object-cover object-center"
+                        />
                     </div>
                 </div>
             </section>
@@ -88,7 +120,7 @@ export default function DetalleCarrera() {
                     <div className="flex flex-col gap-3">
                         <h2 className="text-2xl md:text-3xl font-black degrade-azul">Sobre la carrera</h2>
                         <p className="text-gray-600 leading-relaxed text-base">
-                            {PLACEHOLDER.descripcionLarga}
+                            {carrera.descripcionLarga}
                         </p>
                     </div>
 
@@ -103,7 +135,7 @@ export default function DetalleCarrera() {
                             <h2 className="text-xl font-black degrade-azul">Perfil del egresado</h2>
                         </div>
                         <p className="text-gray-600 leading-relaxed text-base">
-                            {PLACEHOLDER.perfilEgresado}
+                            {carrera.perfilEgresado}
                         </p>
                     </div>
 
@@ -221,18 +253,18 @@ export default function DetalleCarrera() {
             {/* ── MODAL PLAN DE ESTUDIOS ── */}
             {modalAbierto && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4"
+                    className="fixed top-0 left-0 right-0 z-50 flex justify-center w-full h-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 bg-gray-700/40 backdrop-blur-sm md:p-24"
                     onClick={() => setModalAbierto(false)}
                 >
                     <div
-                        className="bg-white rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-2xl"
+                        className="bg-white rounded-2xl w-full max-w-4xl max-h-[85vh] overflow-y-auto shadow-2xl"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header modal */}
                         <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between rounded-t-2xl">
                             <div>
                                 <h3 className="text-lg font-black degrade-azul">Plan de Estudios</h3>
-                                <p className="text-xs text-gray-500">{carrera.tipo} en {carrera.nombre} · {carrera.duracion}</p>
+                                <p className="text-xs text-gray-500">{carrera.nombre} · {carrera.duracion}</p>
                             </div>
                             <button
                                 onClick={() => setModalAbierto(false)}
@@ -245,16 +277,13 @@ export default function DetalleCarrera() {
                         </div>
 
                         {/* Contenido semestres */}
-                        <div className="px-6 py-5 flex flex-col gap-5">
-                            {PLACEHOLDER.planEstudios.map((sem, i) => (
+                        <div className={`px-6 py-5 grid gap-6 ${carrera.planEstudios.length % 2 === 1 ? 'md:grid-cols-2 [&>*:last-child]:md:col-span-2 [&>*:last-child]:md:max-w-md [&>*:last-child]:md:mx-auto' : 'md:grid-cols-2'}`}>
+                            {carrera.planEstudios.map((sem, i) => (
                                 <div key={i} className="flex flex-col gap-2">
                                     <div className="flex items-center gap-2">
-                                        <div className="w-6 h-6 rounded-full bg-(--rojo-ucasal) flex items-center justify-center shrink-0">
-                                            <span className="text-[10px] font-black text-white">{i + 1}</span>
-                                        </div>
-                                        <h4 className="text-sm font-bold text-(--azul-ucasal)">{sem.semestre}</h4>
+                                        <h4 className="text-sm font-bold text-white bg-(--rojo-ucasal) p-2 rounded-full">{sem.semestre}</h4>
                                     </div>
-                                    <ul className="ml-8 flex flex-col gap-1">
+                                    <ul className="ml-3 flex flex-col gap-1">
                                         {sem.materias.map((materia, j) => (
                                             <li key={j} className="flex items-center gap-2 text-sm text-gray-600">
                                                 <span className="w-1.5 h-1.5 rounded-full bg-gray-300 shrink-0" />

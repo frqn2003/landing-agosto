@@ -6,7 +6,7 @@ export default function Carreras() {
         <section className="w-full py-12 bg-(--azul-ucasal)/10" id="carreras">
             <div className="contenedor">
                 <div className="text-left mb-8">
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold degrade-azul">
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold degrade-azul tracking-tight">
                         Nuestra Oferta Académica
                     </h2>
                 </div>
@@ -17,9 +17,8 @@ export default function Carreras() {
                             key={carrera.codcar}
                             slug={carrera.slug}
                             nombre={carrera.nombre}
-                            descripcion={carrera.descripcion}
+                            descripcionCorta={carrera.descripcionCorta}
                             duracion={carrera.duracion}
-                            tipo={carrera.tipo}
                             img={carrera.img}
                         />
                     ))}

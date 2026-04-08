@@ -123,7 +123,7 @@ export default function BeneficiosCarrusel() {
   const clases = colorClases[beneficio.color];
 
   return (
-    <div className="w-full bg-white contenedor py-12">
+    <div className="w-full bg-white contenedor py-12" id='beneficios'>
       {/* Encabezado */}
       <div className="mb-8">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold degrade-azul tracking-tight">

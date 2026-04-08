@@ -1,0 +1,229 @@
+import { useEffect, useState } from "react"
+import { getCarrerasApi } from '../../data/carrerasApi'
+
+export default function Form() {
+    const [carreras, setCarreras] = useState<any[]>([])
+    const [modalidad, setModalidad] = useState("")
+    const [codcar, setCodcar] = useState('')
+    const [idProvincia, setIdProvincia] = useState('')
+    const [idSede, setIdSede] = useState('')
+    const urlParametros = new URLSearchParams(window.location.search)
+    const parametros = {
+        utm_source: urlParametros.get('utm_source'),
+        utm_medium: urlParametros.get('utm_medium'),
+        utm_campaign: urlParametros.get('utm_campaign'),
+        utm_term: urlParametros.get('utm_term'),
+        utm_content: urlParametros.get('utm_content'),
+        idconversion: urlParametros.get('id_conversion'),
+        campaignid: urlParametros.get('campaignid'),
+        userAgent: navigator.userAgent
+    }
+    console.log(parametros)
+
+    useEffect(() => {
+        const carreras = getCarrerasApi().then(setCarreras)
+        console.log(carreras)
+        const cambiar_Modo = () => {
+            console.log("cambiar_Modo")
+        }
+
+    }, [])
+
+    return (
+        <form role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
+            autoComplete="on"
+            className="md:col-span-3 bg-white rounded-lg p-6 shadow-2xl w-full sm:w-[90%] xl:w-full ring-2 ring-gray-200">
+            <input type="hidden" value="103" name="id_origen" />
+            <input type="hidden" value="postulantes" name="tabla" />
+            <input type="hidden" id="agent" name="agent" value={parametros.userAgent || ''} />
+            <input type="hidden" name="utm_source" value={parametros.utm_source || ''} />
+            <input type="hidden" name="utm_medium" value={parametros.utm_medium || ''} />
+            <input type="hidden" name="utm_term" value={parametros.utm_term || ''} />
+            <input type="hidden" name="utm_content" value={parametros.utm_content || ''} />
+            <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
+            <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
+            <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
+            <input type="hidden" name="tkp" value="/landing/ingreso/enviado-agosto" />
+            <input type="hidden" name="fkp" value="/landing/ingreso/enviado-agosto?id=404" />
+
+            <div className="flex justify-center">
+                <p className="text-xl my-4 text-black">
+                    Inscripciones 2026 abiertas
+                </p>
+            </div>
+            <div className="grid grid-cols-2 gap-6 border-b border-t border-black/40 py-4">
+                <div className="relative z-0 w-full group">
+                    <select name="cbx_carrera" id="cbx_carrera" aria-label="Seleccionar Carrera"
+                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
+                        required>
+                        <option value="" disabled onChange={() => setModalidad('')} selected>Seleccionar Carrera</option>
+                        {carreras.map((carrera) => (
+                            <option key={carrera.codcar} value={carrera.codcar}>
+                                {carrera.nomcar}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="relative z-0 w-full group">
+                    <select name="modo" id="cbx_modo" aria-label="Seleccionar Modalidad"
+                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
+                        required>
+                        <option value="" disabled selected>Seleccionar Modalidad</option>
+                    </select>
+                </div>
+                <div className="relative z-0 w-full group">
+                    <select name="cbx_provincia" id="cbx_provincia" aria-label="Seleccionar Provincia"
+                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
+                        required>
+                        <option value="" disabled selected>Seleccionar Provincia</option>
+                    </select>
+                </div>
+                <div className="relative z-0 w-full group">
+                    <select name="cbx_sede" id="cbx_sede" aria-label="Seleccionar Sede"
+                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
+                        required>
+                        <option value="" disabled selected>Seleccionar Sede</option>
+                    </select>
+                </div>
+            </div>
+            <div className="flex flex-col gap-2 mt-5 border-b border-black/40" id="datosPersonales">
+
+                <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
+                    <div className="relative z-0 w-full mb-1 group">
+                        <input type="text" name="nombre" id="nombre"
+                            className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
+                            placeholder=" " required />
+                        <label htmlFor="nombre"
+                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Nombre
+                            Completo</label>
+                    </div>
+                    <div className="relative z-0 w-full group">
+                        <input type="email" name="email" id="email"
+                            className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
+                            placeholder=" " required />
+                        <label htmlFor="email"
+                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Email</label>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 pb-4 mt-2">
+                    <div className="relative z-0 w-full group">
+                        <div className="relative w-full group @container">
+                            <input name="tipo_tel" type="hidden" value="cel" />
+                            <input type="text"
+                                className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
+                                id="phone" name="ddi_pais" />
+                            <label htmlFor="tipo_tel"
+                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1 z-10 origin-left bg-white px-2">Código
+                                país</label>
+                        </div>
+                    </div>
+                    <div className="relative group">
+                        <div className="relative w-full group">
+                            <input type="tel" name="cod_area" id="cod" size={4} maxLength={4}
+                                className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
+                                placeholder="" required />
+                            <label htmlFor="cod"
+                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                                Cod.
+                            </label>
+                        </div>
+                    </div>
+                    <div className="relative z-0 w-full group">
+                        <div className="relative">
+                            <span
+                                className="text-[0.8rem] absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-700 px-1 border border-gray-500 back rounded -mt-[0.8px]">15</span>
+                            <input type="text" name="tel" id="tel" size={8} maxLength={8}
+                                className="block w-full p-2 px-10 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
+                                placeholder="" required tabIndex={6} />
+                            <label htmlFor="tel"
+                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-8">
+                                N&uacute;mero
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p className="text-xs text-gray-600 my-2"><strong>*Es requisito de admisi&oacute;n ser graduado con t&iacute;tulo
+                universitario de 4 a&ntilde;os o m&aacute;s de duraci&oacute;n.</strong></p>
+            <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
+                He le&iacute;do y acepto los
+                <button id="openModal" className="inline-block text-blue-500 cursor-pointer" type="button">
+                    T&eacute;rminos y Condiciones de Privacidad
+                </button>
+            </p>
+            <div id="modal" className="fixed inset-0 z-50 overflow-hidden hidden">
+                <div id="overlay" className="fixed inset-0 bg-black/50 transition-opacity"></div>
+
+                <div className="fixed inset-0 flex items-center justify-center p-4">
+                    <div
+                        className="relative bg-white rounded-xl shadow-2xl w-full max-w-5xl h-full max-h-[70vh] flex flex-col animate-scale-up">
+
+                        <div
+                            className="flex items-center justify-between p-6 border-b border-gray-200 bg-linear-to-r from-blue-50 to-indigo-50">
+                            <div className="flex items-center gap-3">
+                                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                    </path>
+                                </svg>
+                                <h2 className="text-2xl font-bold text-gray-900">
+                                    T&eacute;rminos y Condiciones de Privacidad
+                                </h2>
+                            </div>
+                            <button id="closeModal"
+                                className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <div className="flex-1 p-3 md:p-6 overflow-hidden">
+                            <div className="bg-gray-50 rounded-lg p-2 md:p-4 h-full relative">
+                                <iframe id="pdfViewerDesktop"
+                                    src="https://www.ucasal.edu.ar/wp-content/uploads/2023/10/Politicas-de-Privacidad-UCASAL-1.pdf#view=FitH"
+                                    className="w-full h-full rounded-lg border border-gray-300 shadow-inner"
+                                    title="Términos y Condiciones de Privacidad" frameBorder={0}></iframe>
+
+                            </div>
+                        </div>
+
+                        <div className="border-t border-gray-200 p-6 bg-gray-50">
+                            <div className="flex justify-center">
+                                <button id="closeButton"
+                                    className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors duration-200 shadow-lg">
+                                    Cerrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
+            <input type="hidden" id="fecha_formulario" name="fecha_formulario" />
+            <div className="flex justify-center mt-4">
+                <span className="animated-border block sm:inline-block w-full sm:w-36"
+                    style={{ "--ab-thickness": "4px", "--ab-radius": "0.5rem" } as React.CSSProperties}>
+                    <button id="formButton" type="submit"
+                        className="ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 boton-inactivo-form"
+                        tabIndex={11} disabled>
+                        Enviar
+                    </button>
+                </span>
+                <div id="spinnerContainer" className="hidden" role="status">
+                    <svg className="w-8 h-8 text-gray-200 animate-spin fill-[#B11111]" viewBox="0 0 100 101" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                            fill="currentColor" />
+                        <path
+                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                            fill="currentFill" />
+                    </svg>
+                    <span className="sr-only">Loading...</span>
+                </div>
+            </div>
+        </form>
+    )
+}

@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 
 interface Carrera {
   nombre: string;
-  descripcion: string;
+  descripcionCorta: string;
   slug: string;
   duracion: string;
-  tipo: string;
   img: string;
 }
 
@@ -22,8 +21,8 @@ export default function CardsCarreras(props: Carrera) {
         <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-100 duration-300"></div>
         {/* Título dentro de la imagen solo en mobile (<768px) */}
         <div className="absolute bottom-0 left-0 right-0 px-2 py-3 bg-linear-to-t from-black/60 to-transparent sm:hidden">
-          <h3 className="text-base sm:text-lg xl:text-base font-bold leading-tight truncate text-white">
-            {props.tipo} en {props.nombre} 
+          <h3 className="text-base sm:text-lg xl:text-base font-bold leading-tight text-white">
+            {props.nombre} 
           </h3>
         </div>
       </div>
@@ -31,13 +30,13 @@ export default function CardsCarreras(props: Carrera) {
       <div className="mt-3 flex-1 flex flex-col gap-3 justify-between">
         {/* Título debajo de la imagen solo en desktop (>=768px) */}
         <div className="hidden sm:flex items-center gap-2">
-          <h3 className="text-lg xl:text-xl font-bold degrade-azul leading-tight">
-            {props.tipo} en {props.nombre}
+          <h3 className="text-lg xl:text-xl font-bold degrade-azul">
+            {props.nombre}
           </h3>
         </div>
 
         <p className="text-[12px] sm:text-[13px] md:text-[15px] text-gray-800 leading-relaxed">
-          {props.descripcion}
+          {props.descripcionCorta}
         </p>
 
         {/* Footer de la Card */}

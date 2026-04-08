@@ -1,5 +1,16 @@
 /* De 640 a 1024 aparece la foto y esta medio corrompido todo */
+import { useState, useEffect } from 'react'
+
 export default function Hero() {
+    const [showCursor, setShowCursor] = useState(true)
+
+    useEffect(() => {
+        const cursorInterval = setInterval(() => {
+            setShowCursor(prev => !prev)
+        }, 530)
+
+        return () => clearInterval(cursorInterval)
+    }, [])
 
     return (
         <section className="w-full min-h-full flex items-center pt-4 px-4 contenedor">
@@ -7,22 +18,34 @@ export default function Hero() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center">
 
                     {/* ── Columna izquierda ── */}
-                    <div className="flex flex-col gap-6 lg:pl-4 max-sm:order-1 max-sm:items-center max-sm:w-full">
+                    <div className="flex flex-col gap-2 lg:pl-4 max-sm:order-1 max-sm:items-center max-sm:w-full">
 
                         <h1
-                            className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black text-[#0d0d0d] leading-none tracking-tighter uppercase"
+                            className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black text-[#0d0d0d] leading-none tracking-tighter uppercase my-6"
                             style={{ fontFamily: "Museo Sans, sans-serif" }}
                         >
-                            <span className="md:block degrade-azul">EMPEZÁ </span>
-                            <span className="md:block degrade-azul">EN</span>
-                            <span className="block degrade-rojo">AGOSTO.</span>
+                            <span className="degrade-azul inline-block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards] border-r-4 border-transparent md:block">
+                                EMPEZÁ{showCursor && <span className="animate-pulse"></span>}
+                            </span>
+                            <span className="degrade-azul inline-block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.4s_steps(3)_0.8s_forwards,fadeIn_0.1s_0.8s_forwards] md:block">
+                                EN
+                            </span>
+                            <span className="degrade-rojo inline-block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.8s_steps(7)_1.2s_forwards,fadeIn_0.1s_1.2s_forwards] md:block">
+                                AGOSTO
+                            </span>
                         </h1>
 
-                        <p className="text-base sm:text-lg text-[#0d0d0d]/60 leading-relaxed max-w-sm">
+                        <p
+                            className="text-base sm:text-lg text-[#0d0d0d]/60 leading-relaxed max-w-sm mb-4"
+                            style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2s forwards' }}
+                        >
                             Carreras universitarias oficiales, cursado a distancia y docentes comprometidos con tu crecimiento.
                         </p>
 
-                        <div className="flex flex-row flex-wrap gap-3">
+                        <div
+                            className="flex flex-row flex-wrap gap-3"
+                            style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2.3s forwards' }}
+                        >
                             <button
                                 onClick={() => {
                                     const form = document.getElementById('form');
@@ -48,7 +71,7 @@ export default function Hero() {
                         </div>
 
                         {/* Imagen mobile/tablet — visible solo debajo de lg */}
-                        <div className="relative w-full sm:hidden h-100">
+                        <div className="relative w-full sm:hidden h-60" style={{ opacity: 0, animation: 'heroFadeIn 0.8s ease-out 2.6s forwards' }}>
                             <img
                                 src="/hero.webp"
                                 alt="Estudiante UCASAL"
@@ -57,7 +80,10 @@ export default function Hero() {
                         </div>
 
                         {/* Stats horizontales */}
-                        <div className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-2 mt-2 border-t border-[#0d0d0d]/10 pt-6  w-full justify-around items-center">
+                        <div
+                            className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-2 sm:mt-2 border-t border-[#0d0d0d]/10 pt-2 sm:pt-6  w-full justify-around items-center"
+                            style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2.6s forwards' }}
+                        >
                             {[
                                 { valor: "+30k", etiqueta: "Graduados" },
                                 { valor: "+30", etiqueta: "Carreras" },
@@ -75,7 +101,7 @@ export default function Hero() {
                     {/* ── Columna derecha — solo desktop ── */}
                     <div className="hidden sm:flex flex-col justify-end h-full gap-5">
 
-                        <div className="relative w-full">
+                        <div className="relative w-full" style={{ opacity: 0, animation: 'heroFadeIn 0.8s ease-out 2.6s forwards' }}>
                             <img
                                 src="/hero.webp"
                                 alt="Estudiante UCASAL"
