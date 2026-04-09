@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { getCarrerasApi } from '../../data/carrerasApi'
+import intlTelInput from 'intl-tel-input'
+import 'intl-tel-input/build/css/intlTelInput.css'
 
 export default function Form() {
     const [carreras, setCarreras] = useState<any[]>([])
@@ -9,6 +11,13 @@ export default function Form() {
     const [idSede, setIdSede] = useState('')
 
     const [intentoEnviar, setIntento] = useState(false)
+    const [nombre, setNombre] = useState('')
+    const [email, setEmail] = useState('')
+    const [codArea, setCodArea] = useState('')
+    const [tel, setTel] = useState('')
+    const [ddiPais, setDdiPais] = useState('')
+    const phoneRef = useRef<HTMLInputElement>(null)
+    const itiRef = useRef<ReturnType<typeof intlTelInput> | null>(null)
     const urlParametros = new URLSearchParams(window.location.search)
     const parametros = {
         utm_source: urlParametros.get('utm_source'),
@@ -28,7 +37,7 @@ export default function Form() {
     const modos = carreras.filter(c => String(c.codcar) === codcar)
 
     const carreraSeleccionada = carreras.find(c => String(c.codcar) === codcar && String(c.modo) === modalidad)
-    const provincias = [
+    const provincias: any[] = [
         ...new Map(
             (carreraSeleccionada?.provincias || [])
                 .filter((prov: any) => prov.id_provincia != null)
@@ -40,10 +49,31 @@ export default function Form() {
     {/* Helper de estado visual */ }
     const claseBorde = (habilitado: boolean, completado: boolean) => {
         if (completado) return 'border-green-500'
-        if (habilitado) return 'border-(--azul-ucasal)'
         if (intentoEnviar && !completado) return 'border-(--rojo-ucasal)'
+        if (habilitado) return 'border-(--azul-ucasal)'
         return 'border-gray-300'
     }
+
+    const todosCompletos = !!codcar && !!modalidad && !!idProvincia && !!idSede && !!nombre && !!email && !!ddiPais && !!codArea && !!tel
+
+    useEffect(() => {
+        if (phoneRef.current) {
+            itiRef.current = intlTelInput(phoneRef.current, {
+                initialCountry: 'ar',
+                separateDialCode: true,
+                autoPlaceholder: 'off',
+                loadUtils: () => import('intl-tel-input/utils'),
+            })
+            const updateDialCode = () => {
+                const dialCode = itiRef.current?.getSelectedCountryData().dialCode ?? ''
+                setDdiPais(dialCode)
+            }
+            updateDialCode()
+            phoneRef.current.addEventListener('countrychange', updateDialCode)
+            phoneRef.current.addEventListener('input', updateDialCode)
+        }
+        return () => itiRef.current?.destroy()
+    }, [])
 
     useEffect(() => {
         if (modos.length === 1) {
@@ -69,12 +99,12 @@ export default function Form() {
         <form role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
             autoComplete="on"
             onSubmit={e => {
-                if (!codcar || !modalidad || !idProvincia || !idSede) {
+                if (!todosCompletos) {
                     e.preventDefault()
                     setIntento(true)
                 }
             }}
-            className="bg-white rounded-lg p-6 shadow-2xl mx-56">
+            className="bg-white rounded-lg p-6 shadow-2xl md:mx-56">
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
             <input type="hidden" id="agent" name="agent" value={parametros.userAgent || ''} />
@@ -173,51 +203,57 @@ export default function Form() {
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="text" name="nombre" id="nombre"
-                            className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer" placeholder=" " required />
+                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!nombre)}`}
+                            placeholder=" " required
+                            value={nombre} onChange={e => setNombre(e.target.value)} />
                         <label htmlFor="nombre"
                             className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Nombre Completo</label>
                     </div>
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="email" name="email" id="email"
-                            className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
-                            placeholder=" " required />
+                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!email)}`}
+                            placeholder=" " required
+                            value={email} onChange={e => setEmail(e.target.value)} />
                         <label htmlFor="email"
-                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Email</label>
+                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Email</label>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 pb-4 mt-2">
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <div className="relative w-full group @container">
+                <div className="flex flex-row gap-2 sm:gap-4 pb-4 mt-2">
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                        <div className="relative w-full group">
                             <input name="tipo_tel" type="hidden" value="cel" />
-                            <input type="text"
-                                className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
-                                id="phone" name="ddi_pais" />
-                            <label htmlFor="tipo_tel"
-                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1 z-10 origin-left bg-white px-2">Código
-                                país</label>
+                            <input type="hidden" name="ddi_pais" value={ddiPais} />
+                            <input type="tel" ref={phoneRef} id="phone" autoComplete="off"
+                                className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 caret-transparent"
+                                onKeyDown={e => e.preventDefault()}
+                                onPaste={e => e.preventDefault()}
+                                onDrop={e => e.preventDefault()} />
+                            <label htmlFor="tipo_tel" className="absolute text-xs text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1  z-10 origin-left bg-white px-2">Código país</label>
                         </div>
                     </div>
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
-                            <input type="tel" name="cod_area" id="cod" size={4} maxLength={4}
-                                className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
-                                placeholder="" required />
+                            <input type="tel" name="cod_area" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric"
+                                className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!codArea)}`}
+                                placeholder="" required
+                                value={codArea} onChange={e => setCodArea(e.target.value.replace(/\D/g, ''))} />
                             <label htmlFor="cod"
-                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
-                                Cod.
+                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
+                                Código
                             </label>
                         </div>
                     </div>
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                    <span
+                        className="text-[0.8rem] text-gray-700 px-1 border border-gray-500 flex justify-center items-center my-auto w-fit h-fit back rounded">15</span>
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative">
-                            <span
-                                className="text-[0.8rem] absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-700 px-1 border border-gray-500 back rounded -mt-[0.8px]">15</span>
-                            <input type="text" name="tel" id="tel" size={8} maxLength={8}
-                                className="block w-full p-2 px-10 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
-                                placeholder="" required tabIndex={6} />
+                            <input type="tel" name="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
+                                className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!tel)}`}
+                                placeholder="" required tabIndex={6}
+                                value={tel} onChange={e => setTel(e.target.value.replace(/\D/g, ''))} />
                             <label htmlFor="tel"
-                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-8">
+                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-1 bg-white">
                                 N&uacute;mero
                             </label>
                         </div>
@@ -284,7 +320,7 @@ export default function Form() {
                 <span className="animated-border block sm:inline-block w-full sm:w-36"
                     style={{ "--ab-thickness": "4px", "--ab-radius": "0.5rem" } as React.CSSProperties}>
                     <button id="formButton" type="submit"
-                        disabled={!codcar || !modalidad || !idProvincia || !idSede}
+                        disabled={!todosCompletos}
                         className="ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105"
                         tabIndex={11}>
                         Enviar
@@ -303,6 +339,6 @@ export default function Form() {
                     <span className="sr-only">Loading...</span>
                 </div>
             </div>
-        </form>
+        </form >
     )
 }

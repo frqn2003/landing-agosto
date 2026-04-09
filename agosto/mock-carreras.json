@@ -1,0 +1,13 @@
+[
+  {
+    "codcar": 16,
+    "modo": 7,
+    "nombre_carrera": "ABOGACÍA (16)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 10, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 11, "nombre_sede": "BUENOS AIRES - BALCARCE" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 30, "nombre_sede": "SALTA - CENTRAL" },
+      { "id_provincia": null, "nombre_provincia": null, "id_sede": 99, "nombre_sede": "HOME (Home)" }
+    ]
+  }
+]

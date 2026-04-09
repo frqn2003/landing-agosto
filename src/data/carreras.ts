@@ -562,8 +562,8 @@ const data = [
     // ── SEDE B ──
     {
         codcar: 96,
-        slug: "tec-universitaria-en-gestion-de-calidad",
-        nombre: "Tec. Universitaria en Gestión de Calidad",
+        slug: "tecnicatura-univ-en-gestion-de-calidad",
+        nombre: "Tecnicatura Univ. en Gestión de Calidad",
         descripcionCorta: "Implementá sistemas de gestión de calidad y mejora continua en organizaciones de cualquier rubro.",
         descripcionLarga: "La Tecnicatura Universitaria en Gestión de Calidad prepara a los estudiantes para diseñar, implementar y auditar sistemas de gestión basados en normas internacionales como ISO 9001. Los egresados pueden desempeñarse en áreas de control de calidad, mejora de procesos y certificación en empresas industriales, de servicios y organismos públicos. La carrera brinda una formación práctica y orientada a resultados, con salida laboral inmediata.",
         duracion: "2 años",
@@ -840,7 +840,7 @@ const data = [
     {
         codcar: 161,
         slug: "tec-universitaria-en-gestion-de-bancos-empresas-financieras-y-de-seguros",
-        nombre: "Tec. Universitaria en Gestión de Bancos, Empresas Financieras y de Seguros",
+        nombre: "Tecnicatura Univ. en Gestión de Bancos, Empresas Financieras y de Seguros",
         descripcionCorta: "Especializate en el sector financiero y asegurador: productos bancarios, riesgo crediticio y gestión de seguros.",
         descripcionLarga: "Esta tecnicatura forma especialistas en la operatoria de instituciones financieras, bancarias y aseguradoras. Los estudiantes adquieren conocimientos en productos y servicios bancarios, análisis de riesgo crediticio, normativa del Banco Central, seguros de vida y patrimoniales, y atención al cliente financiero. La carrera responde a la demanda del sector con una formación práctica y orientada al ejercicio profesional inmediato.",
         duracion: "3 años",
@@ -1209,8 +1209,8 @@ const data = [
     },
     {
         codcar: 9,
-        slug: "tec-universitaria-en-secretariado-ejecutivo",
-        nombre: "Tec. Universitaria en Secretariado Ejecutivo",
+        slug: "tecnicatura-univ-en-secretariado-ejecutivo",
+        nombre: "Tecnicatura Univ. en Secretariado Ejecutivo",
         descripcionCorta: "Asistí a la alta dirección con eficiencia: gestión documental, agenda, comunicación y coordinación organizacional.",
         descripcionLarga: "La Tecnicatura en Secretariado Ejecutivo forma profesionales con competencias para asistir a directivos y equipos de alta dirección en la gestión administrativa, la organización de la agenda, la redacción de comunicaciones y la coordinación de reuniones y eventos. Los egresados dominan herramientas digitales de productividad, protocolo empresarial y gestión documental, convirtiéndose en un soporte clave para el funcionamiento de cualquier organización.",
         duracion: "2 años",

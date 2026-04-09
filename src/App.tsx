@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './componentes/landing/Navbar'
 import Hero from './componentes/landing/Hero'
-import Detalles from './componentes/landing/Detalles/Detalles'
 import Footer from './componentes/landing/Footer'
 import Carreras from './componentes/landing/Carreras/Carreras'
 import DetalleCarrera from './pages/DetalleCarrera'

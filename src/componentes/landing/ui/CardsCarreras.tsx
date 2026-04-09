@@ -10,8 +10,8 @@ interface Carrera {
 
 export default function CardsCarreras(props: Carrera) {
   return (
-    <section className="bg-white/90 backdrop-blur-xl p-3 px-4 rounded-[24px] sm:rounded-[28px] shadow-sm border border-white/50 flex flex-col w-full max-w-sm transition-all duration-300 group/card has-[button:hover]:scale-105">
-      <div className="relative w-full overflow-hidden rounded-[16px] sm:rounded-3xl md:rounded-[26px] aspect-square md:aspect-5/3 bg-gray-200">
+    <section className="bg-white/90 backdrop-blur-xl p-3 px-4 rounded-xl shadow-sm border border-white/50 flex flex-col w-full max-w-sm transition-all duration-300 group/card has-[button:hover]:scale-105">
+      <div className="relative w-full overflow-hidden rounded-lg aspect-square md:aspect-5/3 bg-gray-200">
         <img
           src={props.img}
           alt={props.nombre}
@@ -21,7 +21,7 @@ export default function CardsCarreras(props: Carrera) {
         <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent opacity-100 duration-300"></div>
         {/* Título dentro de la imagen solo en mobile (<768px) */}
         <div className="absolute bottom-0 left-0 right-0 px-2 py-3 bg-linear-to-t from-black/60 to-transparent sm:hidden">
-          <h3 className="text-base sm:text-lg xl:text-base font-bold leading-tight text-white">
+          <h3 className="text-xs sm:text-lg xl:text-base font-bold leading-tight text-white">
             {props.nombre} 
           </h3>
         </div>

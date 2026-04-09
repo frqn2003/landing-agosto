@@ -14,20 +14,20 @@ export default function Hero() {
 
     return (
         <section className="w-full min-h-full flex items-center pt-4 px-4 contenedor">
-            <div className="w-full max-w-380 bg-(--azul-ucasal)/20 p-12 rounded-2xl mx-auto">
+            <div className="w-full max-w-380 bg-(--azul-ucasal)/20 p-6 sm:p-12 rounded-2xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center">
 
                     {/* ── Columna izquierda ── */}
                     <div className="flex flex-col gap-2 lg:pl-4 max-sm:order-1 max-sm:items-center max-sm:w-full">
 
                         <h1
-                            className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black text-[#0d0d0d] leading-none tracking-tighter uppercase my-6"
+                            className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black text-[#0d0d0d] leading-none tracking-tighter uppercase mt-6"
                             style={{ fontFamily: "Museo Sans, sans-serif" }}
                         >
-                            <span className="degrade-azul inline-block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards] border-r-4 border-transparent md:block">
-                                EMPEZÁ{showCursor && <span className="animate-pulse"></span>}
+                            <span className="degrade-azul overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards] border-r-4 border-transparent md:block">
+                                EMPEZÁ
                             </span>
-                            <span className="degrade-azul inline-block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.4s_steps(3)_0.8s_forwards,fadeIn_0.1s_0.8s_forwards] md:block">
+                            <span className="degrade-azul overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.4s_steps(3)_0.8s_forwards,fadeIn_0.1s_0.8s_forwards] md:block">
                                 EN
                             </span>
                             <span className="degrade-rojo inline-block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.8s_steps(7)_1.2s_forwards,fadeIn_0.1s_1.2s_forwards] md:block">
