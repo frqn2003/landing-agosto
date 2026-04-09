@@ -7,6 +7,8 @@ export default function Form() {
     const [codcar, setCodcar] = useState('')
     const [idProvincia, setIdProvincia] = useState('')
     const [idSede, setIdSede] = useState('')
+
+    const [intentoEnviar, setIntento] = useState(false)
     const urlParametros = new URLSearchParams(window.location.search)
     const parametros = {
         utm_source: urlParametros.get('utm_source'),
@@ -18,21 +20,61 @@ export default function Form() {
         campaignid: urlParametros.get('campaignid'),
         userAgent: navigator.userAgent
     }
-    console.log(parametros)
-
     useEffect(() => {
-        const carreras = getCarrerasApi().then(setCarreras)
-        console.log(carreras)
-        const cambiar_Modo = () => {
-            console.log("cambiar_Modo")
-        }
-
+        getCarrerasApi().then(setCarreras)
     }, [])
 
+    const carrerasUnicas = [...new Map(carreras.map(c => [c.codcar, c])).values()]
+    const modos = carreras.filter(c => String(c.codcar) === codcar)
+
+    const carreraSeleccionada = carreras.find(c => String(c.codcar) === codcar && String(c.modo) === modalidad)
+    const provincias = [
+        ...new Map(
+            (carreraSeleccionada?.provincias || [])
+                .filter((prov: any) => prov.id_provincia != null)
+                .map((prov: any) => [prov.id_provincia, prov])
+        ).values()
+    ]
+    const sedes = (carreraSeleccionada?.provincias || [])
+        .filter((sede: any) => String(sede.id_provincia) === idProvincia)
+    {/* Helper de estado visual */ }
+    const claseBorde = (habilitado: boolean, completado: boolean) => {
+        if (completado) return 'border-green-500'
+        if (habilitado) return 'border-(--azul-ucasal)'
+        if (intentoEnviar && !completado) return 'border-(--rojo-ucasal)'
+        return 'border-gray-300'
+    }
+
+    useEffect(() => {
+        if (modos.length === 1) {
+            setModalidad(String(modos[0].modo))
+            setIdProvincia('')
+            setIdSede('')
+        }
+    }, [codcar])
+
+    useEffect(() => {
+        if (provincias.length === 1) {
+            setIdProvincia(String(provincias[0].id_provincia))
+            setIdSede('')
+        }
+    }, [modalidad])
+
+    useEffect(() => {
+        if (sedes.length === 1) {
+            setIdSede(String(sedes[0].id_sede))
+        }
+    }, [idProvincia])
     return (
         <form role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
             autoComplete="on"
-            className="md:col-span-3 bg-white rounded-lg p-6 shadow-2xl w-full sm:w-[90%] xl:w-full ring-2 ring-gray-200">
+            onSubmit={e => {
+                if (!codcar || !modalidad || !idProvincia || !idSede) {
+                    e.preventDefault()
+                    setIntento(true)
+                }
+            }}
+            className="bg-white rounded-lg p-6 shadow-2xl mx-56">
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
             <input type="hidden" id="agent" name="agent" value={parametros.userAgent || ''} />
@@ -54,60 +96,98 @@ export default function Form() {
             <div className="grid grid-cols-2 gap-6 border-b border-t border-black/40 py-4">
                 <div className="relative z-0 w-full group">
                     <select name="cbx_carrera" id="cbx_carrera" aria-label="Seleccionar Carrera"
-                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
-                        required>
-                        <option value="" disabled onChange={() => setModalidad('')} selected>Seleccionar Carrera</option>
-                        {carreras.map((carrera) => (
-                            <option key={carrera.codcar} value={carrera.codcar}>
-                                {carrera.nomcar}
-                            </option>
+                        className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm  dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900`}
+                        required
+                        value={codcar} onChange={e => {
+                            setCodcar(e.target.value)
+                            setModalidad('')
+                            setIdProvincia('')
+                            setIdSede('')
+                        }}
+                    >
+                        <option value="" selected>Seleccionar Carrera</option>
+                        {carrerasUnicas.map((c) => (
+                            <option key={c.codcar} value={c.codcar}>{c.nombre_carrera}</option>
                         ))}
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
                     <select name="modo" id="cbx_modo" aria-label="Seleccionar Modalidad"
-                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
+                        className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
+                            ${claseBorde(!!codcar, !!modalidad)}
+                            ${!codcar ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
+                        `}
+                        value={modalidad}
+                        onChange={e => {
+                            setModalidad(e.target.value)
+                            setIdProvincia('')
+                            setIdSede('')
+                        }}
+                        disabled={!codcar}
                         required>
                         <option value="" disabled selected>Seleccionar Modalidad</option>
+                        {modos.map((m) => (
+                            <option key={m.modo} value={m.modo}>{m.modo === 7 ? 'Virtual' : 'Presencial'}</option>
+                        ))}
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
                     <select name="cbx_provincia" id="cbx_provincia" aria-label="Seleccionar Provincia"
-                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
-                        required>
+                        className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
+                            ${claseBorde(!!codcar && !!modalidad, !!idProvincia)}
+                            ${!codcar || !modalidad ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
+                        `}
+                        value={idProvincia}
+                        onChange={e => {
+                            setIdProvincia(e.target.value)
+                            setIdSede('')
+                        }}
+                        required
+                        disabled={!codcar || !modalidad}
+                    >
                         <option value="" disabled selected>Seleccionar Provincia</option>
+                        {provincias.map((p: any) => (
+                            <option key={p.id_provincia} value={p.id_provincia}>{p.nombre_provincia}</option>
+                        ))}
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
                     <select name="cbx_sede" id="cbx_sede" aria-label="Seleccionar Sede"
-                        className="block w-full mt-1 p-2 border border-gray-300 bg-white shadow-sm focus:ring-blue-600 focus:border-blue-600 dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900"
-                        required>
+                        className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
+                            ${claseBorde(!!codcar && !!modalidad && !!idProvincia, !!idSede)}
+                            ${!codcar || !modalidad || !idProvincia ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
+                        `}
+                        value={idSede}
+                        onChange={e => setIdSede(e.target.value)}
+                        required
+                        disabled={!codcar || !modalidad || !idProvincia}>
                         <option value="" disabled selected>Seleccionar Sede</option>
+                        {sedes.map((s: any) => (
+                            <option key={s.id_sede} value={s.id_sede}>{s.nombre_sede}</option>
+                        ))}
                     </select>
                 </div>
             </div>
             <div className="flex flex-col gap-2 mt-5 border-b border-black/40" id="datosPersonales">
 
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
-                    <div className="relative z-0 w-full mb-1 group">
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="text" name="nombre" id="nombre"
-                            className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
-                            placeholder=" " required />
+                            className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer" placeholder=" " required />
                         <label htmlFor="nombre"
-                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Nombre
-                            Completo</label>
+                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Nombre Completo</label>
                     </div>
-                    <div className="relative z-0 w-full group">
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="email" name="email" id="email"
                             className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
                             placeholder=" " required />
                         <label htmlFor="email"
-                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">Email</label>
+                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Email</label>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-4 pb-4 mt-2">
-                    <div className="relative z-0 w-full group">
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group @container">
                             <input name="tipo_tel" type="hidden" value="cel" />
                             <input type="text"
@@ -118,18 +198,18 @@ export default function Form() {
                                 país</label>
                         </div>
                     </div>
-                    <div className="relative group">
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
                             <input type="tel" name="cod_area" id="cod" size={4} maxLength={4}
                                 className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
                                 placeholder="" required />
                             <label htmlFor="cod"
-                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
                                 Cod.
                             </label>
                         </div>
                     </div>
-                    <div className="relative z-0 w-full group">
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative">
                             <span
                                 className="text-[0.8rem] absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-700 px-1 border border-gray-500 back rounded -mt-[0.8px]">15</span>
@@ -137,15 +217,13 @@ export default function Form() {
                                 className="block w-full p-2 px-10 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-var(--azul-ucasal) peer"
                                 placeholder="" required tabIndex={6} />
                             <label htmlFor="tel"
-                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-8">
+                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-8">
                                 N&uacute;mero
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
-            <p className="text-xs text-gray-600 my-2"><strong>*Es requisito de admisi&oacute;n ser graduado con t&iacute;tulo
-                universitario de 4 a&ntilde;os o m&aacute;s de duraci&oacute;n.</strong></p>
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
                 He le&iacute;do y acepto los
                 <button id="openModal" className="inline-block text-blue-500 cursor-pointer" type="button">
@@ -206,8 +284,9 @@ export default function Form() {
                 <span className="animated-border block sm:inline-block w-full sm:w-36"
                     style={{ "--ab-thickness": "4px", "--ab-radius": "0.5rem" } as React.CSSProperties}>
                     <button id="formButton" type="submit"
-                        className="ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 boton-inactivo-form"
-                        tabIndex={11} disabled>
+                        disabled={!codcar || !modalidad || !idProvincia || !idSede}
+                        className="ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105"
+                        tabIndex={11}>
                         Enviar
                     </button>
                 </span>
