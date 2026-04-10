@@ -9,7 +9,18 @@ const data = [
         duracion: "5 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de Abogacía será capaz de",
+            items: [
+                "Interpretar y aplicar normas jurídicas en distintos ámbitos del derecho.",
+                "Asesorar legalmente a personas, empresas e instituciones.",
+                "Analizar conflictos y proponer soluciones con fundamento jurídico.",
+                "Representar y defender intereses en instancias judiciales y extrajudiciales.",
+                "Redactar escritos, contratos y documentos legales con precisión técnica.",
+                "Actuar con criterio ético, responsabilidad profesional y compromiso con la justicia.",
+                "Desempeñarse en el ámbito público, privado y judicial.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -90,10 +101,20 @@ const data = [
         nombre: "Corredor Inmobiliario y Martillero Público",
         descripcionCorta: "Capacitá para operar en el mercado inmobiliario y de subastas con respaldo legal y conocimientos de tasación y negociación.",
         descripcionLarga: "Esta carrera habilita para el ejercicio profesional en el mercado inmobiliario y en remates públicos, combinando formación jurídica, económica y técnica. Los egresados podrán gestionar compraventas, alquileres, tasaciones y subastas de bienes muebles e inmuebles, actuando como intermediarios y asesores en transacciones de alto valor. El plan de estudios incluye legislación vigente, valuación de propiedades, ética profesional y gestión comercial.",
-        duracion: "2 años y medio",
+        duracion: "2½ años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de Corredor Inmobiliario y Martillero Público será capaz de",
+            items: [
+                "Intermediar en operaciones de compra, venta y alquiler de inmuebles.",
+                "Tasar bienes con criterio técnico y conocimiento del mercado.",
+                "Organizar y realizar subastas y remates públicos.",
+                "Asesorar a clientes en negocios inmobiliarios y contractuales.",
+                "Interpretar la normativa vinculada a la actividad inmobiliaria y de martillero.",
+                "Negociar operaciones con enfoque comercial, legal y profesional.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -140,7 +161,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de Contador Público será capaz de",
+            items: [
+                "Registrar, analizar e interpretar información contable y financiera.",
+                "Elaborar balances, informes contables y estados financieros.",
+                "Asesorar en materia impositiva, contable, laboral y societaria.",
+                "Auditar estados contables y evaluar procesos administrativos.",
+                "Diseñar y controlar presupuestos y planes financieros.",
+                "Tomar decisiones a partir del análisis económico y patrimonial.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -217,10 +248,20 @@ const data = [
         nombre: "Tecnicatura en Seguridad Informática",
         descripcionCorta: "Protegé sistemas, redes y datos en un mundo cada vez más digital. Una carrera corta y con alta demanda laboral.",
         descripcionLarga: "La Tecnicatura en Seguridad Informática forma técnicos especializados en la protección de infraestructuras tecnológicas frente a amenazas cibernéticas. Los estudiantes aprenden a identificar vulnerabilidades, implementar políticas de seguridad, gestionar incidentes y aplicar normativas de protección de datos. Con una duración acotada y orientación práctica, es ideal para quienes buscan insertarse rápidamente en uno de los sectores con mayor crecimiento del mercado laboral actual.",
-        duracion: "2 años y medio",
+        duracion: "2½ años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Tecnicatura en Seguridad Informática será capaz de",
+            items: [
+                "Identificar riesgos, vulnerabilidades y amenazas en sistemas y redes.",
+                "Aplicar medidas de protección para resguardar datos y recursos informáticos.",
+                "Monitorear incidentes de seguridad y colaborar en su detección y respuesta.",
+                "Implementar buenas prácticas de ciberseguridad en entornos organizacionales.",
+                "Administrar controles de acceso, respaldos y políticas de seguridad.",
+                "Evaluar el nivel de seguridad de equipos, aplicaciones y redes.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -267,10 +308,20 @@ const data = [
         nombre: "Escribanía",
         descripcionCorta: "Ejercé como escribano público: autenticá actos jurídicos, asesorá en contratos y garantizá seguridad jurídica en transacciones.",
         descripcionLarga: "La carrera de Escribanía forma profesionales habilitados para ejercer la función notarial, autenticando documentos, asesorando en actos jurídicos y garantizando la seguridad de las transacciones inmobiliarias, comerciales y civiles. Los egresados pueden ejercer en forma independiente o en estudios notariales, desempeñando un rol clave en la fe pública y el ordenamiento jurídico. La formación incluye derecho civil, comercial, registral y práctica notarial intensiva.",
-        duracion: "4 años y medio",
+        duracion: "4½ años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de Escribanía será capaz de",
+            items: [
+                "Redactar, autorizar y dar fe de actos y documentos jurídicos.",
+                "Asesorar en trámites notariales, contractuales y patrimoniales.",
+                "Intervenir en escrituras, certificaciones y actas con precisión técnica.",
+                "Garantizar la legalidad y seguridad jurídica de los instrumentos públicos.",
+                "Gestionar actuaciones vinculadas a bienes, sucesiones y sociedades.",
+                "Interpretar normativa notarial, civil y registral.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -347,7 +398,17 @@ const data = [
         duracion: "5 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Administración de Empresas será capaz de",
+            items: [
+                "Planificar, organizar y gestionar recursos en distintos tipos de organizaciones.",
+                "Diseñar estrategias para mejorar el funcionamiento y crecimiento de una empresa.",
+                "Analizar información económica, financiera y comercial para la toma de decisiones.",
+                "Coordinar equipos de trabajo y liderar proyectos con visión organizacional.",
+                "Optimizar procesos administrativos, operativos y de gestión.",
+                "Detectar oportunidades de mejora, innovación y desarrollo empresarial.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -426,10 +487,20 @@ const data = [
         nombre: "Tecnicatura en Operaciones Mineras e Industriales",
         descripcionCorta: "Especializate en la gestión operativa de procesos mineros e industriales, un sector clave para la economía regional.",
         descripcionLarga: "Esta tecnicatura forma técnicos con capacidad para gestionar procesos productivos en industrias mineras y manufactureras. Los estudiantes adquieren conocimientos en seguridad industrial, gestión de operaciones, control de calidad y normativas ambientales aplicadas al sector. La carrera responde a la creciente demanda de profesionales capacitados en una región con importante actividad minera e industrial, ofreciendo una rápida inserción laboral.",
-        duracion: "2 años y medio",
+        duracion: "2½ años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Tecnicatura en Operaciones Mineras e Industriales será capaz de",
+            items: [
+                "Supervisar y asistir procesos operativos en entornos mineros e industriales.",
+                "Controlar tareas vinculadas a producción, mantenimiento y seguridad operativa.",
+                "Interpretar procedimientos técnicos, planos y normas de trabajo.",
+                "Colaborar en la optimización de procesos y uso eficiente de recursos.",
+                "Aplicar criterios de seguridad, higiene y cuidado ambiental en las operaciones.",
+                "Operar y dar seguimiento a equipos, instalaciones y sistemas productivos.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -483,7 +554,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Higiene y Seguridad será capaz de",
+            items: [
+                "Identificar riesgos laborales en distintos ámbitos de trabajo.",
+                "Diseñar e implementar planes de prevención y seguridad.",
+                "Supervisar el cumplimiento de normas de higiene, seguridad y salud ocupacional.",
+                "Evaluar condiciones de trabajo para prevenir accidentes y enfermedades profesionales.",
+                "Elaborar informes técnicos y propuestas de mejora en materia de seguridad.",
+                "Promover una cultura preventiva y de cuidado en las organizaciones.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -569,7 +650,17 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Tecnicatura Universitaria en Gestión de Calidad será capaz de",
+            items: [
+                "Implementar procesos y herramientas orientadas a la mejora continua.",
+                "Supervisar estándares de calidad en productos, servicios y procesos.",
+                "Detectar desvíos y proponer acciones correctivas y preventivas.",
+                "Colaborar en auditorías internas y en sistemas de gestión de calidad.",
+                "Registrar, analizar y controlar indicadores de calidad.",
+                "Promover buenas prácticas y cultura de calidad en las organizaciones.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -615,7 +706,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Recursos Humanos será capaz de",
+            items: [
+                "Gestionar procesos de selección, incorporación y desarrollo de talento.",
+                "Diseñar estrategias para la capacitación y el crecimiento del personal.",
+                "Coordinar acciones vinculadas al clima laboral y la comunicación interna.",
+                "Administrar políticas de desempeño, compensaciones y relaciones laborales.",
+                "Detectar necesidades organizacionales vinculadas a las personas y los equipos.",
+                "Promover entornos de trabajo positivos, productivos y alineados a los objetivos institucionales.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -691,7 +792,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Economía será capaz de",
+            items: [
+                "Analizar fenómenos económicos en contextos locales, nacionales e internacionales.",
+                "Interpretar indicadores económicos, financieros y sociales para la toma de decisiones.",
+                "Elaborar diagnósticos y proyecciones sobre mercados, sectores y políticas económicas.",
+                "Evaluar el impacto económico de decisiones públicas y privadas.",
+                "Diseñar estrategias y propuestas basadas en análisis económico.",
+                "Aplicar herramientas cuantitativas para el estudio de variables económicas.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -766,7 +877,18 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Comercialización será capaz de",
+            items: [
+                "Diseñar estrategias comerciales orientadas al posicionamiento y las ventas.",
+                "Analizar mercados, consumidores y tendencias para detectar oportunidades.",
+                "Planificar acciones de marketing, comunicación y desarrollo de marca.",
+                "Gestionar productos, precios, canales de distribución y promociones.",
+                "Interpretar información comercial para la toma de decisiones.",
+                "Desarrollar propuestas que mejoren la experiencia del cliente y los resultados del negocio.",
+                "Desempeñarse con visión estratégica, creatividad y enfoque en el mercado.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -846,7 +968,17 @@ const data = [
         duracion: "3 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Tecnicatura Universitaria en Gestión de Bancos, Empresas Financieras y de Seguros será capaz de",
+            items: [
+                "Gestionar operaciones vinculadas al ámbito bancario, financiero y asegurador.",
+                "Asesorar a clientes sobre productos, servicios y coberturas.",
+                "Interpretar documentación comercial, financiera y contractual.",
+                "Colaborar en procesos administrativos, operativos y de atención al cliente.",
+                "Analizar información básica del mercado financiero y de seguros.",
+                "Aplicar normativa y procedimientos propios del sector.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -903,7 +1035,17 @@ const data = [
         duracion: "3 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de Procuración será capaz de",
+            items: [
+                "Gestionar trámites judiciales y administrativos en distintos fueros.",
+                "Asistir en el seguimiento de expedientes y actuaciones procesales.",
+                "Redactar escritos y documentación vinculada a la práctica jurídica.",
+                "Colaborar con profesionales del derecho en tareas procesales y operativas.",
+                "Interpretar normativa y procedimientos del ámbito judicial.",
+                "Organizar presentaciones, diligencias y gestiones ante organismos públicos y privados.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -959,7 +1101,17 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Tecnicatura Universitaria en Organización y Dirección de Eventos y Ceremonial será capaz de",
+            items: [
+                "Planificar, coordinar y ejecutar eventos sociales, institucionales y corporativos.",
+                "Organizar cronogramas, recursos y equipos para el desarrollo de cada evento.",
+                "Aplicar normas de ceremonial y protocolo en distintos ámbitos.",
+                "Diseñar experiencias acordes al tipo de evento y al público destinatario.",
+                "Supervisar la logística, ambientación y puesta en escena.",
+                "Resolver imprevistos con criterio organizativo y orientación al detalle.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -1012,7 +1164,17 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Seguridad será capaz de",
+            items: [
+                "Diseñar estrategias y planes de seguridad en distintos contextos.",
+                "Identificar riesgos y evaluar situaciones que puedan afectar a personas, bienes e instituciones.",
+                "Coordinar acciones de prevención, control y respuesta ante incidentes.",
+                "Supervisar recursos, procedimientos y equipos vinculados a la seguridad.",
+                "Aplicar normas, protocolos y criterios técnicos de actuación.",
+                "Elaborar diagnósticos e informes para la toma de decisiones.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -1058,7 +1220,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Comercio Internacional será capaz de",
+            items: [
+                "Gestionar operaciones de importación y exportación.",
+                "Analizar mercados internacionales y detectar oportunidades comerciales.",
+                "Interpretar normativas, regímenes aduaneros y documentación del comercio exterior.",
+                "Coordinar procesos logísticos y operativos vinculados al intercambio internacional.",
+                "Asesorar sobre negociaciones comerciales con perspectiva global.",
+                "Evaluar costos, riesgos y condiciones de negocios internacionales.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -1140,7 +1312,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Administración Agropecuaria será capaz de",
+            items: [
+                "Gestionar recursos y procesos en empresas agropecuarias.",
+                "Planificar la producción con criterio técnico, económico y organizacional.",
+                "Analizar costos, inversiones y resultados del negocio agropecuario.",
+                "Coordinar actividades vinculadas a la producción, comercialización y administración.",
+                "Evaluar oportunidades de mejora y crecimiento en el sector agropecuario.",
+                "Tomar decisiones considerando la eficiencia, la rentabilidad y la sustentabilidad.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -1216,41 +1398,51 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Tecnicatura Universitaria en Secretariado Ejecutivo será capaz de",
+            items: [
+                "Organizar agendas, reuniones y tareas administrativas.",
+                "Redactar y gestionar documentación institucional y empresarial.",
+                "Coordinar comunicaciones internas y externas de manera profesional.",
+                "Asistir en la planificación y seguimiento de actividades ejecutivas.",
+                "Manejar herramientas informáticas aplicadas a la gestión administrativa.",
+                "Brindar apoyo operativo con orden, eficiencia y atención al detalle.",
+            ]
+        },
         planEstudios: [
             {
-                semestre: "Primer Año",
+                semestre: "1° Año",
                 materias: [
-                    "Herr. Tecnol. I",
-                    "Problemat. Integr",
-                    "Comp. y Prod. Textos",
-                    "Contex. y Adm. Organ",
+                    "Herramientas Tecnológicas I",
+                    "Problematización Integradora",
+                    "Comunicación y Producción de Textos",
+                    "Contexto y Administración Organizacional",
                     "Filosofía",
-                    "Herr. Tecnol. II",
-                    "Marco Jur. Organiza",
-                    "Tall. de Comuc.",
-                    "Gest. Inform. y Docum"
+                    "Herramientas Tecnológicas II",
+                    "Marco Jurídico Organizacional",
+                    "Taller de Comunicación",
+                    "Gestión Informática y Documental"
                 ]
             },
             {
-                semestre: "Segundo Año",
+                semestre: "2° Año",
                 materias: [
                     "Teología",
-                    "Relac. Públ. y Mark",
+                    "Relaciones Públicas y Marketing",
                     "Lengua Inglesa I",
-                    "Sist. Proc. Administ",
-                    "Com. Digit. y Man. Red",
+                    "Sistemas y Procesos Administrativos",
+                    "Comunicación Digital y Manejo de Redes",
                     "Lengua Inglesa II",
-                    "Estrat. e Innovaci.",
-                    "Func. y Téc. Secretar",
-                    "Res. Probl. y Mejora",
-                    "Doc. Soc. Iglesia"
+                    "Estrategias e Innovación",
+                    "Funciones y Técnicas de Secretariado",
+                    "Resolución de Problemas y Mejora",
+                    "Documentación Social de la Iglesia"
                 ]
             },
             {
-                semestre: "Tercer Año",
+                semestre: "3° Año",
                 materias: [
-                    "Prac. Profesional",
+                    "Práctica Profesional",
                     "Ética Profesional",
                     "Lengua Inglesa III"
                 ]
@@ -1266,7 +1458,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Administración de Negocios Digitales será capaz de",
+            items: [
+                "Diseñar y gestionar modelos de negocio en entornos digitales.",
+                "Analizar mercados, audiencias y tendencias del ecosistema online.",
+                "Planificar estrategias comerciales, digitales y de crecimiento.",
+                "Coordinar proyectos vinculados a e-commerce, plataformas y canales digitales.",
+                "Interpretar datos e indicadores para la toma de decisiones.",
+                "Impulsar procesos de innovación, transformación digital y mejora continua.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -1337,10 +1539,20 @@ const data = [
         nombre: "Guía Universitario de Turismo",
         descripcionCorta: "Conducí experiencias turísticas memorables con formación en patrimonio, idiomas y gestión de destinos.",
         descripcionLarga: "La carrera de Guía Universitario de Turismo forma profesionales para la conducción de visitas y experiencias turísticas en destinos nacionales e internacionales. Los estudiantes adquieren conocimientos en patrimonio cultural y natural, geografía turística, idiomas, primeros auxilios y técnicas de interpretación. La carrera prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión.",
-        duracion: "2 años y medio",
+        duracion: "2½ años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de Guía Universitario de Turismo será capaz de",
+            items: [
+                "Guiar y acompañar visitantes en recorridos turísticos y culturales.",
+                "Brindar información clara y valiosa sobre destinos, patrimonio y atractivos.",
+                "Diseñar experiencias turísticas con enfoque en la atención al visitante.",
+                "Coordinar itinerarios, circuitos y actividades recreativas.",
+                "Interpretar el valor histórico, cultural y natural de cada lugar.",
+                "Comunicarse con profesionalismo en distintos contextos de atención turística.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -1396,7 +1608,17 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de la Licenciatura en Ciencia de Datos será capaz de",
+            items: [
+                "Analizar grandes volúmenes de datos para obtener información útil.",
+                "Diseñar modelos predictivos y aplicar técnicas de análisis de datos.",
+                "Interpretar resultados para apoyar la toma de decisiones.",
+                "Integrar herramientas de estadística, programación y visualización.",
+                "Detectar patrones, tendencias y oportunidades a partir de los datos.",
+                "Trabajar con bases de datos y procesos de transformación de información.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",
@@ -1468,7 +1690,17 @@ const data = [
         duracion: "2 años",
         modalidad: 1,
         img: "/modalidades-distancia.webp",
-        perfilEgresado: "",
+        perfilEgresado: {
+            titulo: "El egresado de Formación Docente para Profesionales será capaz de",
+            items: [
+                "Planificar propuestas de enseñanza en distintos contextos educativos.",
+                "Diseñar clases y actividades acordes a los objetivos de aprendizaje.",
+                "Transmitir conocimientos disciplinares con enfoque pedagógico.",
+                "Aplicar estrategias didácticas para acompañar procesos de enseñanza y aprendizaje.",
+                "Evaluar desempeños y realizar seguimientos formativos.",
+                "Integrar recursos y herramientas educativas en la práctica docente.",
+            ]
+        },
         planEstudios: [
             {
                 semestre: "1° Año",

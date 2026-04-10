@@ -30,8 +30,8 @@ const beneficios: Beneficio[] = [
   {
     id: 2,
     tag: 'Confianza',
-    titulo: 'La misma calidad, desde cualquier lugar',
-    descripcion: 'La modalidad a distancia de UCASAL no es una versión reducida. Es el mismo plan de estudios, los mismos docentes y el mismo título oficial.',
+    titulo: 'Red de sedes en todo el país',
+    descripcion: 'Contá con el respaldo de una universidad con presencia federal y alcance en distintas regiones.',
     detalle: 'UCASAL lleva más de 60 años formando profesionales. El título que obtenés tiene validez nacional y es reconocido por el Ministerio de Educación, igual que el presencial.',
     publico: 'Pensado para quienes tienen dudas sobre si estudiar online es "lo mismo".',
     icon: (
@@ -58,9 +58,9 @@ const beneficios: Beneficio[] = [
   {
     id: 4,
     tag: 'Velocidad',
-    titulo: 'Recibite más rápido con cursado intensivo',
-    descripcion: 'El modelo semestral intensivo te permite avanzar materias en menos tiempo que en un sistema cuatrimestral tradicional.',
-    detalle: 'Con disciplina y la organización adecuada, podés completar tu carrera en los plazos previstos o incluso antes. El campus virtual está disponible las 24hs para que estudies cuando tu energía esté al máximo.',
+    titulo: 'Cursado intensivo',
+    descripcion: 'Avanzá con una modalidad pensada para ayudarte a progresar de manera más ágil.',
+    detalle: 'El ingreso de agosto tiene el mismo valor académico que el de marzo. Al terminar el año, vas a estar exactamente en el mismo punto que tus compañeros que empezaron antes.',
     publico: 'Para los que no quieren esperar años para tener el título en la mano.',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,10 +71,10 @@ const beneficios: Beneficio[] = [
   },
   {
     id: 5,
-    tag: 'Vida & Estudio',
-    titulo: 'Estudiá sin pausar tu vida',
-    descripcion: 'Trabajo, familia, compromisos. La modalidad virtual está diseñada para que no tengas que elegir entre avanzar académicamente y vivir tu vida.',
-    detalle: 'Sin horarios fijos, sin traslados y con acceso a todos los materiales desde tu celular o computadora. Podés estudiar el el horario que vos quieras.',
+    tag: 'Futuro',
+    titulo: 'Preparación para tu futuro laboral',
+    descripcion: 'Elegí una carrera orientada a acompañar tu desarrollo profesional y ampliar tus oportunidades',
+    detalle: 'Formate con una propuesta académica pensada para vincular el aprendizaje con los desafíos del mundo laboral actual, desarrollando conocimientos y herramientas aplicables a tu crecimiento profesional.',
     publico: 'Clave para quienes trabajan, tienen hijos o viven lejos de un centro educativo.',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,9 +86,9 @@ const beneficios: Beneficio[] = [
   {
     id: 6,
     tag: 'Modalidad',
-    titulo: 'Online intensivo: más avance, mismo rigor',
-    descripcion: 'El cursado semestral intensivo online combina la profundidad académica de un programa universitario con la agilidad de una modalidad 100% digital.',
-    detalle: 'Tenés acceso a foros, clases en vivo y grabadas, videos, materiales descargables y ayuda directa de docentes, todo en el Campus Virtual.',
+    titulo: 'Estudiá desde cualquier lugar',
+    descripcion: 'Accedé a tu carrera sin necesidad de trasladarte y organizá tu cursado desde donde estés.',
+    detalle: 'El cursado semestral intensivo online combina la profundidad académica de un programa universitario con la agilidad de una modalidad 100% digital.',
     publico: 'Para quienes quieren entender exactamente cómo funciona el modelo antes de inscribirse.',
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">

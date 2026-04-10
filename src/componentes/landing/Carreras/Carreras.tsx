@@ -19,7 +19,7 @@ export default function Carreras() {
                             nombre={carrera.nombre}
                             descripcionCorta={carrera.descripcionCorta}
                             duracion={carrera.duracion}
-                            img={carrera.img}
+                            img="/cards.webp"
                         />
                     ))}
                 </div>

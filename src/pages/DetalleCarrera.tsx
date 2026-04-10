@@ -53,7 +53,7 @@ export default function DetalleCarrera() {
         <>
             <Helmet>
                 <meta name="description" content={carrera.descripcionCorta} />
-                <meta name="language" content="spanish" />
+                <meta name="language" content="es" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta property="image" content={`https://www.ucasal.edu.ar/landing/ingreso/public/${carrera.codcar}.jpg`} />
                 <meta httpEquiv="Content-language" content="es" />
@@ -72,26 +72,26 @@ export default function DetalleCarrera() {
             </Helmet>
             {/* ── HERO DE LA CARRERA ── */}
             <section className="w-full min-h-full flex items-center pt-4 px-4 contenedor">
-                <div className="w-full max-w-560 h-[600px] bg-(--azul-ucasal) p-12 rounded-2xl relative">
-                    <div className="flex flex-col h-full sm:flex-row gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center justify-center relative z-10  w-full sm:w-2/3">
-                        <div className="flex flex-col gap-3 text-black flex-1 h-full justify-center">
-                            <h1 className={`${tituloClase} font-extrabold leading-none tracking-tight uppercase text-white`}>
+                <div className="w-full h-[500px] sm:h-[600px] bg-(--azul-ucasal) px-6 py-12 sm:p-12 rounded-2xl relative">
+                    <div className={`flex flex-col h-full sm:flex-row gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center justify-center relative z-10  w-full sm:w-[60%]`}>
+                        <div className={`flex flex-col gap-3 text-black flex-1 h-full ${titulo.length <= 3 ? 'justify-center max-sm:mb-12' : 'justify-start'} sm:justify-center max-sm:text-center`}>
+                            <h1 className={`${tituloClase} font-extrabold leading-10 sm:leading-none tracking-tight uppercase text-white`}>
                                 {carrera.nombre}
                             </h1>
-                            <div className="flex flex-wrap items-center gap-4 mt-1 text-sm text-white/70 bg-(--rojo-ucasal) w-fit px-3 py-1 rounded-lg">
-                                <span className="flex items-center gap-1.5">
+                            <div className="flex flex-wrap items-center justify-center gap-4 mt-6 text-xs sm:text-sm text-white/70 bg-(--rojo-ucasal) max-sm:mx-auto w-fit px-2 sm:px-3 py-1.5 rounded-lg">
+                                <span className="flex items-center gap-1 sm:gap-1.5">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     {carrera.duracion}
                                 </span>
-                                <span className="flex items-center gap-1.5">
+                                <span className="flex items-center gap-1 sm:gap-1.5">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
                                     {modalidad}
                                 </span>
-                                <span className="flex items-center gap-1.5">
+                                <span className="flex items-center gap-1 sm:gap-1.5">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -101,12 +101,16 @@ export default function DetalleCarrera() {
                         </div>
                     </div>
                     <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                        <img
-                            src="/Fran3.jpg"
-                            /* src={`/${carrera.codcar}.png`} */
-                            alt={carrera.nombre}
-                            className="w-full h-full object-cover object-center"
-                        />
+                        <picture>
+                            <source media="(min-width: 769px)" srcSet="/desktop.webp" />
+                            <source media="(max-width: 768px)" srcSet="/mobile.webp" />
+                            <img
+                                src="/Encabezado Desktop.jpg"
+                                /* src={`/${carrera.codcar}.png`} */
+                                alt={carrera.nombre}
+                                className="w-full h-full object-cover object-center"
+                            />
+                        </picture>
                     </div>
                 </div>
             </section>
@@ -134,9 +138,21 @@ export default function DetalleCarrera() {
                             </div>
                             <h2 className="text-xl font-black degrade-azul">Perfil del egresado</h2>
                         </div>
-                        <p className="text-gray-600 leading-relaxed text-base">
-                            {carrera.perfilEgresado}
-                        </p>
+                        {carrera.perfilEgresado && typeof carrera.perfilEgresado === 'object' ? (
+                            <div className="flex flex-col gap-2">
+                                <p className="text-gray-700 font-medium text-base">{carrera.perfilEgresado.titulo}:</p>
+                                <ul className="flex flex-col gap-1.5 mt-1">
+                                    {carrera.perfilEgresado.items.map((item: string, i: number) => (
+                                        <li key={i} className="flex items-start gap-2 text-gray-600 text-base">
+                                            <span className="mt-1.5 w-2 h-2 rounded-full bg-(--azul-ucasal) shrink-0" />
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ) : (
+                            <p className="text-gray-600 leading-relaxed text-base">{carrera.perfilEgresado as string}</p>
+                        )}
                     </div>
 
                     {/* Botón plan de estudios */}

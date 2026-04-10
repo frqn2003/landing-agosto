@@ -3,18 +3,27 @@ import { getCarrerasApi } from '../../data/carrerasApi'
 import intlTelInput from 'intl-tel-input'
 import 'intl-tel-input/build/css/intlTelInput.css'
 
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { formSchema } from "../../lib/schemas"
+
 export default function Form() {
     const [carreras, setCarreras] = useState<any[]>([])
     const [modalidad, setModalidad] = useState("")
     const [codcar, setCodcar] = useState('')
     const [idProvincia, setIdProvincia] = useState('')
     const [idSede, setIdSede] = useState('')
-
+    const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm({
+        resolver: zodResolver(formSchema)
+    })
+    const nombre = watch('nombre')
+    const email = watch('email')
+    const codArea = watch('cod_area')
+    const tel = watch('tel')
     const [intentoEnviar, setIntento] = useState(false)
-    const [nombre, setNombre] = useState('')
-    const [email, setEmail] = useState('')
-    const [codArea, setCodArea] = useState('')
-    const [tel, setTel] = useState('')
+    const [enviando, setEnviando] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
+
     const [ddiPais, setDdiPais] = useState('')
     const phoneRef = useRef<HTMLInputElement>(null)
     const itiRef = useRef<ReturnType<typeof intlTelInput> | null>(null)
@@ -46,15 +55,17 @@ export default function Form() {
     ]
     const sedes = (carreraSeleccionada?.provincias || [])
         .filter((sede: any) => String(sede.id_provincia) === idProvincia)
+
     {/* Helper de estado visual */ }
     const claseBorde = (habilitado: boolean, completado: boolean) => {
         if (completado) return 'border-green-500'
-        if (intentoEnviar && !completado) return 'border-(--rojo-ucasal)'
-        if (habilitado) return 'border-(--azul-ucasal)'
+        if (intentoEnviar && !completado) return 'border-red-500'
+        if (habilitado) return 'border-blue-500'
         return 'border-gray-300'
     }
 
-    const todosCompletos = !!codcar && !!modalidad && !!idProvincia && !!idSede && !!nombre && !!email && !!ddiPais && !!codArea && !!tel
+    const carreraCompleta = !!codcar && !!modalidad && !!idProvincia && !!idSede
+    const todosCompletos = !!carreraCompleta && !!nombre && !!email && !!ddiPais && !!codArea && !!tel
 
     useEffect(() => {
         if (phoneRef.current) {
@@ -77,7 +88,9 @@ export default function Form() {
 
     useEffect(() => {
         if (modos.length === 1) {
-            setModalidad(String(modos[0].modo))
+            const v = String(modos[0].modo)
+            setModalidad(v)
+            setValue('cbx_modo', v, { shouldValidate: true })
             setIdProvincia('')
             setIdSede('')
         }
@@ -85,25 +98,48 @@ export default function Form() {
 
     useEffect(() => {
         if (provincias.length === 1) {
-            setIdProvincia(String(provincias[0].id_provincia))
+            const v = String(provincias[0].id_provincia)
+            setIdProvincia(v)
+            setValue('cbx_provincia', v, { shouldValidate: true })
             setIdSede('')
         }
     }, [modalidad])
 
     useEffect(() => {
         if (sedes.length === 1) {
-            setIdSede(String(sedes[0].id_sede))
+            const v = String(sedes[0].id_sede)
+            setIdSede(v)
+            setValue('cbx_sede', v, { shouldValidate: true })
         }
     }, [idProvincia])
     return (
         <form role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
             autoComplete="on"
-            onSubmit={e => {
-                if (!todosCompletos) {
-                    e.preventDefault()
-                    setIntento(true)
+            onSubmit={handleSubmit(async () => {
+                setEnviando(true)
+                let recaptchaToken = '';
+                try {
+                    recaptchaToken = await new Promise((resolve, reject) => {
+                        (window as any).grecaptcha.ready(function () {
+                            (window as any).grecaptcha
+                                .execute('6LfSBnAsAAAAANxuGFb77-exJXGHRWQGrCsGZMnr', { action: 'submit' })
+                                .then(resolve)
+                                .catch(reject);
+                        });
+                    });
+                } catch (e) {
+                    console.error('Error obteniendo token reCAPTCHA:', e)
                 }
-            }}
+                (document.getElementById('g-recaptcha-response') as HTMLInputElement).value = recaptchaToken
+
+                const formEl = document.getElementById('pedidoinfo') as HTMLFormElement
+                const formData = new FormData(formEl)
+
+                await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
+
+                ;(window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
+                window.location.href = 'https:/www.ucasal.edu.ar/landing/enviado-agosto.php'
+            })}
             className="bg-white rounded-lg p-6 shadow-2xl md:mx-56">
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
@@ -115,8 +151,8 @@ export default function Form() {
             <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
             <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
-            <input type="hidden" name="tkp" value="/landing/ingreso/enviado-agosto" />
-            <input type="hidden" name="fkp" value="/landing/ingreso/enviado-agosto?id=404" />
+            <input type="hidden" name="tkp" value="https:/www.ucasal.edu.ar/landing/enviado-agosto.php" />
+            <input type="hidden" name="fkp" value="https:/www.ucasal.edu.ar/landing/enviado-agosto.php?id=404" />
 
             <div className="flex justify-center">
                 <p className="text-xl my-4 text-black">
@@ -129,6 +165,7 @@ export default function Form() {
                         className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm  dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900`}
                         required
                         value={codcar} onChange={e => {
+                            setValue('cbx_carrera', e.target.value, { shouldValidate: true })
                             setCodcar(e.target.value)
                             setModalidad('')
                             setIdProvincia('')
@@ -149,6 +186,7 @@ export default function Form() {
                         `}
                         value={modalidad}
                         onChange={e => {
+                            setValue('cbx_modo', e.target.value, { shouldValidate: true })
                             setModalidad(e.target.value)
                             setIdProvincia('')
                             setIdSede('')
@@ -169,6 +207,7 @@ export default function Form() {
                         `}
                         value={idProvincia}
                         onChange={e => {
+                            setValue('cbx_provincia', e.target.value, { shouldValidate: true })
                             setIdProvincia(e.target.value)
                             setIdSede('')
                         }}
@@ -188,7 +227,10 @@ export default function Form() {
                             ${!codcar || !modalidad || !idProvincia ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
                         `}
                         value={idSede}
-                        onChange={e => setIdSede(e.target.value)}
+                        onChange={e => {
+                            setValue('cbx_sede', e.target.value, { shouldValidate: true })
+                            setIdSede(e.target.value)
+                        }}
                         required
                         disabled={!codcar || !modalidad || !idProvincia}>
                         <option value="" disabled selected>Seleccionar Sede</option>
@@ -201,26 +243,32 @@ export default function Form() {
             <div className="flex flex-col gap-2 mt-5 border-b border-black/40" id="datosPersonales">
 
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600 cursor-pointer' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <input type="text" name="nombre" id="nombre"
-                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!nombre)}`}
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                        <input type="text" {...register("nombre")} id="nombre"
+                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 caret-transparent peer ${claseBorde(carreraCompleta, !!nombre && !errors.nombre)}`}
                             placeholder=" " required
-                            value={nombre} onChange={e => setNombre(e.target.value)} />
+                        />
+                        {errors.nombre && (
+                            <p className="text-red-500 text-xs mt-1">{errors.nombre.message}</p>
+                        )}
                         <label htmlFor="nombre"
                             className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Nombre Completo</label>
                     </div>
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <input type="email" name="email" id="email"
-                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!email)}`}
+                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                        <input type="email" id="email"
+                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!email && !errors.email)}`}
                             placeholder=" " required
-                            value={email} onChange={e => setEmail(e.target.value)} />
+                            {...register('email')} />
+                        {errors.email && (
+                            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                        )}
                         <label htmlFor="email"
                             className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Email</label>
                     </div>
                 </div>
 
                 <div className="flex flex-row gap-2 sm:gap-4 pb-4 mt-2">
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
                             <input name="tipo_tel" type="hidden" value="cel" />
                             <input type="hidden" name="ddi_pais" value={ddiPais} />
@@ -234,10 +282,13 @@ export default function Form() {
                     </div>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
-                            <input type="tel" name="cod_area" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric"
-                                className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!codArea)}`}
+                            <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric"
+                                className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!codArea && !errors.cod_area)}`}
                                 placeholder="" required
-                                value={codArea} onChange={e => setCodArea(e.target.value.replace(/\D/g, ''))} />
+                                {...register('cod_area')} />
+                            {errors.cod_area && (
+                                <p className="text-red-500 text-xs mt-1">{errors.cod_area.message}</p>
+                            )}
                             <label htmlFor="cod"
                                 className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
                                 Código
@@ -248,26 +299,27 @@ export default function Form() {
                         className="text-[0.8rem] text-gray-700 px-1 border border-gray-500 flex justify-center items-center my-auto w-fit h-fit back rounded">15</span>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative">
-                            <input type="tel" name="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
-                                className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(!!(codcar && modalidad && idProvincia && idSede), !!tel)}`}
+                            <input type="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
+                                className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!tel && !errors.tel)}`}
                                 placeholder="" required tabIndex={6}
-                                value={tel} onChange={e => setTel(e.target.value.replace(/\D/g, ''))} />
+                                {...register('tel')} />
+                            {errors.tel && (
+                                <p className="text-red-500 text-xs mt-1">{errors.tel.message}</p>
+                            )}
                             <label htmlFor="tel"
                                 className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-1 bg-white">
-                                N&uacute;mero
+                                Número
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
-                He le&iacute;do y acepto los
-                <button id="openModal" className="inline-block text-blue-500 cursor-pointer" type="button">
-                    T&eacute;rminos y Condiciones de Privacidad
-                </button>
+                He le&iacute;do y acepto los <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad </button>.
             </p>
-            <div id="modal" className="fixed inset-0 z-50 overflow-hidden hidden">
-                <div id="overlay" className="fixed inset-0 bg-black/50 transition-opacity"></div>
+            {modalOpen && (
+            <div className="fixed inset-0 z-50 overflow-hidden">
+                <div onClick={() => setModalOpen(false)} className="fixed inset-0 bg-black/50 transition-opacity"></div>
 
                 <div className="fixed inset-0 flex items-center justify-center p-4">
                     <div
@@ -285,8 +337,8 @@ export default function Form() {
                                     T&eacute;rminos y Condiciones de Privacidad
                                 </h2>
                             </div>
-                            <button id="closeModal"
-                                className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100">
+                            <button onClick={() => setModalOpen(false)}
+                                className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100" type="button">
                                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
@@ -295,18 +347,17 @@ export default function Form() {
 
                         <div className="flex-1 p-3 md:p-6 overflow-hidden">
                             <div className="bg-gray-50 rounded-lg p-2 md:p-4 h-full relative">
-                                <iframe id="pdfViewerDesktop"
+                                <iframe
                                     src="https://www.ucasal.edu.ar/wp-content/uploads/2023/10/Politicas-de-Privacidad-UCASAL-1.pdf#view=FitH"
                                     className="w-full h-full rounded-lg border border-gray-300 shadow-inner"
                                     title="Términos y Condiciones de Privacidad" frameBorder={0}></iframe>
-
                             </div>
                         </div>
 
                         <div className="border-t border-gray-200 p-6 bg-gray-50">
                             <div className="flex justify-center">
-                                <button id="closeButton"
-                                    className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors duration-200 shadow-lg">
+                                <button onClick={() => setModalOpen(false)}
+                                    className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors duration-200 shadow-lg" type="button">
                                     Cerrar
                                 </button>
                             </div>
@@ -314,19 +365,20 @@ export default function Form() {
                     </div>
                 </div>
             </div>
+            )}
             <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
             <input type="hidden" id="fecha_formulario" name="fecha_formulario" />
             <div className="flex justify-center mt-4">
-                <span className="animated-border block sm:inline-block w-full sm:w-36"
-                    style={{ "--ab-thickness": "4px", "--ab-radius": "0.5rem" } as React.CSSProperties}>
+                <div className={`animated-border`}
+                    style={{ "--ab-thickness": "4px", "--ab-radius": "0.5rem", ...(enviando ? { display: 'none' } : {}) } as React.CSSProperties}>
                     <button id="formButton" type="submit"
                         disabled={!todosCompletos}
-                        className="ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105"
+                        className={`ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 ${todosCompletos ? 'cursor-pointer' : 'cursor-not-allowed'}`}
                         tabIndex={11}>
                         Enviar
                     </button>
-                </span>
-                <div id="spinnerContainer" className="hidden" role="status">
+                </div>
+                <div id="spinnerContainer" className={enviando ? '' : 'hidden'} role="status">
                     <svg className="w-8 h-8 text-gray-200 animate-spin fill-[#B11111]" viewBox="0 0 100 101" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

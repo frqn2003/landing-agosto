@@ -24,7 +24,7 @@ export default function Hero() {
                             className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black text-[#0d0d0d] leading-none tracking-tighter uppercase mt-6"
                             style={{ fontFamily: "Museo Sans, sans-serif" }}
                         >
-                            <span className="degrade-azul overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards] border-r-4 border-transparent md:block">
+                            <span className="degrade-azul overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards] md:block">
                                 EMPEZÁ
                             </span>
                             <span className="degrade-azul overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.4s_steps(3)_0.8s_forwards,fadeIn_0.1s_0.8s_forwards] md:block">
