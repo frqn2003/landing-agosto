@@ -7,7 +7,10 @@ import DetalleCarrera from './pages/DetalleCarrera'
 import NavbarCarreras from './componentes/landing/Carreras/NavbarCarreras'
 import BeneficiosCarrusel from './componentes/landing/Detalles/BeneficiosCarrusel'
 import Form from './componentes/landing/Form'
-
+import Financiacion from './componentes/landing/Financiacion'
+import PromocionDinamica from './componentes/landing/PromocionDinamica'
+import Sedes from './componentes/landing/Sedes'
+import PreguntasFrecuentes from './componentes/landing/PreguntasFrecuentes'
 function App() {
   return (
     <Routes>
@@ -16,13 +19,21 @@ function App() {
           <Navbar />
           <Hero />
           <BeneficiosCarrusel />
+          <PromocionDinamica />
           <Carreras />
           <Form />
+          <Financiacion/>
+          <section className='contenedor py-10 px-4' id="sedes">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
+              <Sedes />
+              <PreguntasFrecuentes />
+            </div>
+          </section>
           <Footer />
         </>
       } />
 
-      <Route path='/carreras/:slug' element={
+      <Route path=':slug' element={
         <>
           <NavbarCarreras />
           <DetalleCarrera />

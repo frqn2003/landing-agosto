@@ -111,7 +111,7 @@ function Navbar() {
             <a href="#carreras" className={`nav-link ${seccionActiva === 'carreras' ? 'active' : ''}`}>
               Carreras
             </a>
-            <a href="#servicios" className={`nav-link ${seccionActiva === 'servicios' ? 'active' : ''}`}>
+            <a href="#sedes" className={`nav-link ${seccionActiva === 'servicios' ? 'active' : ''}`}>
               Sedes
             </a>
           </section>
@@ -189,7 +189,7 @@ function Navbar() {
             </li>
             <li>
               <a
-                href="#servicios"
+                href="#sedes"
                 className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
                 onClick={() => setMenuAbierto(false)}
               >

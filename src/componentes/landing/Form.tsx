@@ -7,20 +7,22 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
-export default function Form() {
+export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: string, onSubPage?: string }) {
     const [carreras, setCarreras] = useState<any[]>([])
     const [modalidad, setModalidad] = useState("")
-    const [codcar, setCodcar] = useState('')
+    const [codcar, setCodcar] = useState(codcarInicial ?? '')
     const [idProvincia, setIdProvincia] = useState('')
     const [idSede, setIdSede] = useState('')
-    const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm({
-        resolver: zodResolver(formSchema)
+    const { register, handleSubmit, formState: { errors, isSubmitted }, watch, setValue } = useForm({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            cbx_carrera: codcarInicial ?? '',
+        }
     })
     const nombre = watch('nombre')
     const email = watch('email')
     const codArea = watch('cod_area')
     const tel = watch('tel')
-    const [intentoEnviar, setIntento] = useState(false)
     const [enviando, setEnviando] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
 
@@ -59,7 +61,7 @@ export default function Form() {
     {/* Helper de estado visual */ }
     const claseBorde = (habilitado: boolean, completado: boolean) => {
         if (completado) return 'border-green-500'
-        if (intentoEnviar && !completado) return 'border-red-500'
+        if (isSubmitted && !completado) return 'border-red-500'
         if (habilitado) return 'border-blue-500'
         return 'border-gray-300'
     }
@@ -87,14 +89,14 @@ export default function Form() {
     }, [])
 
     useEffect(() => {
-        if (modos.length === 1) {
+        if (codcar && modos.length === 1) {
             const v = String(modos[0].modo)
             setModalidad(v)
             setValue('cbx_modo', v, { shouldValidate: true })
             setIdProvincia('')
             setIdSede('')
         }
-    }, [codcar])
+    }, [codcar, carreras])
 
     useEffect(() => {
         if (provincias.length === 1) {
@@ -138,9 +140,9 @@ export default function Form() {
                 await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
 
                 ;(window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
-                window.location.href = 'https:/www.ucasal.edu.ar/landing/enviado-agosto.php'
+                window.location.href = 'https://www.ucasal.edu.ar/landing/enviado-agosto.php'
             })}
-            className="bg-white rounded-lg p-6 shadow-2xl md:mx-56">
+            className={`bg-white rounded-lg p-6 shadow-2xl ${onSubPage ? '' : 'md:mx-56'}`}>
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
             <input type="hidden" id="agent" name="agent" value={parametros.userAgent || ''} />
@@ -151,19 +153,22 @@ export default function Form() {
             <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
             <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
-            <input type="hidden" name="tkp" value="https:/www.ucasal.edu.ar/landing/enviado-agosto.php" />
-            <input type="hidden" name="fkp" value="https:/www.ucasal.edu.ar/landing/enviado-agosto.php?id=404" />
+            <input type="hidden" name="tkp" value="https://www.ucasal.edu.ar/landing/enviado-agosto.php" />
+            <input type="hidden" name="fkp" value="https://www.ucasal.edu.ar/landing/enviado-agosto.php?id=404" />
 
-            <div className="flex justify-center">
-                <p className="text-xl my-4 text-black">
-                    Inscripciones 2026 abiertas
-                </p>
-            </div>
+            {!onSubPage && (
+                <div className="flex justify-center">
+                    <p className="text-xl my-4 text-black">
+                        Inscripciones 2026 abiertas
+                    </p>
+                </div>
+            )}
             <div className="grid grid-cols-2 gap-6 border-b border-t border-black/40 py-4">
                 <div className="relative z-0 w-full group">
                     <select name="cbx_carrera" id="cbx_carrera" aria-label="Seleccionar Carrera"
-                        className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm  dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900`}
+                        className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900 ${codcarInicial ? 'opacity-75 cursor-not-allowed bg-gray-50' : ''}`}
                         required
+                        disabled={!!codcarInicial}
                         value={codcar} onChange={e => {
                             setValue('cbx_carrera', e.target.value, { shouldValidate: true })
                             setCodcar(e.target.value)
@@ -245,22 +250,28 @@ export default function Form() {
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="text" {...register("nombre")} id="nombre"
-                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 caret-transparent peer ${claseBorde(carreraCompleta, !!nombre && !errors.nombre)}`}
+                            className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!nombre && !errors.nombre)}`}
                             placeholder=" " required
+                            autoComplete="name"
+                            aria-invalid={!!errors.nombre}
+                            aria-describedby={errors.nombre ? 'error-nombre' : undefined}
                         />
                         {errors.nombre && (
-                            <p className="text-red-500 text-xs mt-1">{errors.nombre.message}</p>
+                            <p id="error-nombre" className="text-red-500 text-xs mt-1" role="alert">{errors.nombre.message}</p>
                         )}
                         <label htmlFor="nombre"
-                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Nombre Completo</label>
+                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Nombre Completo</label>
                     </div>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="email" id="email"
                             className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!email && !errors.email)}`}
                             placeholder=" " required
+                            autoComplete="email"
+                            aria-invalid={!!errors.email}
+                            aria-describedby={errors.email ? 'error-email' : undefined}
                             {...register('email')} />
                         {errors.email && (
-                            <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
+                            <p id="error-email" className="text-red-500 text-xs mt-1" role="alert">{errors.email.message}</p>
                         )}
                         <label htmlFor="email"
                             className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Email</label>
@@ -277,7 +288,7 @@ export default function Form() {
                                 onKeyDown={e => e.preventDefault()}
                                 onPaste={e => e.preventDefault()}
                                 onDrop={e => e.preventDefault()} />
-                            <label htmlFor="tipo_tel" className="absolute text-xs text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1  z-10 origin-left bg-white px-2">Código país</label>
+                            <label htmlFor="tipo_tel" className="absolute text-xs text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1 z-10 origin-left bg-white px-2">Código país</label>
                         </div>
                     </div>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
@@ -285,9 +296,12 @@ export default function Form() {
                             <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric"
                                 className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!codArea && !errors.cod_area)}`}
                                 placeholder="" required
+                                autoComplete="tel-area-code"
+                                aria-invalid={!!errors.cod_area}
+                                aria-describedby={errors.cod_area ? 'error-cod_area' : undefined}
                                 {...register('cod_area')} />
                             {errors.cod_area && (
-                                <p className="text-red-500 text-xs mt-1">{errors.cod_area.message}</p>
+                                <p id="error-cod_area" className="text-red-500 text-xs mt-1" role="alert">{errors.cod_area.message}</p>
                             )}
                             <label htmlFor="cod"
                                 className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
@@ -302,9 +316,12 @@ export default function Form() {
                             <input type="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
                                 className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!tel && !errors.tel)}`}
                                 placeholder="" required tabIndex={6}
+                                autoComplete="tel-local"
+                                aria-invalid={!!errors.tel}
+                                aria-describedby={errors.tel ? 'error-tel' : undefined}
                                 {...register('tel')} />
                             {errors.tel && (
-                                <p className="text-red-500 text-xs mt-1">{errors.tel.message}</p>
+                                <p id="error-tel" className="text-red-500 text-xs mt-1" role="alert">{errors.tel.message}</p>
                             )}
                             <label htmlFor="tel"
                                 className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-1 bg-white">
@@ -317,7 +334,8 @@ export default function Form() {
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
                 He le&iacute;do y acepto los <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad </button>.
             </p>
-            {modalOpen && (
+            {
+        modalOpen && (
             <div className="fixed inset-0 z-50 overflow-hidden">
                 <div onClick={() => setModalOpen(false)} className="fixed inset-0 bg-black/50 transition-opacity"></div>
 
@@ -365,7 +383,8 @@ export default function Form() {
                     </div>
                 </div>
             </div>
-            )}
+        )
+    }
             <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
             <input type="hidden" id="fecha_formulario" name="fecha_formulario" />
             <div className="flex justify-center mt-4">

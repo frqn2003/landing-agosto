@@ -43,6 +43,21 @@
 }
 
 
+.hero-titulo {
+  background: linear-gradient(var(--rojo-ucasal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; 
+  @media (min-width: 640px) {
+      background: linear-gradient(180deg, var(--azul-ucasal), var(--azul-dark-ucasal));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent; 
+  }
+}
+
 .degrade-azul {
   background: linear-gradient(180deg, var(--azul-ucasal), var(--azul-dark-ucasal));
   -webkit-background-clip: text;
@@ -104,7 +119,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #00000090;
+  background-color: #00000011;
   z-index: 25;
   top: 0;
   left: 0;
@@ -531,4 +546,14 @@ body {
 
 .group-hover-pause:hover .animate-infinite-scroll {
   animation-play-state: paused;
+}
+
+/* intl-tel-input: forzar ancho completo */
+.iti {
+  display: block !important;
+  width: 100%;
+}
+
+.iti-1__dropdown-content {
+  width: 100%;
 }

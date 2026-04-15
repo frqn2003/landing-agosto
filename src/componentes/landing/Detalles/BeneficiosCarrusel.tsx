@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Beneficio {
@@ -118,12 +118,32 @@ const colorClases = {
 
 export default function BeneficiosCarrusel() {
   const [activo, setActivo] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const reiniciarTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    timerRef.current = setInterval(() => {
+      setActivo(prev => (prev + 1) % beneficios.length)
+    }, 10000)
+  }
+
+  const irA = (i: number) => {
+    setActivo(i)
+    reiniciarTimer()
+  }
+
+  const pausar = () => { if (timerRef.current) clearInterval(timerRef.current) }
+
+  useEffect(() => {
+    reiniciarTimer()
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
+  }, [])
 
   const beneficio = beneficios[activo];
   const clases = colorClases[beneficio.color];
 
   return (
-    <div className="w-full bg-white contenedor py-12" id='beneficios'>
+    <div className="w-full bg-white contenedor py-12" id='beneficios' onMouseEnter={pausar} onMouseLeave={reiniciarTimer}>
       {/* Encabezado */}
       <div className="mb-8">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold degrade-azul tracking-tight">
@@ -144,7 +164,7 @@ export default function BeneficiosCarrusel() {
             return (
               <button
                 key={b.id}
-                onClick={() => setActivo(i)}
+                onClick={() => irA(i)}
                 className={`w-full text-left flex items-center gap-4 px-4 py-3.5 rounded-xl border-2 transition-all duration-200 cursor-pointer ${esActivo
                     ? `${c.border} bg-(--ucasal-gray-light) shadow-sm`
                     : 'border-transparent hover:border-gray-200 hover:bg-gray-50'
@@ -223,7 +243,7 @@ export default function BeneficiosCarrusel() {
                   {beneficios.map((_, i) => (
                     <button
                       key={i}
-                      onClick={() => setActivo(i)}
+                      onClick={() => irA(i)}
                       className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activo === i ? `w-6 ${clases.bg}` : 'w-1.5 bg-gray-200'
                         }`}
                       aria-label={`Ir al beneficio ${i + 1}`}
@@ -232,7 +252,7 @@ export default function BeneficiosCarrusel() {
                 </div>
                 <div className="flex gap-2">
                   <button
-                    onClick={() => setActivo((prev) => (prev - 1 + beneficios.length) % beneficios.length)}
+                    onClick={() => irA((activo - 1 + beneficios.length) % beneficios.length)}
                     className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:border-gray-400 transition-colors cursor-pointer"
                     aria-label="Anterior"
                   >
@@ -241,7 +261,7 @@ export default function BeneficiosCarrusel() {
                     </svg>
                   </button>
                   <button
-                    onClick={() => setActivo((prev) => (prev + 1) % beneficios.length)}
+                    onClick={() => irA((activo + 1) % beneficios.length)}
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-white transition-colors cursor-pointer ${clases.bg}`}
                     aria-label="Siguiente"
                   >

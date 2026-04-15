@@ -9,5 +9,60 @@
       { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 30, "nombre_sede": "SALTA - CENTRAL" },
       { "id_provincia": null, "nombre_provincia": null, "id_sede": 99, "nombre_sede": "HOME (Home)" }
     ]
+  },
+  {
+    "codcar": 23,
+    "modo": 7,
+    "nombre_carrera": "CONTADOR PÚBLICO (23)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 10, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
+      { "id_provincia": 5, "nombre_provincia": "Córdoba", "id_sede": 15, "nombre_sede": "CÓRDOBA - CENTRAL" },
+      { "id_provincia": 13, "nombre_provincia": "Santa Fe", "id_sede": 25, "nombre_sede": "SANTA FE - ROSARIO" },
+      { "id_provincia": null, "nombre_provincia": null, "id_sede": 99, "nombre_sede": "HOME (Home)" }
+    ]
+  },
+  {
+    "codcar": 45,
+    "modo": 7,
+    "nombre_carrera": "INGENIERÍA EN SISTEMAS (45)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 12, "nombre_sede": "BUENOS AIRES - LA PLATA" },
+      { "id_provincia": 6, "nombre_provincia": "Mendoza", "id_sede": 18, "nombre_sede": "MENDOZA - CENTRAL" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 30, "nombre_sede": "SALTA - CENTRAL" },
+      { "id_provincia": null, "nombre_provincia": null, "id_sede": 99, "nombre_sede": "HOME (Home)" }
+    ]
+  },
+  {
+    "codcar": 67,
+    "modo": 7,
+    "nombre_carrera": "LICENCIATURA EN ADMINISTRACIÓN (67)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 10, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
+      { "id_provincia": 2, "nombre_provincia": "Catamarca", "id_sede": 13, "nombre_sede": "CATAMARCA - CENTRAL" },
+      { "id_provincia": 13, "nombre_provincia": "Santa Fe", "id_sede": 26, "nombre_sede": "SANTA FE - SANTA FE" },
+      { "id_provincia": null, "nombre_provincia": null, "id_sede": 99, "nombre_sede": "HOME (Home)" }
+    ]
+  },
+  {
+    "codcar": 89,
+    "modo": 7,
+    "nombre_carrera": "MEDICINA (89)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 11, "nombre_sede": "BUENOS AIRES - BALCARCE" },
+      { "id_provincia": 5, "nombre_provincia": "Córdoba", "id_sede": 15, "nombre_sede": "CÓRDOBA - CENTRAL" },
+      { "id_provincia": 8, "nombre_provincia": "Tucumán", "id_sede": 22, "nombre_sede": "TUCUMÁN - CENTRAL" },
+      { "id_provincia": null, "nombre_provincia": null, "id_sede": 99, "nombre_sede": "HOME (Home)" }
+    ]
+  },
+  {
+    "codcar": 102,
+    "modo": 7,
+    "nombre_carrera": "LICENCIATURA EN PSICOLOGÍA (102)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 10, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
+      { "id_provincia": 6, "nombre_provincia": "Mendoza", "id_sede": 18, "nombre_sede": "MENDOZA - CENTRAL" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 30, "nombre_sede": "SALTA - CENTRAL" },
+      { "id_provincia": null, "nombre_provincia": null, "id_sede": 99, "nombre_sede": "HOME (Home)" }
+    ]
   }
 ]

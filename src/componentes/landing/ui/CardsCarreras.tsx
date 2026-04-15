@@ -52,7 +52,7 @@ export default function CardsCarreras(props: Carrera) {
           </div>
 
           {/* Botón Ver Más */}
-          <Link to={`/carreras/${props.slug}`} className="bg-(--rojo-ucasal) hover:bg-(--rojo-dark-ucasal) text-white border border-(--rojo-ucasal) shadow-sm transition-colors py-2 px-4 rounded-full font-bold text-[14px] gap-1 group/btn flex justify-center items-center max-xl:w-full">
+          <Link to={`${props.slug}`} className="bg-(--rojo-ucasal) hover:bg-(--rojo-dark-ucasal) text-white border border-(--rojo-ucasal) shadow-sm transition-colors py-2 px-4 rounded-full font-bold text-[14px] gap-1 group/btn flex justify-center items-center max-xl:w-full">
             Ver más <span className="font-medium text-lg leading-none">+</span>
           </Link>
         </div>

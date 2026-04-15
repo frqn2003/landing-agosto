@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import data from "../data/carreras"
+import Form from "../componentes/landing/Form"
 /* TODO: Reemplazar con datos reales por carrera, el encabezado tendría que ser distinto, siguiendo el diseño previsto del hero ya hecho */
 // Datos placeholder — reemplazar con datos reales por carrera
 
@@ -9,7 +10,6 @@ export default function DetalleCarrera() {
     const { slug } = useParams()
     const carrera = data.find((c: any) => c.slug === slug)
     const [modalAbierto, setModalAbierto] = useState(false)
-    const [formData, setFormData] = useState({ nombre: "", email: "", telefono: "", consulta: "" })
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "instant" })
@@ -210,55 +210,7 @@ export default function DetalleCarrera() {
                             <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contacta.</p>
                         </div>
 
-                        <form
-                            className="flex flex-col gap-4"
-                            onSubmit={(e) => { e.preventDefault(); alert("Formulario enviado (placeholder)") }}
-                        >
-                            <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Nombre completo</label>
-                                <input
-                                    type="text"
-                                    placeholder="Ej: Juan Pérez"
-                                    value={formData.nombre}
-                                    onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                                    className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-(--azul-ucasal) transition-colors"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Email</label>
-                                <input
-                                    type="email"
-                                    placeholder="tu@email.com"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-(--azul-ucasal) transition-colors"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Teléfono</label>
-                                <input
-                                    type="tel"
-                                    placeholder="+54 9 11 1234-5678"
-                                    value={formData.telefono}
-                                    onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                                    className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-(--azul-ucasal) transition-colors"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-1">
-                                <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Consulta (opcional)</label>
-                                <textarea
-                                    placeholder="¿Tenés alguna duda sobre la carrera?"
-                                    rows={3}
-                                    value={formData.consulta}
-                                    onChange={(e) => setFormData({ ...formData, consulta: e.target.value })}
-                                    className="border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-(--azul-ucasal) transition-colors resize-none"
-                                />
-                            </div>
-                            <button type="submit" className="boton-cta w-full justify-center">
-                                Quiero que me contacten
-                            </button>
-                        </form>
-
+                        <Form codcarInicial={String(carrera.codcar)} onSubPage="true" />
                         <p className="text-xs text-gray-400 text-center">
                             Tu información es confidencial y no será compartida.
                         </p>
