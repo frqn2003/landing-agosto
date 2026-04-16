@@ -32,7 +32,7 @@ export default function Financiacion() {
             style={{ backgroundImage: "url('https://www.ucasal.edu.ar/landing/ingreso/public/tarjeta.webp')" }}
         >
             <div className="absolute inset-0 bg-black/55" />
-            <div className="relative z-10 contenedor py-10 px-4">
+            <div className="relative z-10 contenedor py-6 px-4">
             <h2 className="text-2xl md:text-3xl font-black text-white mb-6">
                 Financiá tus aranceles con:
             </h2>

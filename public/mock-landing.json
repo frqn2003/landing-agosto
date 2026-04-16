@@ -5,40 +5,35 @@
       "fecha_inicio": "2026-04-15T00:00:00",
       "fecha_fin": "2026-05-15T23:59:59",
       "descuento": "50%",
-      "subtitulo": "OFF en la Matrícula",
-      "fecha_hasta_texto": "hasta el 15/05/26"
+      "subtitulo": "OFF en la Matrícula"
     },
     {
       "nombre": "promocion_segunda",
       "fecha_inicio": "2026-05-16T00:00:00",
       "fecha_fin": "2026-06-15T23:59:59",
       "descuento": "40%",
-      "subtitulo": "OFF en la Matrícula",
-      "fecha_hasta_texto": "hasta el 15/06/26"
+      "subtitulo": "OFF en la Matrícula"
     },
     {
       "nombre": "promocion_tercera",
       "fecha_inicio": "2026-06-16T00:00:00",
       "fecha_fin": "2026-07-15T23:59:59",
       "descuento": "30%",
-      "subtitulo": "OFF en la Matrícula",
-      "fecha_hasta_texto": "hasta el 15/07/26"
+      "subtitulo": "OFF en la Matrícula"
     },
     {
       "nombre": "promocion_cuarta",
       "fecha_inicio": "2026-07-16T00:00:00",
       "fecha_fin": "2026-07-31T23:59:59",
       "descuento": "20%",
-      "subtitulo": "OFF en la Matrícula",
-      "fecha_hasta_texto": "hasta el 31/07/26 — ¡Últimos días!"
+      "subtitulo": "OFF en la Matrícula"
     },
     {
       "nombre": "promocion_fallback",
       "fecha_inicio": "2026-08-01T00:00:00",
       "fecha_fin": "2026-12-31T23:59:59",
       "descuento": null,
-      "subtitulo": "Cuotas sin interés",
-      "fecha_hasta_texto": null
+      "subtitulo": "Cuotas sin interés"
     }
   ],
   "tarjeta": [

@@ -9,8 +9,10 @@ import BeneficiosCarrusel from './componentes/landing/Detalles/BeneficiosCarruse
 import Form from './componentes/landing/Form'
 import Financiacion from './componentes/landing/Financiacion'
 import PromocionDinamica from './componentes/landing/PromocionDinamica'
+import ComparativaModalidades from './componentes/landing/ComparativaModalidades'
 import Sedes from './componentes/landing/Sedes'
 import PreguntasFrecuentes from './componentes/landing/PreguntasFrecuentes'
+
 function App() {
   return (
     <Routes>
@@ -19,6 +21,7 @@ function App() {
           <Navbar />
           <Hero />
           <BeneficiosCarrusel />
+          <ComparativaModalidades />
           <PromocionDinamica />
           <Carreras />
           <Form />

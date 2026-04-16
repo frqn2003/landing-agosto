@@ -21,7 +21,7 @@ const beneficios: Beneficio[] = [
     detalle: 'El ingreso de agosto tiene el mismo valor académico que el de marzo. Al terminar el año, vas a estar exactamente en el mismo punto que tus compañeros que empezaron antes.',
     publico: 'Especialmente para vos si ya postergaste empezar en marzo.',
     icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -30,12 +30,12 @@ const beneficios: Beneficio[] = [
   {
     id: 2,
     tag: 'Confianza',
-    titulo: 'Red de sedes en todo el país',
-    descripcion: 'Contá con el respaldo de una universidad con presencia federal y alcance en distintas regiones.',
-    detalle: 'UCASAL lleva más de 60 años formando profesionales. El título que obtenés tiene validez nacional y es reconocido por el Ministerio de Educación, igual que el presencial.',
-    publico: 'Pensado para quienes tienen dudas sobre si estudiar online es "lo mismo".',
+    titulo: 'Más de 60 años formando profesionales',
+    descripcion: 'El título que obtenés tiene validez nacional, reconocido por el Ministerio de Educación. No es un certificado: es un título universitario oficial.',
+    detalle: 'UCASAL tiene presencia federal con sedes en todo el país. Cuando terminés, tu diploma vale igual que el de cualquier egresado presencial de la institución.',
+    publico: 'Para quienes tienen dudas sobre si estudiar online es "lo mismo" que el presencial.',
     icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
       </svg>
     ),
@@ -44,12 +44,12 @@ const beneficios: Beneficio[] = [
   {
     id: 3,
     tag: 'Inversión',
-    titulo: 'Una cuota que vale lo que pagás',
-    descripcion: 'Invertís en un título universitario oficial con acompañamiento real, campus virtual completo y docentes accesibles.',
-    detalle: 'Contás con financiamiento en cuotas, becas disponibles y la posibilidad de trabajar mientras estudiás. La flexibilidad del cursado hace que no tengas que elegir entre estudiar y generar ingresos.',
-    publico: 'Para quienes analizan si el costo se justifica frente a otras opciones.',
+    titulo: 'Becas, cuotas y financiamiento real',
+    descripcion: 'Accedé a becas disponibles, cuotas accesibles y la posibilidad de trabajar mientras cursás. No tenés que elegir entre estudiar y generar ingresos.',
+    detalle: 'El segundo ingreso de agosto te da la misma carga horaria que el de marzo, con la ventaja de que ya podés organizarte económicamente antes de arrancar.',
+    publico: 'Para quienes analizan si el costo se justifica o si pueden bancarse estudiar y trabajar al mismo tiempo.',
     icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -57,42 +57,14 @@ const beneficios: Beneficio[] = [
   },
   {
     id: 4,
-    tag: 'Velocidad',
-    titulo: 'Cursado intensivo',
-    descripcion: 'Avanzá con una modalidad pensada para ayudarte a progresar de manera más ágil.',
-    detalle: 'El ingreso de agosto tiene el mismo valor académico que el de marzo. Al terminar el año, vas a estar exactamente en el mismo punto que tus compañeros que empezaron antes.',
-    publico: 'Para los que no quieren esperar años para tener el título en la mano.',
-    icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
-    color: 'azul',
-  },
-  {
-    id: 5,
     tag: 'Futuro',
-    titulo: 'Preparación para tu futuro laboral',
-    descripcion: 'Elegí una carrera orientada a acompañar tu desarrollo profesional y ampliar tus oportunidades',
-    detalle: 'Formate con una propuesta académica pensada para vincular el aprendizaje con los desafíos del mundo laboral actual, desarrollando conocimientos y herramientas aplicables a tu crecimiento profesional.',
-    publico: 'Clave para quienes trabajan, tienen hijos o viven lejos de un centro educativo.',
+    titulo: 'Formación orientada al mundo laboral',
+    descripcion: 'Cursás con una propuesta académica que conecta el aprendizaje con los desafíos reales del mercado. Salís con herramientas aplicables desde el primer día.',
+    detalle: 'Las carreras de UCASAL están diseñadas para que puedas insertarte o crecer en tu sector laboral. El ingreso en agosto te da ventaja: arrancás antes y llegás antes.',
+    publico: 'Clave para quienes trabajan y quieren que su título les abra puertas concretas, no solo sea un papel.',
     icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    ),
-    color: 'rojo',
-  },
-  {
-    id: 6,
-    tag: 'Modalidad',
-    titulo: 'Estudiá desde cualquier lugar',
-    descripcion: 'Accedé a tu carrera sin necesidad de trasladarte y organizá tu cursado desde donde estés.',
-    detalle: 'El cursado semestral intensivo online combina la profundidad académica de un programa universitario con la agilidad de una modalidad 100% digital.',
-    publico: 'Para quienes quieren entender exactamente cómo funciona el modelo antes de inscribirse.',
-    icon: (
-      <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
     ),
     color: 'azul',
@@ -149,15 +121,12 @@ export default function BeneficiosCarrusel() {
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold degrade-azul tracking-tight">
           Empezá en <span className="degrade-rojo">agosto</span>, tu título te espera
         </h2>
-        <p className="text-sm text-gray-500 mt-1">
-          Seleccioná el que más resuena con tu situación actual.
-        </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
 
         {/* Lista de beneficios — selector */}
-        <div className="lg:col-span-2 lg:flex flex-col gap-2 hidden">
+        <div className="lg:col-span-2 lg:flex flex-col gap-2 hidden h-full justify-center items-center">
           {beneficios.map((b, i) => {
             const c = colorClases[b.color];
             const esActivo = activo === i;
@@ -165,9 +134,9 @@ export default function BeneficiosCarrusel() {
               <button
                 key={b.id}
                 onClick={() => irA(i)}
-                className={`w-full text-left flex items-center gap-4 px-4 py-3.5 rounded-xl border-2 transition-all duration-200 cursor-pointer ${esActivo
+                className={`w-full text-left flex items-center gap-4 px-4 py-3.5 rounded-xl border-2 transition-all duration-200 cursor-pointer  ${esActivo
                     ? `${c.border} bg-(--ucasal-gray-light) shadow-sm`
-                    : 'border-transparent hover:border-gray-200 hover:bg-gray-50'
+                    : 'border-gray-100 hover:border-gray-200 hover:bg-gray-50'
                   }`}
               >
                 {/* Ícono */}
@@ -196,7 +165,7 @@ export default function BeneficiosCarrusel() {
         </div>
 
         {/* Panel de detalle */}
-        <div className="lg:col-span-3 h-120 sm:h-110 lg:h-full">
+        <div className="lg:col-span-3 h-fit sm:h-110 lg:h-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={beneficio.id}
@@ -207,32 +176,32 @@ export default function BeneficiosCarrusel() {
               className={`rounded-2xl border-2 ${clases.border} p-6 md:p-8 flex flex-col gap-5 h-full`}
             >
               {/* Ícono grande */}
-              <section className="flex flex-row sm:flex-col items-center sm:items-start gap-4">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${clases.bg} text-white shadow-md`}>
+              <section className="flex flex-row sm:flex-col items-center sm:items-start gap-1 sm:gap-4">
+                <div className={`w-9 h-9 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center ${clases.bg} text-white shadow-md`}>
                   {beneficio.icon}
                 </div>
                 {/* Título */}
-                <h3 className="text-xl md:text-2xl font-black text-(--azul-ucasal) leading-tight">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-black text-(--azul-ucasal) leading-tight">
                   {beneficio.titulo}
                 </h3>
               </section>
 
 
               {/* Descripción principal */}
-              <p className="text-base text-gray-700 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                 {beneficio.descripcion}
               </p>
               {/* Detalle expandido */}
-              <p className="text-sm text-gray-500 leading-relaxed">
+              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
                 {beneficio.detalle}
               </p>
 
               {/* Público objetivo */}
               <div className={`flex items-start gap-3 rounded-xl ${clases.bgLight} px-4 py-3 mt-auto`}>
-                <svg className={`w-4 h-4 shrink-0 mt-0.5 ${clases.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {/* <svg className={`w-4 h-4 shrink-0 mt-0.5 ${clases.text}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <p className={`text-xs font-medium ${clases.text}`}>
+                </svg> */}
+                <p className={`text-[10px] font-medium ${clases.text}`}>
                   {beneficio.publico}
                 </p>
               </div>

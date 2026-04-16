@@ -20,7 +20,7 @@ export default function Hero() {
                             </span>
                         </h1>
                         <div className='flex flex-col gap-4 sm:justify-end items-center h-full w-full text-center'>
-                            <div className='max-w-140 flex flex-col gap-4'>
+                            <div className='max-w-140 flex flex-col gap-4 max-sm:h-full'>
                                 <p
                                     className="text-base sm:text-lg text-white leading-relaxed"
                                     style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2s forwards' }}
@@ -57,7 +57,7 @@ export default function Hero() {
                                 </div>
                                 {/* Stats horizontales */}
                                 <div
-                                    className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-2 sm:mt-2 border-t border-white/10 pt-2 sm:pt-6  w-full justify-around items-center"
+                                    className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-2 sm:mt-2 border-t border-white/10 pt-2 sm:pt-6 w-full max-sm:h-full justify-around items-end sm:items-center"
                                     style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2.6s forwards' }}
                                 >
                                     {[
@@ -67,8 +67,8 @@ export default function Hero() {
                                         { valor: "+30", etiqueta: "Convenios" },
                                     ].map((stat, i) => (
                                         <div key={i} className="flex flex-col items-center">
-                                            <span className="text-2xl font-black text-white">{stat.valor}</span>
-                                            <span className="text-xs text-white/50 uppercase tracking-wide">{stat.etiqueta}</span>
+                                            <span className="text-2xl font-black text-black sm:text-white">{stat.valor}</span>
+                                            <span className="text-xs text-black/50 sm:text-white/50 uppercase tracking-wide">{stat.etiqueta}</span>
                                         </div>
                                     ))}
                                 </div>

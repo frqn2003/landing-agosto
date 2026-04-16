@@ -55,8 +55,12 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 .map((prov: any) => [prov.id_provincia, prov])
         ).values()
     ]
-    const sedes = (carreraSeleccionada?.provincias || [])
+    const todasLasSedes = (carreraSeleccionada?.provincias || [])
         .filter((sede: any) => String(sede.id_provincia) === idProvincia)
+    const sedesOficiales = todasLasSedes.filter((s: any) => s.id_sede !== 500)
+    const tieneHome = todasLasSedes.some((s: any) => s.id_sede === 500)
+    const sedesHome = todasLasSedes.filter((s: any) => s.id_sede === 500)
+    const sedes = todasLasSedes
 
     {/* Helper de estado visual */ }
     const claseBorde = (habilitado: boolean, completado: boolean) => {
@@ -177,7 +181,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             setIdSede('')
                         }}
                     >
-                        <option value="" selected>Seleccionar Carrera</option>
+                        <option value="" defaultValue={'Seleccionar Carrera'}>Seleccionar Carrera</option>
                         {carrerasUnicas.map((c) => (
                             <option key={c.codcar} value={c.codcar}>{c.nombre_carrera}</option>
                         ))}
@@ -198,7 +202,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         }}
                         disabled={!codcar}
                         required>
-                        <option value="" disabled selected>Seleccionar Modalidad</option>
+                        <option value="" disabled defaultValue={'Seleccionar Modalidad'}>Seleccionar Modalidad</option>
                         {modos.map((m) => (
                             <option key={m.modo} value={m.modo}>{m.modo === 7 ? 'Virtual' : 'Presencial'}</option>
                         ))}
@@ -219,7 +223,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         required
                         disabled={!codcar || !modalidad}
                     >
-                        <option value="" disabled selected>Seleccionar Provincia</option>
+                        <option value="" disabled defaultValue={'Seleccionar Provincia'}>Seleccionar Provincia</option>
                         {provincias.map((p: any) => (
                             <option key={p.id_provincia} value={p.id_provincia}>{p.nombre_provincia}</option>
                         ))}
@@ -238,10 +242,21 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         }}
                         required
                         disabled={!codcar || !modalidad || !idProvincia}>
-                        <option value="" disabled selected>Seleccionar Sede</option>
-                        {sedes.map((s: any) => (
-                            <option key={s.id_sede} value={s.id_sede}>{s.nombre_sede}</option>
-                        ))}
+                        <option value="" disabled defaultValue={'Seleccionar Sede'}>Seleccionar Sede</option>
+                        {sedesOficiales.length > 0 && (
+                            <optgroup label="Sedes disponibles">
+                                {sedesOficiales.map((s: any) => (
+                                    <option key={s.id_sede} value={s.id_sede}>{s.nombre_sede}</option>
+                                ))}
+                            </optgroup>
+                        )}
+                        {tieneHome && (
+                            <optgroup label="Sin sede cerca (Home)">
+                                {sedesHome.map ((s:any) => (
+                                    <option value="500"> {s.nombre_sede}</option>
+                                ))}
+                            </optgroup>
+                        )}
                     </select>
                 </div>
             </div>
