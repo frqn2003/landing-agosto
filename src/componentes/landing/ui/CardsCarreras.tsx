@@ -35,12 +35,12 @@ export default function CardsCarreras(props: Carrera) {
           </h3>
         </div>
 
-        <p className="text-[12px] sm:text-[13px] md:text-[15px] text-gray-800 leading-relaxed">
+        <p className="text-[10px] sm:text-[12px] md:text-[15px] text-gray-800 leading-relaxed">
           {props.descripcionCorta}
         </p>
 
         {/* Footer de la Card */}
-        <div className=" gap-3 flex-col flex 2xl:flex-row justify-between">
+        <div className="gap-3 flex-col flex 2xl:flex-row justify-between">
           {/* Duración */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5 text-gray-500">

@@ -2,35 +2,26 @@
 export default function Hero() {
     return (
         <section className="w-full flex items-center pt-4 px-4 contenedor">
-            <div className="w-full h-[800px] sm:h-[800px] px-6 py-12 sm:p-12 rounded-2xl relative">
+            <div className="w-full h-[800px] sm:h-[800px] pt-4 pb-12 sm:p-12 rounded-2xl relative">
                 <div className="overlay rounded-2xl"></div>
-                <div className="flex gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center w-full justify-center h-full">
+                <div className="flex gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-start w-full justify-start h-full">
                     {/* ── Columna izquierda ── */}
-                    <div className="flex flex-col gap-2 lg:pl-4 items-center w-full h-full justify-start sm:justify-center pt-4 sm:pt-0 z-30">
+                    <div className="flex flex-col gap-2 sm:gap-8 lg:pl-4 items-center sm:items-start w-full h-full justify-center sm:justify-left pt-4 sm:pt-0 z-30">
 
-                        <h1
-                            className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black leading-none tracking-tighter uppercase mt-6 flex flex-col items-center text-center"
-                            style={{ fontFamily: "Museo Sans, sans-serif" }}
-                        >
-                            <span className="hero-titulo block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards]">
-                                EMPEZÁ EN
+                        <h1 className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black leading-none tracking-tight uppercase mt-6 flex flex-col w-full text-center sm:text-left" style={{ fontFamily: "Museo Sans, sans-serif" }}>
+                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards]">
+                                EMPEZÁ
                             </span>
-                            <span className="hero-titulo block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.8s_steps(7)_1.2s_forwards,fadeIn_0.1s_1.2s_forwards]">
-                                AGOSTO
+                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.8s_steps(7)_1.2s_forwards,fadeIn_0.1s_1.2s_forwards]">
+                                EN AGOSTO
                             </span>
                         </h1>
-                        <div className='flex flex-col gap-4 sm:justify-end items-center h-full w-full text-center'>
-                            <div className='max-w-140 flex flex-col gap-4 max-sm:h-full'>
-                                <p
-                                    className="text-base sm:text-lg text-white leading-relaxed"
-                                    style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2s forwards' }}
-                                >
-                                    Carreras universitarias oficiales, cursado a distancia y docentes comprometidos con tu crecimiento.
+                        <div className='flex flex-col gap-8 sm:gap-14 sm:text-left sm:justify-start sm:items-start justify-center text-center items-center h-full w-full'>
+                            <div className='flex flex-col gap-8 h-full w-full'>
+                                <p className="text-sm sm:text-xl pl-2 text-black sm:text-white leading-relaxed sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2s forwards' }}>Carreras universitarias oficiales, cursado a distancia <br className="hidden sm:block" />y docentes comprometidos con tu crecimiento.
                                 </p>
 
-                                <div
-                                    className="flex flex-row w-full justify-around items-center"
-                                    style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2.3s forwards' }}
+                                <div className="flex flex-col sm:flex-row w-full sm:mt-12 mt-8 gap-4 h-full items-center sm:items-start justify-end sm:justify-start sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2.3s forwards' }}
                                 >
                                     <button
                                         onClick={() => {
@@ -39,7 +30,7 @@ export default function Hero() {
                                                 form.scrollIntoView({ behavior: 'smooth' });
                                             }
                                         }}
-                                        className="boton-cta"
+                                        className="boton-cta uppercase" style={{ fontSize: 'var(--boton-size)' }}
                                     >
                                         Quiero información
                                     </button>
@@ -50,14 +41,14 @@ export default function Hero() {
                                                 carreras.scrollIntoView({ behavior: 'smooth' });
                                             }
                                         }}
-                                        className="bg-transparent text-white/90 font-bold text-sm px-6 py-3 rounded-full border-2 border-white transition-all hover:bg-white/10 hover:text-white cursor-pointer"
+                                        className="bg-transparent text-white/90 font-bold text-xs sm:text-lg px-6 py-3 rounded-full border-2 border-white transition-all hover:bg-white/10 hover:text-white cursor-pointer uppercase"
                                     >
                                         Ver carreras
                                     </button>
                                 </div>
                                 {/* Stats horizontales */}
                                 <div
-                                    className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-2 sm:mt-2 border-t border-white/10 pt-2 sm:pt-6 w-full max-sm:h-full justify-around items-end sm:items-center"
+                                    className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-0 sm:mt-2 pt-2 sm:pt-6 w-full sm:h-full justify-around items-end"
                                     style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 2.6s forwards' }}
                                 >
                                     {[
@@ -67,8 +58,8 @@ export default function Hero() {
                                         { valor: "+30", etiqueta: "Convenios" },
                                     ].map((stat, i) => (
                                         <div key={i} className="flex flex-col items-center">
-                                            <span className="text-2xl font-black text-black sm:text-white">{stat.valor}</span>
-                                            <span className="text-xs text-black/50 sm:text-white/50 uppercase tracking-wide">{stat.etiqueta}</span>
+                                            <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-white">{stat.valor}</span>
+                                            <span className="text-sm sm:text-base text-white/50 uppercase tracking-wide">{stat.etiqueta}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -80,10 +71,10 @@ export default function Hero() {
                 </div>
                 <div className="absolute inset-0 rounded-2xl overflow-hidden">
                     <picture>
-                        <source media="(min-width: 769px)" srcSet="/general.jpg" />
-                        <source media="(max-width: 768px)" srcSet="/mobile-general.jpg" />
+                        <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}desktop.jpg`} />
+                        <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}mobile.jpg`} />
                         <img
-                            src="/general.jpg"
+                            src={`${import.meta.env.BASE_URL}desktop.jpg`}
                             /* src={`/${carrera.codcar}.png`} */
                             alt="Hero"
                             className="w-full h-full object-cover object-center"

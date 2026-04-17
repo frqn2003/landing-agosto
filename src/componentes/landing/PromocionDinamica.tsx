@@ -28,7 +28,7 @@ export default function PromocionDinamica() {
     const [cargando, setCargando] = useState(true)
 
     useEffect(() => {
-        fetch("/mock-landing.json")
+        fetch(`${import.meta.env.BASE_URL}mock-landing.json`)
             .then(r => r.json())
             .then(data => {
                 const ahora = new Date()
@@ -57,7 +57,7 @@ export default function PromocionDinamica() {
 
     return (
         <section className="contenedor bg-center bg-cover relative mb-12">
-            <div className="px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-center gap-12 z-20 bg-[url(/horizontal.png)] rounded-lg border-2 border-black">
+            <div className="px-6 py-8 flex flex-row items-center justify-center gap-6 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}horizontal.png)` }}>
                 {/* Izquierda: descuento */}
                 <div className="flex flex-col items-center text-center">
                     {promocion.descuento && (

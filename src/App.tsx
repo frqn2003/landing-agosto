@@ -6,7 +6,7 @@ import Carreras from './componentes/landing/Carreras/Carreras'
 import DetalleCarrera from './pages/DetalleCarrera'
 import NavbarCarreras from './componentes/landing/Carreras/NavbarCarreras'
 import BeneficiosCarrusel from './componentes/landing/Detalles/BeneficiosCarrusel'
-import Form from './componentes/landing/Form'
+import FormSection from './componentes/landing/FormSection'
 import Financiacion from './componentes/landing/Financiacion'
 import PromocionDinamica from './componentes/landing/PromocionDinamica'
 import ComparativaModalidades from './componentes/landing/ComparativaModalidades'
@@ -24,7 +24,7 @@ function App() {
           <ComparativaModalidades />
           <PromocionDinamica />
           <Carreras />
-          <Form />
+          <FormSection />
           <Financiacion/>
           <section className='contenedor py-10 px-4' id="sedes">
             <div className="grid grid-cols-1 lg:grid-cols-2 items-start">

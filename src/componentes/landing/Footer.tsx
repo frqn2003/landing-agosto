@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="mb-4">
           <a href="#inicio" className="inline-block transition-transform hover:scale-105">
             <img 
-              src="/ucasal-color-h.svg" 
+              src={`${import.meta.env.BASE_URL}ucasal-color-h.svg`}
               alt="UCASAL" 
               className="h-10 w-auto brightness-0 invert" 
             />

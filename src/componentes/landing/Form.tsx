@@ -167,7 +167,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </p>
                 </div>
             )}
-            <div className="grid grid-cols-2 gap-6 border-b border-t border-black/40 py-4">
+            <div className="grid grid-cols-2 gap-6 border-b border-black/40 py-4">
                 <div className="relative z-0 w-full group">
                     <select name="cbx_carrera" id="cbx_carrera" aria-label="Seleccionar Carrera"
                         className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900 ${codcarInicial ? 'opacity-75 cursor-not-allowed bg-gray-50' : ''}`}
@@ -260,7 +260,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </select>
                 </div>
             </div>
-            <div className="flex flex-col gap-2 mt-5 border-b border-black/40" id="datosPersonales">
+            <div className="flex flex-col gap-2 mt-5" id="datosPersonales">
 
                 <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>

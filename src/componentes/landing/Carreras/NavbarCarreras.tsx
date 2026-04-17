@@ -36,13 +36,13 @@ export default function NavbarCarreras() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                         {scrolled ? (
-                            <div className="flex justify-items-center gap-2"> <img src="/iso.svg" alt="UCASAL" className="h-6 w-auto" /><span className="flex items-center text-center">Volver al inicio</span></div>
+                            <div className="flex justify-items-center gap-2"> <img src={`${import.meta.env.BASE_URL}iso.svg`} alt="UCASAL" className="h-6 w-auto" /><span className="flex items-center text-center">Volver al inicio</span></div>
                         ) : "Volver al inicio"}
                     </Link>
 
                     {/* Logo centrado */}
                     <div className="hidden lg:flex items-center justify-center">
-                        <img src="/ucasal-color-h.svg" alt="UCASAL" className="h-10 w-auto" />
+                        <img src={`${import.meta.env.BASE_URL}ucasal-color-h.svg`} alt="UCASAL" className="h-10 w-auto" />
                     </div>
 
                     {/* CTA + hamburguesa */}

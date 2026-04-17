@@ -88,33 +88,6 @@ body {
   }
 }
 
-@keyframes scrollInfinitoBase {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  100% {
-    transform: translate3d(-100%, 0, 0);
-  }
-}
-
-.animate-infinite-scroll {
-  animation: scrollInfinitoBase 30s linear infinite;
-  will-change: transform;
-}
-
-@media (max-width: 768px) {
-  .animate-infinite-scroll {
-    animation: scrollInfinitoBase 25s linear infinite;
-  }
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .marquee-container-base:hover .animate-infinite-scroll {
-    animation-play-state: paused;
-  }
-}
-
 .overlay {
   position: absolute;
   width: 100%;
@@ -206,62 +179,11 @@ body {
   }
 }
 
-
+/* Estilos para la NavBar */
 .nav-menu {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-.hover-button {
-  position: relative;
-  transition: all 0.3s ease;
-  width: fit-content;
-}
-
-.hover-button img {
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.hover-button span {
-  transition: transform 0.3s ease;
-  position: relative;
-}
-
-.hover-button:hover {
-  background-color: transparent;
-}
-
-/* Mobile: Desplazamiento para pantallas pequeñas */
-@media (max-width: 767px) {
-  .hover-button:hover img {
-    transform: translateX(455%) rotate(90deg);
-    z-index: 1;
-  }
-}
-
-/* Desktop: Desplazamiento para pantallas grandes */
-
-.hover-button:hover img {
-  transform: translateX(350%) rotate(90deg);
-  z-index: 1;
-
-  @media (max-width: 767px) {
-    transform: translateX(455%) rotate(90deg);
-    z-index: 1;
-  }
-}
-
-.hover-button:hover span {
-  transform: translateX(-15%);
-  color: white;
-
-  @media (max-width: 767px) {
-    transform: translateX(-10%);
-  }
-}
-
-/* Estilos para la NavBar */
 .nav-link {
   padding: 0.5rem 1rem;
   font-weight: 600;
@@ -321,22 +243,25 @@ body {
   /* background: linear-gradient(to bottom right, var(--azul-light-ucasal) 30%, var(--azul-ucasal) 50%, var(--azul-light-ucasal) 80%); */
   color: white;
   font-weight: 600;
+  --boton-size: 22px;
   font-size: 1em;
   transition: all 0.3s ease;
   gap: 6px;
-  border-radius: 9999px;
+  border-radius: 10px;
   cursor: pointer;
   width: fit-content;
 
   @media (max-width: 1200px) {
     padding: 12px 1.8em;
     font-size: 1.05em;
+    --boton-size: 18px;
     gap: 4px;
   }
 
   @media (max-width: 768px) {
     padding: 10px 1.5em;
     font-size: 0.8em;
+    --boton-size: 12px;
     gap: 3px;
   }
 }
@@ -432,120 +357,6 @@ body {
   .animated-border {
     animation: none;
   }
-}
-
-/* Estilos para validación progresiva del formulario */
-.form-section-locked {
-  opacity: 0.5;
-  pointer-events: none;
-  position: relative;
-}
-
-.form-section-locked::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 0.5rem;
-  z-index: 10;
-}
-
-.form-section-unlocked {
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity 0.3s ease;
-}
-
-.section-indicator {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.section-indicator .step-number {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.section-indicator.pending .step-number {
-  background-color: var(--ucasal-gray-medium);
-  color: var(--ucasal-black);
-}
-
-.section-indicator.active .step-number {
-  background-color: var(--azul-ucasal);
-  color: white;
-}
-
-.section-indicator.completed .step-number {
-  background-color: #22c55e;
-  color: white;
-}
-
-.section-indicator.completed .step-number::after {
-  content: "✓";
-}
-
-.boton-activo-form {
-  background: var(--rojo-ucasal);
-  color: white;
-  cursor: pointer;
-}
-
-.boton-activo-form:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(238, 24, 24, 0.4);
-}
-
-.boton-inactivo-form {
-  background-color: var(--ucasal-gray-medium);
-  color: #6b7280;
-  cursor: not-allowed;
-}
-
-/* Estilos para FAQ con efecto menu-open */
-.faq-menu-open {
-  animation: faqSlideDown 0.3s ease-out;
-}
-
-@keyframes faqSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Estilos para el carrusel infinito */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-infinite-scroll {
-  animation: scroll 40s linear infinite;
-}
-
-.group-hover-pause:hover .animate-infinite-scroll {
-  animation-play-state: paused;
 }
 
 /* intl-tel-input: forzar ancho completo */

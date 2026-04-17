@@ -95,13 +95,13 @@ function Navbar() {
                 className="text-3xl font-sans font-semibold text-(--azul-light-ucasal)"
               >
                 <img
-                  src="/ucasal-color-h.svg"
+                  src={`${import.meta.env.BASE_URL}ucasal-color-h.svg`}
                   alt="Logo"
                   className="h-10 w-auto"
                 />
               </a>
             ) : (
-              <img src="/iso.svg" alt="Logo" className="h-10 w-auto" />
+              <img src={`${import.meta.env.BASE_URL}iso.svg`} alt="Logo" className="h-10 w-auto" />
             )}
           </div>
           <section className="hidden lg:flex items-center justify-center space-x-1 lg:space-x-2">
@@ -172,7 +172,7 @@ function Navbar() {
             <li>
               <a
                 href="#beneficios"
-                className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                className={`mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'beneficios' ? 'active' : ''}`}
                 onClick={() => setMenuAbierto(false)}
               >
                 Beneficios
@@ -181,7 +181,7 @@ function Navbar() {
             <li>
               <a
                 href="#carreras"
-                className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                className={`mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'carreras' ? 'active' : ''}`}
                 onClick={() => setMenuAbierto(false)}
               >
                 Carreras
@@ -190,7 +190,7 @@ function Navbar() {
             <li>
               <a
                 href="#sedes"
-                className="mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
+                className={`mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'sedes' ? 'active' : ''}`}
                 onClick={() => setMenuAbierto(false)}
               >
                 Sedes

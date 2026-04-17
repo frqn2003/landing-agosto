@@ -38,7 +38,7 @@ export default function DetalleCarrera() {
     const modalidad = carrera?.modalidad == 7 ? 'Virtual' : carrera?.modalidad == 1 ? 'Presencial' : 'Presencial'
 
     const titulo = carrera?.nombre?.trim().split(' ') || []
-    const tituloClase = titulo?.length >= 4 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(8)_forwards]'
+    const tituloClase = titulo?.length >= 5 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(10)_forwards] overflow-hidden'
     console.log(titulo, tituloClase)
 
     if (!carrera) {
@@ -74,11 +74,11 @@ export default function DetalleCarrera() {
             <section className="w-full min-h-full flex items-center pt-4 px-4 contenedor">
                 <div className="w-full h-[500px] sm:h-[600px] bg-(--azul-ucasal) px-6 py-12 sm:p-12 rounded-2xl relative">
                     <div className={`flex flex-col h-full sm:flex-row gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center justify-center relative z-10  w-full sm:w-[60%]`}>
-                        <div className={`flex flex-col gap-3 text-black flex-1 h-full ${titulo.length <= 3 ? 'justify-center max-sm:mb-12' : 'justify-start'} sm:justify-center max-sm:text-center`}>
+                        <div className={`flex flex-col gap-3 text-black flex-1 h-full ${titulo.length <= 4 ? 'justify-center max-sm:mb-12' : 'justify-start'} sm:justify-center max-sm:text-center`}>
                             <h1 className={`${tituloClase} font-extrabold leading-10 sm:leading-none tracking-tight uppercase text-white`}>
                                 {carrera.nombre}
                             </h1>
-                            <div className="flex flex-wrap items-center justify-center gap-4 mt-6 text-xs sm:text-sm text-white/70 bg-(--rojo-ucasal) max-sm:mx-auto w-fit px-2 sm:px-3 py-1.5 rounded-lg">
+                            <div className="flex flex-wrap items-center justify-center gap-4 mt-6 text-xs sm:text-sm text-white/70 bg-(--rojo-ucasal) max-sm:mx-auto w-fit px-2 sm:px-3 py-1.5 rounded-lg" style={{ opacity: 0, animation: `heroFadeInUp ${titulo.length <= 4 ? '0.6' : '0.8'}s ease-out 1s forwards` }}>
                                 <span className="flex items-center gap-1 sm:gap-1.5">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -102,10 +102,10 @@ export default function DetalleCarrera() {
                     </div>
                     <div className="absolute inset-0 rounded-2xl overflow-hidden">
                         <picture>
-                            <source media="(min-width: 769px)" srcSet="/desktop.webp" />
-                            <source media="(max-width: 768px)" srcSet="/mobile.webp" />
+                            <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}desktop.webp`} />
+                            <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}mobile.webp`} />
                             <img
-                                src="/Encabezado Desktop.jpg"
+                                src={`${import.meta.env.BASE_URL}Encabezado Desktop.jpg`}
                                 /* src={`/${carrera.codcar}.png`} */
                                 alt={carrera.nombre}
                                 className="w-full h-full object-cover object-center"

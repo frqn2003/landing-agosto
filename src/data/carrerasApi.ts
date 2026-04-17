@@ -1,7 +1,10 @@
 import data from './carreras'
 
-const codcarsSegundoIngreso = [...new Set(data.map((carrera) => carrera.codcar))]
-console.log(codcarsSegundoIngreso)
+const combinaciones = data.map(c => ({ codcar: c.codcar, modo: c.modalidad }))
+const combinacionesUnicas = combinaciones.filter(
+    (c, i, arr) => arr.findIndex(x => x.codcar === c.codcar && x.modo === c.modo) === i
+)
+console.log(combinacionesUnicas)
 
 let cache: any[] | null = null
 let promesa: Promise<any[]> | null = null
@@ -13,7 +16,7 @@ export function getCarrerasApi(): Promise<any[]> {
     if (promesa) return promesa
 
     if (DEV_MODE) {
-        promesa = fetch('/mock-carreras.json')
+        promesa = fetch(`${import.meta.env.BASE_URL}mock-carreras.json`)
             .then(res => res.json())
             .then(data => {
                 cache = data
@@ -23,8 +26,8 @@ export function getCarrerasApi(): Promise<any[]> {
     }
 
     promesa = Promise.all(
-        codcarsSegundoIngreso.map(codcar => 
-            fetch(`https://ucasal.edu.ar/landing/consultas/getCarrerasJson.php?codcar=${codcar}`)
+        combinacionesUnicas.map(({ codcar, modo }) =>
+            fetch(`https://ucasal.edu.ar/landing/consultas/getCarrerasJson.php?codcar=${codcar}&modo=${modo}`)
                 .then(res => res.json())
         )
     ).then(resultados => {
