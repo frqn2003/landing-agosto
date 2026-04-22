@@ -12,16 +12,6 @@
     ]
   },
   {
-    "codcar": 16,
-    "modo": 1,
-    "nombre_carrera": "ABOGACÍA (16)",
-    "provincias": [
-      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 60, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
-      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 148, "nombre_sede": "BUENOS AIRES - BALCARCE" },
-      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 1, "nombre_sede": "SALTA - CENTRAL" }
-    ]
-  },
-  {
     "codcar": 23,
     "modo": 7,
     "nombre_carrera": "CONTADOR PÚBLICO (23)",

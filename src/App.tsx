@@ -4,28 +4,28 @@ import Hero from './componentes/landing/Hero'
 import Footer from './componentes/landing/Footer'
 import Carreras from './componentes/landing/Carreras/Carreras'
 import DetalleCarrera from './pages/DetalleCarrera'
-import NavbarCarreras from './componentes/landing/Carreras/NavbarCarreras'
-import BeneficiosCarrusel from './componentes/landing/Detalles/BeneficiosCarrusel'
+import BeneficiosCarrusel from './componentes/landing/BeneficiosCarrusel'
 import FormSection from './componentes/landing/FormSection'
 import Financiacion from './componentes/landing/Financiacion'
 import PromocionDinamica from './componentes/landing/PromocionDinamica'
 import ComparativaModalidades from './componentes/landing/ComparativaModalidades'
 import Sedes from './componentes/landing/Sedes'
 import PreguntasFrecuentes from './componentes/landing/PreguntasFrecuentes'
+import PaginaError from './pages/PaginaError'
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={
         <>
-          <Navbar />
+          <Navbar onSubPage={false} />
           <Hero />
           <BeneficiosCarrusel />
-          <ComparativaModalidades />
           <PromocionDinamica />
           <Carreras />
           <FormSection />
-          <Financiacion/>
+          <ComparativaModalidades />
+          <Financiacion />
           <section className='contenedor py-10 px-4' id="sedes">
             <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
               <Sedes />
@@ -38,11 +38,13 @@ function App() {
 
       <Route path=':slug' element={
         <>
-          <NavbarCarreras />
+          <Navbar onSubPage={true} />
           <DetalleCarrera />
           <Footer />
         </>
       } />
+      <Route path="*" element={<PaginaError />} />
+      <Route path="/404" element={<PaginaError />} />
     </Routes>
   )
 }

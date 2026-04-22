@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
-export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: string, onSubPage?: string }) {
+export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: string, onSubPage?: boolean }) {
     const [carreras, setCarreras] = useState<any[]>([])
     const [modalidad, setModalidad] = useState("")
     const [codcar, setCodcar] = useState(codcarInicial ?? '')
@@ -41,7 +41,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         userAgent: navigator.userAgent
     }
     useEffect(() => {
-        getCarrerasApi().then(setCarreras)
+        getCarrerasApi().then(setCarreras).catch(() => setCarreras([]))
     }, [])
 
     const carrerasUnicas = [...new Map(carreras.map(c => [c.codcar, c])).values()]
@@ -109,7 +109,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             setValue('cbx_provincia', v, { shouldValidate: true })
             setIdSede('')
         }
-    }, [modalidad])
+    }, [modalidad, carreras])
 
     useEffect(() => {
         if (sedes.length === 1) {
@@ -143,10 +143,10 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
                 await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
 
-                ;(window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
+                    ; (window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
                 window.location.href = 'https://www.ucasal.edu.ar/landing/enviado-agosto.php'
             })}
-            className={`bg-white rounded-lg p-6 shadow-2xl ${onSubPage ? '' : 'md:mx-56'}`}>
+            className={`bg-white rounded-lg shadow-2xl ${onSubPage ? 'px-6 py-4' : 'p-6'}`}>
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
             <input type="hidden" id="agent" name="agent" value={parametros.userAgent || ''} />
@@ -167,7 +167,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </p>
                 </div>
             )}
-            <div className="grid grid-cols-2 gap-6 border-b border-black/40 py-4">
+            <div className={`${onSubPage ? 'flex flex-col gap-2 py-2' : 'grid grid-cols-2 gap-6 py-4'} border-b border-black/40`}>
                 <div className="relative z-0 w-full group">
                     <select name="cbx_carrera" id="cbx_carrera" aria-label="Seleccionar Carrera"
                         className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900 ${codcarInicial ? 'opacity-75 cursor-not-allowed bg-gray-50' : ''}`}
@@ -204,7 +204,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         required>
                         <option value="" disabled defaultValue={'Seleccionar Modalidad'}>Seleccionar Modalidad</option>
                         {modos.map((m) => (
-                            <option key={m.modo} value={m.modo}>{m.modo === 7 ? 'Virtual' : 'Presencial'}</option>
+                            <option key={m.modo} value={m.modo}>{m.modo === 7 ? 'Online' : 'Presencial'}</option>
                         ))}
                     </select>
                 </div>
@@ -252,7 +252,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         )}
                         {tieneHome && (
                             <optgroup label="Sin sede cerca (Home)">
-                                {sedesHome.map ((s:any) => (
+                                {sedesHome.map((s: any) => (
                                     <option value="500"> {s.nombre_sede}</option>
                                 ))}
                             </optgroup>
@@ -260,9 +260,9 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </select>
                 </div>
             </div>
-            <div className="flex flex-col gap-2 mt-5" id="datosPersonales">
+            <div className="flex flex-col gap-2 mt-4" id="datosPersonales">
 
-                <div className="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
+                <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 `}>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="text" {...register("nombre")} id="nombre"
                             className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!nombre && !errors.nombre)}`}
@@ -293,8 +293,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </div>
                 </div>
 
-                <div className="flex flex-row gap-2 sm:gap-4 pb-4 mt-2">
-                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                <div className={`grid grid-cols-2 sm:flex sm:flex-row mt-2 gap-2 sm:gap-4 pb-4`}>
+                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 pointer-events-none'}`}>
                         <div className="relative w-full group">
                             <input name="tipo_tel" type="hidden" value="cel" />
                             <input type="hidden" name="ddi_pais" value={ddiPais} />
@@ -306,7 +306,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             <label htmlFor="tipo_tel" className="absolute text-xs text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1 z-10 origin-left bg-white px-2">Código país</label>
                         </div>
                     </div>
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+
+                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 sm:w-1/3 w-full ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
                             <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric"
                                 className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!codArea && !errors.cod_area)}`}
@@ -319,29 +320,30 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                                 <p id="error-cod_area" className="text-red-500 text-xs mt-1" role="alert">{errors.cod_area.message}</p>
                             )}
                             <label htmlFor="cod"
-                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
+                                className="absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left xl:left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
                                 Código
                             </label>
                         </div>
                     </div>
-                    <span
-                        className="text-[0.8rem] text-gray-700 px-1 border border-gray-500 flex justify-center items-center my-auto w-fit h-fit back rounded">15</span>
-                    <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <div className="relative">
-                            <input type="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
-                                className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!tel && !errors.tel)}`}
-                                placeholder="" required tabIndex={6}
-                                autoComplete="tel-local"
-                                aria-invalid={!!errors.tel}
-                                aria-describedby={errors.tel ? 'error-tel' : undefined}
-                                {...register('tel')} />
-                            {errors.tel && (
-                                <p id="error-tel" className="text-red-500 text-xs mt-1" role="alert">{errors.tel.message}</p>
-                            )}
-                            <label htmlFor="tel"
-                                className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-1 bg-white">
-                                Número
-                            </label>
+                    <div className="flex flex-row col-span-2 gap-2 w-full">
+                        <span className="text-[0.8rem] text-gray-700 px-1 border border-gray-500 flex justify-center items-center my-auto w-fit h-fit back rounded">15</span>
+                        <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none max-sm:flex-1'}`}>
+                            <div className="relative">
+                                <input type="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
+                                    className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!tel && !errors.tel)}`}
+                                    placeholder="" required tabIndex={6}
+                                    autoComplete="tel-local"
+                                    aria-invalid={!!errors.tel}
+                                    aria-describedby={errors.tel ? 'error-tel' : undefined}
+                                    {...register('tel')} />
+                                {errors.tel && (
+                                    <p id="error-tel" className="text-red-500 text-xs mt-1" role="alert">{errors.tel.message}</p>
+                                )}
+                                <label htmlFor="tel"
+                                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-1 bg-white">
+                                    Número
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -350,56 +352,56 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 He le&iacute;do y acepto los <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad </button>.
             </p>
             {
-        modalOpen && (
-            <div className="fixed inset-0 z-50 overflow-hidden">
-                <div onClick={() => setModalOpen(false)} className="fixed inset-0 bg-black/50 transition-opacity"></div>
+                modalOpen && (
+                    <div className="fixed inset-0 z-50 overflow-hidden">
+                        <div onClick={() => setModalOpen(false)} className="fixed inset-0 bg-black/50 transition-opacity"></div>
 
-                <div className="fixed inset-0 flex items-center justify-center p-4">
-                    <div
-                        className="relative bg-white rounded-xl shadow-2xl w-full max-w-5xl h-full max-h-[70vh] flex flex-col animate-scale-up">
+                        <div className="fixed inset-0 flex items-center justify-center p-4">
+                            <div
+                                className="relative bg-white rounded-xl shadow-2xl w-full max-w-5xl h-full max-h-[70vh] flex flex-col animate-scale-up">
 
-                        <div
-                            className="flex items-center justify-between p-6 border-b border-gray-200 bg-linear-to-r from-blue-50 to-indigo-50">
-                            <div className="flex items-center gap-3">
-                                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                    </path>
-                                </svg>
-                                <h2 className="text-2xl font-bold text-gray-900">
-                                    T&eacute;rminos y Condiciones de Privacidad
-                                </h2>
-                            </div>
-                            <button onClick={() => setModalOpen(false)}
-                                className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100" type="button">
-                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </button>
-                        </div>
+                                <div
+                                    className="flex items-center justify-between p-6 border-b border-gray-200 bg-linear-to-r from-blue-50 to-indigo-50">
+                                    <div className="flex items-center gap-3">
+                                        <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                            </path>
+                                        </svg>
+                                        <h2 className="text-2xl font-bold text-gray-900">
+                                            T&eacute;rminos y Condiciones de Privacidad
+                                        </h2>
+                                    </div>
+                                    <button onClick={() => setModalOpen(false)}
+                                        className="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-lg hover:bg-gray-100" type="button">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </div>
 
-                        <div className="flex-1 p-3 md:p-6 overflow-hidden">
-                            <div className="bg-gray-50 rounded-lg p-2 md:p-4 h-full relative">
-                                <iframe
-                                    src="https://www.ucasal.edu.ar/wp-content/uploads/2023/10/Politicas-de-Privacidad-UCASAL-1.pdf#view=FitH"
-                                    className="w-full h-full rounded-lg border border-gray-300 shadow-inner"
-                                    title="Términos y Condiciones de Privacidad" frameBorder={0}></iframe>
-                            </div>
-                        </div>
+                                <div className="flex-1 p-3 md:p-6 overflow-hidden">
+                                    <div className="bg-gray-50 rounded-lg p-2 md:p-4 h-full relative">
+                                        <iframe
+                                            src="https://www.ucasal.edu.ar/wp-content/uploads/2023/10/Politicas-de-Privacidad-UCASAL-1.pdf#view=FitH"
+                                            className="w-full h-full rounded-lg border border-gray-300 shadow-inner"
+                                            title="Términos y Condiciones de Privacidad" frameBorder={0}></iframe>
+                                    </div>
+                                </div>
 
-                        <div className="border-t border-gray-200 p-6 bg-gray-50">
-                            <div className="flex justify-center">
-                                <button onClick={() => setModalOpen(false)}
-                                    className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors duration-200 shadow-lg" type="button">
-                                    Cerrar
-                                </button>
+                                <div className="border-t border-gray-200 p-6 bg-gray-50">
+                                    <div className="flex justify-center">
+                                        <button onClick={() => setModalOpen(false)}
+                                            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors duration-200 shadow-lg" type="button">
+                                            Cerrar
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        )
-    }
+                )
+            }
             <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" />
             <input type="hidden" id="fecha_formulario" name="fecha_formulario" />
             <div className="flex justify-center mt-4">

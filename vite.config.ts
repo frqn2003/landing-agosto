@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig({
-  base: '/landing/ingreso/agosto/',   // <-- ajustar según la ruta real del servidor
+  base: '/landing/ingreso/carreras-agosto/',   // <-- ajustar según la ruta real del servidor
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {

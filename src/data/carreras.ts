@@ -5,10 +5,9 @@ const data = [
         slug: "abogacia",
         nombre: "Abogacía",
         descripcionCorta: "Formá profesionales capacitados para ejercer el derecho en sus distintas ramas, con sólida base jurídica y compromiso ético.",
-        descripcionLarga: "La carrera de Abogacía de UCASAL forma profesionales con dominio profundo del ordenamiento jurídico argentino y las tendencias del derecho comparado. A lo largo de la carrera, los estudiantes adquieren herramientas para el ejercicio de la abogacía en ámbitos civiles, penales, comerciales, administrativos y laborales, desarrollando además competencias en negociación, mediación y litigio. La modalidad virtual permite compatibilizar los estudios con la vida profesional y familiar, sin resignar la calidad académica.",
+        descripcionLarga: "La carrera de Abogacía de UCASAL forma profesionales con dominio profundo del ordenamiento jurídico argentino y las tendencias del derecho comparado. A lo largo de la carrera, los estudiantes adquieren herramientas para el ejercicio de la abogacía en ámbitos civiles, penales, comerciales, administrativos y laborales, desarrollando además competencias en negociación, mediación y litigio.",
         duracion: "5 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de Abogacía será capaz de",
             items: [
@@ -103,7 +102,6 @@ const data = [
         descripcionLarga: "Esta carrera habilita para el ejercicio profesional en el mercado inmobiliario y en remates públicos, combinando formación jurídica, económica y técnica. Los egresados podrán gestionar compraventas, alquileres, tasaciones y subastas de bienes muebles e inmuebles, actuando como intermediarios y asesores en transacciones de alto valor. El plan de estudios incluye legislación vigente, valuación de propiedades, ética profesional y gestión comercial.",
         duracion: "2½ años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de Corredor Inmobiliario y Martillero Público será capaz de",
             items: [
@@ -160,7 +158,6 @@ const data = [
         descripcionLarga: "La Contaduría Pública forma profesionales con sólida base en contabilidad, impuestos, auditoría y finanzas. Los graduados están habilitados para ejercer como auditores externos, asesores impositivos, síndicos societarios y directores financieros, tanto en empresas privadas como en organismos públicos. La carrera incorpora herramientas digitales actualizadas y una mirada integral sobre la gestión económica de las organizaciones.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de Contador Público será capaz de",
             items: [
@@ -250,7 +247,6 @@ const data = [
         descripcionLarga: "La Tecnicatura en Seguridad Informática forma técnicos especializados en la protección de infraestructuras tecnológicas frente a amenazas cibernéticas. Los estudiantes aprenden a identificar vulnerabilidades, implementar políticas de seguridad, gestionar incidentes y aplicar normativas de protección de datos. Con una duración acotada y orientación práctica, es ideal para quienes buscan insertarse rápidamente en uno de los sectores con mayor crecimiento del mercado laboral actual.",
         duracion: "2½ años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Tecnicatura en Seguridad Informática será capaz de",
             items: [
@@ -310,7 +306,6 @@ const data = [
         descripcionLarga: "La carrera de Escribanía forma profesionales habilitados para ejercer la función notarial, autenticando documentos, asesorando en actos jurídicos y garantizando la seguridad de las transacciones inmobiliarias, comerciales y civiles. Los egresados pueden ejercer en forma independiente o en estudios notariales, desempeñando un rol clave en la fe pública y el ordenamiento jurídico. La formación incluye derecho civil, comercial, registral y práctica notarial intensiva.",
         duracion: "4½ años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de Escribanía será capaz de",
             items: [
@@ -392,12 +387,11 @@ const data = [
     {
         codcar: 11,
         slug: "administracion-de-empresas",
-        nombre: "Lic. en Administración de Empresas",
+        nombre: "Licenciatura en Administración de Empresas",
         descripcionCorta: "Liderá organizaciones, optimizá recursos y tomá decisiones estratégicas en entornos empresariales complejos.",
         descripcionLarga: "La Licenciatura en Administración de Empresas forma profesionales con capacidad para gestionar organizaciones de todo tipo y tamaño. Los egresados dominan herramientas de planificación estratégica, gestión de recursos humanos, finanzas corporativas, marketing y operaciones. La carrera combina teoría y práctica para desarrollar líderes capaces de tomar decisiones en entornos dinámicos y competitivos, tanto en empresas privadas como en organismos públicos.",
         duracion: "5 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Administración de Empresas será capaz de",
             items: [
@@ -489,7 +483,6 @@ const data = [
         descripcionLarga: "Esta tecnicatura forma técnicos con capacidad para gestionar procesos productivos en industrias mineras y manufactureras. Los estudiantes adquieren conocimientos en seguridad industrial, gestión de operaciones, control de calidad y normativas ambientales aplicadas al sector. La carrera responde a la creciente demanda de profesionales capacitados en una región con importante actividad minera e industrial, ofreciendo una rápida inserción laboral.",
         duracion: "2½ años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Tecnicatura en Operaciones Mineras e Industriales será capaz de",
             items: [
@@ -548,12 +541,11 @@ const data = [
     {
         codcar: 138,
         slug: "higiene-y-seguridad",
-        nombre: "Lic. en Higiene y Seguridad",
+        nombre: "Licenciatura en Higiene y Seguridad",
         descripcionCorta: "Garantizá ambientes de trabajo seguros y saludables: una carrera con altísima demanda en todos los sectores productivos.",
         descripcionLarga: "La Licenciatura en Higiene y Seguridad forma profesionales especializados en la prevención de riesgos laborales y la gestión de condiciones seguras en el ambiente de trabajo. Los egresados pueden desempeñarse como responsables de seguridad e higiene en industrias, empresas de servicios y organismos públicos, diseñando e implementando programas de prevención, realizando auditorías y asegurando el cumplimiento de la normativa vigente.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Higiene y Seguridad será capaz de",
             items: [
@@ -649,7 +641,6 @@ const data = [
         descripcionLarga: "La Tecnicatura Universitaria en Gestión de Calidad prepara a los estudiantes para diseñar, implementar y auditar sistemas de gestión basados en normas internacionales como ISO 9001. Los egresados pueden desempeñarse en áreas de control de calidad, mejora de procesos y certificación en empresas industriales, de servicios y organismos públicos. La carrera brinda una formación práctica y orientada a resultados, con salida laboral inmediata.",
         duracion: "2 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Tecnicatura Universitaria en Gestión de Calidad será capaz de",
             items: [
@@ -700,12 +691,11 @@ const data = [
     {
         codcar: 336,
         slug: "recursos-humanos",
-        nombre: "Lic. en Recursos Humanos",
+        nombre: "Licenciatura en Recursos Humanos",
         descripcionCorta: "Gestioná el talento humano de las organizaciones: selección, capacitación, clima laboral y desarrollo de personas.",
         descripcionLarga: "La Licenciatura en Recursos Humanos forma profesionales capaces de gestionar integralmente el capital humano de las organizaciones. Los egresados adquieren competencias en reclutamiento y selección de personal, diseño de estructuras organizacionales, capacitación y desarrollo, gestión del desempeño y relaciones laborales. La carrera combina psicología organizacional, derecho laboral y herramientas de gestión para formar líderes de personas.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Recursos Humanos será capaz de",
             items: [
@@ -786,12 +776,11 @@ const data = [
     {
         codcar: 10,
         slug: "economia",
-        nombre: "Lic. en Economía",
+        nombre: "Licenciatura en Economía",
         descripcionCorta: "Analizá mercados, diseñá políticas y tomá decisiones fundamentadas en datos para impulsar el desarrollo económico.",
         descripcionLarga: "La Licenciatura en Economía forma profesionales con sólida capacitación en teoría económica, macroeconomía, microeconomía, estadística y econometría. Los egresados pueden desempeñarse en organismos gubernamentales, entidades financieras, empresas privadas y centros de investigación, aportando análisis rigurosos para la toma de decisiones. La carrera incluye herramientas cuantitativas avanzadas y una visión crítica de la realidad económica nacional e internacional.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Economía será capaz de",
             items: [
@@ -871,12 +860,11 @@ const data = [
     {
         codcar: 15,
         slug: "comercializacion",
-        nombre: "Lic. en Comercialización",
+        nombre: "Licenciatura en Comercialización",
         descripcionCorta: "Desarrollá estrategias de marketing, ventas y posicionamiento de marca para llevar productos y servicios al éxito.",
         descripcionLarga: "La Licenciatura en Comercialización forma profesionales con dominio de las herramientas del marketing moderno, la investigación de mercados y la gestión comercial. Los egresados pueden diseñar e implementar estrategias de posicionamiento, gestionar canales de distribución, desarrollar campañas publicitarias y liderar equipos de ventas. La carrera integra el marketing digital y las nuevas tendencias del consumidor en un plan de estudios actualizado.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Comercialización será capaz de",
             items: [
@@ -967,7 +955,6 @@ const data = [
         descripcionLarga: "Esta tecnicatura forma especialistas en la operatoria de instituciones financieras, bancarias y aseguradoras. Los estudiantes adquieren conocimientos en productos y servicios bancarios, análisis de riesgo crediticio, normativa del Banco Central, seguros de vida y patrimoniales, y atención al cliente financiero. La carrera responde a la demanda del sector con una formación práctica y orientada al ejercicio profesional inmediato.",
         duracion: "3 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Tecnicatura Universitaria en Gestión de Bancos, Empresas Financieras y de Seguros será capaz de",
             items: [
@@ -1034,7 +1021,6 @@ const data = [
         descripcionLarga: "La carrera de Procuración forma profesionales habilitados para actuar como auxiliares de la justicia en la gestión de expedientes y trámites judiciales. Los egresados adquieren conocimientos en derecho procesal civil, comercial y laboral, y pueden desempeñarse en estudios jurídicos, tribunales y organismos del Estado. La carrera es una opción ágil para quienes desean insertarse en el ámbito judicial sin cursar una licenciatura completa en abogacía.",
         duracion: "3 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de Procuración será capaz de",
             items: [
@@ -1100,7 +1086,6 @@ const data = [
         descripcionLarga: "La Tecnicatura en Organización y Dirección de Eventos y Ceremonial forma profesionales capaces de planificar, coordinar y ejecutar eventos de todo tipo: corporativos, sociales, culturales y oficiales. Los estudiantes aprenden protocolo y ceremonial, logística de eventos, gestión de proveedores, comunicación institucional y producción audiovisual. La carrera brinda herramientas prácticas para una industria en constante crecimiento.",
         duracion: "2 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Tecnicatura Universitaria en Organización y Dirección de Eventos y Ceremonial será capaz de",
             items: [
@@ -1163,7 +1148,6 @@ const data = [
         descripcionLarga: "La Licenciatura en Seguridad forma profesionales con visión integral para gestionar la seguridad en organizaciones públicas y privadas. Los egresados adquieren competencias en análisis de riesgos, planificación de sistemas de seguridad, gestión de crisis, normativa legal y liderazgo de equipos. La carrera está orientada tanto a quienes ya trabajan en el sector como a quienes desean profesionalizarse en esta disciplina de creciente demanda.",
         duracion: "2 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Seguridad será capaz de",
             items: [
@@ -1214,12 +1198,11 @@ const data = [
     {
         codcar: 214,
         slug: "comercio-internacional",
-        nombre: "Lic. en Comercio Internacional",
+        nombre: "Licenciatura en Comercio Internacional",
         descripcionCorta: "Operá en mercados globales: exportaciones, importaciones, logística internacional y negociación intercultural.",
         descripcionLarga: "La Licenciatura en Comercio Internacional forma profesionales capaces de gestionar operaciones de comercio exterior, negociar con contrapartes de distintos países y aplicar la normativa aduanera y los acuerdos comerciales vigentes. Los egresados pueden desempeñarse en empresas exportadoras e importadoras, despachantes de aduana, cámaras de comercio y organismos de promoción comercial, aportando una mirada estratégica sobre los negocios globales.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Comercio Internacional será capaz de",
             items: [
@@ -1306,12 +1289,11 @@ const data = [
     {
         codcar: 133,
         slug: "administracion-agropecuaria",
-        nombre: "Lic. en Administración Agropecuaria",
+        nombre: "Licenciatura en Administración Agropecuaria",
         descripcionCorta: "Gestioná empresas del campo con criterio económico, ambiental y tecnológico para maximizar la productividad sustentable.",
         descripcionLarga: "La Licenciatura en Administración Agropecuaria forma profesionales para la gestión integral de empresas rurales y agroindustriales. Los egresados adquieren herramientas de administración, economía agraria, tecnologías de producción, gestión ambiental y comercialización de productos agropecuarios. La carrera responde a la demanda del sector productivo regional, formando gestores capaces de tomar decisiones estratégicas en un contexto de transformación tecnológica del agro.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Administración Agropecuaria será capaz de",
             items: [
@@ -1397,7 +1379,6 @@ const data = [
         descripcionLarga: "La Tecnicatura en Secretariado Ejecutivo forma profesionales con competencias para asistir a directivos y equipos de alta dirección en la gestión administrativa, la organización de la agenda, la redacción de comunicaciones y la coordinación de reuniones y eventos. Los egresados dominan herramientas digitales de productividad, protocolo empresarial y gestión documental, convirtiéndose en un soporte clave para el funcionamiento de cualquier organización.",
         duracion: "2 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Tecnicatura Universitaria en Secretariado Ejecutivo será capaz de",
             items: [
@@ -1452,12 +1433,11 @@ const data = [
     {
         codcar: 250,
         slug: "administracion-de-negocios-digitales",
-        nombre: "Lic. en Administración de Negocios Digitales",
+        nombre: "Licenciatura en Administración de Negocios Digitales",
         descripcionCorta: "Liderá la transformación digital de las empresas: e-commerce, marketing digital, analítica de datos y modelos de negocio innovadores.",
         descripcionLarga: "La Licenciatura en Administración de Negocios Digitales forma profesionales capaces de diseñar, gestionar y escalar negocios en entornos digitales. Los egresados dominan herramientas de comercio electrónico, marketing digital, analítica de datos, gestión de plataformas y estrategias de transformación digital. La carrera responde a la creciente demanda de profesionales que comprendan tanto la gestión empresarial como las tecnologías que están redefiniendo los mercados.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Administración de Negocios Digitales será capaz de",
             items: [
@@ -1541,7 +1521,6 @@ const data = [
         descripcionLarga: "La carrera de Guía Universitario de Turismo forma profesionales para la conducción de visitas y experiencias turísticas en destinos nacionales e internacionales. Los estudiantes adquieren conocimientos en patrimonio cultural y natural, geografía turística, idiomas, primeros auxilios y técnicas de interpretación. La carrera prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión.",
         duracion: "2½ años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de Guía Universitario de Turismo será capaz de",
             items: [
@@ -1607,7 +1586,6 @@ const data = [
         descripcionLarga: "La Licenciatura en Ciencia de Datos forma profesionales con capacidad para recopilar, procesar y analizar grandes volúmenes de datos, extrayendo información valiosa para la toma de decisiones. Los egresados dominan herramientas de estadística, programación, machine learning e inteligencia artificial, y pueden desempeñarse en empresas tecnológicas, financieras, de salud y organismos gubernamentales. Una de las carreras con mayor proyección laboral de la actualidad.",
         duracion: "4 años",
         modalidad: 7,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de la Licenciatura en Ciencia de Datos será capaz de",
             items: [
@@ -1689,7 +1667,6 @@ const data = [
         descripcionLarga: "La carrera de Formación Docente para Profesionales está dirigida a graduados universitarios de cualquier disciplina que deseen ejercer la docencia en el nivel secundario o superior. Los estudiantes adquieren competencias pedagógicas, didácticas y de gestión del aula para transferir su conocimiento profesional al ámbito educativo. Es una propuesta flexible y accesible que permite sumar el título docente sin abandonar la actividad profesional.",
         duracion: "2 años",
         modalidad: 1,
-        img: "/modalidades-distancia.webp",
         perfilEgresado: {
             titulo: "El egresado de Formación Docente para Profesionales será capaz de",
             items: [
@@ -1731,5 +1708,51 @@ const data = [
             }
         ]
     },
+    {
+        codcar: 999,
+        nombre: "Carrera de Prueba",
+        duracion: "2 años",
+        modalidad: 1,
+        perfilEgresado: {
+            titulo: "El egresado de Carrera de Prueba será capaz de",
+            items: [
+                "Planificar propuestas de enseñanza en distintos contextos educativos.",
+                "Diseñar clases y actividades acordes a los objetivos de aprendizaje.",
+                "Transmitir conocimientos disciplinares con enfoque pedagógico.",
+                "Aplicar estrategias didácticas para acompañar procesos de enseñanza y aprendizaje.",
+                "Evaluar desempeños y realizar seguimientos formativos.",
+                "Integrar recursos y herramientas educativas en la práctica docente.",
+            ]
+        },
+        planEstudios: [
+            {
+                semestre: "1° Año",
+                materias: [
+                    "Práctica I",
+                    "Filosofía Educativa",
+                    "Sujetos Educación Secundaria",
+                    "Curriculum",
+                    "Didáctica",
+                    "Evaluación de los Aprendizajes",
+                    "Psicología Educacional",
+                    "Programación Curricular",
+                    "Problemas de la Educación Contemporánea"
+                ]
+            },
+            {
+                semestre: "2° Año",
+                materias: [
+                    "Práctica II",
+                    "Taller de Sistematización de Prácticas Docentes",
+                    "Humanismo y Doctrina Social de la Iglesia",
+                    "Sujetos de la Educación Superior",
+                    "Estrategias Didácticas y Aprendizaje",
+                    "TIC en el Aula",
+                    "Política Educativa",
+                    "Ética y Deontología Profesional"
+                ]
+            }
+        ]
+    }
 ]
 export default data;

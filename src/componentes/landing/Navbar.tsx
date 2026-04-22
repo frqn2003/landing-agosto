@@ -1,20 +1,18 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 /* HAY UN BUG EN LA NAVBAR EN LOS PIXELES 140 a 200 , SE RENDERIZA CONSTANTEMENTE AMBOS COMPONENTES, EL SCROLLEADO Y EL NO SCROLLEADO, ARREGLAR */
-function Navbar() {
+function Navbar({ onSubPage }: { onSubPage?: boolean }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [seccionActiva, setSeccionActiva] = useState('')
   const menu = document.getElementById("navMenu");
   const boton = document.getElementById("menu-button");
-
-
-
   function toggleMenu() {
     setMenuAbierto(!menuAbierto);
   }
 
   useEffect(() => {
-    const secciones = ['beneficios', 'carreras', 'sedes']
+    const secciones = ['beneficios', 'carreras', 'modalidades', 'sedes']
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 150)
@@ -70,6 +68,21 @@ function Navbar() {
     };
 
   }, [menuAbierto]);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const location = useLocation()
+  useEffect(() => {
+    if (location.state?.fromLanding === true) {
+      sessionStorage.setItem('fromLanding', 'true')
+    }
+    return () => {
+      sessionStorage.removeItem('fromLanding')
+    }
+  }, [])
+  const fromLanding = location.state?.fromLanding === true || sessionStorage.getItem('fromLanding') === 'true'
   return (
     <>
       {menuAbierto && (
@@ -89,35 +102,60 @@ function Navbar() {
           className={`${scrolled ? "contenedor" : "px-4"} mx-auto py-3 grid grid-cols-2 lg:grid-cols-3 items-center justify-between h-18 z-50`}
         >
           <div className="justify-start flex items-center">
-            {scrolled ? (
-              <a
-                href="#"
-                className="text-3xl font-sans font-semibold text-(--azul-light-ucasal)"
+            {fromLanding ? (
+              <Link
+                to="/"
+                className="flex items-center gap-2 text-sm font-semibold text-(--azul-ucasal) hover:text-(--rojo-ucasal) transition-colors text-center"
               >
-                <img
-                  src={`${import.meta.env.BASE_URL}ucasal-color-h.svg`}
-                  alt="Logo"
-                  className="h-10 w-auto"
-                />
-              </a>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                {scrolled ? (
+                  <div className="flex justify-items-center gap-2">
+                    <img src={`${import.meta.env.BASE_URL}iso.svg`} alt="UCASAL" className="h-6 w-auto" />
+                    <span className="flex items-center text-center">Volver al inicio</span>
+                  </div>
+                ) : "Volver al inicio"}
+              </Link>
             ) : (
-              <img src={`${import.meta.env.BASE_URL}iso.svg`} alt="Logo" className="h-10 w-auto" />
+              scrolled ? (
+                <a
+                  href="#"
+                  className="text-3xl font-sans font-semibold text-(--azul-light-ucasal)"
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}ucasal-color-h.svg`}
+                    alt="Logo"
+                    className="h-10 w-auto"
+                  />
+                </a>
+              ) : (
+                <img src={`${import.meta.env.BASE_URL}iso.svg`} alt="Logo" className="h-10 w-auto" />
+              )
             )}
+
           </div>
           <section className="hidden lg:flex items-center justify-center space-x-1 lg:space-x-2">
-            <a href="#beneficios" className={`nav-link ${seccionActiva === 'beneficios' ? 'active' : ''}`}>
-              Beneficios
-            </a>
-            <a href="#carreras" className={`nav-link ${seccionActiva === 'carreras' ? 'active' : ''}`}>
-              Carreras
-            </a>
-            <a href="#sedes" className={`nav-link ${seccionActiva === 'servicios' ? 'active' : ''}`}>
+            {onSubPage ? (
+              <>
+                <button onClick={() => scrollTo('modalidades')} className={`nav-link ${seccionActiva === 'modalidades' ? 'active' : ''}`}>Modalidades</button>
+                <button onClick={() => scrollTo('beneficios')} className={`nav-link ${seccionActiva === 'beneficios' ? 'active' : ''}`}>
+                  Beneficios
+                </button>
+              </>
+            ) : (
+              <>
+                <button onClick={() => scrollTo('beneficios')} className={`nav-link ${seccionActiva === 'beneficios' ? 'active' : ''}`}>Beneficios</button>
+                <button onClick={() => scrollTo('carreras')} className={`nav-link ${seccionActiva === 'carreras' ? 'active' : ''}`}>Carreras</button>
+              </>
+            )}
+            <button onClick={() => scrollTo('sedes')} className={`nav-link ${seccionActiva === 'sedes' ? 'active' : ''}`}>
               Sedes
-            </a>
+            </button>
           </section>
 
           <div className="justify-end flex items-center">
-            <button className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</button>
+            <a href="https://ucasal.edu.ar/inscripciones/" target="_blank" rel="noopener noreferrer" className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</a>
             {/* Botón mobile hamburguesa */}
             <button
               onClick={toggleMenu}
@@ -160,7 +198,7 @@ function Navbar() {
               )}
             </button>
           </div>
-        </div>
+        </div >
         <section
           id="navMenu"
           className={`bg-white/80 backdrop-blur-md border-t border-gray-200 shadow-lg overflow-hidden absolute w-full transition-all duration-300 ease-out z-50 ${menuAbierto
@@ -168,45 +206,44 @@ function Navbar() {
             : "opacity-0 -translate-y-4 max-h-0 invisible"
             }`}
         >
-          <ul className="flex flex-col gap-2">
-            <li>
-              <a
-                href="#beneficios"
-                className={`mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'beneficios' ? 'active' : ''}`}
-                onClick={() => setMenuAbierto(false)}
-              >
-                Beneficios
-              </a>
-            </li>
-            <li>
-              <a
-                href="#carreras"
-                className={`mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'carreras' ? 'active' : ''}`}
-                onClick={() => setMenuAbierto(false)}
-              >
-                Carreras
-              </a>
-            </li>
-            <li>
-              <a
-                href="#sedes"
-                className={`mobile-nav-link block px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'sedes' ? 'active' : ''}`}
-                onClick={() => setMenuAbierto(false)}
-              >
-                Sedes
-              </a>
+          <ul className="flex flex-col gap-2 w-full">
+            {onSubPage ? (
+              <>
+              <li className="w-full">
+                <button onClick={() => scrollTo('modalidades')} className={`mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'modalidades' ? 'active' : ''}`}>Modalidades</button>
+              </li>
+              <li className="w-full">
+                <button onClick={() => scrollTo('beneficios')} className={`mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'beneficios' ? 'active' : ''}`}>
+                  Beneficios
+                </button>
+              </li>
+              </>
+            ) : (
+              <>
+              <li className="w-full">
+                <button onClick={() => scrollTo('beneficios')} className={`mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'beneficios' ? 'active' : ''}`}>Beneficios</button>
+              </li>
+              <li className="w-full">
+                <button onClick={() => scrollTo('carreras')} className={`mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal) ${seccionActiva === 'carreras' ? 'active' : ''}`}>Carreras</button>
+              </li>
+              </>
+            )}
+            <li className="w-full">
+            <button onClick={() => scrollTo('sedes')} className={`mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)${seccionActiva === 'sedes' ? 'active' : ''}`}>
+              Sedes
+            </button>
             </li>
             <li className="py-2 border-t border-gray-200 w-full">
               <button
                 className="mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
-                onClick={() => setMenuAbierto(false)}
+                onClick={() => { setMenuAbierto(false); window.open('https://ucasal.edu.ar/inscripciones/', '_blank', 'noopener,noreferrer') }}
               >
                 ¡Quiero Inscribirme!
               </button>
             </li>
           </ul>
         </section>
-      </nav>
+      </nav >
     </>
   );
 }

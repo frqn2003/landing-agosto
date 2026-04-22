@@ -42,6 +42,32 @@
   }
 }
 
+.botoncito {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: color 0.3s ease;
+}
+
+.botoncito::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--botoncito-bg) 10%, var(--botoncito-bg-secondary) 60%);
+  opacity: var(--botoncito-opacity, 0.3);
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+.botoncito:hover::before {
+  transform: scaleX(1);
+}
+
+.botoncito:hover {
+  color: #ffffff;
+}
 
 .hero-titulo {
   background: linear-gradient(var(--rojo-ucasal));
@@ -72,6 +98,7 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
 body {
   font-family: "Museo Sans";
 }
@@ -98,6 +125,10 @@ body {
   left: 0;
 }
 
+@theme {
+  --font-museo: "Museo", sans-serif;
+}
+
 @font-face {
   font-family: "Museo Sans";
   font-style: normal;
@@ -106,6 +137,14 @@ body {
   src:
     local("Museo Sans"),
     url("/fonts/MuseoSans_500.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "Museo";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Museo300-Regular.ttf") format("truetype");
 }
 
 @font-face {
@@ -192,6 +231,7 @@ body {
   transition: all 0.3s ease;
   border-radius: 0.25rem;
   position: relative;
+  cursor: pointer;
 }
 
 .nav-link:hover {

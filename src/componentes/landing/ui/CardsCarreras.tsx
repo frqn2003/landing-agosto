@@ -1,19 +1,19 @@
 import { Link } from "react-router-dom";
 
 interface Carrera {
+  codcar: number;
   nombre: string;
   descripcionCorta: string;
   slug: string;
   duracion: string;
-  img: string;
 }
 
 export default function CardsCarreras(props: Carrera) {
   return (
-    <section className="bg-white/90 backdrop-blur-xl p-3 px-4 rounded-xl shadow-sm border border-white/50 flex flex-col w-full max-w-sm transition-all duration-300 group/card has-[button:hover]:scale-105">
+    <section className="bg-white/90 backdrop-blur-xl p-3 px-4 rounded-xl shadow-sm border border-gray-600/50 flex flex-col w-full max-w-sm transition-all duration-300 group/card has-[button:hover]:scale-105 h-full">
       <div className="relative w-full overflow-hidden rounded-lg aspect-square md:aspect-5/3 bg-gray-200">
         <img
-          src={props.img}
+          src={`./cards/${props.codcar}.webp`}
           alt={props.nombre}
           className="w-full h-full object-cover object-center transition-transform duration-500 group"
           loading="lazy"
@@ -52,8 +52,8 @@ export default function CardsCarreras(props: Carrera) {
           </div>
 
           {/* Botón Ver Más */}
-          <Link to={`${props.slug}`} className="bg-(--rojo-ucasal) hover:bg-(--rojo-dark-ucasal) text-white border border-(--rojo-ucasal) shadow-sm transition-colors py-2 px-4 rounded-full font-bold text-[14px] gap-1 group/btn flex justify-center items-center max-xl:w-full">
-            Ver más <span className="font-medium text-lg leading-none">+</span>
+          <Link to={`${props.slug}`} state={ {fromLanding: true} } className="bg-(--rojo-ucasal) hover:bg-(--rojo-dark-ucasal) text-white border border-(--rojo-ucasal) shadow-sm transition-colors py-2 px-4 rounded-xl font-bold text-[14px] gap-1 group/btn flex justify-center items-center max-xl:w-full">
+            Ver más <span className="font-medium text-lg leading-none pb-0.5">+</span>
           </Link>
         </div>
       </div>

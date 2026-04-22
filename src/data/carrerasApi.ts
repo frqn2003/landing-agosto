@@ -25,14 +25,16 @@ export function getCarrerasApi(): Promise<any[]> {
         return promesa
     }
 
-    promesa = Promise.all(
+    promesa = Promise.allSettled(
         combinacionesUnicas.map(({ codcar, modo }) =>
-            fetch(`https://ucasal.edu.ar/landing/consultas/getCarrerasJson.php?codcar=${codcar}&modo=${modo}`)
+            fetch(`/landing/consultas/getCarrerasJson.php?codcar=${codcar}&modo=${modo}`)
                 .then(res => res.json())
         )
     ).then(resultados => {
-        cache = resultados.flat()
-        return cache
+        cache = resultados
+            .filter(r => r.status === 'fulfilled')
+            .flatMap(r => (r as PromiseFulfilledResult<any>).value)
+        return cache as any[]
     })
     return promesa
 }

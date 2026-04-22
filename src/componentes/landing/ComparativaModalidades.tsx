@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const itemsDistancia = [
-  { texto: 'Rendís tus exámenes en sede física de UCASAL' },
+  { texto: 'Rendís tus exámenes finales en sede física de UCASAL' },
   { texto: 'Acceso completo al campus virtual' },
   { texto: 'Videoclases sincrónicas y asincrónicas, todas grabadas' },
   { texto: 'Bibliografía digital, foros y podcast' },
@@ -12,7 +12,7 @@ const itemsDistancia = [
 ];
 
 const itemsModoHome = [
-  { texto: 'Rendís tus exámenes 100% online desde casa' },
+  { texto: 'Rendís tus exámenes finales 100% online desde casa' },
   { texto: 'Acceso completo al campus virtual' },
   { texto: 'Videoclases sincrónicas y asincrónicas, todas grabadas' },
   { texto: 'Bibliografía digital, foros y podcast' },
@@ -22,7 +22,7 @@ const itemsModoHome = [
 ];
 
 interface CardModalidadProps {
-  tipo: 'distancia' | 'home';
+  tipo: 'online' | 'home';
   titulo: string;
   subtitulo: string;
   items: { texto: string }[];
@@ -126,9 +126,9 @@ export default function ComparativaModalidades() {
 
   const cards = [
     {
-      tipo: 'distancia' as const,
+      tipo: 'online' as const,
       subtitulo: 'Modalidad',
-      titulo: 'A Distancia',
+      titulo: 'Online',
       items: itemsDistancia,
       icono: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -140,7 +140,7 @@ export default function ComparativaModalidades() {
     {
       tipo: 'home' as const,
       subtitulo: 'Modalidad',
-      titulo: 'Modo Home',
+      titulo: 'Home',
       items: itemsModoHome,
       icono: (
         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

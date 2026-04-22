@@ -57,7 +57,7 @@ export default function PromocionDinamica() {
 
     return (
         <section className="contenedor bg-center bg-cover relative mb-12">
-            <div className="px-6 py-8 flex flex-row items-center justify-center gap-6 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}horizontal.png)` }}>
+            <div className="px-6 py-8 flex flex-row items-center justify-center gap-6 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
                 {/* Izquierda: descuento */}
                 <div className="flex flex-col items-center text-center">
                     {promocion.descuento && (

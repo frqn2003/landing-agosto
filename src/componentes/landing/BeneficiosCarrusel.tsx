@@ -15,14 +15,15 @@ interface Beneficio {
 const beneficios: Beneficio[] = [
   {
     id: 1,
-    tag: 'Tiempo',
-    titulo: 'No pierdas otro año esperando',
-    descripcion: 'Cada mes que pasa es un mes menos en tu carrera. Agosto es tu segunda oportunidad para arrancar sin perder el ciclo lectivo.',
-    detalle: 'El ingreso de agosto tiene el mismo valor académico que el de marzo. Al terminar el año, vas a estar exactamente en el mismo punto que tus compañeros que empezaron antes.',
+    tag: 'Experiencia',
+    titulo: 'Trayectoria académica',
+    descripcion: 'Estudiá con el acompañamiento de una institución con experiencia y camino recorrido en formación universitaria.',
+    detalle: 'Formate en una universidad con trayectoria, que respalda cada etapa de tu formación con experiencia académica, solidez institucional y compromiso con tu desarrollo profesional.',
     publico: 'Especialmente para vos si ya postergaste empezar en marzo.',
     icon: (
       <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
       </svg>
     ),
     color: 'rojo',
@@ -30,9 +31,9 @@ const beneficios: Beneficio[] = [
   {
     id: 2,
     tag: 'Confianza',
-    titulo: 'Más de 60 años formando profesionales',
-    descripcion: 'El título que obtenés tiene validez nacional, reconocido por el Ministerio de Educación. No es un certificado: es un título universitario oficial.',
-    detalle: 'UCASAL tiene presencia federal con sedes en todo el país. Cuando terminés, tu diploma vale igual que el de cualquier egresado presencial de la institución.',
+    titulo: 'Red de sedes en todo el país',
+    descripcion: 'Contá con el respaldo de una universidad con presencia federal y alcance en distintas regiones.',
+    detalle: 'UCASAL lleva más de 60 años formando profesionales. El título que obtenés tiene validez nacional y es reconocido por el Ministerio de Educación, igual que el presencial.',
     publico: 'Para quienes tienen dudas sobre si estudiar online es "lo mismo" que el presencial.',
     icon: (
       <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,9 +45,9 @@ const beneficios: Beneficio[] = [
   {
     id: 3,
     tag: 'Inversión',
-    titulo: 'Becas, cuotas y financiamiento real',
-    descripcion: 'Accedé a becas disponibles, cuotas accesibles y la posibilidad de trabajar mientras cursás. No tenés que elegir entre estudiar y generar ingresos.',
-    detalle: 'El segundo ingreso de agosto te da la misma carga horaria que el de marzo, con la ventaja de que ya podés organizarte económicamente antes de arrancar.',
+    titulo: 'Una cuota que vale lo que pagás',
+    descripcion: 'Invertís en un título universitario oficial con acompañamiento real, campus virtual completo y docentes accesibles.',
+    detalle: 'Contás con financiamiento en cuotas, becas disponibles y la posibilidad de trabajar mientras estudiás. La flexibilidad del cursado hace que no tengas que elegir entre estudiar y generar ingresos.',
     publico: 'Para quienes analizan si el costo se justifica o si pueden bancarse estudiar y trabajar al mismo tiempo.',
     icon: (
       <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,9 +59,9 @@ const beneficios: Beneficio[] = [
   {
     id: 4,
     tag: 'Futuro',
-    titulo: 'Formación orientada al mundo laboral',
-    descripcion: 'Cursás con una propuesta académica que conecta el aprendizaje con los desafíos reales del mercado. Salís con herramientas aplicables desde el primer día.',
-    detalle: 'Las carreras de UCASAL están diseñadas para que puedas insertarte o crecer en tu sector laboral. El ingreso en agosto te da ventaja: arrancás antes y llegás antes.',
+    titulo: 'Preparación para tu futuro laboral',
+    descripcion: 'Elegí una carrera orientada a acompañar tu desarrollo profesional y ampliar tus oportunidades.',
+    detalle: 'Formate con una propuesta académica pensada para vincular el aprendizaje con los desafíos del mundo laboral actual, desarrollando conocimientos y herramientas aplicables a tu crecimiento profesional.',
     publico: 'Clave para quienes trabajan y quieren que su título les abra puertas concretas, no solo sea un papel.',
     icon: (
       <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,6 +70,20 @@ const beneficios: Beneficio[] = [
     ),
     color: 'azul',
   },
+  {
+    id: 5,
+    tag: 'Equivalencias',
+    titulo: 'Consultá por equivalencias',
+    descripcion: 'Aprovechá tu recorrido académico y conocé si las materias que ya cursaste pueden ser reconocidas',
+    detalle: 'Podés continuar tu formación de manera más ágil, aprovechando los estudios previos realizados y avanzando con una propuesta que valore tu esfuerzo académico y tu tiempo.',
+    publico: 'Para quienes tienen un historial académico previo y quieren evitar repetir contenidos.',
+    icon: (
+      <svg className="w-5 h-5 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+      </svg>
+    ),
+    color: 'rojo',
+  }
 ];
 
 const colorClases = {
@@ -115,7 +130,7 @@ export default function BeneficiosCarrusel() {
   const clases = colorClases[beneficio.color];
 
   return (
-    <div className="w-full bg-white contenedor py-12" id='beneficios' onMouseEnter={pausar} onMouseLeave={reiniciarTimer}>
+    <div className="w-full bg-white contenedor py-10" id='beneficios' onMouseEnter={pausar} onMouseLeave={reiniciarTimer}>
       {/* Encabezado */}
       <div className="mb-8">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold degrade-azul tracking-tight">

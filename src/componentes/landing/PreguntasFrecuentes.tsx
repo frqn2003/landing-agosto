@@ -10,8 +10,8 @@ const PREGUNTAS = [
         respuesta: "Sí. Todos los títulos de UCASAL tienen validez nacional, avalados por el Ministerio de Educación de la Nación Argentina y reconocidos en todo el país."
     },
     {
-        pregunta: "¿Cómo es la modalidad a distancia?",
-        respuesta: "El cursado virtual se realiza a través del campus online de UCASAL, disponible las 24 horas. Accedés a clases grabadas, materiales, foros y atención de docentes y tutores desde cualquier dispositivo."
+        pregunta: "¿Cómo es la modalidad online?",
+        respuesta: "El cursado online se realiza a través del campus online de UCASAL, disponible las 24 horas. Accedés a clases grabadas, materiales, foros y atención de docentes y tutores desde cualquier dispositivo."
     },
     {
         pregunta: "¿Qué documentación necesito para inscribirme?",
@@ -31,7 +31,7 @@ export default function PreguntasFrecuentes() {
     return (
         <section className="">
             <div className="flex flex-col gap-6 max-w-3xl mx-auto">
-                <h2 className="text-2xl md:text-3xl font-black degrade-azul">Preguntas frecuentes</h2>
+                <h2 className="text-2xl md:text-3xl font-black degrade-azul max-sm:mt-4">Preguntas frecuentes</h2>
                 <div className="flex flex-col gap-3">
                     {PREGUNTAS.map((item, i) => (
                         <div
@@ -41,7 +41,7 @@ export default function PreguntasFrecuentes() {
                             <button
                                 type="button"
                                 onClick={() => toggle(i)}
-                                className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition-colors"
+                                className="w-full flex items-center justify-between px-5 py-4 text-left bg-white hover:bg-gray-50 transition-colors cursor-pointer"
                                 aria-expanded={abierta === i}
                             >
                                 <span className="font-semibold text-sm md:text-base text-(--azul-ucasal)">

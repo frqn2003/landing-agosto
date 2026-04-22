@@ -28,7 +28,7 @@ export default function Financiacion() {
 
     return (
         <section className="contenedor bg-center bg-cover relative mb-12">
-            <div className="px-6 py-6 flex flex-col gap-6 z-20 bg-cover bg-center rounded-lg border-2 border-black" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}horizontal.png)` }}>
+            <div className="px-6 py-6 flex flex-col gap-6 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
                 <h2 className="text-2xl md:text-3xl font-black text-white">
                     Financiá tus aranceles con:
                 </h2>
@@ -46,7 +46,7 @@ export default function Financiacion() {
                                 key={tarjeta.id}
                                 className="flex flex-col items-center gap-3 flex-1 min-w-[120px] max-w-[300px]"
                             >
-                                <div className="bg-white/50 border border-white/80 rounded-xl px-4 py-2 sm:px-6 sm:py-3 flex items-center justify-center">
+                                <div className="bg-white/70 border border-white/80 rounded-xl px-4 py-2 sm:px-6 sm:py-3 flex items-center justify-center">
                                     <img
                                         src={tarjeta.imagen}
                                         alt={tarjeta.nombre}
