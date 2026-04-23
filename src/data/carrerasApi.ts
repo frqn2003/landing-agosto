@@ -4,7 +4,6 @@ const combinaciones = data.map(c => ({ codcar: c.codcar, modo: c.modalidad }))
 const combinacionesUnicas = combinaciones.filter(
     (c, i, arr) => arr.findIndex(x => x.codcar === c.codcar && x.modo === c.modo) === i
 )
-console.log(combinacionesUnicas)
 
 let cache: any[] | null = null
 let promesa: Promise<any[]> | null = null

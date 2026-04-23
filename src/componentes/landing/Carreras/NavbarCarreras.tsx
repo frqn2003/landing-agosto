@@ -19,7 +19,6 @@ export default function NavbarCarreras() {
     }, [menuAbierto])
     const location = useLocation()
     const fromLanding = location.state?.fromLanding === true
-    console.log(fromLanding)
 
     return (
         <>

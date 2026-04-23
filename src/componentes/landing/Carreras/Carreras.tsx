@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Clarity from "@microsoft/clarity";
 import CardsCarreras from "../ui/CardsCarreras";
 import dataCarreras from "../../../data/carreras"
 
@@ -22,7 +23,6 @@ export default function Carreras() {
     const carrerasVisibles = dataCarreras.slice(0, visible)
     const hayMas = visible < dataCarreras.length
     const restantes = Math.min(lote, dataCarreras.length - visible)
-
     return (
         <section className="w-full pt-2 pb-8 contenedor" id="carreras">
             <div className="relative">
@@ -55,7 +55,11 @@ export default function Carreras() {
                 {hayMas && (
                     <div className="flex justify-center mt-10">
                         <button
-                            onClick={() => setVisible(v => v + lote)}
+                            onClick={() => {
+                                setVisible(v => v + lote)
+                                Clarity.setTag("MasCarreras", "true")
+                                Clarity.event("ver-mas-carreras")
+                            }}
                             className="inline-flex botoncito items-center gap-2 px-8 py-3 rounded-2xl border-2 border-(--azul-ucasal) text-(--azul-ucasal) font-bold group text-sm transition-all duration-300 cursor-pointer" style={{ '--botoncito-bg': 'var(--azul-ucasal)', '--botoncito-bg-secondary': 'var(--azul-dark-ucasal)', '--botoncito-opacity': '1' } as React.CSSProperties}
                         >
                             Ver más carreras

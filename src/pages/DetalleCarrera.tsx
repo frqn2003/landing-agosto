@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { sanitizarTexto } from "../lib/utils"
+import Clarity from "@microsoft/clarity"
 
 import data from "../data/carreras"
 import Form from "../componentes/landing/Form"
@@ -53,13 +54,22 @@ export default function DetalleCarrera() {
 
     const titulo = carrera?.nombre?.trim().split(' ') || []
     const tituloClase = titulo?.length >= 5 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(10)_forwards] overflow-hidden'
-    console.log(titulo, tituloClase)
 
     const navegacion = useNavigate()
 
     useEffect(() => {
         if (slugLimpio && !carrera) {
             navegacion('/404', { replace: true })
+            return
+        }
+        else {
+            Clarity.setTag("carrera", carrera?.nombre || '')
+            Clarity.setTag("carreraId", carrera?.codcar?.toString() || '')
+            Clarity.setTag("modalidad", modalidad)
+            Clarity.setTag("slug", slugLimpio)
+
+            Clarity.event("vista-carrera")
+            Clarity.upgrade("visita-detalle-carrera")
         }
     }, [slugLimpio, carrera])
 
@@ -116,10 +126,10 @@ export default function DetalleCarrera() {
                     </div>
                     <div className="absolute inset-0 rounded-2xl overflow-hidden">
                         <picture>
-                            <source media="(min-width: 769px)" srcSet={`${carrera?.codcar}-desktop.webp`} />
-                            <source media="(max-width: 768px)" srcSet={`${carrera?.codcar}-mobile.webp`} />
+                            <source media="(min-width: 769px)" srcSet={`encabezados/${carrera?.codcar}-desktop.webp`} />
+                            <source media="(max-width: 768px)" srcSet={`encabezados/${carrera?.codcar}-mobile.webp`} />
                             <img
-                                src={`${carrera?.codcar}-desktop.webp`}
+                                src={`/encabezados/${carrera?.codcar}-desktop.webp`}
                                 alt={`${carrera?.nombre}`}
                                 className="w-full h-full object-cover object-center"
                             />

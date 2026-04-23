@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { getCarrerasApi } from '../../data/carrerasApi'
 import intlTelInput from 'intl-tel-input'
 import 'intl-tel-input/build/css/intlTelInput.css'
+import Clarity from '@microsoft/clarity'
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
 export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: string, onSubPage?: boolean }) {
+    const navigate = useNavigate()
     const [carreras, setCarreras] = useState<any[]>([])
     const [modalidad, setModalidad] = useState("")
     const [codcar, setCodcar] = useState(codcarInicial ?? '')
@@ -121,7 +124,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
     return (
         <form role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
             autoComplete="on"
-            onSubmit={handleSubmit(async () => {
+            onSubmit={handleSubmit(
+                async () => {
                 setEnviando(true)
                 let recaptchaToken = '';
                 try {
@@ -143,8 +147,21 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
                 await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
 
-                    ; (window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
-                window.location.href = 'https://www.ucasal.edu.ar/landing/enviado-agosto.php'
+                ; (window as any).dataLayer?.push({ event: 'form_enviado_landings', form_id: 'pedidoinfo' })
+                Clarity.event('formulario-enviado')
+                Clarity.upgrade('conversion-formulario')
+                navigate('/gracias', {
+                    state: {
+                        nombre,
+                        email,
+                        carrera: carreraSeleccionada?.nombre_carrera ?? '',
+                        modalidad: carreraSeleccionada?.modo === 7 ? 'Online' : 'Presencial',
+                        sede: sedes.find((s: any) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
+                    }
+                })
+            },
+            (_errors) => {
+                Clarity.event('formulario-invalido')
             })}
             className={`bg-white rounded-lg shadow-2xl ${onSubPage ? 'px-6 py-4' : 'p-6'}`}>
             <input type="hidden" value="103" name="id_origen" />
@@ -349,7 +366,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 </div>
             </div>
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
-                He le&iacute;do y acepto los <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad </button>.
+                Al enviar este formulario aceptas nuestros <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad</button> y prestas tu consentimiento para el tratamiento de tus datos personales.
             </p>
             {
                 modalOpen && (

@@ -12,6 +12,7 @@ import ComparativaModalidades from './componentes/landing/ComparativaModalidades
 import Sedes from './componentes/landing/Sedes'
 import PreguntasFrecuentes from './componentes/landing/PreguntasFrecuentes'
 import PaginaError from './pages/PaginaError'
+import GraciasPage from './pages/GraciasPage'
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Footer />
         </>
       } />
+      <Route path="gracias" element={<GraciasPage />} />
       <Route path="*" element={<PaginaError />} />
       <Route path="/404" element={<PaginaError />} />
     </Routes>

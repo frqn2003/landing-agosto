@@ -142,8 +142,8 @@ export default function Hero() {
             </div>
             <div className="absolute inset-0 rounded-2xl overflow-hidden">
                 <picture>
-                    <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}desktop.jpg`} />
-                    <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}mobile.jpg`} />
+                    <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}desktop.webp`} />
+                    <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}mobile.webp`} />
                     <img
                         src={`${import.meta.env.BASE_URL}desktop.jpg`}
                         /* src={`/${carrera.codcar}.png`} */
