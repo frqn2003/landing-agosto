@@ -19,7 +19,7 @@ function textoFechaHasta(fechaFin: string, dias: number): string {
     const mes = String(d.getMonth() + 1).padStart(2, "0")
     const anio = String(d.getFullYear()).slice(2)
     const sufijo = dias <= 7 ? " — ¡Últimos días!" : ""
-    return `hasta el ${dia}/${mes}/${anio}${sufijo}`
+    return `Hasta el ${dia}/${mes}/${anio}${sufijo}`
 }
 
 export default function PromocionDinamica() {
@@ -57,16 +57,27 @@ export default function PromocionDinamica() {
 
     return (
         <section className="contenedor bg-center bg-cover relative mb-12">
-            <div className="px-6 py-8 flex flex-row items-center justify-center gap-6 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
+            <div className="sm:px-6 px-2 py-6 sm:py-8 flex flex-row items-center justify-center gap-2 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
                 {/* Izquierda: descuento */}
                 <div className="flex flex-col items-center text-center">
                     {promocion.descuento && (
-                        <span className="text-7xl sm:text-8xl font-black text-white leading-none tracking-tighter">
-                            {promocion.descuento}
+                        <span className="text-5xl sm:text-8xl font-black text-white leading-none tracking-tighter">
+                            {promocion.descuento !== null ? (
+                                <>
+                                    {promocion.descuento} OFF
+                                </>
+                        ) : null}
+                            
                         </span>
                     )}
-                    <span className="text-xl sm:text-2xl font-bold text-white/90 leading-tight">
-                        {promocion.subtitulo}
+                    <span className="text-xl sm:text-3xl font-bold text-white/90 leading-tight">
+                        {promocion.descuento !== null ? (
+                            <>
+                                <span>en tu matrícula</span>
+                            </>
+                        ) : (
+                            "Cuotas sin interés"
+                        )}
                     </span>
                     {promocion.descuento && (
                         <span className="text-sm text-white/60 mt-1">

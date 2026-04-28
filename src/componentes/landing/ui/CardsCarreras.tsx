@@ -13,7 +13,7 @@ export default function CardsCarreras(props: Carrera) {
     <section className="bg-white/90 backdrop-blur-xl p-3 px-4 rounded-xl shadow-sm border border-gray-600/50 flex flex-col w-full max-w-sm transition-all duration-300 group/card has-[button:hover]:scale-105 h-full">
       <div className="relative w-full overflow-hidden rounded-lg aspect-square md:aspect-5/3 bg-gray-200">
         <img
-          src={`./cards/${props.codcar}.webp`}
+          src={`/landing/ingreso/carreras-agosto/cards/${props.codcar}.webp`}
           alt={props.nombre}
           className="w-full h-full object-cover object-center transition-transform duration-500 group"
           loading="lazy"

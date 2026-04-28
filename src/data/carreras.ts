@@ -9,7 +9,6 @@ const data = [
         duracion: "5 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de Abogacía será capaz de",
             items: [
                 "Interpretar y aplicar normas jurídicas en distintos ámbitos del derecho.",
                 "Asesorar legalmente a personas, empresas e instituciones.",
@@ -103,7 +102,6 @@ const data = [
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de Corredor Inmobiliario y Martillero Público será capaz de",
             items: [
                 "Intermediar en operaciones de compra, venta y alquiler de inmuebles.",
                 "Tasar bienes con criterio técnico y conocimiento del mercado.",
@@ -159,7 +157,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de Contador Público será capaz de",
             items: [
                 "Registrar, analizar e interpretar información contable y financiera.",
                 "Elaborar balances, informes contables y estados financieros.",
@@ -248,7 +245,6 @@ const data = [
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Tecnicatura en Seguridad Informática será capaz de",
             items: [
                 "Identificar riesgos, vulnerabilidades y amenazas en sistemas y redes.",
                 "Aplicar medidas de protección para resguardar datos y recursos informáticos.",
@@ -307,7 +303,6 @@ const data = [
         duracion: "4½ años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de Escribanía será capaz de",
             items: [
                 "Redactar, autorizar y dar fe de actos y documentos jurídicos.",
                 "Asesorar en trámites notariales, contractuales y patrimoniales.",
@@ -393,7 +388,6 @@ const data = [
         duracion: "5 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Administración de Empresas será capaz de",
             items: [
                 "Planificar, organizar y gestionar recursos en distintos tipos de organizaciones.",
                 "Diseñar estrategias para mejorar el funcionamiento y crecimiento de una empresa.",
@@ -484,7 +478,6 @@ const data = [
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Tecnicatura en Operaciones Mineras e Industriales será capaz de",
             items: [
                 "Supervisar y asistir procesos operativos en entornos mineros e industriales.",
                 "Controlar tareas vinculadas a producción, mantenimiento y seguridad operativa.",
@@ -547,7 +540,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Higiene y Seguridad será capaz de",
             items: [
                 "Identificar riesgos laborales en distintos ámbitos de trabajo.",
                 "Diseñar e implementar planes de prevención y seguridad.",
@@ -642,7 +634,6 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Tecnicatura Universitaria en Gestión de Calidad será capaz de",
             items: [
                 "Implementar procesos y herramientas orientadas a la mejora continua.",
                 "Supervisar estándares de calidad en productos, servicios y procesos.",
@@ -697,7 +688,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Recursos Humanos será capaz de",
             items: [
                 "Gestionar procesos de selección, incorporación y desarrollo de talento.",
                 "Diseñar estrategias para la capacitación y el crecimiento del personal.",
@@ -782,7 +772,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Economía será capaz de",
             items: [
                 "Analizar fenómenos económicos en contextos locales, nacionales e internacionales.",
                 "Interpretar indicadores económicos, financieros y sociales para la toma de decisiones.",
@@ -866,7 +855,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Comercialización será capaz de",
             items: [
                 "Diseñar estrategias comerciales orientadas al posicionamiento y las ventas.",
                 "Analizar mercados, consumidores y tendencias para detectar oportunidades.",
@@ -956,7 +944,6 @@ const data = [
         duracion: "3 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Tecnicatura Universitaria en Gestión de Bancos, Empresas Financieras y de Seguros será capaz de",
             items: [
                 "Gestionar operaciones vinculadas al ámbito bancario, financiero y asegurador.",
                 "Asesorar a clientes sobre productos, servicios y coberturas.",
@@ -1022,7 +1009,6 @@ const data = [
         duracion: "3 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de Procuración será capaz de",
             items: [
                 "Gestionar trámites judiciales y administrativos en distintos fueros.",
                 "Asistir en el seguimiento de expedientes y actuaciones procesales.",
@@ -1087,7 +1073,6 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Tecnicatura Universitaria en Organización y Dirección de Eventos y Ceremonial será capaz de",
             items: [
                 "Planificar, coordinar y ejecutar eventos sociales, institucionales y corporativos.",
                 "Organizar cronogramas, recursos y equipos para el desarrollo de cada evento.",
@@ -1149,7 +1134,6 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Seguridad será capaz de",
             items: [
                 "Diseñar estrategias y planes de seguridad en distintos contextos.",
                 "Identificar riesgos y evaluar situaciones que puedan afectar a personas, bienes e instituciones.",
@@ -1204,7 +1188,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Comercio Internacional será capaz de",
             items: [
                 "Gestionar operaciones de importación y exportación.",
                 "Analizar mercados internacionales y detectar oportunidades comerciales.",
@@ -1295,7 +1278,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Administración Agropecuaria será capaz de",
             items: [
                 "Gestionar recursos y procesos en empresas agropecuarias.",
                 "Planificar la producción con criterio técnico, económico y organizacional.",
@@ -1380,7 +1362,6 @@ const data = [
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Tecnicatura Universitaria en Secretariado Ejecutivo será capaz de",
             items: [
                 "Organizar agendas, reuniones y tareas administrativas.",
                 "Redactar y gestionar documentación institucional y empresarial.",
@@ -1439,7 +1420,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Administración de Negocios Digitales será capaz de",
             items: [
                 "Diseñar y gestionar modelos de negocio en entornos digitales.",
                 "Analizar mercados, audiencias y tendencias del ecosistema online.",
@@ -1522,7 +1502,6 @@ const data = [
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de Guía Universitario de Turismo será capaz de",
             items: [
                 "Guiar y acompañar visitantes en recorridos turísticos y culturales.",
                 "Brindar información clara y valiosa sobre destinos, patrimonio y atractivos.",
@@ -1587,7 +1566,6 @@ const data = [
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
-            titulo: "El egresado de la Licenciatura en Ciencia de Datos será capaz de",
             items: [
                 "Analizar grandes volúmenes de datos para obtener información útil.",
                 "Diseñar modelos predictivos y aplicar técnicas de análisis de datos.",
@@ -1655,101 +1633,6 @@ const data = [
                     "Análisis de Datos Aplicados a la Industria",
                     "Neurociencias y Ciencia de Datos",
                     "Normas y Regulaciones para la Utilización de Datos"
-                ]
-            }
-        ]
-    },
-    {
-        codcar: 323,
-        slug: "formacion-docente-para-profesionales",
-        nombre: "Formación Docente para Profesionales",
-        descripcionCorta: "Profesionales de cualquier disciplina: obtené tu título docente y transmitís tu conocimiento en el sistema educativo formal.",
-        descripcionLarga: "La carrera de Formación Docente para Profesionales está dirigida a graduados universitarios de cualquier disciplina que deseen ejercer la docencia en el nivel secundario o superior. Los estudiantes adquieren competencias pedagógicas, didácticas y de gestión del aula para transferir su conocimiento profesional al ámbito educativo. Es una propuesta flexible y accesible que permite sumar el título docente sin abandonar la actividad profesional.",
-        duracion: "2 años",
-        modalidad: 1,
-        perfilEgresado: {
-            titulo: "El egresado de Formación Docente para Profesionales será capaz de",
-            items: [
-                "Planificar propuestas de enseñanza en distintos contextos educativos.",
-                "Diseñar clases y actividades acordes a los objetivos de aprendizaje.",
-                "Transmitir conocimientos disciplinares con enfoque pedagógico.",
-                "Aplicar estrategias didácticas para acompañar procesos de enseñanza y aprendizaje.",
-                "Evaluar desempeños y realizar seguimientos formativos.",
-                "Integrar recursos y herramientas educativas en la práctica docente.",
-            ]
-        },
-        planEstudios: [
-            {
-                semestre: "1° Año",
-                materias: [
-                    "Práctica I",
-                    "Filosofía Educativa",
-                    "Sujetos Educación Secundaria",
-                    "Curriculum",
-                    "Didáctica",
-                    "Evaluación de los Aprendizajes",
-                    "Psicología Educacional",
-                    "Programación Curricular",
-                    "Problemas de la Educación Contemporánea"
-                ]
-            },
-            {
-                semestre: "2° Año",
-                materias: [
-                    "Práctica II",
-                    "Taller de Sistematización de Prácticas Docentes",
-                    "Humanismo y Doctrina Social de la Iglesia",
-                    "Sujetos de la Educación Superior",
-                    "Estrategias Didácticas y Aprendizaje",
-                    "TIC en el Aula",
-                    "Política Educativa",
-                    "Ética y Deontología Profesional"
-                ]
-            }
-        ]
-    },
-    {
-        codcar: 999,
-        nombre: "Carrera de Prueba",
-        duracion: "2 años",
-        modalidad: 1,
-        perfilEgresado: {
-            titulo: "El egresado de Carrera de Prueba será capaz de",
-            items: [
-                "Planificar propuestas de enseñanza en distintos contextos educativos.",
-                "Diseñar clases y actividades acordes a los objetivos de aprendizaje.",
-                "Transmitir conocimientos disciplinares con enfoque pedagógico.",
-                "Aplicar estrategias didácticas para acompañar procesos de enseñanza y aprendizaje.",
-                "Evaluar desempeños y realizar seguimientos formativos.",
-                "Integrar recursos y herramientas educativas en la práctica docente.",
-            ]
-        },
-        planEstudios: [
-            {
-                semestre: "1° Año",
-                materias: [
-                    "Práctica I",
-                    "Filosofía Educativa",
-                    "Sujetos Educación Secundaria",
-                    "Curriculum",
-                    "Didáctica",
-                    "Evaluación de los Aprendizajes",
-                    "Psicología Educacional",
-                    "Programación Curricular",
-                    "Problemas de la Educación Contemporánea"
-                ]
-            },
-            {
-                semestre: "2° Año",
-                materias: [
-                    "Práctica II",
-                    "Taller de Sistematización de Prácticas Docentes",
-                    "Humanismo y Doctrina Social de la Iglesia",
-                    "Sujetos de la Educación Superior",
-                    "Estrategias Didácticas y Aprendizaje",
-                    "TIC en el Aula",
-                    "Política Educativa",
-                    "Ética y Deontología Profesional"
                 ]
             }
         ]

@@ -292,7 +292,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             <p id="error-nombre" className="text-red-500 text-xs mt-1" role="alert">{errors.nombre.message}</p>
                         )}
                         <label htmlFor="nombre"
-                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4">Nombre Completo</label>
+                            className={`absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2  peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 ${codcar && modalidad && idProvincia && idSede ? 'peer-focus:bg-white bg-white' : 'peer-focus:bg-gray-100 bg-gray-100'}`}>Nombre Completo</label>
                     </div>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="email" id="email"
@@ -306,7 +306,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             <p id="error-email" className="text-red-500 text-xs mt-1" role="alert">{errors.email.message}</p>
                         )}
                         <label htmlFor="email"
-                            className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">Email</label>
+                            className={`absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2  peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 ${codcar && modalidad && idProvincia && idSede ? 'peer-focus:bg-white bg-white' : 'peer-focus:bg-gray-100 bg-gray-100'}`}>Email</label>
                     </div>
                 </div>
 
@@ -337,7 +337,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                                 <p id="error-cod_area" className="text-red-500 text-xs mt-1" role="alert">{errors.cod_area.message}</p>
                             )}
                             <label htmlFor="cod"
-                                className="absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left xl:left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 bg-white peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:bg-white">
+                                className={`absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2  peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 ${codcar && modalidad && idProvincia && idSede ? 'peer-focus:bg-white bg-white' : 'peer-focus:bg-gray-100 bg-gray-100'}`}
+                            >
                                 Código
                             </label>
                         </div>
@@ -357,7 +358,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                                     <p id="error-tel" className="text-red-500 text-xs mt-1" role="alert">{errors.tel.message}</p>
                                 )}
                                 <label htmlFor="tel"
-                                    className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left peer-focus:bg-white px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-1 peer-focus:scale-75 peer-focus:-translate-y-4 peer-focus:left-1 left-1 bg-white">
+                                    className={`absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2  peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 ${codcar && modalidad && idProvincia && idSede ? 'peer-focus:bg-white bg-white' : 'peer-focus:bg-gray-100 bg-gray-100'}`}>
                                     Número
                                 </label>
                             </div>

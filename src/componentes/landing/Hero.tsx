@@ -95,7 +95,7 @@ export default function Hero() {
                                     >
                                         Quiero información
                                     </button>
-                                    <button className='group inline-flex items-center text-white/90 border-white/90 border text-xs sm:text-lg px-6 gap-3 py-3 rounded-xl transition-all botoncito cursor-pointer' onClick={() => {
+                                    <button className='group inline-flex items-center text-white/90 border-white/90 border text-xs sm:text-lg px-6 gap-3 py-3 rounded-xl transition-all cursor-pointer  botoncito' style={{ '--botoncito-bg': '#FFFFFF', '--botoncito-bg-secondary': '#FFFFFF', '--botoncito-opacity': '0.5' } as React.CSSProperties} onClick={() => {
                                         const carreras = document.getElementById('carreras');
                                         if (carreras) {
                                             carreras.scrollIntoView({ behavior: 'smooth' });

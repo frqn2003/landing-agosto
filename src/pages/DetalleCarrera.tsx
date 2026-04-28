@@ -159,11 +159,10 @@ export default function DetalleCarrera() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                             </div>
-                            <h2 className="text-xl font-black degrade-azul">Perfil del egresado</h2>
+                            <h2 className="text-xl font-black degrade-azul">El graduado de {carrera?.nombre} de UCASAL podrá</h2>
                         </div>
                         {carrera?.perfilEgresado && typeof carrera?.perfilEgresado === 'object' ? (
                             <div className="flex flex-col gap-2">
-                                <p className="text-gray-700 font-medium text-base">{carrera?.perfilEgresado.titulo}:</p>
                                 <ul className="flex flex-col gap-1.5 mt-1">
                                     {carrera?.perfilEgresado.items.map((item: string, i: number) => (
                                         <li key={i} className="flex items-start gap-2 text-gray-600 text-base">
@@ -179,10 +178,10 @@ export default function DetalleCarrera() {
                     </div>
 
                     {/* Botón plan de estudios */}
-                    <div className="contenedor flex flex-wrap gap-3">
+                    <div className="contenedor flex sm:flex-wrap gap-1 sm:gap-4">
                         <button
                             onClick={() => setModalAbierto(true)}
-                            className="boton-cta flex items-center gap-2"
+                            className="boton-cta flex items-center"
                         >
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -193,7 +192,7 @@ export default function DetalleCarrera() {
                             href="https://www.ucasal.edu.ar/inscripciones/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-transparent text-(--azul-ucasal) font-bold text-sm px-6 py-3 rounded-full border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center gap-2"
+                            className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm px-6 py-3 rounded-2xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center"
                         >
                             Inscribirme ahora
                         </a>
@@ -203,8 +202,8 @@ export default function DetalleCarrera() {
                         <div className="contenedor">
                             <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
                                 <div>
-                                    <h3 className="text-xl font-black degrade-azul">¿Te interesa esta carrera?</h3>
-                                    <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contacta.</p>
+                                    <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
+                                    <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contactará</p>
                                 </div>
                                 <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
                             </div>
@@ -227,8 +226,8 @@ export default function DetalleCarrera() {
                     <aside className="w-full lg:w-[40%] lg:sticky lg:top-24 mr-12 md:mr-24">
                         <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
                             <div>
-                                <h3 className="text-xl font-black degrade-azul">¿Te interesa esta carrera?</h3>
-                                <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contacta.</p>
+                                <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
+                                <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contactará</p>
                             </div>
                             <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
                         </div>
