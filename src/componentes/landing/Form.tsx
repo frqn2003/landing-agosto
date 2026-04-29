@@ -9,6 +9,33 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
+const TKP_MAP: Record<string, string> = {
+    '9':   'enviado-sec-ejecutivo',
+    '10':  'enviado-lic-economia-distancia',
+    '11':  'enviado-administracion',
+    '14':  'enviado-contador',
+    '15':  'enviado-comercializacion',
+    '16':  'enviado-abogacia',
+    '58':  'enviado-licenciatura-ciencias-datos',
+    '96':  'enviado-tec-gestion-calidad-distancia',
+    '133': 'enviado-lic-administracion-agropecuaria-distancia',
+    '138': 'enviado-lic-higiene-y-seguridad-trabajo-distancia',
+    '161': 'enviado-tecnicatura-gestion-bancos-finanzas-seguros',
+    '175': 'enviado-guia-universitaria-turismo-distancia',
+    '196': 'enviado-seguridad',
+    '214': 'enviado-comercio-internacional-distancia',
+    '244': 'enviado-martillero',
+    '250': 'enviado-licenciatura-administracion-negocios-digitales-distancia',
+    '336': 'enviado-rrhh',
+    '355': 'enviado-escribania-distancia',
+    '360': 'enviado-tec-seguridad-informatica',
+    '363': 'enviado-procuracion-distancia',
+    '378': 'enviado-organizacion-direccion-eventos-ceremonial',
+    '383': 'enviado-tecnicatura-operaciones-mineras',
+}
+
+const BASE_URL = 'https://www.ucasal.edu.ar/landing/ingreso/carreras-agosto/'
+
 export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: string, onSubPage?: boolean }) {
     const navigate = useNavigate()
     const [carreras, setCarreras] = useState<any[]>([])
@@ -150,7 +177,9 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 ; (window as any).dataLayer?.push({ event: 'form_enviado_landings', form_id: 'pedidoinfo' })
                 Clarity.event('formulario-enviado')
                 Clarity.upgrade('conversion-formulario')
-                navigate('/gracias', {
+                const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
+                const tkpPath = tkpSlug ? `enviado-${tkpSlug}` : 'enviado-agosto'
+                navigate(`/${tkpPath}`, {
                     state: {
                         nombre,
                         email,
@@ -174,8 +203,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
             <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
-            <input type="hidden" name="tkp" value="https://www.ucasal.edu.ar/landing/enviado-agosto.php" />
-            <input type="hidden" name="fkp" value="https://www.ucasal.edu.ar/landing/enviado-agosto.php?id=404" />
+            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? `enviado-${TKP_MAP[codcar]}` : 'enviado-agosto'}`} />
+            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? `enviado-${TKP_MAP[codcar]}` : 'enviado-agosto'}?id=404`} />
 
             {!onSubPage && (
                 <div className="flex justify-center">
@@ -367,7 +396,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 </div>
             </div>
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
-                Al enviar este formulario aceptas nuestros <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad</button> y prestas tu consentimiento para el tratamiento de tus datos personales.
+                Al enviar este formulario, aceptás nuestros <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad</button> y autorizás a UCASAL a utilizar tus datos para contactarte y brindarte información sobre carreras y propuestas académicas.
             </p>
             {
                 modalOpen && (

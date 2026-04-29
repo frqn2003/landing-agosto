@@ -14,12 +14,13 @@ export default function Financiacion() {
     const [cargando, setCargando] = useState(true)
 
     useEffect(() => {
-        fetch(`${import.meta.env.BASE_URL}mock-landing.json`)
+        fetch('/landing/ingreso/assets/datosLanding.json')
             .then(r => r.json())
             .then(data => {
                 const activas: Tarjeta[] = (data.tarjeta as Tarjeta[])
                     .filter(t => t.activa)
                     .sort((a, b) => a.orden - b.orden)
+                    
                 setTarjetas(activas)
             })
             .catch(console.error)

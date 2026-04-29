@@ -22,7 +22,7 @@ export default function FormSection() {
               initial={{ width: 0 }}
               whileInView={{ width: "auto" }}
               transition={{ duration: 0.8, ease: "linear" }}
-              style={{ overflow: "hidden", whiteSpace:"nowrap" }}
+              style={{ overflow: "hidden", whiteSpace: "nowrap" }}
               viewport={{ once: true, amount: 0.3 }}
             >
               <div className='whitespace-nowrap overflow-hidden animate-[typewriter_0.8s_steps(8)_forwards]'>CURSADO <span className='font-extrabold'>INTENSIVO</span>
@@ -34,13 +34,14 @@ export default function FormSection() {
             <h2 className='text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-bold inline-block uppercase tracking-wider font-museo'>7 meses</h2>
             <h3 className='text-xs md:text-sm xl:text-xl 2xl:text-2xl uppercase tracking-wider font-normal'>de agosto a febrero</h3>
           </div>
-          <p className="text-[9px] sm:text-[10px] text-white/40 italic ml-4 md:ml-8 2xl:ml-14">
-            * Las carreras de <br className='sm:hidden block'/>  Corredor Inmobiliario y Martillero Publico, <br className='sm:hidden block'/> y Licenciatura en Seguridad CCC
-            <br /> no cuentan con cursado intensivo
-          </p>
+
           <div className='absolute top-1/2 -translate-y-1/2 -right-15 xl:-right-30 2xl:-right-35 z-10 h-35 w-35 sm:h-45 sm:w-45 md:h-55 md:w-55 lg:h-65 lg:w-65 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85 rounded-full bg-white shadow-2xl shadow-black border border-gray-500'>
             <img src={`${import.meta.env.BASE_URL}/cursadointensivo.svg`} alt="Cursado Intensivo" />
           </div>
+          <p className="text-[9px] sm:text-[11px] text-white/60 italic ml-2 md:ml-4 2xl:ml-6 font-bold ">
+            * Las carreras de <br className='xl:hidden block' />  Corredor Inmobiliario y Martillero Publico, <br className='2xl:hidden block' /> y Licenciatura en Seguridad CCC
+            <br /> no cuentan con cursado intensivo
+          </p>
         </div>
 
         {/* Formulario */}

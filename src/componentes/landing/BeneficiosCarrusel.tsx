@@ -97,7 +97,7 @@ function CardBeneficio({ carta, posicion, onClick }: { carta: Carta; posicion: '
   );
 }
 
-export default function BeneficiosCarrusel() {
+export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }) {
   const [activo, setActivo] = useState(0);
   const [dir, setDir] = useState<1 | -1>(1);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -132,20 +132,20 @@ export default function BeneficiosCarrusel() {
 
   return (
     <div
-      className="w-full bg-white contenedor py-10"
+      className="w-full bg-white contenedor py-5 sm:py-10"
       id="beneficios"
       onMouseEnter={pausar}
       onMouseLeave={reiniciarTimer}
     >
       {/* Encabezado */}
       <div className="mb-10 h-16 flex items-center">
-        <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold degrade-azul tracking-tight'>
-          Este es <span className="degrade-rojo">tu momento</span>. Que tu rutina no <span className="degrade-rojo">te detenga</span>
+        <h2 className='text-2xl lg:text-4xl font-bold degrade-azul tracking-tight max-sm:text-center w-full'>
+          Este es <span className="degrade-rojo">tu momento</span>. <br className='block sm:hidden'/>Que tu rutina no <span className="degrade-rojo">te detenga</span>
         </h2>
       </div>
 
       {/* Desktop: 3 cartas visibles */}
-      <div className="hidden sm:grid grid-cols-3 gap-4 items-center min-h-64 w-full overflow-hidden px-60">
+      <div className={`hidden sm:grid grid-cols-3 gap-4 items-center min-h-64 w-full overflow-hidden ${onSubPage ? '' : 'px-60'}`}>
         <AnimatePresence mode="popLayout" custom={dir}>
           <motion.div
             key={`prev-${idxPrev}`}

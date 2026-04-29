@@ -2,36 +2,36 @@
   "promociones_dinamicas_agosto": [
     {
       "nombre": "promocion_inicial",
-      "fecha_inicio": "2026-04-15T00:00:00",
-      "fecha_fin": "2026-05-15T23:59:59",
+      "fecha_inicio": "2026-05-04T00:00:00",
+      "fecha_fin": "2026-05-22T23:59:59",
       "descuento": "50%",
       "subtitulo": "OFF en la Matrícula"
     },
     {
       "nombre": "promocion_segunda",
-      "fecha_inicio": "2026-05-16T00:00:00",
-      "fecha_fin": "2026-06-15T23:59:59",
-      "descuento": "40%",
-      "subtitulo": "OFF en la Matrícula"
-    },
-    {
-      "nombre": "promocion_tercera",
-      "fecha_inicio": "2026-06-16T00:00:00",
-      "fecha_fin": "2026-07-15T23:59:59",
+      "fecha_inicio": "2026-05-23T00:00:00",
+      "fecha_fin": "2026-06-12T23:59:59",
       "descuento": "30%",
       "subtitulo": "OFF en la Matrícula"
     },
     {
-      "nombre": "promocion_cuarta",
-      "fecha_inicio": "2026-07-16T00:00:00",
-      "fecha_fin": "2026-07-31T23:59:59",
+      "nombre": "promocion_tercera",
+      "fecha_inicio": "2026-06-13T00:00:00",
+      "fecha_fin": "2026-07-10T23:59:59",
       "descuento": "20%",
       "subtitulo": "OFF en la Matrícula"
     },
     {
+      "nombre": "promocion_cuarta",
+      "fecha_inicio": "2026-07-11T00:00:00",
+      "fecha_fin": "2026-07-24T23:59:59",
+      "descuento": "10%",
+      "subtitulo": "OFF en la Matrícula"
+    },
+    {
       "nombre": "promocion_fallback",
-      "fecha_inicio": "2026-08-01T00:00:00",
-      "fecha_fin": "2026-12-31T23:59:59",
+      "fecha_inicio": "2026-07-25T00:00:00",
+      "fecha_fin": "2026-08-07T23:59:59",
       "descuento": null,
       "subtitulo": "Cuotas sin interés"
     }

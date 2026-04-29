@@ -22,7 +22,7 @@ export default function CardsCarreras(props: Carrera) {
         {/* Título dentro de la imagen solo en mobile (<768px) */}
         <div className="absolute bottom-0 left-0 right-0 px-2 py-3 bg-linear-to-t from-black/60 to-transparent sm:hidden">
           <h3 className="text-xs sm:text-lg xl:text-base font-bold leading-tight text-white">
-            {props.nombre} 
+            {props.nombre}
           </h3>
         </div>
       </div>
@@ -40,7 +40,7 @@ export default function CardsCarreras(props: Carrera) {
         </p>
 
         {/* Footer de la Card */}
-        <div className="gap-3 flex-col flex 2xl:flex-row justify-between">
+        <div className="gap-3 flex">
           {/* Duración */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5 text-gray-500">
@@ -50,10 +50,16 @@ export default function CardsCarreras(props: Carrera) {
               <span className="font-semibold text-xs 2xl:text-[14.5px] text-gray-700">{props.duracion}</span>
             </div>
           </div>
-
-          {/* Botón Ver Más */}
-          <Link to={`${props.slug}`} state={ {fromLanding: true} } className="bg-(--rojo-ucasal) hover:bg-(--rojo-dark-ucasal) text-white border border-(--rojo-ucasal) shadow-sm transition-colors py-2 px-4 rounded-xl font-bold text-[14px] gap-1 group/btn flex justify-center items-center max-xl:w-full">
-            Ver más <span className="font-medium text-lg leading-none pb-0.5">+</span>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-2 pt-2 justify-between">
+          <a
+            onClick={() => document.getElementById('pedidoinfo')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-shimmer bg-linear-to-r from-(--rojo-ucasal) to-(--rojo-dark-ucasal) hover:shadow-[0_0_14px_2px_rgba(216,49,53,0.5)] text-white border border-(--rojo-ucasal) shadow-sm transition-all duration-300 py-2 px-4 rounded-xl font-bold text-xs sm:text-[14px] gap-1 flex justify-center items-center max-xl:w-full cursor-pointer"
+          >
+            Más Información
+          </a>
+          <Link to={`${props.slug}`} state={{ fromLanding: true }} className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm py-2 px-4 rounded-xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center">
+            Conocé más +
           </Link>
         </div>
       </div>

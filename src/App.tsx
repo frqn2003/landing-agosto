@@ -21,13 +21,13 @@ function App() {
         <>
           <Navbar onSubPage={false} />
           <Hero />
-          <BeneficiosCarrusel />
+          <BeneficiosCarrusel onSubPage ={false}/>
           <PromocionDinamica />
           <Carreras />
           <FormSection />
           <ComparativaModalidades onSubPage={false}/>
           <Financiacion />
-          <section className='contenedor md:pb-5' id="sedes">
+          <section className='contenedor pb-10' id="sedes">
             <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-4">
               <Sedes />
               <PreguntasFrecuentes />
@@ -44,7 +44,8 @@ function App() {
           <Footer />
         </>
       } />
-      <Route path="gracias" element={<GraciasPage />} />
+      <Route path="enviado-agosto" element={<GraciasPage />} />
+      <Route path="enviado-:tkpSlug" element={<GraciasPage />} />
       <Route path="*" element={<PaginaError />} />
       <Route path="/404" element={<PaginaError />} />
     </Routes>

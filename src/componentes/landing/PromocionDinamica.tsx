@@ -28,7 +28,7 @@ export default function PromocionDinamica() {
     const [cargando, setCargando] = useState(true)
 
     useEffect(() => {
-        fetch(`${import.meta.env.BASE_URL}mock-landing.json`)
+        fetch('https://www.ucasal.edu.ar/landing/ingreso/assets/datosLanding.json')
             .then(r => r.json())
             .then(data => {
                 const ahora = new Date()
@@ -53,7 +53,30 @@ export default function PromocionDinamica() {
         return () => clearInterval(interval)
     }, [promocion])
 
-    if (cargando || !promocion) return null
+    if (cargando) return null
+
+    if (!promocion) {
+        return (
+            <section className="contenedor bg-center bg-cover relative mb-12">
+                <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-col items-center justify-center gap-4 z-20 rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center">
+                    <div className="flex flex-col gap-1.5 items-center">
+                        <span className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                            Inscripciones abiertas
+                        </span>
+                        <span className="text-sm sm:text-base text-white/70 max-w-md">
+                            Más de 42.000 graduados avalan la calidad de nuestras carreras. Anotate hoy.
+                        </span>
+                    </div>
+                    <button
+                        onClick={() => document.getElementById('pedidoinfo')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="boton-cta text-sm whitespace-nowrap"
+                    >
+                        ¡Aprovechá ahora!
+                    </button>
+                </div>
+            </section>
+        )
+    }
 
     return (
         <section className="contenedor bg-center bg-cover relative mb-12">

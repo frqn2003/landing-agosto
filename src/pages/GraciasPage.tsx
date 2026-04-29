@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import Footer from '../componentes/landing/Footer'
 
@@ -13,6 +13,7 @@ interface FormState {
 export default function GraciasPage() {
     const location = useLocation()
     const navigate = useNavigate()
+    const { tkpSlug: _tkpSlug } = useParams<{ tkpSlug?: string }>()
     const state = (location.state as FormState) ?? {}
     const { nombre, email, carrera, modalidad, sede } = state
 
@@ -24,7 +25,7 @@ export default function GraciasPage() {
 
     return (
         <section className='min-h-screen'>
-        <div className="contenedor h-full bg-linear-to-br from-blue-50 via-white to-red-50 flex flex-col items-center justify-center pt-16">
+        <div className="contenedor h-full bg-linear-to-br from-blue-400 via-white to-red-400 flex flex-col items-center justify-center pt-16">
 
             {/* Icono check animado */}
             <div className="relative mb-8">

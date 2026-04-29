@@ -27,7 +27,7 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
   const color = esHome ? '--rojo-ucasal' : '--azul-ucasal';
 
   return (
-    <div className={`max-sm:rounded-t-none rounded-2xl border ${esHome ? 'border-(--rojo-ucasal)/20 bg-(--rojo-ucasal)/4' : 'border-(--azul-ucasal)/20 bg-(--azul-ucasal)/4'} p-5 sm:p-6 flex flex-col gap-4`}>
+    <div className={`max-sm:rounded-t-none rounded-2xl border ${esHome ? 'border-(--rojo-ucasal)/20 bg-(--rojo-ucasal)/4' : 'border-(--azul-ucasal)/20 bg-(--azul-ucasal)/4'} p-5 sm:p-6 flex flex-col gap-4 h-full`}>
       {/* Header con ícono + título */}
       <div className="flex items-center gap-4">
         <div className={`shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] ${esHome ? 'bg-(--rojo-ucasal)/10' : 'bg-(--azul-ucasal)/10'}`}>
@@ -64,7 +64,7 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
             <p className="text-sm text-gray-700 leading-snug">
               {esHome
                 ? <><span className={`font-bold text-(${color})`}>Estudia desde cualquier parte del mundo</span><br /> Ideal si vivís a más de 100 km de una sede</>
-                : <><span className={`font-bold text-(${color})`}>Cursá online, con una sede cerca tuyo</span><br />Ideal si vivís a menos de 100 km de una sede UCASAL</>
+                : <><span className={`font-bold text-(${color})`}>Cursá online, junto a una sede cerca tuyo</span><br />Ideal si vivís a menos de 100 km de una sede UCASAL</>
               }
             </p>
           </div>
@@ -154,6 +154,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.4 }}
+            className="h-full"
           >
             <CardModalidad tipo="online" />
           </motion.div>
@@ -182,6 +183,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.4 }}
+            className="h-full"
           >
             <CardModalidad tipo="home" />
           </motion.div>

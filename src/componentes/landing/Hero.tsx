@@ -38,7 +38,7 @@ function useContador(valor: string, duracion: number, delay: number) {
     return { display, ref };
 }
 
-function StatItem({ valor, etiqueta, index }: { valor: string; etiqueta: string; index: number }) {
+function StatItem({ valor, etiqueta, index, subetiqueta }: { valor: string; etiqueta: string; index: number; subetiqueta?: string }) {
     const stagger = index * 200;
     const { display, ref } = useContador(valor, duracion, delay + stagger);
     const [visible, setVisible] = useState(false);
@@ -54,8 +54,8 @@ function StatItem({ valor, etiqueta, index }: { valor: string; etiqueta: string;
             className="flex flex-col items-center transition-all duration-500"
             style={{ opacity: visible ? 1 : 0, transform: visible ? 'translateY(0)' : 'translateY(10px)' }}
         >
-            <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-white">{display}</span>
-            <span className="text-sm sm:text-base text-white/50 uppercase tracking-wide">{etiqueta}</span>
+            <span className="text-xl sm:text-3xl lg:text-4xl font-black text-white">{display}</span>
+            <span className="text-[10px] sm:text-base text-white/50 uppercase tracking-wide text-center">{etiqueta} <br className='block md:hidden'/>{subetiqueta}</span>
         </div>
     );
 }
@@ -63,26 +63,26 @@ function StatItem({ valor, etiqueta, index }: { valor: string; etiqueta: string;
 export default function Hero() {
     return (
         <section className="w-full flex items-center pt-4 px-4 contenedor">
-            <div className="w-full h-[800px] sm:h-[800px] pt-4 pb-12 sm:p-12 rounded-2xl relative">
+            <div className="w-full h-[800px] sm:h-[760px] pt-4 pb-6 sm:p-12 rounded-2xl relative">
                 <div className="overlay rounded-2xl"></div>
                 <div className="flex gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-start w-full justify-start h-full">
                     {/* ── Columna izquierda ── */}
                     <div className="flex flex-col gap-2 sm:gap-8 lg:pl-4 items-center sm:items-start w-full h-full justify-center sm:justify-left pt-4 sm:pt-0 z-30">
 
                         <h1 className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black leading-none tracking-tight uppercase mt-6 flex flex-col w-full text-center sm:text-left" style={{ fontFamily: "Museo Sans, sans-serif" }}>
-                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(8)_forwards] mx-auto sm:mx-0">
+                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(12)_forwards] mx-auto sm:mx-0">
                                 EMPEZÁ
                             </span>
-                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(8)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
+                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
                                 EN AGOSTO
                             </span>
-                            <p className='text-4xl tracking-tight italic font-thin text-white px-2'>Tu título te espera</p>
+                            <p className='text-2xl md:text-4xl tracking-tight font-thin sm:text-white text-(--azul-ucasal) px-2 overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_1.4s_forwards,fadeIn_0.05s_1.5s_forwards]'>Tu título te espera</p>
                         </h1>
                         <div className='flex flex-col gap-8 sm:gap-14 sm:text-left sm:justify-start sm:items-start justify-center text-center items-center h-full w-full'>
-                            <div className='flex flex-col gap-8 h-full w-full'>
-                                <p className="text-sm sm:text-xl pl-2 text-black sm:text-white leading-relaxed sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 1.8s forwards' }}>Carreras universitarias oficiales, cursado online <br className="hidden sm:block" />y docentes comprometidos con tu crecimiento.
+                            <div className='flex flex-col gap-2 h-full w-full max-md:items-end max-md:justify-end'>
+                                <p className="text-sm sm:text-xl pl-2 text-white leading-relaxed max-sm:items-end sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 1.8s forwards' }}>Carreras universitarias oficiales, cursado online <br className="hidden sm:block" />y docentes comprometidos con tu crecimiento.
                                 </p>
-                                <div className="flex flex-col sm:flex-row w-full sm:mt-12 mt-8 gap-4 h-full items-center sm:items-start justify-end sm:justify-start sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 2s forwards' }}
+                                <div className="flex flex-row w-full sm:mt-12 mt-2 gap-4 items-end sm:items-start justify-center sm:justify-start sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 2s forwards' }}
                                 >
                                     <button
                                         onClick={() => {
@@ -95,7 +95,7 @@ export default function Hero() {
                                     >
                                         Quiero información
                                     </button>
-                                    <button className='group inline-flex items-center text-white/90 border-white/90 border text-xs sm:text-lg px-6 gap-3 py-3 rounded-xl transition-all cursor-pointer  botoncito' style={{ '--botoncito-bg': '#FFFFFF', '--botoncito-bg-secondary': '#FFFFFF', '--botoncito-opacity': '0.5' } as React.CSSProperties} onClick={() => {
+                                    <button className='group inline-flex items-center text-white/90 border-white/90 border text-xs sm:text-lg md:px-6 gap-3 px-4 py-2.5 md:py-3 rounded-xl transition-all cursor-pointer  botoncito' style={{ '--botoncito-bg': '#FFFFFF', '--botoncito-bg-secondary': '#FFFFFF', '--botoncito-opacity': '0.5' } as React.CSSProperties} onClick={() => {
                                         const carreras = document.getElementById('carreras');
                                         if (carreras) {
                                             carreras.scrollIntoView({ behavior: 'smooth' });
@@ -103,7 +103,7 @@ export default function Hero() {
                                     }}>
                                         <span className="inline-block overflow-hidden transition-all duration-400 group-hover:rotate-45 group-hover:translate-x-20 sm:group-hover:translate-x-28">  <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="h-4 w-4"
+                                            className="h-3 w-3 md:h-4 md:w-4"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -122,18 +122,38 @@ export default function Hero() {
                                         </span>
                                     </button>
                                 </div>
-                                {/* Stats horizontales */}
-                                <div
-                                    className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-0 sm:mt-2 pt-2 sm:pt-6 w-full sm:h-full justify-around items-end"
-                                >
+                                {/* Stats */}
+                                {/* Desktop: una sola fila */}
+                                <div className="hidden sm:flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-4 sm:mt-2 pt-1 sm:pt-6 w-full justify-around items-end">
                                     {[
                                         { valor: "+42.000", etiqueta: "Graduados" },
                                         { valor: "+140", etiqueta: "Carreras" },
-                                        { valor: "+60", etiqueta: "Años" },
-                                        { valor: "+120", etiqueta: "Convenios" },
+                                        { valor: "+60", etiqueta: "Años de", subetiqueta: "experiencia" },
+                                        { valor: "+35", etiqueta: "años de", subetiqueta: "Educación Virtual" },
+                                        { valor: "+120", etiqueta: "Convenios de", subetiqueta: "Intercambio" },
                                     ].map((stat, i) => (
-                                        <StatItem key={i} valor={stat.valor} etiqueta={stat.etiqueta} index={i} />
+                                        <StatItem key={i} valor={stat.valor} etiqueta={stat.etiqueta} index={i} subetiqueta={stat.subetiqueta} />
                                     ))}
+                                </div>
+                                {/* Mobile: dos filas */}
+                                <div className="flex sm:hidden flex-col gap-2 pt-1 w-full">
+                                    <div className="flex flex-row gap-6 w-full justify-around items-end">
+                                        {[
+                                            { valor: "+42.000", etiqueta: "Graduados" },
+                                            { valor: "+140", etiqueta: "Carreras" },
+                                        ].map((stat, i) => (
+                                            <StatItem key={i} valor={stat.valor} etiqueta={stat.etiqueta} index={i} />
+                                        ))}
+                                    </div>
+                                    <div className="flex flex-row gap-1 w-full justify-around items-end">
+                                        {[
+                                            { valor: "+60", etiqueta: "Años de", subetiqueta: "experiencia" },
+                                            { valor: "+35", etiqueta: "años de", subetiqueta: "Educación Virtual" },
+                                            { valor: "+120", etiqueta: "Convenios de", subetiqueta: "Intercambio" },
+                                        ].map((stat, i) => (
+                                            <StatItem key={i + 2} valor={stat.valor} etiqueta={stat.etiqueta} index={i + 2} subetiqueta={stat.subetiqueta} />
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>

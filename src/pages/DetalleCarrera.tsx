@@ -184,7 +184,7 @@ export default function DetalleCarrera() {
                             * Esta carrera no incluye la modalidad de cursado intensivo.
                         </p>
                     )}
-                    <div className="contenedor flex sm:flex-wrap gap-1 sm:gap-4">
+                    <div className="contenedor flex flex-row justify-between sm:flex-wrap gap-1 sm:gap-4">
                         <button
                             onClick={() => setModalAbierto(true)}
                             className="boton-cta flex items-center"
@@ -198,7 +198,7 @@ export default function DetalleCarrera() {
                             href="https://www.ucasal.edu.ar/inscripciones/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm px-6 py-3 rounded-2xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center"
+                            className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm px-6 py-3 rounded-xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center"
                         >
                             Inscribirme ahora
                         </a>
@@ -220,7 +220,7 @@ export default function DetalleCarrera() {
                     )}
 
                     <ComparativaModalidades onSubPage={true} />
-                    <BeneficiosCarrusel />
+                    <BeneficiosCarrusel onSubPage={true} />
                     <Financiacion />
                     <section className='contenedor pb-4 px-4' id="sedes">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
