@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
+import Footer from '../componentes/landing/Footer'
 
 interface FormState {
     nombre?: string
@@ -22,7 +23,8 @@ export default function GraciasPage() {
     const nombreMostrado = nombre?.split(' ')[0] ?? 'futuro estudiante'
 
     return (
-        <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-red-50 flex flex-col items-center justify-center px-4 py-16">
+        <section className='min-h-screen'>
+        <div className="contenedor h-full bg-linear-to-br from-blue-50 via-white to-red-50 flex flex-col items-center justify-center pt-16">
 
             {/* Icono check animado */}
             <div className="relative mb-8">
@@ -35,7 +37,7 @@ export default function GraciasPage() {
             </div>
 
             {/* Título */}
-            <div className="text-center max-w-xl mb-10" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.2s forwards' }}>
+            <div className="text-center max-w-xl mb-5" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.2s forwards' }}>
                 <h1 className="text-4xl md:text-5xl font-extrabold degrade-azul mb-3">
                     ¡Gracias, {nombreMostrado}!
                 </h1>
@@ -123,30 +125,17 @@ export default function GraciasPage() {
                 </div>
             )}
 
-            {/* Próximos pasos */}
+            {/* Videos */}
             <div
-                className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 w-full max-w-md mb-10"
+                className="bg-white rounded-2xl border border-gray-300 shadow-lg p-6 w-full max-w-md mb-5"
                 style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.6s forwards' }}
             >
-                <h2 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">¿Qué sigue?</h2>
-                <ol className="flex flex-col gap-4">
-                    <li className="flex items-start gap-3">
-                        <span className="w-6 h-6 rounded-full bg-(--rojo-ucasal) text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
-                        <p className="text-sm text-gray-600">Un asesor académico te va a contactar por email o teléfono.</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="w-6 h-6 rounded-full bg-(--rojo-ucasal) text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
-                        <p className="text-sm text-gray-600">Te vamos a informar sobre fechas de inicio, aranceles y becas disponibles.</p>
-                    </li>
-                    <li className="flex items-start gap-3">
-                        <span className="w-6 h-6 rounded-full bg-(--rojo-ucasal) text-white text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
-                        <p className="text-sm text-gray-600">Podés completar tu preinscripción online en cualquier momento.</p>
-                    </li>
-                </ol>
+                <h2 className="text-sm font-bold text-gray-400 text-center uppercase tracking-widest mb-4">¡Conocé como es la plataforma virtual!</h2>
+                <video src={`${import.meta.env.BASE_URL}/plataforma.webm`} controls className="w-full rounded-lg"></video>
             </div>
 
             {/* CTA volver */}
-            <div style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.8s forwards' }}>
+            <div className='mb-12' style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.8s forwards' }}>
                 <button
                     onClick={() => navigate('/')}
                     className="boton-cta flex items-center gap-2"
@@ -154,14 +143,12 @@ export default function GraciasPage() {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
-                    Volver al inicio
+                    Explorar más carreras
                 </button>
             </div>
 
-            {/* Logo UCASAL */}
-            <div className="mt-12 opacity-30" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 1s forwards' }}>
-                <p className="text-xs text-gray-400 text-center">Universidad Católica de Salta · UCASAL</p>
-            </div>
         </div>
+        <Footer/>
+        </section>
     )
 }

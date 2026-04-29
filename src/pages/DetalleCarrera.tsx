@@ -51,6 +51,7 @@ export default function DetalleCarrera() {
     }, [carrera])
 
     const modalidad = carrera?.modalidad == 7 ? 'Online' : carrera?.modalidad == 1 ? 'Presencial' : 'Presencial'
+    const sinCursadoIntensivo = carrera?.codcar === 244 || carrera?.codcar === 196
 
     const titulo = carrera?.nombre?.trim().split(' ') || []
     const tituloClase = titulo?.length >= 5 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(10)_forwards] overflow-hidden'
@@ -178,6 +179,11 @@ export default function DetalleCarrera() {
                     </div>
 
                     {/* Botón plan de estudios */}
+                    {sinCursadoIntensivo && (
+                        <p className="contenedor text-xs text-gray-400 italic">
+                            * Esta carrera no incluye la modalidad de cursado intensivo.
+                        </p>
+                    )}
                     <div className="contenedor flex sm:flex-wrap gap-1 sm:gap-4">
                         <button
                             onClick={() => setModalAbierto(true)}
@@ -204,13 +210,16 @@ export default function DetalleCarrera() {
                                 <div>
                                     <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
                                     <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contactará</p>
+                                    {sinCursadoIntensivo && (
+                                        <p className="text-xs text-gray-400 italic mt-1">* Esta carrera no incluye cursado intensivo.</p>
+                                    )}
                                 </div>
                                 <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
                             </div>
                         </div>
                     )}
 
-                    <ComparativaModalidades />
+                    <ComparativaModalidades onSubPage={true} />
                     <BeneficiosCarrusel />
                     <Financiacion />
                     <section className='contenedor pb-4 px-4' id="sedes">
@@ -228,6 +237,9 @@ export default function DetalleCarrera() {
                             <div>
                                 <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
                                 <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contactará</p>
+                                {sinCursadoIntensivo && (
+                                    <p className="text-xs text-gray-400 italic mt-1">* Esta carrera no incluye cursado intensivo.</p>
+                                )}
                             </div>
                             <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
                         </div>

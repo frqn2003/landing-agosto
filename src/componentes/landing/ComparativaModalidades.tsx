@@ -1,28 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-/* ── Iconos reutilizables ── */
-const IconClases = ({ className = 'w-7 h-7' }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
-  </svg>
-);
-const IconCampus = ({ className = 'w-7 h-7' }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-  </svg>
-);
-const IconDocente = ({ className = 'w-7 h-7' }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-  </svg>
-);
-const IconTitulo = ({ className = 'w-7 h-7' }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-  </svg>
-);
 const IconPin = ({ className = 'w-5 h-5' }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -34,24 +12,13 @@ const IconSede = ({ className = 'w-5 h-5' }: { className?: string }) => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
   </svg>
 );
-const IconGlobe = ({ className = 'w-10 h-10' }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z" />
-  </svg>
-);
-const IconHome = ({ className = 'w-10 h-10' }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" className={className} fill="currentColor" viewBox="0 0 50 50">
-    <path d="M 24.962891 1.0546875 A 1.0001 1.0001 0 0 0 24.384766 1.2636719 L 1.3847656 19.210938 A 1.0005659 1.0005659 0 0 0 2.6152344 20.789062 L 4 19.708984 L 4 46 A 1.0001 1.0001 0 0 0 5 47 L 18.832031 47 A 1.0001 1.0001 0 0 0 19.158203 47 L 30.832031 47 A 1.0001 1.0001 0 0 0 31.158203 47 L 45 47 A 1.0001 1.0001 0 0 0 46 46 L 46 19.708984 L 47.384766 20.789062 A 1.0005657 1.0005657 0 1 0 48.615234 19.210938 L 41 13.269531 L 41 6 L 35 6 L 35 8.5859375 L 25.615234 1.2636719 A 1.0001 1.0001 0 0 0 24.962891 1.0546875 z M 25 3.3222656 L 44 18.148438 L 44 45 L 32 45 L 32 26 L 18 26 L 18 45 L 6 45 L 6 18.148438 L 25 3.3222656 z M 37 8 L 39 8 L 39 11.708984 L 37 10.146484 L 37 8 z M 20 28 L 30 28 L 30 45 L 20 45 L 20 28 z" />
-  </svg>
-);
 
 /* ── Features bar data ── */
 const features = [
-  { label: 'Clases en vivo\ny grabadas', icon: <IconClases /> },
-  { label: 'Campus virtual\n24/7', icon: <IconCampus /> },
-  { label: 'Acompañamiento\ndocente', icon: <IconDocente /> },
-  { label: 'Título oficial\ncon validez nacional', icon: <IconTitulo /> },
+  { label: 'Clases en vivo\ny grabadas', iconSrc: './icons/clases.svg' },
+  { label: 'Campus virtual\n24/7', iconSrc: './icons/campus-virtual.svg' },
+  { label: 'Acompañamiento\ndocente', iconSrc: './icons/docente.svg' },
+  { label: 'Título oficial\ncon validez nacional', iconSrc: './icons/validacion.svg' },
 ];
 
 /* ── Card de modalidad ── */
@@ -65,8 +32,8 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
       <div className="flex items-center gap-4">
         <div className={`shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] ${esHome ? 'bg-(--rojo-ucasal)/10' : 'bg-(--azul-ucasal)/10'}`}>
           {esHome
-            ? <IconHome className={`w-8 h-8 sm:w-10 sm:h-10 text-(${color})`} />
-            : <IconGlobe className={`w-8 h-8 sm:w-10 sm:h-10 text-(${color})`} />
+            ? <img src="./icons/home.svg" className={`w-10 h-10 sm:w-14 sm:h-14`} alt="Icono modo Home" style={{ color: `var(${color})!important` }}/>
+            : <img src="./icons/online.svg" className={`w-10 h-10 sm:w-14 sm:h-14`} alt="Icono modo Online" style={{ color: `var(${color})!important` }}/>
           }
         </div>
         <div>
@@ -80,8 +47,8 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
         {/* Ícono secundario (laptop/casa) */}
         <div className="ml-auto hidden sm:block">
           {esHome
-            ? <IconHome className={`w-12 h-12 text-(${color}) opacity-15`} />
-            : <IconCampus className={`w-12 h-12 text-(${color}) opacity-15`} />
+            ? <img src="./icons/home.svg" className="w-12 h-12 opacity-15" alt="" />
+            : <img src="./icons/campus-virtual.svg" className="w-12 h-12 opacity-15" alt="" />
           }
         </div>
       </div>
@@ -96,8 +63,8 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
           <div className="pt-1">
             <p className="text-sm text-gray-700 leading-snug">
               {esHome
-                ? <><span className={`font-bold text-(${color})`}>Lejos de una sede</span><br />(más de 100 km)</>
-                : <><span className={`font-bold text-(${color})`}>Cerca de una sede</span><br />(hasta 100 km)</>
+                ? <><span className={`font-bold text-(${color})`}>Estudia desde cualquier parte del mundo</span><br /> Ideal si vivís a más de 100 km de una sede</>
+                : <><span className={`font-bold text-(${color})`}>Cursá online, con una sede cerca tuyo</span><br />Ideal si vivís a menos de 100 km de una sede UCASAL</>
               }
             </p>
           </div>
@@ -110,13 +77,13 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
           <div className="pt-1">
             {esHome ? (
               <p className="text-sm text-gray-700 leading-snug">
-                Rendís todo <span className={`font-bold text-(${color})`}>100% online,</span><br />
+                Rendís <span className={`font-bold text-(${color})`}>100% online, sin trasladarte,</span><br />
                 incluidos parciales y finales.
               </p>
             ) : (
               <p className="text-sm text-gray-700 leading-snug">
-                Rendís tus finales <span className={`font-bold text-(${color})`}>en sede UCASAL.</span><br />
-                Vas a la sede más cercana a rendir.
+                Cursás online y rendís tus <span className={`font-bold text-(${color})`}>exámenes finales de forma presencial.</span><br />
+                Vas a la sede solo cuando te toca rendir.
               </p>
             )}
           </div>
@@ -126,12 +93,12 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
   );
 }
 
-export default function ComparativaModalidades() {
+export default function ComparativaModalidades({ onSubPage }: { onSubPage?: boolean }) {
   const [activeCard, setActiveCard] = useState(0);
 
   return (
     <section className="w-full py-8 sm:py-14" id="modalidades">
-      <div className="contenedor lg:mx-24">
+      <div className={`contenedor ${onSubPage ? '' : 'lg:mx-24'}`}>
 
         {/* Título */}
         <motion.div
@@ -169,8 +136,8 @@ export default function ComparativaModalidades() {
             {features.map((f, i) => (
               <div key={i} className={`flex flex-col items-center text-center gap-2 
               ${window.innerWidth >= 1024 && i < features.length - 1 ? 'border-r-2 border-(--azul-ucasal)/20' : ''}`}>
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-(--azul-ucasal)/8 flex items-center justify-center text-(--azul-ucasal)">
-                  {f.icon}
+                <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-full bg-(--azul-ucasal)/8 flex items-center justify-center">
+                  <img src={f.iconSrc} className="w-10 h-10" alt="" />
                 </div>
                 <p className="text-xs sm:text-sm font-semibold text-(--azul-ucasal) whitespace-pre-line leading-tight">
                   {f.label}
@@ -203,7 +170,7 @@ export default function ComparativaModalidades() {
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              <IconPin className="w-6 h-6 text-(--azul-ucasal)" />
+              <IconPin className="w-10 h-10 icon-color-anim" />
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>

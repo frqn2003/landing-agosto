@@ -1067,7 +1067,7 @@ const data = [
     {
         codcar: 378,
         slug: "tecn-univ-en-organizacion-y-direccion-de-eventos-y-ceremonial",
-        nombre: "Tecn. Univ. en Organización y Dirección de Eventos y Ceremonial",
+        nombre: "Tecnicatura Univ. en Organización y Dirección de Eventos y Ceremonial",
         descripcionCorta: "Planificá y coordiná eventos corporativos, sociales y oficiales con profesionalismo y dominio del protocolo.",
         descripcionLarga: "La Tecnicatura en Organización y Dirección de Eventos y Ceremonial forma profesionales capaces de planificar, coordinar y ejecutar eventos de todo tipo: corporativos, sociales, culturales y oficiales. Los estudiantes aprenden protocolo y ceremonial, logística de eventos, gestión de proveedores, comunicación institucional y producción audiovisual. La carrera brinda herramientas prácticas para una industria en constante crecimiento.",
         duracion: "2 años",
@@ -1128,7 +1128,7 @@ const data = [
     {
         codcar: 196,
         slug: "licenciatura-en-seguridad",
-        nombre: "Licenciatura en Seguridad",
+        nombre: "Licenciatura en Seguridad - CCC",
         descripcionCorta: "Gestioná la seguridad pública y privada con formación estratégica, legal y operativa para entornos complejos.",
         descripcionLarga: "La Licenciatura en Seguridad forma profesionales con visión integral para gestionar la seguridad en organizaciones públicas y privadas. Los egresados adquieren competencias en análisis de riesgos, planificación de sistemas de seguridad, gestión de crisis, normativa legal y liderazgo de equipos. La carrera está orientada tanto a quienes ya trabajan en el sector como a quienes desean profesionalizarse en esta disciplina de creciente demanda.",
         duracion: "2 años",
@@ -1633,6 +1633,62 @@ const data = [
                     "Análisis de Datos Aplicados a la Industria",
                     "Neurociencias y Ciencia de Datos",
                     "Normas y Regulaciones para la Utilización de Datos"
+                ]
+            }
+        ]
+    },
+    {
+        codcar: 384,
+        slug: "licenciatura-en-corretaje-tasacion-y-administracion-de-consorcios",
+        nombre: "Licenciatura en Corretaje, Tasación y Administración de Consorcios - CCC",
+        descripcionCorta: "Intermediá, tasá y administrá bienes inmuebles y consorcios con formación jurídica, técnica y comercial.",
+        descripcionLarga: "Esta carrera forma profesionales especializados en el mercado inmobiliario, la valuación de bienes y la gestión de propiedad horizontal. Los egresados pueden ejercer como corredores, tasadores, administradores de consorcios y asesores en transacciones inmobiliarias, combinando formación jurídica, económica y técnica para operar con eficiencia en el ámbito público y privado.",
+        duracion: "1½ años",
+        modalidad: 7,
+        perfilEgresado: {
+            items: [
+                "Intermediar en operaciones de compra, venta, alquiler y subastas de bienes muebles e inmuebles.",
+                "Realizar tasaciones, valuaciones e informes periciales con criterio técnico.",
+                "Administrar consorcios de propiedad horizontal y gestionar conflictos vecinales.",
+                "Asesorar en cuestiones legales, contractuales y registrales del sector inmobiliario.",
+                "Diseñar y gestionar proyectos inmobiliarios sustentables con enfoque ecológico.",
+                "Aplicar herramientas digitales y metodologías de investigación en la práctica profesional.",
+            ]
+        },
+        planEstudios: [
+            {
+                semestre: "1° Semestre",
+                materias: [
+                    "Antropología Filosófica",
+                    "Desarrollos Inmobiliarios",
+                    "Tasación Rural de Animales e Intangibles",
+                    "Metodología y Técnicas de la Investigación",
+                    "Evaluación y Valoración de Bienes",
+                    "Negociación Comercial Transcultural y Relaciones Humanas",
+                ]
+            },
+            {
+                semestre: "2° Semestre",
+                materias: [
+                    "Tasación de Bienes Industriales y Tecnológicos",
+                    "Desarrollo Urbanístico y Estilos Arquitectónicos",
+                    "Herramientas Tecnológicas de Creación y Organización",
+                    "Remates y Subastas Internacionales",
+                    "Dirección y Gestión de Proyectos 1",
+                    "Antropología Teológica",
+                    "Seminario Electivo",
+                ]
+            },
+            {
+                semestre: "3° Semestre",
+                materias: [
+                    "Dirección y Gestión de Poryectos 2",
+                    "Administración de consorcios comerciales",
+                    "Marketing digital inmobiliario",
+                    "Inglés Técnico Avanzado",
+                    "Liderazgo y Cooperación Internacional",
+                    "Humanismo y Pensamiento Social Cristiano",
+                    "Práctica Profesional Integral"
                 ]
             }
         ]

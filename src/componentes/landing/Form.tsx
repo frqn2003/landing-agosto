@@ -179,8 +179,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
             {!onSubPage && (
                 <div className="flex justify-center">
-                    <p className="text-xl my-4 text-black">
-                        Inscripciones 2026 abiertas
+                    <p className="text-xl my-2 text-black degrade-azul font-bold">
+                        Consulta sobre nuestras carreras y sus aranceles
                     </p>
                 </div>
             )}

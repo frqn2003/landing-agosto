@@ -11,6 +11,16 @@
   --ucasal-gray-medium: #e9ecef;
 }
 
+/* Animación de color directo en SVG stroke */
+@keyframes svgColorCycle {
+  0%   { color: var(--azul-ucasal); }
+  50%  { color: var(--rojo-ucasal); }
+  100% { color: var(--azul-ucasal); }
+}
+
+.icon-color-anim {
+  animation: svgColorCycle 2.5s ease-in-out infinite;
+}
 
 /* Animaciones Hero */
 @keyframes typewriter {
@@ -21,7 +31,6 @@
     width: 100%;
   }
 }
-
 @keyframes heroFadeIn {
   from {
     opacity: 0;
@@ -332,11 +341,11 @@ body {
   animation: borderColorTransition 10s ease-in-out infinite;
 }
 
-/* Borde animado con colores UCASAL (solo rojo, blanco y azul) */
+/* Borde animado con colores UCASAL */
 .animated-border {
   --ab-thickness: 3px;
   --ab-radius: 0.375rem;
-  /* ajusta para que coincida con el botón */
+  --ab-bg: var(--azul-ucasal);
   --ab-angle: 0deg;
 
   position: relative;
@@ -352,10 +361,43 @@ body {
   animation: ab-rotate 6s linear infinite;
 }
 
+/* Variante circular para íconos SVG */
+.animated-border-icon {
+  --ab-thickness: 3px;
+  --ab-radius: 9999px;
+  --ab-angle: 0deg;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ab-thickness);
+  border-radius: var(--ab-radius);
+  background: conic-gradient(from var(--ab-angle),
+      var(--azul-ucasal),
+      var(--rojo-ucasal),
+      var(--azul-ucasal));
+  animation: ab-rotate 3s linear infinite;
+}
+
+.animated-border-icon::after {
+  content: '';
+  position: absolute;
+  inset: var(--ab-thickness);
+  border-radius: var(--ab-radius);
+  background: white;
+  z-index: 0;
+}
+
+.animated-border-icon > * {
+  position: relative;
+  z-index: 1;
+}
+
 .animated-border>.ab-inner {
   width: 100%;
   border-radius: var(--ab-radius);
-  background: var(--azul-ucasal);
+  background: var(--ab-bg);
   color: var(--ucasal-white);
   border: none;
   /* el borde 'vivo' es el contenedor */

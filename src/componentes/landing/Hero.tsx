@@ -76,12 +76,12 @@ export default function Hero() {
                             <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(8)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
                                 EN AGOSTO
                             </span>
+                            <p className='text-4xl tracking-tight italic font-thin text-white px-2'>Tu título te espera</p>
                         </h1>
                         <div className='flex flex-col gap-8 sm:gap-14 sm:text-left sm:justify-start sm:items-start justify-center text-center items-center h-full w-full'>
                             <div className='flex flex-col gap-8 h-full w-full'>
                                 <p className="text-sm sm:text-xl pl-2 text-black sm:text-white leading-relaxed sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 1.8s forwards' }}>Carreras universitarias oficiales, cursado online <br className="hidden sm:block" />y docentes comprometidos con tu crecimiento.
                                 </p>
-
                                 <div className="flex flex-col sm:flex-row w-full sm:mt-12 mt-8 gap-4 h-full items-center sm:items-start justify-end sm:justify-start sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 2s forwards' }}
                                 >
                                     <button
@@ -99,7 +99,8 @@ export default function Hero() {
                                         const carreras = document.getElementById('carreras');
                                         if (carreras) {
                                             carreras.scrollIntoView({ behavior: 'smooth' });
-                                        }}}>
+                                        }
+                                    }}>
                                         <span className="inline-block overflow-hidden transition-all duration-400 group-hover:rotate-45 group-hover:translate-x-20 sm:group-hover:translate-x-28">  <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             className="h-4 w-4"
@@ -119,40 +120,40 @@ export default function Hero() {
                                             className="bg-transparent font-bold transition-all duration-400 group-hover:-translate-x-8"
                                         >Ver carreras
                                         </span>
-                                </button>
-                            </div>
-                            {/* Stats horizontales */}
-                            <div
-                                className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-0 sm:mt-2 pt-2 sm:pt-6 w-full sm:h-full justify-around items-end"
-                            >
-                                {[
-                                    { valor: "+40k", etiqueta: "Graduados" },
-                                    { valor: "+80", etiqueta: "Carreras" },
-                                    { valor: "+60", etiqueta: "Años" },
-                                    { valor: "+30", etiqueta: "Convenios" },
-                                ].map((stat, i) => (
-                                    <StatItem key={i} valor={stat.valor} etiqueta={stat.etiqueta} index={i} />
-                                ))}
+                                    </button>
+                                </div>
+                                {/* Stats horizontales */}
+                                <div
+                                    className="flex flex-row xl:gap-16 lg:gap-6 md:gap-4 gap-0 sm:mt-2 pt-2 sm:pt-6 w-full sm:h-full justify-around items-end"
+                                >
+                                    {[
+                                        { valor: "+42.000", etiqueta: "Graduados" },
+                                        { valor: "+140", etiqueta: "Carreras" },
+                                        { valor: "+60", etiqueta: "Años" },
+                                        { valor: "+120", etiqueta: "Convenios" },
+                                    ].map((stat, i) => (
+                                        <StatItem key={i} valor={stat.valor} etiqueta={stat.etiqueta} index={i} />
+                                    ))}
+                                </div>
                             </div>
                         </div>
+
+
                     </div>
-
-
+                </div>
+                <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                    <picture>
+                        <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}desktop.webp`} />
+                        <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}mobile.webp`} />
+                        <img
+                            src={`${import.meta.env.BASE_URL}desktop.jpg`}
+                            /* src={`/${carrera.codcar}.png`} */
+                            alt="Hero"
+                            className="w-full h-full object-cover object-center"
+                        />
+                    </picture>
                 </div>
             </div>
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                <picture>
-                    <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}desktop.webp`} />
-                    <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}mobile.webp`} />
-                    <img
-                        src={`${import.meta.env.BASE_URL}desktop.jpg`}
-                        /* src={`/${carrera.codcar}.png`} */
-                        alt="Hero"
-                        className="w-full h-full object-cover object-center"
-                    />
-                </picture>
-            </div>
-        </div>
         </section >
     );
 }

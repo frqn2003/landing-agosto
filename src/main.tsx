@@ -13,7 +13,7 @@ Clarity.init(projectId);
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
-      <BrowserRouter basename="/landing/ingreso/carreras-agosto">
+      <BrowserRouter basename="/landing/ingreso/carreras-agosto/">
         <App />
       </BrowserRouter>
     </HelmetProvider>

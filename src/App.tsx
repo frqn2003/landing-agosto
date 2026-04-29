@@ -25,10 +25,10 @@ function App() {
           <PromocionDinamica />
           <Carreras />
           <FormSection />
-          <ComparativaModalidades />
+          <ComparativaModalidades onSubPage={false}/>
           <Financiacion />
-          <section className='contenedor py-10 px-4' id="sedes">
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-start">
+          <section className='contenedor md:pb-5' id="sedes">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-4">
               <Sedes />
               <PreguntasFrecuentes />
             </div>
