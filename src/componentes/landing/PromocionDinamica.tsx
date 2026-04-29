@@ -58,7 +58,7 @@ export default function PromocionDinamica() {
     if (!promocion) {
         return (
             <section className="contenedor bg-center bg-cover relative mb-12">
-                <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-col items-center justify-center gap-4 z-20 rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center">
+                <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-col items-center justify-center gap-4 z-20 rounded-lg bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center">
                     <div className="flex flex-col gap-1.5 items-center">
                         <span className="text-2xl sm:text-4xl font-black text-white leading-tight">
                             Inscripciones abiertas

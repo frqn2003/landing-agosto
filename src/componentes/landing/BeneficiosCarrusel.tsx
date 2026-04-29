@@ -15,10 +15,7 @@ const cartas: Carta[] = [
     titulo: 'Para quienes dan el primer paso',
     descripcion: 'Si estás empezando, iniciá tu carrera online con acompañamiento desde el primer día.',
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-      </svg>
+      <img src={`${import.meta.env.BASE_URL}icons/primer-paso.svg`} className="w-9 h-9" alt="Primer paso" />
     ),
     color: 'rojo',
   },
@@ -27,9 +24,7 @@ const cartas: Carta[] = [
     titulo: 'Para quienes van por todo',
     descripcion: 'Si trabajás o tenes muchas actividades, estudiá con clases online sin dejar tus responsabilidades.',
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+      <img src={`${import.meta.env.BASE_URL}icons/por-todo.svg`} className="w-9 h-9" alt="Por todo" />
     ),
     color: 'azul',
   },
@@ -38,9 +33,7 @@ const cartas: Carta[] = [
     titulo: 'Para quienes buscan retomar su carrera',
     descripcion: 'Si ya empezaste una carrera, continuá con equivalencias y no pierdas lo que ya hiciste.',
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-      </svg>
+      <img src={`${import.meta.env.BASE_URL}icons/retomar.svg`} className="w-9 h-9" alt="Retomar carrera" />
     ),
     color: 'rojo',
   },
@@ -108,7 +101,7 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
     timerRef.current = setInterval(() => {
       setDir(1);
       setActivo(prev => (prev + 1) % N);
-    }, 7000);
+    }, 6000);
   };
 
   const irA = (i: number, direccion: 1 | -1) => {

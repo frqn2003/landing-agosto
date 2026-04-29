@@ -10,28 +10,28 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
 const TKP_MAP: Record<string, string> = {
-    '9':   'enviado-sec-ejecutivo',
-    '10':  'enviado-lic-economia-distancia',
-    '11':  'enviado-administracion',
-    '14':  'enviado-contador',
-    '15':  'enviado-comercializacion',
-    '16':  'enviado-abogacia',
-    '58':  'enviado-licenciatura-ciencias-datos',
-    '96':  'enviado-tec-gestion-calidad-distancia',
-    '133': 'enviado-lic-administracion-agropecuaria-distancia',
-    '138': 'enviado-lic-higiene-y-seguridad-trabajo-distancia',
-    '161': 'enviado-tecnicatura-gestion-bancos-finanzas-seguros',
-    '175': 'enviado-guia-universitaria-turismo-distancia',
-    '196': 'enviado-seguridad',
-    '214': 'enviado-comercio-internacional-distancia',
-    '244': 'enviado-martillero',
-    '250': 'enviado-licenciatura-administracion-negocios-digitales-distancia',
-    '336': 'enviado-rrhh',
-    '355': 'enviado-escribania-distancia',
-    '360': 'enviado-tec-seguridad-informatica',
-    '363': 'enviado-procuracion-distancia',
-    '378': 'enviado-organizacion-direccion-eventos-ceremonial',
-    '383': 'enviado-tecnicatura-operaciones-mineras',
+    '9':   'enviado/sec-ejecutivo',
+    '10':  'enviado/lic-economia-distancia',
+    '11':  'enviado/administracion',
+    '14':  'enviado/contador',
+    '15':  'enviado/comercializacion',
+    '16':  'enviado/abogacia',
+    '58':  'enviado/licenciatura-ciencias-datos',
+    '96':  'enviado/tec-gestion-calidad-distancia',
+    '133': 'enviado/lic-administracion-agropecuaria-distancia',
+    '138': 'enviado/lic-higiene-y-seguridad-trabajo-distancia',
+    '161': 'enviado/tecnicatura-gestion-bancos-finanzas-seguros',
+    '175': 'enviado/guia-universitaria-turismo-distancia',
+    '196': 'enviado/seguridad',
+    '214': 'enviado/comercio-internacional-distancia',
+    '244': 'enviado/martillero',
+    '250': 'enviado/licenciatura-administracion-negocios-digitales-distancia',
+    '336': 'enviado/rrhh',
+    '355': 'enviado/escribania-distancia',
+    '360': 'enviado/tec-seguridad-informatica',
+    '363': 'enviado/procuracion-distancia',
+    '378': 'enviado/organizacion-direccion-eventos-ceremonial',
+    '383': 'enviado/tecnicatura-operaciones-mineras',
 }
 
 const BASE_URL = 'https://www.ucasal.edu.ar/landing/ingreso/carreras-agosto/'
@@ -178,7 +178,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 Clarity.event('formulario-enviado')
                 Clarity.upgrade('conversion-formulario')
                 const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
-                const tkpPath = tkpSlug ? `enviado-${tkpSlug}` : 'enviado-agosto'
+                const tkpPath = tkpSlug ? tkpSlug : 'enviado-agosto'
                 navigate(`/${tkpPath}`, {
                     state: {
                         nombre,
@@ -203,8 +203,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
             <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
-            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? `enviado-${TKP_MAP[codcar]}` : 'enviado-agosto'}`} />
-            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? `enviado-${TKP_MAP[codcar]}` : 'enviado-agosto'}?id=404`} />
+            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar].replace('enviado/', 'enviado-') : 'enviado-agosto'}`} />
+            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar].replace('enviado/', 'enviado-') : 'enviado-agosto'}?id=404`} />
 
             {!onSubPage && (
                 <div className="flex justify-center">
