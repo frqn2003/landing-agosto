@@ -38,7 +38,7 @@ export default function FormSection() {
           <div className='absolute top-1/2 -translate-y-1/2 -right-15 xl:-right-30 2xl:-right-35 z-10 h-35 w-35 sm:h-45 sm:w-45 md:h-55 md:w-55 lg:h-65 lg:w-65 xl:w-75 xl:h-75 2xl:w-85 2xl:h-85 rounded-full bg-white shadow-2xl shadow-black border border-gray-500'>
             <img src={`${import.meta.env.BASE_URL}/cursadointensivo.svg`} alt="Cursado Intensivo" />
           </div>
-          <p className="text-[9px] sm:text-[11px] text-white/60 italic ml-2 md:ml-4 2xl:ml-6 font-bold ">
+          <p className="text-[9px] sm:text-[11px] text-white/60 italic ml-2 font-bold ">
             * Las carreras de <br className='xl:hidden block' />  Corredor Inmobiliario y Martillero Publico, <br className='2xl:hidden block' /> y Licenciatura en Seguridad CCC
             <br /> no cuentan con cursado intensivo
           </p>

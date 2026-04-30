@@ -72,6 +72,7 @@ function CardBeneficio({ carta, posicion, onClick }: { carta: Carta; posicion: '
       }}
       transition={{ duration: 0.4, ease: 'easeInOut' }}
       onClick={onClick}
+      style={{ willChange: 'transform, filter, opacity' }}
       className={`flex flex-col gap-4 rounded-2xl border-2 p-6 bg-white h-full max-w-sm ${esCentro ? `${c.border} shadow-xl` : 'border-gray-200 shadow-sm cursor-pointer hover:opacity-70 transition-opacity'}`}
     >
       {/* Icono */}

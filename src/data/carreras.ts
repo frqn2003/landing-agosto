@@ -5,7 +5,7 @@ const data = [
         slug: "abogacia",
         nombre: "Abogacía",
         descripcionCorta: "Vas a poder asesorar, representar y defender en cualquier ámbito del derecho, con herramientas para actuar en el sector público, privado o judicial.",
-        descripcionLarga: "La carrera de Abogacía de UCASAL forma profesionales con dominio profundo del ordenamiento jurídico argentino y las tendencias del derecho comparado. A lo largo de la carrera, los estudiantes adquieren herramientas para el ejercicio de la abogacía en ámbitos civiles, penales, comerciales, administrativos y laborales, desarrollando además competencias en negociación, mediación y litigio.",
+        descripcionLarga: "La carrera de Abogacía de UCASAL forma profesionales con dominio profundo del ordenamiento jurídico argentino y las tendencias del derecho comparado. A lo largo de la carrera, Adquirirás herramientas para el ejercicio de la abogacía en ámbitos civiles, penales, comerciales, administrativos y laborales, desarrollando además competencias en negociación, mediación y litigio.",
         duracion: "5 años",
         modalidad: 7,
         perfilEgresado: {
@@ -241,7 +241,7 @@ const data = [
         slug: "tecnicatura-en-seguridad-informatica",
         nombre: "Tecnicatura en Seguridad Informática",
         descripcionCorta: "Vas a poder proteger sistemas, redes y datos frente a amenazas digitales: una tecnicatura corta con una de las demandas laborales más altas del mercado.",
-        descripcionLarga: "La Tecnicatura en Seguridad Informática forma técnicos especializados en la protección de infraestructuras tecnológicas frente a amenazas cibernéticas. Los estudiantes aprenden a identificar vulnerabilidades, implementar políticas de seguridad, gestionar incidentes y aplicar normativas de protección de datos. Con una duración acotada y orientación práctica, es ideal para quienes buscan insertarse rápidamente en uno de los sectores con mayor crecimiento del mercado laboral actual.",
+        descripcionLarga: "La Tecnicatura en Seguridad Informática forma técnicos especializados en la protección de infraestructuras tecnológicas frente a amenazas cibernéticas. Aprenderás a identificar vulnerabilidades, implementar políticas de seguridad, gestionar incidentes y aplicar normativas de protección de datos. Con una duración acotada y orientación práctica, es ideal para quienes buscan insertarse rápidamente en uno de los sectores con mayor crecimiento del mercado laboral actual.",
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
@@ -474,7 +474,7 @@ const data = [
         slug: "tecnicatura-en-operaciones-mineras-e-industriales",
         nombre: "Tecnicatura en Operaciones Mineras e Industriales",
         descripcionCorta: "Vas a poder supervisar operaciones en industrias mineras y manufactureras, con inserción rápida en uno de los sectores más activos de la región.",
-        descripcionLarga: "Esta tecnicatura forma técnicos con capacidad para gestionar procesos productivos en industrias mineras y manufactureras. Los estudiantes adquieren conocimientos en seguridad industrial, gestión de operaciones, control de calidad y normativas ambientales aplicadas al sector. La carrera responde a la creciente demanda de profesionales capacitados en una región con importante actividad minera e industrial, ofreciendo una rápida inserción laboral.",
+        descripcionLarga: "Esta tecnicatura forma técnicos con capacidad para gestionar procesos productivos en industrias mineras y manufactureras. Adquirirás conocimientos en seguridad industrial, gestión de operaciones, control de calidad y normativas ambientales aplicadas al sector. La carrera responde a la creciente demanda de profesionales capacitados en una región con importante actividad minera e industrial, ofreciendo una rápida inserción laboral.",
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
@@ -630,7 +630,7 @@ const data = [
         slug: "tecnicatura-univ-en-gestion-de-calidad",
         nombre: "Tecnicatura Univ. en Gestión de Calidad",
         descripcionCorta: "Vas a poder implementar y auditar sistemas de gestión de calidad basados en normas ISO, con salida laboral inmediata en industrias y servicios.",
-        descripcionLarga: "La Tecnicatura Universitaria en Gestión de Calidad prepara a los estudiantes para diseñar, implementar y auditar sistemas de gestión basados en normas internacionales como ISO 9001. Los egresados pueden desempeñarse en áreas de control de calidad, mejora de procesos y certificación en empresas industriales, de servicios y organismos públicos. La carrera brinda una formación práctica y orientada a resultados, con salida laboral inmediata.",
+        descripcionLarga: "La Tecnicatura Universitaria en Gestión de Calidad te preparará para diseñar, implementar y auditar sistemas de gestión basados en normas internacionales como ISO 9001. Los egresados pueden desempeñarse en áreas de control de calidad, mejora de procesos y certificación en empresas industriales, de servicios y organismos públicos. La carrera brinda una formación práctica y orientada a resultados, con salida laboral inmediata.",
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
@@ -940,7 +940,7 @@ const data = [
         slug: "tec-universitaria-en-gestion-de-bancos-empresas-financieras-y-de-seguros",
         nombre: "Tecnicatura Univ. en Gestión de Bancos, Empresas Financieras y de Seguros",
         descripcionCorta: "Vas a poder trabajar en bancos, financieras y aseguradoras asesorando clientes, gestionando productos y operando en el sistema financiero.",
-        descripcionLarga: "Esta tecnicatura forma especialistas en la operatoria de instituciones financieras, bancarias y aseguradoras. Los estudiantes adquieren conocimientos en productos y servicios bancarios, análisis de riesgo crediticio, normativa del Banco Central, seguros de vida y patrimoniales y atención al cliente financiero. La carrera responde a la demanda del sector con una formación práctica y orientada al ejercicio profesional inmediato.",
+        descripcionLarga: "Esta tecnicatura forma especialistas en la operatoria de instituciones financieras, bancarias y aseguradoras. Adquirirás conocimientos en productos y servicios bancarios, análisis de riesgo crediticio, normativa del Banco Central, seguros de vida y patrimoniales y atención al cliente financiero. La carrera responde a la demanda del sector con una formación práctica y orientada al ejercicio profesional inmediato.",
         duracion: "3 años",
         modalidad: 7,
         perfilEgresado: {
@@ -1069,7 +1069,7 @@ const data = [
         slug: "tecn-univ-en-organizacion-y-direccion-de-eventos-y-ceremonial",
         nombre: "Tecnicatura Univ. en Organización y Dirección de Eventos y Ceremonial",
         descripcionCorta: "Vas a poder planificar y coordinar eventos corporativos, sociales y oficiales con dominio del protocolo en una industria en pleno crecimiento.",
-        descripcionLarga: "La Tecnicatura en Organización y Dirección de Eventos y Ceremonial forma profesionales capaces de planificar, coordinar y ejecutar eventos de todo tipo: corporativos, sociales, culturales y oficiales. Los estudiantes aprenden protocolo y ceremonial, logística de eventos, gestión de proveedores, comunicación institucional y producción audiovisual. La carrera brinda herramientas prácticas para una industria en constante crecimiento.",
+        descripcionLarga: "La Tecnicatura en Organización y Dirección de Eventos y Ceremonial forma profesionales capaces de planificar, coordinar y ejecutar eventos de todo tipo: corporativos, sociales, culturales y oficiales. Aprenderás protocolo y ceremonial, logística de eventos, gestión de proveedores, comunicación institucional y producción audiovisual. La carrera brinda herramientas prácticas para una industria en constante crecimiento.",
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
@@ -1498,7 +1498,7 @@ const data = [
         slug: "guia-universitario-de-turismo",
         nombre: "Guía Universitario de Turismo",
         descripcionCorta: "Vas a poder guiar experiencias turísticas en destinos nacionales e internacionales, combinando patrimonio, idiomas y atención al viajero.",
-        descripcionLarga: "La carrera te prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión. Los estudiantes adquieren conocimientos en patrimonio cultural y natural, geografía turística, idiomas, primeros auxilios y técnicas de interpretación. La carrera prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión.",
+        descripcionLarga: "La carrera te prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión. Adquirirás conocimientos en patrimonio cultural y natural, geografía turística, idiomas, primeros auxilios y técnicas de interpretación. La carrera prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión.",
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {

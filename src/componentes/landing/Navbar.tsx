@@ -155,7 +155,7 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
           </section>
 
           <div className="justify-end flex items-center">
-            <a href="https://ucasal.edu.ar/inscripciones/" target="_blank" rel="noopener noreferrer" className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</a>
+            <a href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto" target="_blank" rel="noopener noreferrer" className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</a>
             {/* Botón mobile hamburguesa */}
             <button
               onClick={toggleMenu}
@@ -236,7 +236,7 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
             <li className="py-2 border-t border-gray-200 w-full">
               <button
                 className="mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
-                onClick={() => { setMenuAbierto(false); window.open('https://ucasal.edu.ar/inscripciones/', '_blank', 'noopener,noreferrer') }}
+                onClick={() => { setMenuAbierto(false); window.open('https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto', '_blank', 'noopener,noreferrer') }}
               >
                 ¡Quiero Inscribirme!
               </button>

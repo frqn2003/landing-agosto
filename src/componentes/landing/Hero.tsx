@@ -76,7 +76,7 @@ export default function Hero() {
                             <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
                                 EN AGOSTO
                             </span>
-                            <p className='text-2xl md:text-4xl tracking-tight font-thin sm:text-white text-(--azul-ucasal) px-2 overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_1.4s_forwards,fadeIn_0.05s_1.5s_forwards]'>Tu título te espera</p>
+                            <p className='text-2xl md:text-4xl tracking-tight font-thin sm:text-white text-(--azul-ucasal) px-2 overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_1.4s_forwards,fadeIn_0.05s_1.5s_forwards]'>estudía online</p>
                         </h1>
                         <div className='flex flex-col gap-8 sm:gap-14 sm:text-left sm:justify-start sm:items-start justify-center text-center items-center h-full w-full'>
                             <div className='flex flex-col gap-2 h-full w-full max-md:items-end max-md:justify-end'>

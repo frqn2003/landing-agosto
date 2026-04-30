@@ -195,7 +195,7 @@ export default function DetalleCarrera() {
                             Ver plan de estudios
                         </button>
                         <a
-                            href="https://www.ucasal.edu.ar/inscripciones/"
+                            href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm px-6 py-3 rounded-xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center"
