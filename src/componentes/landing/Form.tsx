@@ -185,7 +185,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         email,
                         carrera: carreraSeleccionada?.nombre_carrera ?? '',
                         modalidad: carreraSeleccionada?.modo === 7 ? 'Online' : 'Presencial',
-                        sede: sedes.find((s: any) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
+                        sede: sedes.find((s: { id_sede: string; nombre_sede: string }) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
                     }
                 })
             },
@@ -270,7 +270,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         disabled={!codcar || !modalidad}
                     >
                         <option value="" disabled defaultValue={'Seleccionar Provincia'}>Seleccionar Provincia</option>
-                        {provincias.map((p: any) => (
+                        {provincias.map((p: { id_provincia: string; nombre_provincia: string }) => (
                             <option key={p.id_provincia} value={p.id_provincia}>{p.nombre_provincia}</option>
                         ))}
                     </select>
@@ -291,15 +291,15 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         <option value="" disabled defaultValue={'Seleccionar Sede'}>Seleccionar Sede</option>
                         {sedesOficiales.length > 0 && (
                             <optgroup label="Sedes disponibles">
-                                {sedesOficiales.map((s: any) => (
+                                {sedesOficiales.map((s: { id_sede: string; nombre_sede: string }) => (
                                     <option key={s.id_sede} value={s.id_sede}>{s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}
                         {tieneHome && (
                             <optgroup label="Sin sede cerca (Home)">
-                                {sedesHome.map((s: any) => (
-                                    <option value="500"> {s.nombre_sede}</option>
+                                {sedesHome.map((s: { id_sede: string; nombre_sede: string }) => (
+                                    <option key={s.id_sede} value="500"> {s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}
