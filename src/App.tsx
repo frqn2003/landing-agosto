@@ -37,6 +37,8 @@ function App() {
         </>
       } />
 
+      <Route path="enviado-agosto" element={<GraciasPage />} />
+      <Route path="enviado-:tkpSlug" element={<GraciasPage />} />
       <Route path=':slug' element={
         <>
           <Navbar onSubPage={true} />
@@ -44,8 +46,6 @@ function App() {
           <Footer />
         </>
       } />
-      <Route path="enviado-agosto" element={<GraciasPage />} />
-      <Route path="enviado-:tkpSlug" element={<GraciasPage />} />
       <Route path="*" element={<PaginaError />} />
       <Route path="/404" element={<PaginaError />} />
     </Routes>

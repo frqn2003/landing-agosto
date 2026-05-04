@@ -11,6 +11,7 @@ import Sedes from "../componentes/landing/Sedes"
 import ComparativaModalidades from "../componentes/landing/ComparativaModalidades"
 import BeneficiosCarrusel from "../componentes/landing/BeneficiosCarrusel"
 import Financiacion from "../componentes/landing/Financiacion"
+import PromocionDinamica from "../componentes/landing/PromocionDinamica"
 
 export default function DetalleCarrera() {
     const { slug } = useParams()
@@ -98,7 +99,7 @@ export default function DetalleCarrera() {
             {/* ── HERO DE LA CARRERA ── */}
             <section className="w-full min-h-full flex items-center pt-4 px-4 contenedor">
                 <div className="w-full h-[500px] sm:h-[600px] bg-(--azul-ucasal) px-6 py-12 sm:p-12 rounded-2xl relative">
-                    <div className={`flex flex-col h-full sm:flex-row gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center justify-center relative z-10  w-full sm:w-[60%]`}>
+                    <div className={`flex flex-col h-full sm:flex-row gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-center justify-center relative z-10  w-full sm:w-[70%]`}>
                         <div className={`flex flex-col gap-3 text-black flex-1 h-full ${titulo.length <= 4 ? 'justify-center max-sm:mb-12' : 'justify-start'} sm:justify-center max-sm:text-center`}>
                             <h1 className={`${tituloClase} font-extrabold leading-10 sm:leading-none tracking-tight uppercase text-white`}>
                                 {carrera?.nombre}
@@ -139,10 +140,10 @@ export default function DetalleCarrera() {
                 </div>
             </section>
 
-            <div className="py-10 flex flex-col lg:flex-row gap-10 items-start bg-white">
+            <div className="py-10 flex flex-col lg:flex-row items-start bg-white">
 
                 {/* ── COLUMNA PRINCIPAL ── */}
-                <div className="flex flex-col gap-10 w-full lg:w-[60%]">
+                <div className="flex flex-col gap-10 w-full lg:w-[65%]">
 
                     {/* Descripción larga */}
                     <div className="contenedor flex flex-col gap-3">
@@ -218,7 +219,7 @@ export default function DetalleCarrera() {
                             </div>
                         </div>
                     )}
-
+                    <PromocionDinamica/>
                     <ComparativaModalidades onSubPage={true} />
                     <BeneficiosCarrusel onSubPage={true} />
                     <Financiacion />

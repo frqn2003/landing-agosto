@@ -10,14 +10,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
 const TKP_MAP: Record<string, string> = {
-    '9':   'enviado-sec-ejecutivo',
-    '10':  'enviado-lic-economia-distancia',
-    '11':  'enviado-administracion',
-    '14':  'enviado-contador',
-    '15':  'enviado-comercializacion',
-    '16':  'enviado-abogacia',
-    '58':  'enviado-licenciatura-ciencias-datos',
-    '96':  'enviado-tec-gestion-calidad-distancia',
+    '9': 'enviado-sec-ejecutivo',
+    '10': 'enviado-lic-economia-distancia',
+    '11': 'enviado-administracion',
+    '14': 'enviado-contador',
+    '15': 'enviado-comercializacion',
+    '16': 'enviado-abogacia',
+    '58': 'enviado-licenciatura-ciencias-datos',
+    '96': 'enviado-tec-gestion-calidad-distancia',
     '133': 'enviado-lic-administracion-agropecuaria-distancia',
     '138': 'enviado-lic-higiene-y-seguridad-trabajo-distancia',
     '161': 'enviado-tecnicatura-gestion-bancos-finanzas-seguros',
@@ -153,45 +153,45 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             autoComplete="on"
             onSubmit={handleSubmit(
                 async () => {
-                setEnviando(true)
-                let recaptchaToken = '';
-                try {
-                    recaptchaToken = await new Promise((resolve, reject) => {
-                        (window as any).grecaptcha.ready(function () {
-                            (window as any).grecaptcha
-                                .execute('6LfSBnAsAAAAANxuGFb77-exJXGHRWQGrCsGZMnr', { action: 'submit' })
-                                .then(resolve)
-                                .catch(reject);
+                    setEnviando(true)
+                    let recaptchaToken = '';
+                    try {
+                        recaptchaToken = await new Promise((resolve, reject) => {
+                            (window as any).grecaptcha.ready(function () {
+                                (window as any).grecaptcha
+                                    .execute('6LfSBnAsAAAAANxuGFb77-exJXGHRWQGrCsGZMnr', { action: 'submit' })
+                                    .then(resolve)
+                                    .catch(reject);
+                            });
                         });
-                    });
-                } catch (e) {
-                    console.error('Error obteniendo token reCAPTCHA:', e)
-                }
-                (document.getElementById('g-recaptcha-response') as HTMLInputElement).value = recaptchaToken
-
-                const formEl = document.getElementById('pedidoinfo') as HTMLFormElement
-                const formData = new FormData(formEl)
-
-                await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
-
-                ; (window as any).dataLayer?.push({ event: 'form_enviado_landings', form_id: 'pedidoinfo' })
-                Clarity.event('formulario-enviado')
-                Clarity.upgrade('conversion-formulario')
-                const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
-                const tkpPath = tkpSlug ? `enviado-${tkpSlug}` : 'enviado-agosto'
-                navigate(`/${tkpPath}`, {
-                    state: {
-                        nombre,
-                        email,
-                        carrera: carreraSeleccionada?.nombre_carrera ?? '',
-                        modalidad: carreraSeleccionada?.modo === 7 ? 'Online' : 'Presencial',
-                        sede: sedes.find((s: any) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
+                    } catch (e) {
+                        console.error('Error obteniendo token reCAPTCHA:', e)
                     }
-                })
-            },
-            (_errors) => {
-                Clarity.event('formulario-invalido')
-            })}
+                    (document.getElementById('g-recaptcha-response') as HTMLInputElement).value = recaptchaToken
+
+                    const formEl = document.getElementById('pedidoinfo') as HTMLFormElement
+                    const formData = new FormData(formEl)
+
+                    await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
+
+                        ; (window as any).dataLayer?.push({ event: 'form_enviado_landings', form_id: 'pedidoinfo' })
+                    Clarity.event('formulario-enviado')
+                    Clarity.upgrade('conversion-formulario')
+                    const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
+                    const tkpPath = tkpSlug ?? 'enviado-agosto'
+                    navigate('/' + tkpPath, {
+                        state: {
+                            nombre,
+                            email,
+                            carrera: carreraSeleccionada?.nombre_carrera ?? '',
+                            modalidad: carreraSeleccionada?.modo === 7 ? 'Online' : 'Presencial',
+                            sede: sedes.find((s: any) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
+                        }
+                    })
+                },
+                (_errors) => {
+                    Clarity.event('formulario-invalido')
+                })}
             className={`bg-white rounded-lg shadow-2xl ${onSubPage ? 'px-6 py-4' : 'p-6'}`}>
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
@@ -203,9 +203,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
             <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
-            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? `enviado-${TKP_MAP[codcar]}` : 'enviado-agosto'}`} />
-            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? `enviado-${TKP_MAP[codcar]}` : 'enviado-agosto'}?id=404`} />
-
+            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}`} />
+            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}?id=404`} />
             {!onSubPage && (
                 <div className="flex justify-center">
                     <p className="text-xl my-2 text-black degrade-azul font-bold">
@@ -215,7 +214,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             )}
             <div className={`${onSubPage ? 'flex flex-col gap-2 py-2' : 'grid grid-cols-2 gap-6 py-4'} border-b border-black/40`}>
                 <div className="relative z-0 w-full group">
-                    <select name="cbx_carrera" id="cbx_carrera" aria-label="Seleccionar Carrera"
+                    {!!codcarInicial && <input type="hidden" name="cbx_carrera" value={codcar} />}
+                    <select name={codcarInicial ? undefined : "cbx_carrera"} id="cbx_carrera" aria-label="Seleccionar Carrera"
                         className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900 ${codcarInicial ? 'opacity-75 cursor-not-allowed bg-gray-50' : ''}`}
                         required
                         disabled={!!codcarInicial}

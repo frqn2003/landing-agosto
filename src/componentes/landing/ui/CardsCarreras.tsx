@@ -52,12 +52,12 @@ export default function CardsCarreras(props: Carrera) {
           </div>
         </div>
         <div className="flex flex-col sm:flex-row gap-2 pt-2 justify-between">
-          <a
+          <button
             onClick={() => document.getElementById('pedidoinfo')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn-shimmer bg-linear-to-r from-(--rojo-ucasal) to-(--rojo-dark-ucasal) hover:shadow-[0_0_14px_2px_rgba(216,49,53,0.5)] text-white border border-(--rojo-ucasal) shadow-sm transition-all duration-300 py-2 px-4 rounded-xl font-bold text-xs sm:text-[14px] gap-1 flex justify-center items-center max-xl:w-full cursor-pointer"
           >
             Más Información
-          </a>
+          </button>
           <Link to={`${props.slug}`} state={{ fromLanding: true }} className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm py-2 px-4 rounded-xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center">
             Conocé más +
           </Link>
