@@ -13,8 +13,8 @@
 
 /* Shimmer diagonal en botón CTA */
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position: 200% center; }
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .btn-shimmer {
@@ -32,8 +32,8 @@
     rgba(255, 255, 255, 0.45) 50%,
     transparent 65%
   );
-  background-size: 200% 100%;
   animation: shimmer 2s ease-in-out infinite;
+  will-change: transform;
   pointer-events: none;
   border-radius: inherit;
 }
@@ -172,7 +172,7 @@ body {
   font-display: swap;
   src:
     local("Museo Sans"),
-    url("/fonts/MuseoSans_500.otf") format("truetype");
+    url("/fonts/MuseoSans_500.woff2") format("woff2");
 }
 
 @font-face {
@@ -180,7 +180,7 @@ body {
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url("/fonts/Museo300-Regular.ttf") format("truetype");
+  src: url("/fonts/Museo300-Regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -190,7 +190,7 @@ body {
   font-display: swap;
   src:
     local("Museo Sans"),
-    url("/fonts/MuseoSans_700.otf") format("truetype");
+    url("/fonts/MuseoSans_700.woff2") format("woff2");
 }
 
 @font-face {
@@ -200,7 +200,7 @@ body {
   font-display: swap;
   src:
     local("Museo Sans"),
-    url("/fonts/MuseoSans_900.otf") format("truetype");
+    url("/fonts/MuseoSans_900.woff2") format("woff2");
 }
 
 
@@ -211,7 +211,7 @@ body {
   font-display: swap;
   src:
     local("Museo Sans"),
-    url("/fonts/MuseoSans_900.otf") format("truetype");
+    url("/fonts/MuseoSans_900.woff2") format("woff2");
 }
 
 @font-face {
@@ -221,7 +221,7 @@ body {
   font-display: swap;
   src:
     local("Museo Sans"),
-    url("/fonts/MuseoSans_500.otf") format("truetype");
+    url("/fonts/MuseoSans_500.woff2") format("woff2");
 }
 
 @keyframes fadeIn {

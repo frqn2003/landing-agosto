@@ -57,8 +57,8 @@ export default function PromocionDinamica() {
 
     if (!promocion) {
         return (
-            <section className="contenedor bg-center bg-cover relative mb-12">
-                <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-col items-center justify-center gap-4 z-20 rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center">
+            <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
+                <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-col items-center justify-center gap-4 z-20 rounded-lg bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center">
                     <div className="flex flex-col gap-1.5 items-center">
                         <span className="text-2xl sm:text-4xl font-black text-white leading-tight">
                             Inscripciones abiertas
@@ -68,7 +68,7 @@ export default function PromocionDinamica() {
                         </span>
                     </div>
                     <button
-                        onClick={() => document.getElementById('pedidoinfo')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => { const el = document.getElementById('carreras'); if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' }) }}
                         className="boton-cta text-sm whitespace-nowrap"
                     >
                         ¡Aprovechá ahora!
@@ -79,7 +79,7 @@ export default function PromocionDinamica() {
     }
 
     return (
-        <section className="contenedor bg-center bg-cover relative mb-12">
+        <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
             <div className="sm:px-6 px-2 py-6 sm:py-8 flex flex-row items-center justify-center gap-2 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
                 {/* Izquierda: descuento */}
                 <div className="flex flex-col items-center text-center">
@@ -121,7 +121,7 @@ export default function PromocionDinamica() {
                         </span>
                     </div>
                     <button
-                        onClick={() => document.getElementById('pedidoinfo')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => { const el = document.getElementById('carreras'); if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' }) }}
                         className="boton-cta text-sm whitespace-nowrap"
                     >
                         ¡Aprovechá ahora!

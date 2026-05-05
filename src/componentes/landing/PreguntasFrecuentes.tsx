@@ -29,7 +29,7 @@ export default function PreguntasFrecuentes() {
     const toggle = (i: number) => setAbierta(prev => prev === i ? null : i)
 
     return (
-        <section className="">
+        <section className="" role="region" aria-label="Preguntas frecuentes">
             <div className="flex flex-col gap-6 max-w-3xl mx-auto">
                 <h2 className="text-2xl md:text-3xl font-black degrade-azul max-sm:mt-4">Preguntas frecuentes</h2>
                 <div className="flex flex-col gap-3">

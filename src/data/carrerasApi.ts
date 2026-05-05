@@ -25,8 +25,8 @@ export function getCarrerasApi(): Promise<any[]> {
     }
 
     promesa = Promise.allSettled(
-        combinacionesUnicas.map(({ codcar, modo }) =>
-            fetch(`/landing/consultas/getCarrerasJson.php?codcar=${codcar}&modo=${modo}`)
+        combinacionesUnicas.map(({ modo }) =>
+            fetch(`/landing/consultas/getCarrerasJson.php?modo=${modo}&tipcar=Grado,Pregrado,Intermedio`)
                 .then(res => res.json())
         )
     ).then(resultados => {

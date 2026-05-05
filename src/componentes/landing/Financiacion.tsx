@@ -28,8 +28,8 @@ export default function Financiacion() {
     }, [])
 
     return (
-        <section className="contenedor bg-center bg-cover relative mb-12">
-            <div className="px-6 py-6 flex flex-col gap-6 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
+        <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Financiación">
+            <div className="px-6 py-6 flex flex-col gap-6 z-20 bg-cover bg-center rounded-lg bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
                 <h2 className="text-2xl md:text-3xl font-black text-white">
                     Financiá tus aranceles con:
                 </h2>

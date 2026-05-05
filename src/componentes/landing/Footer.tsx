@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-full bg-(--rojo-ucasal) text-white flex flex-col items-center py-6">
+    <footer className="w-full bg-(--rojo-ucasal) text-white flex flex-col items-center py-6" role="contentinfo">
       <div className="contenedor w-full flex flex-col items-center">
         
         {/* Logo Centrado */}

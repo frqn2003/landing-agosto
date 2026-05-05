@@ -4,11 +4,12 @@ import './styles/globals.css'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
-import Clarity from '@microsoft/clarity';
+import { initClarity } from './lib/clarity.ts'
 
-const projectId = "wg7h7j7vya"
-
-Clarity.init(projectId);
+if (typeof window !== 'undefined') {
+  requestIdleCallback?.(() => initClarity("wg7h7j7vya")) 
+    ?? setTimeout(() => initClarity("wg7h7j7vya"), 2000)
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -97,7 +97,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
   const [activeCard, setActiveCard] = useState(0);
 
   return (
-    <section className="w-full py-8 sm:py-14" id="modalidades">
+    <section className="w-full py-8 sm:py-14" id="modalidades" role="region" aria-label="Modalidades de cursado">
       <div className={`contenedor ${onSubPage ? '' : 'lg:mx-24'}`}>
 
         {/* Título */}
@@ -109,7 +109,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
           className="text-center mb-2"
         >
           <h2 className="text-2xl md:text-3xl lg:text-[2.6rem] font-black text-(--azul-ucasal) tracking-tight leading-tight">
-            Estudiá online, <span className="italic text-(--rojo-ucasal)">a tu manera</span>
+            Estudiá online. <span className="italic text-(--rojo-ucasal)">Tu título te espera</span>
           </h2>
         </motion.div>
 

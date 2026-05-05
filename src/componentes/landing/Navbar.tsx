@@ -96,7 +96,7 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
           ? "sticky backdrop-blur-md nav-menu"
           : "relative backdrop-blur-md"
           }`}
-        id="navbar"
+        id="navbar" role="navigation"
       >
         <div
           className={`${scrolled ? "contenedor" : "px-4"} mx-auto py-3 grid grid-cols-2 lg:grid-cols-3 items-center justify-between h-18 z-50`}
@@ -155,13 +155,14 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
           </section>
 
           <div className="justify-end flex items-center">
-            <a href="https://ucasal.edu.ar/inscripciones/" target="_blank" rel="noopener noreferrer" className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</a>
+            <a href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto" target="_blank" rel="noopener noreferrer" className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</a>
             {/* Botón mobile hamburguesa */}
             <button
               onClick={toggleMenu}
               type="button"
               className="inline-flex lg:hidden items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 hover:bg-gray-100"
               id="menu-button"
+              aria-label={menuAbierto ? 'Cerrar menú' : 'Abrir menú'}
             >
               {menuAbierto ? (
                 <svg
@@ -236,7 +237,7 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
             <li className="py-2 border-t border-gray-200 w-full">
               <button
                 className="mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
-                onClick={() => { setMenuAbierto(false); window.open('https://ucasal.edu.ar/inscripciones/', '_blank', 'noopener,noreferrer') }}
+                onClick={() => { setMenuAbierto(false); window.open('https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto', '_blank', 'noopener,noreferrer') }}
               >
                 ¡Quiero Inscribirme!
               </button>

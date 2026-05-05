@@ -15,10 +15,7 @@ const cartas: Carta[] = [
     titulo: 'Para quienes dan el primer paso',
     descripcion: 'Si estás empezando, iniciá tu carrera online con acompañamiento desde el primer día.',
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-      </svg>
+      <img src={`${import.meta.env.BASE_URL}icons/primer-paso.svg`} className="w-9 h-9" alt="Primer paso" />
     ),
     color: 'rojo',
   },
@@ -27,9 +24,7 @@ const cartas: Carta[] = [
     titulo: 'Para quienes van por todo',
     descripcion: 'Si trabajás o tenes muchas actividades, estudiá con clases online sin dejar tus responsabilidades.',
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+      <img src={`${import.meta.env.BASE_URL}icons/por-todo.svg`} className="w-9 h-9" alt="Por todo" />
     ),
     color: 'azul',
   },
@@ -38,9 +33,7 @@ const cartas: Carta[] = [
     titulo: 'Para quienes buscan retomar su carrera',
     descripcion: 'Si ya empezaste una carrera, continuá con equivalencias y no pierdas lo que ya hiciste.',
     icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-      </svg>
+      <img src={`${import.meta.env.BASE_URL}icons/retomar.svg`} className="w-9 h-9" alt="Retomar carrera" />
     ),
     color: 'rojo',
   },
@@ -79,6 +72,7 @@ function CardBeneficio({ carta, posicion, onClick }: { carta: Carta; posicion: '
       }}
       transition={{ duration: 0.4, ease: 'easeInOut' }}
       onClick={onClick}
+      style={{ willChange: 'transform, filter, opacity' }}
       className={`flex flex-col gap-4 rounded-2xl border-2 p-6 bg-white h-full max-w-sm ${esCentro ? `${c.border} shadow-xl` : 'border-gray-200 shadow-sm cursor-pointer hover:opacity-70 transition-opacity'}`}
     >
       {/* Icono */}
@@ -108,7 +102,7 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
     timerRef.current = setInterval(() => {
       setDir(1);
       setActivo(prev => (prev + 1) % N);
-    }, 7000);
+    }, 6000);
   };
 
   const irA = (i: number, direccion: 1 | -1) => {
@@ -131,21 +125,23 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
   const idxNext = (activo + 1) % N;
 
   return (
-    <div
+    <section
       className="w-full bg-white contenedor py-5 sm:py-10"
       id="beneficios"
+      role="region"
+      aria-label="Beneficios"
       onMouseEnter={pausar}
       onMouseLeave={reiniciarTimer}
     >
       {/* Encabezado */}
       <div className="mb-10 h-16 flex items-center">
-        <h2 className='text-2xl lg:text-4xl font-bold degrade-azul tracking-tight max-sm:text-center w-full'>
-          Este es <span className="degrade-rojo">tu momento</span>. <br className='block sm:hidden'/>Que tu rutina no <span className="degrade-rojo">te detenga</span>
+        <h2 className='text-2xl lg:text-4xl font-bold degrade-azul tracking-tight max-lg:text-center w-full'>
+          Este es <span className="degrade-rojo">tu momento</span>. <br className='block lg:hidden'/>Que tu rutina no <span className="degrade-rojo">te detenga</span>
         </h2>
       </div>
 
       {/* Desktop: 3 cartas visibles */}
-      <div className={`hidden sm:grid grid-cols-3 gap-4 items-center min-h-64 w-full overflow-hidden ${onSubPage ? '' : 'px-60'}`}>
+      <div className={`hidden lg:grid grid-cols-3 gap-4 items-center min-h-64 w-full overflow-hidden ${onSubPage ? '' : 'px-20 2xl:px-60'}`}>
         <AnimatePresence mode="popLayout" custom={dir}>
           <motion.div
             key={`prev-${idxPrev}`}
@@ -184,8 +180,8 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
       </div>
 
       {/* Mobile: carta central con swipe y flechas */}
-      <div className="sm:hidden flex flex-col gap-6">
-        <div className="flex items-center gap-3">
+      <div className="lg:hidden flex flex-col gap-6">
+        <div className="flex items-center gap-3 justify-center">
           {/* Flecha izquierda */}
           <button
             onClick={prev}
@@ -198,7 +194,7 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
           </button>
 
           {/* Carta con drag */}
-          <div className="flex-1 overflow-hidden">
+          <div className="flex-1 flex justify-center items-center overflow-hidden">
             <AnimatePresence mode="wait" custom={dir}>
               <motion.div
                 key={activo}
@@ -256,6 +252,6 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
           );
         })}
       </div>
-    </div>
+    </section>
   );
 }

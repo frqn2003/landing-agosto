@@ -1,44 +1,74 @@
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getCarrerasApi } from '../../data/carrerasApi'
+import dataCarreras from '../../data/carreras'
 import intlTelInput from 'intl-tel-input'
 import 'intl-tel-input/build/css/intlTelInput.css'
-import Clarity from '@microsoft/clarity'
+import { clarityEvent, clarityUpgrade } from '../../lib/clarity'
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
 const TKP_MAP: Record<string, string> = {
-    '9': 'enviado-sec-ejecutivo',
-    '10': 'enviado-lic-economia-distancia',
-    '11': 'enviado-administracion',
-    '14': 'enviado-contador',
-    '15': 'enviado-comercializacion',
-    '16': 'enviado-abogacia',
-    '58': 'enviado-licenciatura-ciencias-datos',
-    '96': 'enviado-tec-gestion-calidad-distancia',
-    '133': 'enviado-lic-administracion-agropecuaria-distancia',
-    '138': 'enviado-lic-higiene-y-seguridad-trabajo-distancia',
-    '161': 'enviado-tecnicatura-gestion-bancos-finanzas-seguros',
-    '175': 'enviado-guia-universitaria-turismo-distancia',
-    '196': 'enviado-seguridad',
-    '214': 'enviado-comercio-internacional-distancia',
-    '244': 'enviado-martillero',
-    '250': 'enviado-licenciatura-administracion-negocios-digitales-distancia',
-    '336': 'enviado-rrhh',
-    '355': 'enviado-escribania-distancia',
-    '360': 'enviado-tec-seguridad-informatica',
-    '363': 'enviado-procuracion-distancia',
-    '378': 'enviado-organizacion-direccion-eventos-ceremonial',
-    '383': 'enviado-tecnicatura-operaciones-mineras',
+    '9':   'enviado/sec-ejecutivo',
+    '10':  'enviado/lic-economia-distancia',
+    '11':  'enviado/administracion',
+    '14':  'enviado/contador',
+    '15':  'enviado/comercializacion',
+    '16':  'enviado/abogacia',
+    '58':  'enviado/licenciatura-ciencias-datos',
+    '96':  'enviado/tec-gestion-calidad-distancia',
+    '133': 'enviado/lic-administracion-agropecuaria-distancia',
+    '138': 'enviado/lic-higiene-y-seguridad-trabajo-distancia',
+    '161': 'enviado/tecnicatura-gestion-bancos-finanzas-seguros',
+    '175': 'enviado/guia-universitaria-turismo-distancia',
+    '196': 'enviado/seguridad',
+    '214': 'enviado/comercio-internacional-distancia',
+    '244': 'enviado/martillero',
+    '250': 'enviado/licenciatura-administracion-negocios-digitales-distancia',
+    '336': 'enviado/rrhh',
+    '355': 'enviado/escribania-distancia',
+    '360': 'enviado/tec-seguridad-informatica',
+    '363': 'enviado/procuracion-distancia',
+    '378': 'enviado/organizacion-direccion-eventos-ceremonial',
+    '383': 'enviado/tecnicatura-operaciones-mineras',
 }
 
 const BASE_URL = 'https://www.ucasal.edu.ar/landing/ingreso/carreras-agosto/'
+const RECAPTCHA_SITE_KEY = '6LfSBnAsAAAAANxuGFb77-exJXGHRWQGrCsGZMnr'
+let recaptchaPromise: Promise<any> | null = null
+
+function cargarRecaptcha() {
+    const grecaptcha = (window as any).grecaptcha
+    if (grecaptcha) return Promise.resolve(grecaptcha)
+    if (recaptchaPromise) return recaptchaPromise
+
+    recaptchaPromise = new Promise((resolve, reject) => {
+        const scriptExistente = document.getElementById('recaptcha-script') as HTMLScriptElement | null
+        if (scriptExistente) {
+            scriptExistente.addEventListener('load', () => resolve((window as any).grecaptcha), { once: true })
+            scriptExistente.addEventListener('error', reject, { once: true })
+            return
+        }
+
+        const script = document.createElement('script')
+        script.id = 'recaptcha-script'
+        script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`
+        script.async = true
+        script.defer = true
+        script.onload = () => resolve((window as any).grecaptcha)
+        script.onerror = reject
+        document.head.appendChild(script)
+    })
+
+    return recaptchaPromise
+}
 
 export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: string, onSubPage?: boolean }) {
     const navigate = useNavigate()
     const [carreras, setCarreras] = useState<any[]>([])
+    const [apiCargando, setApiCargando] = useState(false)
     const [modalidad, setModalidad] = useState("")
     const [codcar, setCodcar] = useState(codcarInicial ?? '')
     const [idProvincia, setIdProvincia] = useState('')
@@ -57,6 +87,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
     const [modalOpen, setModalOpen] = useState(false)
 
     const [ddiPais, setDdiPais] = useState('')
+    const formRef = useRef<HTMLFormElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
     const itiRef = useRef<ReturnType<typeof intlTelInput> | null>(null)
     const urlParametros = new URLSearchParams(window.location.search)
@@ -70,12 +101,22 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         campaignid: urlParametros.get('campaignid'),
         userAgent: navigator.userAgent
     }
-    useEffect(() => {
-        getCarrerasApi().then(setCarreras).catch(() => setCarreras([]))
-    }, [])
+    const apiCargadaRef = useRef(false)
+    function cargarApi() {
+        if (apiCargadaRef.current) return
+        apiCargadaRef.current = true
+        setApiCargando(true)
+        getCarrerasApi().then(data => { setCarreras(data); setApiCargando(false) }).catch(() => { setCarreras([]); setApiCargando(false) })
+    }
 
-    const carrerasUnicas = [...new Map(carreras.map(c => [c.codcar, c])).values()]
-    const modos = carreras.filter(c => String(c.codcar) === codcar)
+    const carrerasUnicas = dataCarreras
+    const modos = [
+        ...new Map(
+            dataCarreras
+                .filter(c => String(c.codcar) === codcar)
+                .map(c => [String(c.modalidad), c])
+        ).values()
+    ]
 
     const carreraSeleccionada = carreras.find(c => String(c.codcar) === codcar && String(c.modo) === modalidad)
     const provincias: any[] = [
@@ -123,14 +164,33 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
     }, [])
 
     useEffect(() => {
+        const form = formRef.current
+        if (!form) return
+
+        const observer = new IntersectionObserver(
+            entries => {
+                if (entries.some(entry => entry.isIntersecting)) {
+                    cargarRecaptcha().catch(console.error)
+                    cargarApi()
+                    observer.disconnect()
+                }
+            },
+            { rootMargin: '800px 0px' }
+        )
+
+        observer.observe(form)
+        return () => observer.disconnect()
+    }, [])
+
+    useEffect(() => {
         if (codcar && modos.length === 1) {
-            const v = String(modos[0].modo)
+            const v = String(modos[0].modalidad)
             setModalidad(v)
             setValue('cbx_modo', v, { shouldValidate: true })
             setIdProvincia('')
             setIdSede('')
         }
-    }, [codcar, carreras])
+    }, [codcar])
 
     useEffect(() => {
         if (provincias.length === 1) {
@@ -149,17 +209,18 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         }
     }, [idProvincia])
     return (
-        <form role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
+        <form ref={formRef} role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
             autoComplete="on"
             onSubmit={handleSubmit(
                 async () => {
                     setEnviando(true)
                     let recaptchaToken = '';
                     try {
+                        const grecaptcha = await cargarRecaptcha()
                         recaptchaToken = await new Promise((resolve, reject) => {
-                            (window as any).grecaptcha.ready(function () {
-                                (window as any).grecaptcha
-                                    .execute('6LfSBnAsAAAAANxuGFb77-exJXGHRWQGrCsGZMnr', { action: 'submit' })
+                            grecaptcha.ready(function () {
+                                grecaptcha
+                                    .execute(RECAPTCHA_SITE_KEY, { action: 'submit' })
                                     .then(resolve)
                                     .catch(reject);
                             });
@@ -174,24 +235,24 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
                     await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
 
-                        ; (window as any).dataLayer?.push({ event: 'form_enviado_landings', form_id: 'pedidoinfo' })
-                    Clarity.event('formulario-enviado')
-                    Clarity.upgrade('conversion-formulario')
-                    const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
-                    const tkpPath = tkpSlug ?? 'enviado-agosto'
-                    navigate('/' + tkpPath, {
-                        state: {
-                            nombre,
-                            email,
-                            carrera: carreraSeleccionada?.nombre_carrera ?? '',
-                            modalidad: carreraSeleccionada?.modo === 7 ? 'Online' : 'Presencial',
-                            sede: sedes.find((s: any) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
-                        }
-                    })
-                },
-                (_errors) => {
-                    Clarity.event('formulario-invalido')
-                })}
+                ; (window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
+                clarityEvent('formulario-enviado')
+                clarityUpgrade('conversion-formulario')
+                const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
+                const tkpPath = tkpSlug ? tkpSlug : 'enviado-agosto'
+                navigate(`/${tkpPath}`, {
+                    state: {
+                        nombre,
+                        email,
+                        carrera: dataCarreras.find(c => String(c.codcar) === codcar)?.nombre ?? '',
+                        modalidad: modalidad === '7' ? 'Online' : 'Presencial',
+                        sede: sedes.find((s: { id_sede: string; nombre_sede: string }) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
+                    }
+                })
+            },
+            (_errors) => {
+                clarityEvent('formulario-invalido')
+            })}
             className={`bg-white rounded-lg shadow-2xl ${onSubPage ? 'px-6 py-4' : 'p-6'}`}>
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
@@ -203,8 +264,9 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
             <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
-            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}`} />
-            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}?id=404`} />
+            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar].replace('enviado/', 'enviado-') : 'enviado-agosto'}`} />
+            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar].replace('enviado/', 'enviado-') : 'enviado-agosto'}?id=404`} />
+
             {!onSubPage && (
                 <div className="flex justify-center">
                     <p className="text-xl my-2 text-black degrade-azul font-bold">
@@ -215,7 +277,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <div className={`${onSubPage ? 'flex flex-col gap-2 py-2' : 'grid grid-cols-2 gap-6 py-4'} border-b border-black/40`}>
                 <div className="relative z-0 w-full group">
                     {!!codcarInicial && <input type="hidden" name="cbx_carrera" value={codcar} />}
-                    <select name={codcarInicial ? undefined : "cbx_carrera"} id="cbx_carrera" aria-label="Seleccionar Carrera"
+                    <select name={codcarInicial ? undefined : "cbx_carrera"} id="cbx_carrera" aria-label="Seleccionar Carrera" tabIndex={1}
                         className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900 ${codcarInicial ? 'opacity-75 cursor-not-allowed bg-gray-50' : ''}`}
                         required
                         disabled={!!codcarInicial}
@@ -229,12 +291,12 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     >
                         <option value="" defaultValue={'Seleccionar Carrera'}>Seleccionar Carrera</option>
                         {carrerasUnicas.map((c) => (
-                            <option key={c.codcar} value={c.codcar}>{c.nombre_carrera}</option>
+                            <option key={c.codcar} value={c.codcar}>{c.nombre}</option>
                         ))}
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="modo" id="cbx_modo" aria-label="Seleccionar Modalidad"
+                    <select name="modo" id="cbx_modo" aria-label="Seleccionar Modalidad" tabIndex={2}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar, !!modalidad)}
                             ${!codcar ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
@@ -250,12 +312,12 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         required>
                         <option value="" disabled defaultValue={'Seleccionar Modalidad'}>Seleccionar Modalidad</option>
                         {modos.map((m) => (
-                            <option key={m.modo} value={m.modo}>{m.modo === 7 ? 'Online' : 'Presencial'}</option>
+                            <option key={m.modalidad} value={m.modalidad}>{m.modalidad === 7 ? 'Online' : 'Presencial'}</option>
                         ))}
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="cbx_provincia" id="cbx_provincia" aria-label="Seleccionar Provincia"
+                    <select name="cbx_provincia" id="cbx_provincia" aria-label="Seleccionar Provincia" tabIndex={3}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar && !!modalidad, !!idProvincia)}
                             ${!codcar || !modalidad ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
@@ -269,14 +331,17 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         required
                         disabled={!codcar || !modalidad}
                     >
-                        <option value="" disabled defaultValue={'Seleccionar Provincia'}>Seleccionar Provincia</option>
-                        {provincias.map((p: any) => (
+                        {apiCargando && codcar && modalidad
+                            ? <option value="" disabled>Cargando provincias...</option>
+                            : <option value="" disabled defaultValue={'Seleccionar Provincia'}>Seleccionar Provincia</option>
+                        }
+                        {provincias.map((p: { id_provincia: string; nombre_provincia: string }) => (
                             <option key={p.id_provincia} value={p.id_provincia}>{p.nombre_provincia}</option>
                         ))}
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="cbx_sede" id="cbx_sede" aria-label="Seleccionar Sede"
+                    <select name="cbx_sede" id="cbx_sede" aria-label="Seleccionar Sede" tabIndex={4}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar && !!modalidad && !!idProvincia, !!idSede)}
                             ${!codcar || !modalidad || !idProvincia ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
@@ -288,18 +353,21 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         }}
                         required
                         disabled={!codcar || !modalidad || !idProvincia}>
-                        <option value="" disabled defaultValue={'Seleccionar Sede'}>Seleccionar Sede</option>
+                        {apiCargando && codcar && modalidad && idProvincia
+                            ? <option value="" disabled>Cargando sedes...</option>
+                            : <option value="" disabled defaultValue={'Seleccionar Sede'}>Seleccionar Sede</option>
+                        }
                         {sedesOficiales.length > 0 && (
                             <optgroup label="Sedes disponibles">
-                                {sedesOficiales.map((s: any) => (
+                                {sedesOficiales.map((s: { id_sede: string; nombre_sede: string }) => (
                                     <option key={s.id_sede} value={s.id_sede}>{s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}
                         {tieneHome && (
                             <optgroup label="Sin sede cerca (Home)">
-                                {sedesHome.map((s: any) => (
-                                    <option value="500"> {s.nombre_sede}</option>
+                                {sedesHome.map((s: { id_sede: string; nombre_sede: string }) => (
+                                    <option key={s.id_sede} value="500"> {s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}
@@ -310,7 +378,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
                 <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 `}>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <input type="text" {...register("nombre")} id="nombre"
+                        <input type="text" {...register("nombre")} id="nombre" tabIndex={5}
                             className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!nombre && !errors.nombre)}`}
                             placeholder=" " required
                             autoComplete="name"
@@ -324,7 +392,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             className={`absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2  peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 ${codcar && modalidad && idProvincia && idSede ? 'peer-focus:bg-white bg-white' : 'peer-focus:bg-gray-100 bg-gray-100'}`}>Nombre Completo</label>
                     </div>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <input type="email" id="email"
+                        <input type="email" id="email" tabIndex={6}
                             className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!email && !errors.email)}`}
                             placeholder=" " required
                             autoComplete="email"
@@ -339,23 +407,23 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </div>
                 </div>
 
-                <div className={`grid grid-cols-2 sm:flex sm:flex-row mt-2 gap-2 sm:gap-4 pb-4`}>
+                <div className={`grid grid-cols-2 xl:flex xl:flex-row mt-2 gap-2 sm:gap-4 pb-4`}>
                     <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 pointer-events-none'}`}>
                         <div className="relative w-full group">
                             <input name="tipo_tel" type="hidden" value="cel" />
                             <input type="hidden" name="ddi_pais" value={ddiPais} />
-                            <input type="tel" ref={phoneRef} id="phone" autoComplete="off"
+                            <input type="tel" ref={phoneRef} id="phone" autoComplete="off" tabIndex={7}
                                 className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 caret-transparent"
                                 onKeyDown={e => e.preventDefault()}
                                 onPaste={e => e.preventDefault()}
                                 onDrop={e => e.preventDefault()} />
-                            <label htmlFor="tipo_tel" className="absolute text-xs text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1 z-10 origin-left bg-white px-2">Código país</label>
+                            <label htmlFor="phone" className="absolute text-xs text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 left-1 z-10 origin-left bg-white px-2">Código país</label>
                         </div>
                     </div>
 
-                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 sm:w-1/3 w-full ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 xl:w-1/3 w-full ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
-                            <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric"
+                            <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric" tabIndex={8}
                                 className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!codArea && !errors.cod_area)}`}
                                 placeholder="" required
                                 autoComplete="tel-area-code"
@@ -378,7 +446,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             <div className="relative">
                                 <input type="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
                                     className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!tel && !errors.tel)}`}
-                                    placeholder="" required tabIndex={6}
+                                    placeholder="" required tabIndex={9}
                                     autoComplete="tel-local"
                                     aria-invalid={!!errors.tel}
                                     aria-describedby={errors.tel ? 'error-tel' : undefined}
@@ -457,7 +525,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     <button id="formButton" type="submit"
                         disabled={!todosCompletos}
                         className={`ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 ${todosCompletos ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-                        tabIndex={11}>
+                        tabIndex={10}>
                         Enviar
                     </button>
                 </div>

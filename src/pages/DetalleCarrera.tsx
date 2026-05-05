@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { sanitizarTexto } from "../lib/utils"
-import Clarity from "@microsoft/clarity"
+import { clarityEvent, claritySetTag, clarityUpgrade } from "../lib/clarity"
 
 import data from "../data/carreras"
 import Form from "../componentes/landing/Form"
@@ -44,7 +44,7 @@ export default function DetalleCarrera() {
 
     useEffect(() => {
         if (carrera) {
-            document.title = `Estudia ${carrera?.nombre} en UCASAL`
+            document.title = `Estudia ${carrera?.nombre} en UCASAL | Universidad Católica de Salta`
         }
         return () => {
             document.title = 'UCASAL: ¡Inicia tu Carrera en Agosto!'
@@ -65,19 +65,21 @@ export default function DetalleCarrera() {
             return
         }
         else {
-            Clarity.setTag("carrera", carrera?.nombre || '')
-            Clarity.setTag("carreraId", carrera?.codcar?.toString() || '')
-            Clarity.setTag("modalidad", modalidad)
-            Clarity.setTag("slug", slugLimpio)
+            claritySetTag("carrera", carrera?.nombre || '')
+            claritySetTag("carreraId", carrera?.codcar?.toString() || '')
+            claritySetTag("modalidad", modalidad)
+            claritySetTag("slug", slugLimpio)
 
-            Clarity.event("vista-carrera")
-            Clarity.upgrade("visita-detalle-carrera")
+            clarityEvent("vista-carrera")
+            clarityUpgrade("visita-detalle-carrera")
         }
     }, [slugLimpio, carrera])
 
     return (
         <>
             <Helmet>
+                <link rel="preload" href={`${import.meta.env.BASE_URL}encabezados/${carrera?.codcar}-mobile.webp`} as="image" media="(max-width: 768px)" />
+                <link rel="preload" href={`${import.meta.env.BASE_URL}encabezados/${carrera?.codcar}-desktop.webp`} as="image" media="(min-width: 769px)" />
                 <meta name="description" content={carrera?.descripcionCorta} />
                 <meta name="language" content="es" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -196,7 +198,7 @@ export default function DetalleCarrera() {
                             Ver plan de estudios
                         </button>
                         <a
-                            href="https://www.ucasal.edu.ar/inscripciones/"
+                            href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm px-6 py-3 rounded-xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center"

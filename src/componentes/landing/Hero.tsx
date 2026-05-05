@@ -1,5 +1,6 @@
 /* De 640 a 1024 aparece la foto y esta medio corrompido todo */
 import { useEffect, useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const duracion = 1500
 const delay = typeof window !== 'undefined' && window.innerWidth < 640 ? 0 : 1600
@@ -62,44 +63,45 @@ function StatItem({ valor, etiqueta, index, subetiqueta }: { valor: string; etiq
 
 export default function Hero() {
     return (
-        <section className="w-full flex items-center pt-4 px-4 contenedor">
+        <>
+        <Helmet>
+            <link rel="preload" href={`${import.meta.env.BASE_URL}mobile.webp`} as="image" media="(max-width: 768px)" />
+            <link rel="preload" href={`${import.meta.env.BASE_URL}desktop.webp`} as="image" media="(min-width: 769px)" />
+        </Helmet>
+        <section className="w-full flex items-center pt-4 px-4 contenedor" role="banner" aria-label="Banner principal">
             <div className="w-full h-[800px] sm:h-[760px] pt-4 pb-6 sm:p-12 rounded-2xl relative">
                 <div className="overlay rounded-2xl"></div>
                 <div className="flex gap-4 lg:gap-6 xl:gap-8 2xl:gap-12 items-start w-full justify-start h-full">
                     {/* ── Columna izquierda ── */}
-                    <div className="flex flex-col gap-2 sm:gap-8 lg:pl-4 items-center sm:items-start w-full h-full justify-center sm:justify-left pt-4 sm:pt-0 z-30">
+                    <div className="flex flex-col gap-2 sm:gap-8 lg:pl-4 items-center md:items-start w-full h-full justify-center sm:justify-left pt-4 sm:pt-0 z-30">
 
-                        <h1 className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black leading-none tracking-tight uppercase mt-6 flex flex-col w-full text-center sm:text-left" style={{ fontFamily: "Museo Sans, sans-serif" }}>
-                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(12)_forwards] mx-auto sm:mx-0">
+                        <h1 className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black leading-none tracking-tight uppercase mt-6 flex flex-col w-full text-center md:text-left" style={{ fontFamily: "Museo Sans, sans-serif" }}>
+                            <span className="md:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(12)_forwards] mx-auto sm:mx-0">
                                 EMPEZÁ
                             </span>
-                            <span className="sm:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
+                            <span className="md:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
                                 EN AGOSTO
                             </span>
-                            <p className='text-2xl md:text-4xl tracking-tight font-thin sm:text-white text-(--azul-ucasal) px-2 overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_1.4s_forwards,fadeIn_0.05s_1.5s_forwards]'>Tu título te espera</p>
+                            <p className='text-2xl md:text-4xl tracking-tight font-thin md:text-white text-(--azul-ucasal) lg:px-2 overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_1.4s_forwards,fadeIn_0.05s_1.5s_forwards]'>estudía online</p>
                         </h1>
                         <div className='flex flex-col gap-8 sm:gap-14 sm:text-left sm:justify-start sm:items-start justify-center text-center items-center h-full w-full'>
                             <div className='flex flex-col gap-2 h-full w-full max-md:items-end max-md:justify-end'>
-                                <p className="text-sm sm:text-xl pl-2 text-white leading-relaxed max-sm:items-end sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 1.8s forwards' }}>Carreras universitarias oficiales, cursado online <br className="hidden sm:block" />y docentes comprometidos con tu crecimiento.
+                                <p className="text-sm max-md:text-center sm:text-xl lg:pl-2 text-white leading-relaxed max-sm:items-end sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 1.8s forwards' }}>Carreras universitarias oficiales, cursado online <br className="hidden md:block" />y docentes comprometidos con tu crecimiento.
                                 </p>
-                                <div className="flex flex-row w-full sm:mt-12 mt-2 gap-4 items-end sm:items-start justify-center sm:justify-start sm:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 2s forwards' }}
+                                <div className="flex flex-row w-full sm:mt-12 mt-2 gap-4 items-end lg:items-start justify-center md:justify-start md:max-w-140" style={{ opacity: 0, animation: 'heroFadeInUp 0.5s ease-out 2s forwards' }}
                                 >
                                     <button
                                         onClick={() => {
-                                            const form = document.getElementById('pedidoinfo');
-                                            if (form) {
-                                                form.scrollIntoView({ behavior: 'smooth' });
-                                            }
+                                            const el = document.getElementById('carreras')
+                                            if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' })
                                         }}
                                         className="boton-cta" style={{ fontSize: 'var(--boton-size)' }}
                                     >
                                         Quiero información
                                     </button>
                                     <button className='group inline-flex items-center text-white/90 border-white/90 border text-xs sm:text-lg md:px-6 gap-3 px-4 py-2.5 md:py-3 rounded-xl transition-all cursor-pointer  botoncito' style={{ '--botoncito-bg': '#FFFFFF', '--botoncito-bg-secondary': '#FFFFFF', '--botoncito-opacity': '0.5' } as React.CSSProperties} onClick={() => {
-                                        const carreras = document.getElementById('carreras');
-                                        if (carreras) {
-                                            carreras.scrollIntoView({ behavior: 'smooth' });
-                                        }
+                                        const el = document.getElementById('carreras')
+                                        if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' })
                                     }}>
                                         <span className="inline-block overflow-hidden transition-all duration-400 group-hover:rotate-45 group-hover:translate-x-20 sm:group-hover:translate-x-28">  <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -169,11 +171,12 @@ export default function Hero() {
                             src={`${import.meta.env.BASE_URL}desktop.jpg`}
                             /* src={`/${carrera.codcar}.png`} */
                             alt="Hero"
-                            className="w-full h-full object-cover object-center"
+                            className="w-full h-full object-cover object-center" fetchPriority='high'
                         />
                     </picture>
                 </div>
             </div>
         </section >
+        </>
     );
 }

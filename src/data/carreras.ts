@@ -5,7 +5,7 @@ const data = [
         slug: "abogacia",
         nombre: "Abogacía",
         descripcionCorta: "Vas a poder asesorar, representar y defender en cualquier ámbito del derecho, con herramientas para actuar en el sector público, privado o judicial.",
-        descripcionLarga: "La carrera de Abogacía de UCASAL forma profesionales con dominio profundo del ordenamiento jurídico argentino y las tendencias del derecho comparado. A lo largo de la carrera, los estudiantes adquieren herramientas para el ejercicio de la abogacía en ámbitos civiles, penales, comerciales, administrativos y laborales, desarrollando además competencias en negociación, mediación y litigio.",
+        descripcionLarga: "La carrera de Abogacía de UCASAL forma profesionales con dominio profundo del ordenamiento jurídico argentino y las tendencias del derecho comparado. A lo largo de la carrera, Adquirirás herramientas para el ejercicio de la abogacía en ámbitos civiles, penales, comerciales, administrativos y laborales, desarrollando además competencias en negociación, mediación y litigio.",
         duracion: "5 años",
         modalidad: 7,
         perfilEgresado: {
@@ -98,7 +98,7 @@ const data = [
         slug: "corredor-inmobiliario-y-martillero-publico",
         nombre: "Corredor Inmobiliario y Martillero Público",
         descripcionCorta: "Vas a poder gestionar operaciones inmobiliarias, tasar propiedades y conducir remates públicos con habilitación profesional oficial.",
-        descripcionLarga: "Esta carrera habilita para el ejercicio profesional en el mercado inmobiliario y en remates públicos, combinando formación jurídica, económica y técnica. Los egresados podrán gestionar compraventas, alquileres, tasaciones y subastas de bienes muebles e inmuebles, actuando como intermediarios y asesores en transacciones de alto valor. El plan de estudios incluye legislación vigente, valuación de propiedades, ética profesional y gestión comercial.",
+        descripcionLarga: "Esta carrera habilita el ejercicio profesional en el mercado inmobiliario y en remates públicos, combinando formación jurídica, económica y técnica. Los egresados podrán gestionar compraventas, alquileres, tasaciones y subastas de bienes muebles e inmuebles, actuando como intermediarios y asesores en transacciones de alto valor. El plan de estudios incluye legislación vigente, valuación de propiedades, ética profesional y gestión comercial.",
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
@@ -241,7 +241,7 @@ const data = [
         slug: "tecnicatura-en-seguridad-informatica",
         nombre: "Tecnicatura en Seguridad Informática",
         descripcionCorta: "Vas a poder proteger sistemas, redes y datos frente a amenazas digitales: una tecnicatura corta con una de las demandas laborales más altas del mercado.",
-        descripcionLarga: "La Tecnicatura en Seguridad Informática forma técnicos especializados en la protección de infraestructuras tecnológicas frente a amenazas cibernéticas. Los estudiantes aprenden a identificar vulnerabilidades, implementar políticas de seguridad, gestionar incidentes y aplicar normativas de protección de datos. Con una duración acotada y orientación práctica, es ideal para quienes buscan insertarse rápidamente en uno de los sectores con mayor crecimiento del mercado laboral actual.",
+        descripcionLarga: "La Tecnicatura en Seguridad Informática forma técnicos especializados en la protección de infraestructuras tecnológicas frente a amenazas cibernéticas. Aprenderás a identificar vulnerabilidades, implementar políticas de seguridad, gestionar incidentes y aplicar normativas de protección de datos. Con una duración acotada y orientación práctica, es ideal para quienes buscan insertarse rápidamente en uno de los sectores con mayor crecimiento del mercado laboral actual.",
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
@@ -474,7 +474,7 @@ const data = [
         slug: "tecnicatura-en-operaciones-mineras-e-industriales",
         nombre: "Tecnicatura en Operaciones Mineras e Industriales",
         descripcionCorta: "Vas a poder supervisar operaciones en industrias mineras y manufactureras, con inserción rápida en uno de los sectores más activos de la región.",
-        descripcionLarga: "Esta tecnicatura forma técnicos con capacidad para gestionar procesos productivos en industrias mineras y manufactureras. Los estudiantes adquieren conocimientos en seguridad industrial, gestión de operaciones, control de calidad y normativas ambientales aplicadas al sector. La carrera responde a la creciente demanda de profesionales capacitados en una región con importante actividad minera e industrial, ofreciendo una rápida inserción laboral.",
+        descripcionLarga: "Esta tecnicatura forma técnicos con capacidad para gestionar procesos productivos en industrias mineras y manufactureras. Adquirirás conocimientos en seguridad industrial, gestión de operaciones, control de calidad y normativas ambientales aplicadas al sector. La carrera responde a la creciente demanda de profesionales capacitados en una región con importante actividad minera e industrial, ofreciendo una rápida inserción laboral.",
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
@@ -536,7 +536,7 @@ const data = [
         slug: "higiene-y-seguridad",
         nombre: "Licenciatura en Higiene y Seguridad",
         descripcionCorta: "Vas a poder diseñar planes de prevención y garantizar entornos laborales seguros: una carrera con altísima demanda en todos los sectores productivos.",
-        descripcionLarga: "La Licenciatura en Higiene y Seguridad forma profesionales especializados en la prevención de riesgos laborales y la gestión de condiciones seguras en el ambiente de trabajo. Los egresados pueden desempeñarse como responsables de seguridad e higiene en industrias, empresas de servicios y organismos públicos, diseñando e implementando programas de prevención, realizando auditorías y asegurando el cumplimiento de la normativa vigente.",
+        descripcionLarga: "La Licenciatura en Higiene y Seguridad forma profesionales especializados en prevención de riesgos laborales y gestión de condiciones seguras en el ambiente de trabajo. Los egresados pueden desempeñarse como responsables de seguridad e higiene en industrias, empresas de servicios y organismos públicos, diseñando e implementando programas de prevención, realizando auditorías y asegurando el cumplimiento de la normativa vigente.",
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
@@ -630,7 +630,7 @@ const data = [
         slug: "tecnicatura-univ-en-gestion-de-calidad",
         nombre: "Tecnicatura Univ. en Gestión de Calidad",
         descripcionCorta: "Vas a poder implementar y auditar sistemas de gestión de calidad basados en normas ISO, con salida laboral inmediata en industrias y servicios.",
-        descripcionLarga: "La Tecnicatura Universitaria en Gestión de Calidad prepara a los estudiantes para diseñar, implementar y auditar sistemas de gestión basados en normas internacionales como ISO 9001. Los egresados pueden desempeñarse en áreas de control de calidad, mejora de procesos y certificación en empresas industriales, de servicios y organismos públicos. La carrera brinda una formación práctica y orientada a resultados, con salida laboral inmediata.",
+        descripcionLarga: "La Tecnicatura Universitaria en Gestión de Calidad te preparará para diseñar, implementar y auditar sistemas de gestión basados en normas internacionales como ISO 9001. Los egresados pueden desempeñarse en áreas de control de calidad, mejora de procesos y certificación en empresas industriales, de servicios y organismos públicos. La carrera brinda una formación práctica y orientada a resultados, con salida laboral inmediata.",
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
@@ -684,7 +684,7 @@ const data = [
         slug: "recursos-humanos",
         nombre: "Licenciatura en Recursos Humanos",
         descripcionCorta: "Vas a poder liderar la gestión del talento en cualquier organización: selección, capacitación, clima laboral y desarrollo de personas.",
-        descripcionLarga: "La Licenciatura en Recursos Humanos forma profesionales capaces de gestionar integralmente el capital humano de las organizaciones. Los egresados adquieren competencias en reclutamiento y selección de personal, diseño de estructuras organizacionales, capacitación y desarrollo, gestión del desempeño y relaciones laborales. La carrera combina psicología organizacional, derecho laboral y herramientas de gestión para formar líderes de personas.",
+        descripcionLarga: "La Licenciatura en Recursos Humanos forma profesionales capaces de gestionar integralmente el capital humano de las organizaciones. Los egresados adquieren competencias en reclutamiento, selección de personal, diseño de estructuras organizacionales, capacitación, desarrollo, gestión del desempeño y relaciones laborales. La carrera combina psicología organizacional, derecho laboral y herramientas de gestión para formar líderes de personas.",
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
@@ -940,7 +940,7 @@ const data = [
         slug: "tec-universitaria-en-gestion-de-bancos-empresas-financieras-y-de-seguros",
         nombre: "Tecnicatura Univ. en Gestión de Bancos, Empresas Financieras y de Seguros",
         descripcionCorta: "Vas a poder trabajar en bancos, financieras y aseguradoras asesorando clientes, gestionando productos y operando en el sistema financiero.",
-        descripcionLarga: "Esta tecnicatura forma especialistas en la operatoria de instituciones financieras, bancarias y aseguradoras. Los estudiantes adquieren conocimientos en productos y servicios bancarios, análisis de riesgo crediticio, normativa del Banco Central, seguros de vida y patrimoniales, y atención al cliente financiero. La carrera responde a la demanda del sector con una formación práctica y orientada al ejercicio profesional inmediato.",
+        descripcionLarga: "Esta tecnicatura forma especialistas en la operatoria de instituciones financieras, bancarias y aseguradoras. Adquirirás conocimientos en productos y servicios bancarios, análisis de riesgo crediticio, normativa del Banco Central, seguros de vida y patrimoniales y atención al cliente financiero. La carrera responde a la demanda del sector con una formación práctica y orientada al ejercicio profesional inmediato.",
         duracion: "3 años",
         modalidad: 7,
         perfilEgresado: {
@@ -1005,7 +1005,7 @@ const data = [
         slug: "procuracion",
         nombre: "Procuración",
         descripcionCorta: "Vas a poder gestionar trámites y expedientes judiciales, trabajar en estudios jurídicos o tribunales y asistir en procesos legales de forma profesional.",
-        descripcionLarga: "La carrera de Procuración forma profesionales habilitados para actuar como auxiliares de la justicia en la gestión de expedientes y trámites judiciales. Los egresados adquieren conocimientos en derecho procesal civil, comercial y laboral, y pueden desempeñarse en estudios jurídicos, tribunales y organismos del Estado. La carrera es una opción ágil para quienes desean insertarse en el ámbito judicial sin cursar una licenciatura completa en abogacía.",
+        descripcionLarga: "La carrera de Procuración forma profesionales habilitados para actuar como auxiliares de la justicia en la gestión de expedientes y trámites judiciales. Los egresados adquieren conocimientos en derecho procesal civil, comercial y laboral, desempeñándose en estudios jurídicos, tribunales y organismos del Estado. La carrera es una opción ágil para quienes desean insertarse en el ámbito judicial sin cursar una licenciatura completa en abogacía.",
         duracion: "3 años",
         modalidad: 7,
         perfilEgresado: {
@@ -1069,7 +1069,7 @@ const data = [
         slug: "tecn-univ-en-organizacion-y-direccion-de-eventos-y-ceremonial",
         nombre: "Tecnicatura Univ. en Organización y Dirección de Eventos y Ceremonial",
         descripcionCorta: "Vas a poder planificar y coordinar eventos corporativos, sociales y oficiales con dominio del protocolo en una industria en pleno crecimiento.",
-        descripcionLarga: "La Tecnicatura en Organización y Dirección de Eventos y Ceremonial forma profesionales capaces de planificar, coordinar y ejecutar eventos de todo tipo: corporativos, sociales, culturales y oficiales. Los estudiantes aprenden protocolo y ceremonial, logística de eventos, gestión de proveedores, comunicación institucional y producción audiovisual. La carrera brinda herramientas prácticas para una industria en constante crecimiento.",
+        descripcionLarga: "La Tecnicatura en Organización y Dirección de Eventos y Ceremonial forma profesionales capaces de planificar, coordinar y ejecutar eventos de todo tipo: corporativos, sociales, culturales y oficiales. Aprenderás protocolo y ceremonial, logística de eventos, gestión de proveedores, comunicación institucional y producción audiovisual. La carrera brinda herramientas prácticas para una industria en constante crecimiento.",
         duracion: "2 años",
         modalidad: 7,
         perfilEgresado: {
@@ -1184,7 +1184,7 @@ const data = [
         slug: "comercio-internacional",
         nombre: "Licenciatura en Comercio Internacional",
         descripcionCorta: "Vas a poder gestionar exportaciones, importaciones y operaciones de comercio exterior, negociando en mercados globales con visión estratégica.",
-        descripcionLarga: "La Licenciatura en Comercio Internacional forma profesionales capaces de gestionar operaciones de comercio exterior, negociar con contrapartes de distintos países y aplicar la normativa aduanera y los acuerdos comerciales vigentes. Los egresados pueden desempeñarse en empresas exportadoras e importadoras, despachantes de aduana, cámaras de comercio y organismos de promoción comercial, aportando una mirada estratégica sobre los negocios globales.",
+        descripcionLarga: "La Licenciatura en Comercio Internacional forma profesionales capaces de gestionar operaciones de comercio exterior, negociar con contrapartes de distintos países, aplicar la normativa aduanera y los acuerdos comerciales vigentes. Los egresados pueden desempeñarse en empresas exportadoras e importadoras, despachantes de aduana, cámaras de comercio y organismos de promoción comercial, aportando una mirada estratégica sobre los negocios globales.",
         duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
@@ -1498,7 +1498,7 @@ const data = [
         slug: "guia-universitario-de-turismo",
         nombre: "Guía Universitario de Turismo",
         descripcionCorta: "Vas a poder guiar experiencias turísticas en destinos nacionales e internacionales, combinando patrimonio, idiomas y atención al viajero.",
-        descripcionLarga: "La carrera de Guía Universitario de Turismo forma profesionales para la conducción de visitas y experiencias turísticas en destinos nacionales e internacionales. Los estudiantes adquieren conocimientos en patrimonio cultural y natural, geografía turística, idiomas, primeros auxilios y técnicas de interpretación. La carrera prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión.",
+        descripcionLarga: "La carrera te prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión. Adquirirás conocimientos en patrimonio cultural y natural, geografía turística, idiomas, primeros auxilios y técnicas de interpretación. La carrera prepara para trabajar en agencias de turismo, organismos de promoción turística y como guías independientes en un sector en constante expansión.",
         duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
@@ -1637,7 +1637,7 @@ const data = [
             }
         ]
     },
-    {
+    /* {
         codcar: 384,
         slug: "licenciatura-en-corretaje-tasacion-y-administracion-de-consorcios",
         nombre: "Licenciatura en Corretaje, Tasación y Administración de Consorcios - CCC",
@@ -1692,6 +1692,6 @@ const data = [
                 ]
             }
         ]
-    }
+    } */
 ]
 export default data;
