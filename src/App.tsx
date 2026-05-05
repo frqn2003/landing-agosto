@@ -57,7 +57,7 @@ function App() {
               <ComparativaModalidades onSubPage={false} />
               <Financiacion />
               <section className='contenedor pb-10' id="sedes" role="region" aria-label="Sedes y preguntas frecuentes">
-                <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-3">
                   <Sedes />
                   <PreguntasFrecuentes />
                 </div>
