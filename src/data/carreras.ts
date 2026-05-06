@@ -385,7 +385,7 @@ const data = [
         nombre: "Licenciatura en Administración de Empresas",
         descripcionCorta: "Vas a poder liderar organizaciones, gestionar equipos y tomar decisiones estratégicas en empresas privadas u organismos públicos de cualquier sector.",
         descripcionLarga: "La Licenciatura en Administración de Empresas forma profesionales con capacidad para gestionar organizaciones de todo tipo y tamaño. Los egresados dominan herramientas de planificación estratégica, gestión de recursos humanos, finanzas corporativas, marketing y operaciones. La carrera combina teoría y práctica para desarrollar líderes capaces de tomar decisiones en entornos dinámicos y competitivos, tanto en empresas privadas como en organismos públicos.",
-        duracion: "5 años",
+        duracion: "4 años",
         modalidad: 7,
         perfilEgresado: {
             items: [
@@ -1637,8 +1637,8 @@ const data = [
             }
         ]
     },
-    /* {
-        codcar: 384,
+    {
+        codcar: 401,
         slug: "licenciatura-en-corretaje-tasacion-y-administracion-de-consorcios",
         nombre: "Licenciatura en Corretaje, Tasación y Administración de Consorcios - CCC",
         descripcionCorta: "Vas a poder intermediar en operaciones inmobiliarias, tasar propiedades y administrar consorcios con respaldo jurídico y técnico.",
@@ -1692,6 +1692,6 @@ const data = [
                 ]
             }
         ]
-    } */
+    }
 ]
 export default data;
