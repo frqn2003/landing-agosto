@@ -31,7 +31,7 @@ export default function FormSection() {
           </div>
           <div className="flex flex-col justify-center items-left gap-2 text-white h-full ml-4 xl:ml-6">
             <h3 className='text-sm md:text-base xl:text-2xl 2xl:text-3xl tracking-wider font-normal'>Realizá el <span className='font-bold'>primer año</span> en</h3>
-            <h2 className='text-4xl md:text-5xl xl:text-7xl max-2xl:text-8xl font-bold inline-block uppercase tracking-wider font-museo'>7 meses</h2>
+            <h2 className='text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-bold inline-block uppercase tracking-wider font-museo'>7 meses</h2>
             <h3 className='text-xs md:text-sm xl:text-xl 2xl:text-2xl uppercase tracking-wider font-normal'>de agosto a febrero</h3>
           </div>
 
