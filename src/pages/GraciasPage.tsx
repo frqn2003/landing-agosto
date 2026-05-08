@@ -30,7 +30,7 @@ export default function GraciasPage() {
             {/* Icono check animado */}
             <div className="relative mb-8">
                 <div className="w-24 h-24 rounded-full bg-(--azul-ucasal) flex items-center justify-center shadow-2xl animate-[heroFadeInUp_0.5s_ease-out_forwards]">
-                    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="size-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                 </div>

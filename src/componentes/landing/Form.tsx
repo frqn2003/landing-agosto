@@ -157,10 +157,16 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 setDdiPais(dialCode)
             }
             updateDialCode()
-            phoneRef.current.addEventListener('countrychange', updateDialCode)
-            phoneRef.current.addEventListener('input', updateDialCode)
+            const elemento = phoneRef.current
+            elemento.addEventListener('countrychange', updateDialCode)
+            elemento.addEventListener('input', updateDialCode)
+
+            return () => {
+                itiRef.current?.destroy()
+                elemento.removeEventListener('countrychange', updateDialCode)
+                elemento.removeEventListener('input', updateDialCode)
+            }
         }
-        return () => itiRef.current?.destroy()
     }, [])
 
     useEffect(() => {
@@ -277,7 +283,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <div className={`${onSubPage ? 'flex flex-col gap-2 py-2' : 'grid grid-cols-2 gap-6 py-4'} border-b border-black/40`}>
                 <div className="relative z-0 w-full group">
                     {!!codcarInicial && <input type="hidden" name="cbx_carrera" value={codcar} />}
-                    <select name={codcarInicial ? undefined : "cbx_carrera"} id="cbx_carrera" aria-label="Seleccionar Carrera" tabIndex={1}
+                    <select name={codcarInicial ? undefined : "cbx_carrera"} id="cbx_carrera" aria-label="Seleccionar Carrera" tabIndex={0}
                         className={`${claseBorde(true, !!codcar)} block w-full mt-1 p-2 border bg-white shadow-sm dark:bg-white dark:text-dark dark:focus:ring-blue-500 focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900 ${codcarInicial ? 'opacity-75 cursor-not-allowed bg-gray-50' : ''}`}
                         required
                         disabled={!!codcarInicial}
@@ -296,7 +302,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="modo" id="cbx_modo" aria-label="Seleccionar Modalidad" tabIndex={2}
+                    <select name="modo" id="cbx_modo" aria-label="Seleccionar Modalidad" tabIndex={0}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar, !!modalidad)}
                             ${!codcar ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
@@ -317,7 +323,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="cbx_provincia" id="cbx_provincia" aria-label="Seleccionar Provincia" tabIndex={3}
+                    <select name="cbx_provincia" id="cbx_provincia" aria-label="Seleccionar Provincia" tabIndex={0}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar && !!modalidad, !!idProvincia)}
                             ${!codcar || !modalidad ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
@@ -341,7 +347,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="cbx_sede" id="cbx_sede" aria-label="Seleccionar Sede" tabIndex={4}
+                    <select name="cbx_sede" id="cbx_sede" aria-label="Seleccionar Sede" tabIndex={0}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar && !!modalidad && !!idProvincia, !!idSede)}
                             ${!codcar || !modalidad || !idProvincia ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
@@ -378,7 +384,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
                 <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 `}>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <input type="text" {...register("nombre")} id="nombre" tabIndex={5}
+                        <input type="text" {...register("nombre")} id="nombre" tabIndex={0}
                             className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!nombre && !errors.nombre)}`}
                             placeholder=" " required
                             autoComplete="name"
@@ -392,7 +398,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             className={`absolute text-xs 2xl:text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-left left-1 px-1 2xl:px-2 peer-focus:px-2 peer-focus:text-var(--azul-ucasal) peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2  peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 ${codcar && modalidad && idProvincia && idSede ? 'peer-focus:bg-white bg-white' : 'peer-focus:bg-gray-100 bg-gray-100'}`}>Nombre Completo</label>
                     </div>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
-                        <input type="email" id="email" tabIndex={6}
+                        <input type="email" id="email" tabIndex={0}
                             className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!email && !errors.email)}`}
                             placeholder=" " required
                             autoComplete="email"
@@ -412,7 +418,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         <div className="relative w-full group">
                             <input name="tipo_tel" type="hidden" value="cel" />
                             <input type="hidden" name="ddi_pais" value={ddiPais} />
-                            <input type="tel" ref={phoneRef} id="phone" autoComplete="off" tabIndex={7}
+                            <input type="tel" ref={phoneRef} id="phone" autoComplete="off" tabIndex={0}
                                 className="block w-full p-2 text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 caret-transparent"
                                 onKeyDown={e => e.preventDefault()}
                                 onPaste={e => e.preventDefault()}
@@ -423,7 +429,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
                     <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 xl:w-1/3 w-full ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
-                            <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric" tabIndex={8}
+                            <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric" tabIndex={0}
                                 className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!codArea && !errors.cod_area)}`}
                                 placeholder="" required
                                 autoComplete="tel-area-code"
@@ -446,7 +452,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             <div className="relative">
                                 <input type="tel" id="tel" size={8} maxLength={8} inputMode="numeric" pattern="[0-9]+"
                                     className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!tel && !errors.tel)}`}
-                                    placeholder="" required tabIndex={9}
+                                    placeholder="" required tabIndex={0}
                                     autoComplete="tel-local"
                                     aria-invalid={!!errors.tel}
                                     aria-describedby={errors.tel ? 'error-tel' : undefined}
@@ -525,7 +531,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     <button id="formButton" type="submit"
                         disabled={!todosCompletos}
                         className={`ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 ${todosCompletos ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-                        tabIndex={10}>
+                        tabIndex={0}>
                         Enviar
                     </button>
                 </div>

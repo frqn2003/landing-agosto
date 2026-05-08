@@ -47,8 +47,8 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
         {/* Ícono secundario (laptop/casa) */}
         <div className="ml-auto hidden sm:block">
           {esHome
-            ? <img src="./icons/home.svg" className="w-12 h-12 opacity-15" alt="" />
-            : <img src="./icons/campus-virtual.svg" className="w-12 h-12 opacity-15" alt="" />
+            ? <img src="./icons/home.svg" className="size-12 opacity-15" alt="" />
+            : <img src="./icons/campus-virtual.svg" className="size-12 opacity-15" alt="" />
           }
         </div>
       </div>

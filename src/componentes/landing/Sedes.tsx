@@ -25,7 +25,7 @@ export default function Sedes() {
     return (
         <section ref={sectionRef} className="" role="region" aria-label="Nuestras sedes">
             <div className="flex flex-col gap-4">
-                <h2 className="text-2xl md:text-3xl font-black degrade-azul">Nuestras sedes</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold degrade-azul">Nuestras sedes</h2>
                 {mostrarMapa ? (
                     <iframe
                         src="https://ucasal.edu.ar/mapa_sedes/mapa_sedes_ucasal.html"
