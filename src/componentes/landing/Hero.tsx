@@ -14,12 +14,14 @@ function useContador(valor: string, duracion: number, delay: number) {
         const prefijo = valor.startsWith('+') ? '+' : '';
         const sufijo = valor.endsWith('k') ? 'k' : '';
         const numero = parseInt(valor.replace(/[^0-9]/g, ''), 10);
+        let timeoutID: ReturnType<typeof setTimeout>;
+        let rafId: number
 
         const observer = new IntersectionObserver(([entry]) => {
             if (!entry.isIntersecting || iniciado.current) return;
             iniciado.current = true;
 
-            setTimeout(() => {
+            timeoutID = setTimeout(() => {
                 const inicio = performance.now();
                 const tick = (ahora: number) => {
                     const progreso = Math.min((ahora - inicio) / duracion, 1);
@@ -28,12 +30,16 @@ function useContador(valor: string, duracion: number, delay: number) {
                     setDisplay(`${prefijo}${actual}${sufijo}`);
                     if (progreso < 1) requestAnimationFrame(tick);
                 };
-                requestAnimationFrame(tick);
+                rafId = requestAnimationFrame(tick);
             }, delay);
         }, { threshold: 0.50 });
 
         if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            clearTimeout(timeoutID);
+            cancelAnimationFrame(rafId);
+        };
     }, [valor, duracion]);
 
     return { display, ref };

@@ -1,13 +1,13 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-const IconPin = ({ className = 'w-5 h-5' }: { className?: string }) => (
+const IconPin = ({ className = 'size-5' }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
   </svg>
 );
-const IconSede = ({ className = 'w-5 h-5' }: { className?: string }) => (
+const IconSede = ({ className = 'size-5' }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
   </svg>
@@ -32,8 +32,8 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
       <div className="flex items-center gap-4">
         <div className={`shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] ${esHome ? 'bg-(--rojo-ucasal)/10' : 'bg-(--azul-ucasal)/10'}`}>
           {esHome
-            ? <img src="./icons/home.svg" className={`w-10 h-10 sm:w-14 sm:h-14`} alt="Icono modo Home" style={{ color: `var(${color})!important` }}/>
-            : <img src="./icons/online.svg" className={`w-10 h-10 sm:w-14 sm:h-14`} alt="Icono modo Online" style={{ color: `var(${color})!important` }}/>
+            ? <img src="./icons/home.svg" className={`size-10 sm:w-14 sm:h-14`} alt="Icono modo Home" style={{ color: `var(${color})!important` }}/>
+            : <img src="./icons/online.svg" className={`size-10 sm:w-14 sm:h-14`} alt="Icono modo Online" style={{ color: `var(${color})!important` }}/>
           }
         </div>
         <div>
@@ -58,7 +58,7 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
         {/* Item 1: ubicación */}
         <div className="flex items-start gap-3">
           <div className={`shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center ${esHome ? 'bg-(--rojo-ucasal)/8' : 'bg-(--azul-ucasal)/8'}`}>
-            <IconPin className={`w-5 h-5 text-(${color})`} />
+            <IconPin className={`size-5 text-(${color})`} />
           </div>
           <div className="pt-1">
             <p className="text-sm text-gray-700 leading-snug">
@@ -72,7 +72,7 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
         {/* Item 2: exámenes */}
         <div className="flex items-start gap-3">
           <div className={`shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center ${esHome ? 'bg-(--rojo-ucasal)/8' : 'bg-(--azul-ucasal)/8'}`}>
-            <IconSede className={`w-5 h-5 text-(${color})`} />
+            <IconSede className={`size-5 text-(${color})`} />
           </div>
           <div className="pt-1">
             {esHome ? (
@@ -101,20 +101,20 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
       <div className={`contenedor ${onSubPage ? '' : 'lg:mx-24'}`}>
 
         {/* Título */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.35 }}
           className="text-center mb-2"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-[2.6rem] font-black text-(--azul-ucasal) tracking-tight leading-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-[2.6rem] font-semibold text-(--azul-ucasal) tracking-tight leading-tight">
             Estudiá online. <span className="italic text-(--rojo-ucasal)">Tu título te espera</span>
           </h2>
-        </motion.div>
+        </m.div>
 
         {/* Subtítulo */}
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
@@ -122,10 +122,10 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
           className="text-sm sm:text-base text-gray-500 text-center max-w-xl mx-auto mb-6 sm:mb-8"
         >
           Según donde estés te ofrecemos la <strong className="text-(--azul-ucasal)">modalidad que mejor se adapta a vos.</strong>
-        </motion.p>
+        </m.p>
 
         {/* Barra de features */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
@@ -137,7 +137,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
               <div key={i} className={`flex flex-col items-center text-center gap-2 
               ${window.innerWidth >= 1024 && i < features.length - 1 ? 'border-r-2 border-(--azul-ucasal)/20' : ''}`}>
                 <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-full bg-(--azul-ucasal)/8 flex items-center justify-center">
-                  <img src={f.iconSrc} className="w-10 h-10" alt="" />
+                  <img src={f.iconSrc} className="size-10" alt="" />
                 </div>
                 <p className="text-xs sm:text-sm font-semibold text-(--azul-ucasal) whitespace-pre-line leading-tight">
                   {f.label}
@@ -145,11 +145,11 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
               </div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Desktop: 2 cards con flechas centrales */}
         <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
@@ -157,10 +157,10 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
             className="h-full"
           >
             <CardModalidad tipo="online" />
-          </motion.div>
+          </m.div>
 
           {/* Centro: flechas + pin */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: '-40px' }}
@@ -168,17 +168,17 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
             className="flex flex-col items-center gap-1 px-2"
           >
             <div className="flex items-center gap-1">
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="size-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
-              <IconPin className="w-10 h-10 icon-color-anim" />
-              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <IconPin className="size-10 icon-color-anim" />
+              <svg className="size-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-40px' }}
@@ -186,7 +186,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
             className="h-full"
           >
             <CardModalidad tipo="home" />
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Mobile: carousel con tabs */}
@@ -209,7 +209,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
             })}
           </div>
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={activeCard}
               initial={{ opacity: 0, x: activeCard === 0 ? -20 : 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -217,7 +217,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
               transition={{ duration: 0.25 }}
             >
               <CardModalidad tipo={activeCard === 0 ? 'online' : 'home'} />
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
 

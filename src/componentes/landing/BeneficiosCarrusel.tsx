@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 
 interface Carta {
   id: number;
@@ -63,7 +63,7 @@ function CardBeneficio({ carta, posicion, onClick }: { carta: Carta; posicion: '
   const esCentro = posicion === 'centro';
 
   return (
-    <motion.div
+    <m.div
       layout
       animate={{
         scale: esCentro ? 1 : 0.8,
@@ -87,7 +87,7 @@ function CardBeneficio({ carta, posicion, onClick }: { carta: Carta; posicion: '
       <p className={`text-base leading-relaxed ${esCentro ? 'text-gray-700' : 'text-gray-400'}`}>
         {carta.descripcion}
       </p>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -135,7 +135,7 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
     >
       {/* Encabezado */}
       <div className="mb-10 h-16 flex items-center">
-        <h2 className='text-2xl lg:text-4xl font-bold degrade-azul tracking-tight max-lg:text-center w-full'>
+        <h2 className='text-2xl lg:text-4xl font-semibold degrade-azul tracking-tight max-lg:text-center w-full'>
           Este es <span className="degrade-rojo">tu momento</span>. <br className='block lg:hidden'/>Que tu rutina no <span className="degrade-rojo">te detenga</span>
         </h2>
       </div>
@@ -143,7 +143,7 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
       {/* Desktop: 3 cartas visibles */}
       <div className={`hidden lg:grid grid-cols-3 gap-4 items-center min-h-64 w-full overflow-hidden ${onSubPage ? '' : 'px-20 2xl:px-60'}`}>
         <AnimatePresence mode="popLayout" custom={dir}>
-          <motion.div
+          <m.div
             key={`prev-${idxPrev}`}
             className="h-full"
             custom={dir}
@@ -153,8 +153,8 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
             transition={{ duration: 0.35, ease: 'easeInOut' }}
           >
             <CardBeneficio carta={cartas[idxPrev]} posicion="lateral" onClick={prev} />
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             key={`center-${activo}`}
             className="h-full"
             custom={dir}
@@ -164,8 +164,8 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
             transition={{ duration: 0.35, ease: 'easeInOut' }}
           >
             <CardBeneficio carta={cartas[activo]} posicion="centro" />
-          </motion.div>
-          <motion.div
+          </m.div>
+          <m.div
             key={`next-${idxNext}`}
             className="h-full"
             custom={dir}
@@ -175,7 +175,7 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
             transition={{ duration: 0.35, ease: 'easeInOut' }}
           >
             <CardBeneficio carta={cartas[idxNext]} posicion="lateral" onClick={next} />
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
 
@@ -185,10 +185,10 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
           {/* Flecha izquierda */}
           <button
             onClick={prev}
-            className="shrink-0 w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-gray-400 transition-colors cursor-pointer"
+            className="shrink-0 size-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-gray-400 transition-colors cursor-pointer"
             aria-label="Anterior"
           >
-            <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="size-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
@@ -196,7 +196,7 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
           {/* Carta con drag */}
           <div className="flex-1 flex justify-center items-center overflow-hidden">
             <AnimatePresence mode="wait" custom={dir}>
-              <motion.div
+              <m.div
                 key={activo}
                 custom={dir}
                 initial={{ opacity: 0, x: dir * 60 }}
@@ -221,17 +221,17 @@ export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }
                 }}
               >
                 <CardBeneficio carta={cartas[activo]} posicion="centro" />
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 
           {/* Flecha derecha */}
           <button
             onClick={next}
-            className="shrink-0 w-10 h-10 rounded-full bg-(--azul-ucasal) flex items-center justify-center text-white hover:opacity-90 transition-opacity cursor-pointer"
+            className="shrink-0 size-10 rounded-full bg-(--azul-ucasal) flex items-center justify-center text-white hover:opacity-90 transition-opacity cursor-pointer"
             aria-label="Siguiente"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </button>

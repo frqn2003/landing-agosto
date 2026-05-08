@@ -149,7 +149,7 @@ export default function DetalleCarrera() {
 
                     {/* Descripción larga */}
                     <div className="contenedor flex flex-col gap-3">
-                        <h2 className="text-2xl md:text-3xl font-black degrade-azul">Sobre la carrera</h2>
+                        <h2 className="text-2xl md:text-3xl font-semibold degrade-azul">Sobre la carrera</h2>
                         <p className="text-gray-600 leading-relaxed text-base">
                             {carrera?.descripcionLarga}
                         </p>
@@ -159,17 +159,17 @@ export default function DetalleCarrera() {
                     <div className="mx-6 md:mx-24 flex flex-col gap-3 bg-(--azul-ucasal)/5 border border-(--azul-ucasal)/20 rounded-2xl p-6">
                         <div className="flex items-center gap-3">
                             <div className="w-9 h-9 rounded-full bg-(--azul-ucasal) flex items-center justify-center shrink-0">
-                                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="size-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                 </svg>
                             </div>
-                            <h2 className="text-xl font-black degrade-azul">El graduado de {carrera?.nombre} de UCASAL podrá</h2>
+                            <h2 className="text-xl font-semibold degrade-azul">El graduado de {carrera?.nombre} de UCASAL podrá</h2>
                         </div>
                         {carrera?.perfilEgresado && typeof carrera?.perfilEgresado === 'object' ? (
                             <div className="flex flex-col gap-2">
                                 <ul className="flex flex-col gap-1.5 mt-1">
-                                    {carrera?.perfilEgresado.items.map((item: string, i: number) => (
-                                        <li key={i} className="flex items-start gap-2 text-gray-600 text-base">
+                                    {carrera?.perfilEgresado.items.map((item: string) => (
+                                        <li key={item} className="flex items-start gap-2 text-gray-600 text-base">
                                             <span className="mt-1.5 w-2 h-2 rounded-full bg-(--azul-ucasal) shrink-0" />
                                             {item}
                                         </li>
@@ -192,7 +192,7 @@ export default function DetalleCarrera() {
                             onClick={() => setModalAbierto(true)}
                             className="boton-cta flex items-center"
                         >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                             Ver plan de estudios
@@ -280,8 +280,8 @@ export default function DetalleCarrera() {
 
                         {/* Contenido semestres */}
                         <div className={`px-6 py-5 grid gap-6 ${carrera?.planEstudios.length as any % 2 === 1 ? 'md:grid-cols-2 [&>*:last-child]:md:col-span-2 [&>*:last-child]:md:max-w-md [&>*:last-child]:md:mx-auto' : 'md:grid-cols-2'}`}>
-                            {carrera?.planEstudios.map((sem, i) => (
-                                <div key={i} className="flex flex-col gap-2">
+                            {carrera?.planEstudios.map((sem) => (
+                                <div key={sem.semestre} className="flex flex-col gap-2">
                                     <div className="flex items-center gap-2">
                                         <h4 className="text-sm font-bold text-white bg-(--rojo-ucasal) p-2 rounded-full">{sem.semestre}</h4>
                                     </div>

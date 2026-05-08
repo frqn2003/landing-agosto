@@ -16,7 +16,7 @@ export default function Card(props: CardProp) {
                 </div>
             </div>
 
-            <h2 className="text-justify text-black text-sm">{props.descripcion}</h2>
+            <h2 className="text-justify text-semibold text-sm">{props.descripcion}</h2>
 
         </div>
     )

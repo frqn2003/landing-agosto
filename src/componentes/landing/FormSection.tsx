@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Form from './Form'
 
 export default function FormSection() {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -18,7 +18,7 @@ export default function FormSection() {
         {/* Panel izquierdo */}
         <div className="relative lg:col-span-6 2xl:col-span-5 rounded-4xl lg:rounded-[3rem] px-3 py-6 my-6 xl:my-24 2xl:my-16 mr-15 xl:mr-25 2xl:mr-30 sm:p-8 flex flex-col gap-6 bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
           <div className='absolute text-base lg:text-3xl -top-6 lg:-top-8 left-4 xl:left-10 2xl:left-16 rounded-xl lg:rounded-2xl px-4 py-2 xl:px-6 lg:py-4 text-white bg-linear-to-r from-(--rojo-ucasal) to-(--rojo-dark-ucasal) tracking-wide'>
-            <motion.div
+            <m.div
               initial={{ width: 0 }}
               whileInView={{ width: "auto" }}
               transition={{ duration: 0.8, ease: "linear" }}
@@ -27,11 +27,11 @@ export default function FormSection() {
             >
               <div className='whitespace-nowrap overflow-hidden animate-[typewriter_0.8s_steps(8)_forwards]'>CURSADO <span className='font-extrabold'>INTENSIVO</span>
               </div>
-            </motion.div>
+            </m.div>
           </div>
           <div className="flex flex-col justify-center items-left gap-2 text-white h-full ml-4 xl:ml-6">
             <h3 className='text-sm md:text-base xl:text-2xl 2xl:text-3xl tracking-wider font-normal'>Realizá el <span className='font-bold'>primer año</span> en</h3>
-            <h2 className='text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-bold inline-block uppercase tracking-wider font-museo'>7 meses</h2>
+            <h2 className='text-4xl md:text-5xl xl:text-7xl 2xl:text-8xl font-semibold inline-block uppercase tracking-wider font-museo'>7 meses</h2>
             <h3 className='text-xs md:text-sm xl:text-xl 2xl:text-2xl uppercase tracking-wider font-normal'>de agosto a febrero</h3>
           </div>
 
@@ -50,6 +50,6 @@ export default function FormSection() {
         </div>
 
       </section>
-    </motion.div>
+    </m.div>
   )
 }

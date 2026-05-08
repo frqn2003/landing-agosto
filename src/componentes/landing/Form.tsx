@@ -475,7 +475,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             {
                 modalOpen && (
                     <div className="fixed inset-0 z-50 overflow-hidden">
-                        <div onClick={() => setModalOpen(false)} className="fixed inset-0 bg-black/50 transition-opacity"></div>
+                        <div onClick={() => setModalOpen(false)} className="fixed inset-0 bg-black/50 transition-opacity" role="presentation"></div>
 
                         <div className="fixed inset-0 flex items-center justify-center p-4">
                             <div
@@ -489,7 +489,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                             </path>
                                         </svg>
-                                        <h2 className="text-2xl font-bold text-gray-900">
+                                        <h2 className="text-2xl font-semibold text-gray-900">
                                             T&eacute;rminos y Condiciones de Privacidad
                                         </h2>
                                     </div>

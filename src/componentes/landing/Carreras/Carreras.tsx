@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import { clarityEvent, claritySetTag } from "../../../lib/clarity";
 import CardsCarreras from "../ui/CardsCarreras";
 import dataCarreras from "../../../data/carreras"
@@ -27,14 +27,14 @@ export default function Carreras() {
         <section className="w-full pt-2 pb-8 contenedor" id="carreras" role="region" aria-label="Oferta Académica">
             <div className="relative">
                 <div className="text-center md:text-left mb-8">
-                    <h2 className="text-3xl lg:text-4xl font-bold degrade-azul tracking-tight">
+                    <h2 className="text-3xl lg:text-4xl font-semibold degrade-azul tracking-tight">
                         Nuestra Oferta Académica
                     </h2>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6 sm:gap-8 w-full">
                     <AnimatePresence initial={false}>
                         {carrerasVisibles.map((carrera: any) => (
-                            <motion.div
+                            <m.div
                                 key={carrera.codcar}
                                 initial={{ opacity: 0, y: 16 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -47,7 +47,7 @@ export default function Carreras() {
                                     descripcionCorta={carrera.descripcionCorta}
                                     duracion={carrera.duracion}
                                 />
-                            </motion.div>
+                            </m.div>
                         ))}
                     </AnimatePresence>
                 </div>

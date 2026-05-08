@@ -160,7 +160,7 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex lg:hidden items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 hover:bg-gray-100"
+              className="inline-flex lg:hidden items-center justify-center size-10 p-2 text-sm text-gray-500 hover:bg-gray-100"
               id="menu-button"
               aria-label={menuAbierto ? 'Cerrar menú' : 'Abrir menú'}
             >

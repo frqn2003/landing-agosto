@@ -31,7 +31,7 @@ export default function PreguntasFrecuentes() {
     return (
         <section className="" role="region" aria-label="Preguntas frecuentes">
             <div className="flex flex-col gap-6 max-w-3xl mx-auto">
-                <h2 className="text-2xl md:text-3xl font-black degrade-azul max-sm:mt-4">Preguntas frecuentes</h2>
+                <h2 className="text-2xl md:text-3xl font-semibold degrade-azul max-sm:mt-4">Preguntas frecuentes</h2>
                 <div className="flex flex-col gap-3">
                     {PREGUNTAS.map((item, i) => (
                         <div
@@ -48,7 +48,7 @@ export default function PreguntasFrecuentes() {
                                     {item.pregunta}
                                 </span>
                                 <svg
-                                    className={`w-5 h-5 text-(--azul-ucasal) shrink-0 ml-4 transition-transform duration-300 ${abierta === i ? 'rotate-180' : ''}`}
+                                    className={`size-5 text-(--azul-ucasal) shrink-0 ml-4 transition-transform duration-300 ${abierta === i ? 'rotate-180' : ''}`}
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 >
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
