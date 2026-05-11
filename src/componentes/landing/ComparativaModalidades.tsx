@@ -1,4 +1,4 @@
-import { m, AnimatePresence } from 'framer-motion';
+import { motion as m, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 const IconPin = ({ className = 'size-5' }: { className?: string }) => (
@@ -135,7 +135,7 @@ export default function ComparativaModalidades({ onSubPage }: { onSubPage?: bool
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {features.map((f, i) => (
               <div key={i} className={`flex flex-col items-center text-center gap-2 
-              ${window.innerWidth >= 1024 && i < features.length - 1 ? 'border-r-2 border-(--azul-ucasal)/20' : ''}`}>
+              ${i < features.length - 1 ? 'lg:border-r-2 lg:border-(--azul-ucasal)/20' : ''}`}>
                 <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-full bg-(--azul-ucasal)/8 flex items-center justify-center">
                   <img src={f.iconSrc} className="size-10" alt="" />
                 </div>

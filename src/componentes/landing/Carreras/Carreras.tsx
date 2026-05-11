@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { m, AnimatePresence } from "framer-motion"
+import { motion as m, AnimatePresence } from "framer-motion"
 import { clarityEvent, claritySetTag } from "../../../lib/clarity";
 import CardsCarreras from "../ui/CardsCarreras";
 import dataCarreras from "../../../data/carreras"

@@ -1,4 +1,4 @@
-import { m } from 'framer-motion'
+import { motion as m } from 'framer-motion'
 import Form from './Form'
 
 export default function FormSection() {
