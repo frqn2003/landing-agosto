@@ -107,7 +107,7 @@ export default function Hero() {
                                     </button>
                                     <button className='group inline-flex items-center text-white/90 border-white/90 border text-xs sm:text-lg md:px-6 gap-3 px-4 py-2.5 md:py-3 rounded-xl transition-all cursor-pointer  botoncito' style={{ '--botoncito-bg': '#FFFFFF', '--botoncito-bg-secondary': '#FFFFFF', '--botoncito-opacity': '0.5' } as React.CSSProperties} onClick={() => {
                                         const el = document.getElementById('carreras')
-                                        if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' })
+                                        if (el) window.scrollTo({ top: el.getBoundingClientRect().top -100, behavior: 'smooth' })
                                     }}>
                                         <span className="inline-block overflow-hidden transition-all duration-400 group-hover:rotate-45 group-hover:translate-x-20 sm:group-hover:translate-x-28">  <svg
                                             xmlns="http://www.w3.org/2000/svg"
