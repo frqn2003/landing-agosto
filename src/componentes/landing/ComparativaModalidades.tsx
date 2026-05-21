@@ -21,6 +21,13 @@ const features = [
   { label: 'Título oficial\ncon validez nacional', iconSrc: './icons/validacion.svg' },
 ];
 
+const featuresPresencial = [
+  { label: 'Clases en el\ncampus', iconSrc: './icons/clases.svg' },
+  { label: 'Laboratorios\ny equipamiento', iconSrc: './icons/campus-virtual.svg' },
+  { label: 'Docentes\nespecializados', iconSrc: './icons/docente.svg' },
+  { label: 'Título oficial\ncon validez nacional', iconSrc: './icons/validacion.svg' },
+];
+
 /* ── Card de modalidad ── */
 function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
   const esHome = tipo === 'home';
@@ -93,8 +100,110 @@ function CardModalidad({ tipo }: { tipo: 'online' | 'home' }) {
   );
 }
 
-export default function ComparativaModalidades({ onSubPage }: { onSubPage?: boolean }) {
+export default function ComparativaModalidades({ onSubPage, esPresencial }: { onSubPage?: boolean, esPresencial?: boolean }) {
   const [activeCard, setActiveCard] = useState(0);
+
+  if (esPresencial) {
+    return (
+      <section className="w-full py-8 sm:py-14" id="modalidades" role="region" aria-label="Modalidad de cursado">
+        <div className={`contenedor ${onSubPage ? '' : 'lg:mx-24'}`}>
+
+          <m.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35 }}
+            className="text-center mb-2"
+          >
+            <h2 className="text-2xl md:text-3xl lg:text-[2.6rem] font-semibold text-(--azul-ucasal) tracking-tight leading-tight">
+              Estudiá presencial. <span className="italic text-(--rojo-ucasal)">Tu título te espera</span>
+            </h2>
+          </m.div>
+
+          <m.p
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35, delay: 0.05 }}
+            className="text-sm sm:text-base text-gray-500 text-center max-w-xl mx-auto mb-6 sm:mb-8"
+          >
+            Cursá en el campus con docentes especializados y <strong className="text-(--azul-ucasal)">equipamiento de vanguardia.</strong>
+          </m.p>
+
+          {/* Barra de features presencial */}
+          <m.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.35, delay: 0.08 }}
+            className="rounded-2xl border border-(--azul-ucasal)/10 bg-(--azul-ucasal)/4 p-4 sm:p-5 mb-6 sm:mb-8"
+          >
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {featuresPresencial.map((f, i) => (
+                <div key={i} className={`flex flex-col items-center text-center gap-2
+                ${i < featuresPresencial.length - 1 ? 'lg:border-r-2 lg:border-(--azul-ucasal)/20' : ''}`}>
+                  <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-full bg-(--azul-ucasal)/8 flex items-center justify-center">
+                    <img src={f.iconSrc} className="size-10" alt="" />
+                  </div>
+                  <p className="text-xs sm:text-sm font-semibold text-(--azul-ucasal) whitespace-pre-line leading-tight">
+                    {f.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </m.div>
+
+          {/* Card presencial única */}
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.4 }}
+            className="max-w-lg mx-auto"
+          >
+            <div className="rounded-2xl border border-(--azul-ucasal)/20 bg-(--azul-ucasal)/4 p-5 sm:p-6 flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <div className="shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-[inset_0_4px_10px_rgba(0,0,0,0.15)] bg-(--azul-ucasal)/10">
+                  <img src="./icons/online.svg" className="size-10 sm:w-14 sm:h-14" alt="Icono presencial" />
+                </div>
+                <div>
+                  <span className="inline-block text-[10px] sm:text-xs font-bold uppercase tracking-wider text-(--azul-ucasal) bg-(--azul-ucasal)/10 rounded-2xl text-center px-3 py-0.5 mb-1">
+                    Modalidad
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-(--azul-ucasal) leading-tight uppercase">Presencial</h3>
+                </div>
+              </div>
+              <div className="bg-white rounded-xl p-4 sm:p-5 flex flex-col gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-(--azul-ucasal)/8">
+                    <IconPin className="size-5 text-(--azul-ucasal)" />
+                  </div>
+                  <div className="pt-1">
+                    <p className="text-sm text-gray-700 leading-snug">
+                      <span className="font-bold text-(--azul-ucasal)">Cursás en el campus de Castañares, Salta</span><br />
+                      Clases presenciales con docentes y compañeros
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-(--azul-ucasal)/8">
+                    <IconSede className="size-5 text-(--azul-ucasal)" />
+                  </div>
+                  <div className="pt-1">
+                    <p className="text-sm text-gray-700 leading-snug">
+                      Parciales y finales <span className="font-bold text-(--azul-ucasal)">se rinden en la sede,</span><br />
+                      con acompañamiento docente directo.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </m.div>
+
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full py-8 sm:py-14" id="modalidades" role="region" aria-label="Modalidades de cursado">

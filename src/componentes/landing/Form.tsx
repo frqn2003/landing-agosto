@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getCarrerasApi } from '../../data/carrerasApi'
+import { getCarrerasApi, getCarreraApi } from '../../data/carrerasApi'
 import dataCarreras from '../../data/carreras'
 import intlTelInput from 'intl-tel-input'
 import 'intl-tel-input/build/css/intlTelInput.css'
@@ -114,21 +114,45 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         campaignid: urlParametros.get('campaignid'),
         userAgent: navigator.userAgent
     }
+
+
     const apiCargadaRef = useRef(false)
     function cargarApi() {
         if (apiCargadaRef.current) return
         apiCargadaRef.current = true
         setApiCargando(true)
-        getCarrerasApi().then(data => {
-            const merged = [...data]
-            FALLBACK_CARRERAS.forEach(fallback => {
-                const existe = data.some((c: any) => String(c.codcar) === String(fallback.codcar) && String(c.modo) === String(fallback.modo))
-                if (!existe) merged.push(fallback)
-            })
-            setCarreras(merged)
-            setApiCargando(false)
-        }).catch(() => { setCarreras(FALLBACK_CARRERAS); setApiCargando(false) })
+
+        if (codcarInicial) {
+            const modoInicial = String(dataCarreras.find(c => String(c.codcar) === codcarInicial)?.modalidad ?? 7)
+            getCarreraApi(codcarInicial, modoInicial)
+                .then(data => {
+                    const resultado = data ? [data] : []
+                    const merged = [...resultado]
+                    FALLBACK_CARRERAS.forEach(fallback => {
+                        const existe = resultado.some((c: any) => String(c.codcar) === String(fallback.codcar) && String(c.modo) === String(fallback.modo))
+                        if (!existe) merged.push(fallback)
+                    })
+                    setCarreras(merged)
+                    setApiCargando(false)
+                })
+                .catch(() => { setCarreras(FALLBACK_CARRERAS); setApiCargando(false) })
+            return
+        }
+        else {
+            getCarrerasApi().then(data => {
+                const merged = [...data]
+                FALLBACK_CARRERAS.forEach(fallback => {
+                    const existe = data.some((c: any) => String(c.codcar) === String(fallback.codcar) && String(c.modo) === String(fallback.modo))
+                    if (!existe) merged.push(fallback)
+                })
+                setCarreras(merged)
+                setApiCargando(false)
+            }).catch(() => { setCarreras(FALLBACK_CARRERAS); setApiCargando(false) })
+        }
+
     }
+
+    /* Lógica de cargado de las carreras, modos, provincias y sedes en los select/inputs */
 
     const carrerasUnicas = dataCarreras
     const modos = [
@@ -188,6 +212,17 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 elemento.removeEventListener('input', updateDialCode)
             }
         }
+    }, [])
+
+    useEffect(() => {
+        if (onSubPage) return
+        const handler = (e: Event) => {
+            const { codcar: cod } = (e as CustomEvent).detail
+            setCodcar(cod)
+            setValue('cbx_carrera', cod)
+        }
+        window.addEventListener('preselect-carrera', handler)
+        return () => window.removeEventListener('preselect-carrera', handler)
     }, [])
 
     useEffect(() => {

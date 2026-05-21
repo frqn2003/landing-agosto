@@ -52,6 +52,7 @@ export default function DetalleCarrera() {
     }, [carrera])
 
     const modalidad = carrera?.modalidad == 7 ? 'Online' : carrera?.modalidad == 1 ? 'Presencial' : 'Presencial'
+    const esPresencial = carrera?.modalidad === 1
     const sinCursadoIntensivo = carrera?.codcar === 244 || carrera?.codcar === 196 || carrera?.codcar === 57
 
     const titulo = carrera?.nombre?.trim().split(' ') || []
@@ -222,8 +223,8 @@ export default function DetalleCarrera() {
                         </div>
                     )}
                     <PromocionDinamica/>
-                    <ComparativaModalidades onSubPage={true} />
-                    <BeneficiosCarrusel onSubPage={true} />
+                    <ComparativaModalidades onSubPage={true} esPresencial={esPresencial} />
+                    <BeneficiosCarrusel onSubPage={true} esPresencial={esPresencial} />
                     <Financiacion />
                     <section className='contenedor pb-4 px-4' id="sedes">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">

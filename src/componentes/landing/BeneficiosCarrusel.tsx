@@ -39,6 +39,36 @@ const cartas: Carta[] = [
   },
 ];
 
+const cartasPresencial: Carta[] = [
+  {
+    id: 1,
+    titulo: 'Para quienes aprenden mejor en persona',
+    descripcion: 'Clases cara a cara con docentes especializados, resolvé dudas al instante y aprendé con instrumental real.',
+    icon: (
+      <img src={`${import.meta.env.BASE_URL}icons/primer-paso.svg`} className="w-9 h-9" alt="Aprendizaje presencial" />
+    ),
+    color: 'rojo',
+  },
+  {
+    id: 2,
+    titulo: 'Para quienes buscan experiencia universitaria completa',
+    descripcion: 'Viví el campus: biblioteca, laboratorios de topografía, vida estudiantil y redes de contacto desde el primer día.',
+    icon: (
+      <img src={`${import.meta.env.BASE_URL}icons/por-todo.svg`} className="w-9 h-9" alt="Experiencia universitaria" />
+    ),
+    color: 'azul',
+  },
+  {
+    id: 3,
+    titulo: 'Para quienes quieren inserción laboral rápida',
+    descripcion: 'Accedé a prácticas, convenios con empresas y contactos directos desde la sede de Castañares.',
+    icon: (
+      <img src={`${import.meta.env.BASE_URL}icons/retomar.svg`} className="w-9 h-9" alt="Inserción laboral" />
+    ),
+    color: 'rojo',
+  },
+];
+
 const colorClases = {
   rojo: {
     bg: 'bg-(--rojo-ucasal)',
@@ -56,7 +86,7 @@ const colorClases = {
   },
 };
 
-const N = cartas.length;
+const cartasOnline = cartas;
 
 function CardBeneficio({ carta, posicion, onClick }: { carta: Carta; posicion: 'centro' | 'lateral'; onClick?: () => void }) {
   const c = colorClases[carta.color];
@@ -91,8 +121,10 @@ function CardBeneficio({ carta, posicion, onClick }: { carta: Carta; posicion: '
   );
 }
 
-export default function BeneficiosCarrusel({ onSubPage }: { onSubPage: boolean }) {
+export default function BeneficiosCarrusel({ onSubPage, esPresencial }: { onSubPage: boolean, esPresencial?: boolean }) {
   const [activo, setActivo] = useState(0);
+  const cartas = esPresencial ? cartasPresencial : cartasOnline;
+  const N = cartas.length;
   const [dir, setDir] = useState<1 | -1>(1);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const touchStartX = useRef<number | null>(null);

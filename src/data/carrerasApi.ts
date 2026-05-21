@@ -1,9 +1,6 @@
 import data from './carreras'
 
-const combinaciones = data.map(c => ({ codcar: c.codcar, modo: c.modalidad }))
-const combinacionesUnicas = combinaciones.filter(
-    (c, i, arr) => arr.findIndex(x => x.codcar === c.codcar && x.modo === c.modo) === i
-)
+const modosUnicos = [...new Set(data.map(c => c.modalidad))]
 
 let cache: any[] | null = null
 let promesa: Promise<any[]> | null = null
@@ -32,7 +29,7 @@ export function getCarrerasApi(): Promise<any[]> {
     } */
 
     promesa = Promise.allSettled(
-        combinacionesUnicas.map(({ modo }) =>
+        modosUnicos.map(modo =>
             fetch(`/landing/consultas/getCarrerasJson.php?modo=${modo}&tipcar=Grado,Pregrado,Intermedio`)
                 .then(res => res.json())
         )
@@ -45,3 +42,18 @@ export function getCarrerasApi(): Promise<any[]> {
     return promesa
 }
 
+/* Para las landings específicas se carga una sola vez el JSON con esa carrera específica */
+
+const cacheIndividual: Record<string, any> = {}
+
+export function getCarreraApi(codcar: string, modo: string): Promise<any> {
+    const key = `${codcar}_${modo}`
+    if (cacheIndividual[key]) return Promise.resolve(cacheIndividual[key])
+
+    return fetch(`/landing/consultas/getCarrerasJson.php?modo=${modo}&codcar=${codcar}&tipcar=Grado,Pregrado,Intermedio`)
+        .then(res => res.json())
+        .then(data => {
+            cacheIndividual[key] = data[0] ?? null
+            return cacheIndividual[key]
+        })
+}
