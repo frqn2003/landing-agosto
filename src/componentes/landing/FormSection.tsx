@@ -39,8 +39,8 @@ export default function FormSection() {
             <img src={`${import.meta.env.BASE_URL}/cursadointensivo.svg`} alt="Cursado Intensivo" />
           </div>
           <p className="text-[9px] sm:text-[11px] text-white/60 italic ml-2 font-bold ">
-            * Las carreras de <br className='2xl:hidden block' />  Corredor Inmobiliario y Martillero Publico, <br className='2xl:hidden block' /> y Licenciatura en Seguridad CCC
-            <br /> no cuentan con cursado intensivo
+            * Las carreras de <br className='xl:hidden block' />  Corredor Inmobiliario y Martillero Publico, <br className='2xl:hidden block' />Licenciatura en Seguridad CCC 
+            <br />y la Tecnicatura Universitaria en Topografía y Geomática <br className='2xl:hidden block' /> no cuentan con cursado intensivo
           </p>
         </div>
 

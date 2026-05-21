@@ -10,15 +10,17 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
 
+/* Para la siguiente landing que se haga, esto debería de ser consumido con el carreras.ts, sacamos el codcar y se le agrega el enviado al slug, tendría que ser como 'enviado/{slug}' */
+
 const TKP_MAP: Record<string, string> = {
-    '9':   'enviado/sec-ejecutivo',
-    '10':  'enviado/lic-economia-distancia',
-    '11':  'enviado/administracion',
-    '14':  'enviado/contador',
-    '15':  'enviado/comercializacion',
-    '16':  'enviado/abogacia',
-    '58':  'enviado/licenciatura-ciencias-datos',
-    '96':  'enviado/tec-gestion-calidad-distancia',
+    '9': 'enviado/sec-ejecutivo',
+    '10': 'enviado/lic-economia-distancia',
+    '11': 'enviado/administracion',
+    '14': 'enviado/contador',
+    '15': 'enviado/comercializacion',
+    '16': 'enviado/abogacia',
+    '58': 'enviado/licenciatura-ciencias-datos',
+    '96': 'enviado/tec-gestion-calidad-distancia',
     '133': 'enviado/lic-administracion-agropecuaria-distancia',
     '138': 'enviado/lic-higiene-y-seguridad-trabajo-distancia',
     '161': 'enviado/tecnicatura-gestion-bancos-finanzas-seguros',
@@ -33,9 +35,20 @@ const TKP_MAP: Record<string, string> = {
     '363': 'enviado/procuracion-distancia',
     '378': 'enviado/organizacion-direccion-eventos-ceremonial',
     '383': 'enviado/tecnicatura-operaciones-mineras',
+    '57': 'enviado/tecnicatura-universitaria-topografia-y-geomatica'
 }
 
 const BASE_URL = 'https://www.ucasal.edu.ar/landing/ingreso/carreras-agosto/'
+
+const FALLBACK_CARRERAS: any[] = [
+    {
+        codcar: 57,
+        modo: 1,
+        provincias: [
+            { id_provincia: '1', nombre_provincia: 'Salta', id_sede: '1', nombre_sede: 'Castañares' }
+        ]
+    }
+]
 const RECAPTCHA_SITE_KEY = '6LfSBnAsAAAAANxuGFb77-exJXGHRWQGrCsGZMnr'
 let recaptchaPromise: Promise<any> | null = null
 
@@ -106,7 +119,15 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         if (apiCargadaRef.current) return
         apiCargadaRef.current = true
         setApiCargando(true)
-        getCarrerasApi().then(data => { setCarreras(data); setApiCargando(false) }).catch(() => { setCarreras([]); setApiCargando(false) })
+        getCarrerasApi().then(data => {
+            const merged = [...data]
+            FALLBACK_CARRERAS.forEach(fallback => {
+                const existe = data.some((c: any) => String(c.codcar) === String(fallback.codcar) && String(c.modo) === String(fallback.modo))
+                if (!existe) merged.push(fallback)
+            })
+            setCarreras(merged)
+            setApiCargando(false)
+        }).catch(() => { setCarreras(FALLBACK_CARRERAS); setApiCargando(false) })
     }
 
     const carrerasUnicas = dataCarreras
@@ -241,24 +262,25 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
 
                     await fetch('/postulantes_mail1.php', { method: 'POST', body: formData })
 
-                ; (window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
-                clarityEvent('formulario-enviado')
-                clarityUpgrade('conversion-formulario')
-                const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
-                const tkpPath = tkpSlug ? tkpSlug : 'enviado-agosto'
-                navigate(`/${tkpPath}`, {
-                    state: {
-                        nombre,
-                        email,
-                        carrera: dataCarreras.find(c => String(c.codcar) === codcar)?.nombre ?? '',
-                        modalidad: modalidad === '7' ? 'Online' : 'Presencial',
-                        sede: sedes.find((s: { id_sede: string; nombre_sede: string }) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
-                    }
-                })
-            },
-            (_errors) => {
-                clarityEvent('formulario-invalido')
-            })}
+                        ; (window as any).dataLayer?.push({ event: 'form_enviado_pedidoinfo', form_id: 'pedidoinfo' })
+                    onSubPage ? clarityEvent('formulario-enviado-especifica') : clarityEvent('formulario-enviado-general')
+                    clarityEvent('formulario-enviado')
+                    clarityUpgrade('conversion-formulario')
+                    const tkpSlug = onSubPage ? (TKP_MAP[codcar] ?? null) : null
+                    const tkpPath = tkpSlug ? tkpSlug : 'enviado-agosto'
+                    navigate(`/${tkpPath}`, {
+                        state: {
+                            nombre,
+                            email,
+                            carrera: dataCarreras.find(c => String(c.codcar) === codcar)?.nombre ?? '',
+                            modalidad: modalidad === '7' ? 'Online' : 'Presencial',
+                            sede: sedes.find((s: { id_sede: string; nombre_sede: string }) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
+                        }
+                    })
+                },
+                (_errors) => {
+                    clarityEvent('formulario-invalido')
+                })}
             className={`bg-white rounded-lg shadow-2xl ${onSubPage ? 'px-6 py-4' : 'p-6'}`}>
             <input type="hidden" value="103" name="id_origen" />
             <input type="hidden" value="postulantes" name="tabla" />
@@ -270,8 +292,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <input type="hidden" name="utm_campaign" value={parametros.utm_campaign || ''} />
             <input type="hidden" name="idconversion" value={parametros.idconversion || ''} />
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
-            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar].replace('enviado/', 'enviado-') : 'enviado-agosto'}`} />
-            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar].replace('enviado/', 'enviado-') : 'enviado-agosto'}?id=404`} />
+            <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}`} />
+            <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}?id=404`} />
 
             {!onSubPage && (
                 <div className="flex justify-center">
