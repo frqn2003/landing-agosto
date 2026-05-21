@@ -8,13 +8,20 @@ const combinacionesUnicas = combinaciones.filter(
 let cache: any[] | null = null
 let promesa: Promise<any[]> | null = null
 
-const DEV_MODE = import.meta.env.DEV
+/* const DEV_MODE = import.meta.env.DEV */
 
 export function getCarrerasApi(): Promise<any[]> {
     if (cache) return Promise.resolve(cache)
     if (promesa) return promesa
 
-    if (DEV_MODE) {
+    
+    const stored = sessionStorage.getItem('cache_carreras_api_ucasal')
+    if (stored) {
+        cache = JSON.parse(stored)
+        return Promise.resolve(cache as any[])
+    }
+
+    /* if (DEV_MODE) {
         promesa = fetch(`${import.meta.env.BASE_URL}mock-carreras.json`)
             .then(res => res.json())
             .then(data => {
@@ -22,7 +29,7 @@ export function getCarrerasApi(): Promise<any[]> {
                 return cache as any[]
             })
         return promesa
-    }
+    } */
 
     promesa = Promise.allSettled(
         combinacionesUnicas.map(({ modo }) =>

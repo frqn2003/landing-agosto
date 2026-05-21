@@ -45,7 +45,7 @@ const FALLBACK_CARRERAS: any[] = [
         codcar: 57,
         modo: 1,
         provincias: [
-            { id_provincia: '1', nombre_provincia: 'Salta', id_sede: '1', nombre_sede: 'Castañares' }
+            { id_provincia: 16, nombre_provincia: 'CASTAÑARES', id_sede: 1, nombre_sede: 'SALTA (Presencial)' }
         ]
     }
 ]
