@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-/* HAY UN BUG EN LA NAVBAR EN LOS PIXELES 140 a 200 , SE RENDERIZA CONSTANTEMENTE AMBOS COMPONENTES, EL SCROLLEADO Y EL NO SCROLLEADO, ARREGLAR */
+
 function Navbar({ onSubPage }: { onSubPage?: boolean }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -82,7 +82,10 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
       sessionStorage.removeItem('fromLanding')
     }
   }, [])
-  const fromLanding = location.state?.fromLanding === true || sessionStorage.getItem('fromLanding') === 'true'
+  let fromLanding = location.state?.fromLanding === true || sessionStorage.getItem('fromLanding') === 'true'
+  if (location.pathname === '/') {
+    fromLanding = false
+  }
   return (
     <>
       {menuAbierto && (
