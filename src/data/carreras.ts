@@ -1703,11 +1703,11 @@ const data = [
     descripcionLarga: 'Esta carrera busca formar profesionales capacitados para desempeñar funciones técnicas y operativas en el campo del levantamiento territorial, la medición del espacio físico y la gestión de datos georreferenciados. A lo largo de la carrera, adquirirás dominio de instrumental clásico y tecnologías modernas como GNSS, estaciones totales y drones, junto con herramientas de software para el procesamiento e interpretación de datos espaciales. Los egresados pueden insertarse en organismos públicos, empresas de ingeniería, estudios de agrimensura, constructoras y consultoras ambientales, colaborando en proyectos de mensura, catastro, obras viales y ordenamiento territorial bajo la supervisión del Ingeniero Agrimensor.',
     perfilEgresado: {
         items: [
-            'Preparado para actuar en colaboración con el Ingeniero Agrimensor u otros profesionales afines, desarrollando sus tareas bajo supervisión profesional, de acuerdo con la normativa técnica y legal vigente', 
-            'Capacitado técnica y operativamente para realizar relevamientos topográficos, trazados de obras, procesamiento de datos geoespaciales y representación cartográfica, aplicando normas y estándares de calidad vigentes',
-            'Competente en el uso de herramientas digitales como estaciones totales, sistemas GNSS, drones, software CAD, sistemas de información geográfica (SIG) y otras tecnologías aplicadas a la topografía y la geomática', 
-            'Con habilidades para interpretar planos, operar instrumental, gestionar datos y colaborar activamente en equipos interdisciplinarios en obras civiles, estudios ambientales, catastros, agrimensura, planificación territorial y gestión de recursos naturales',
-            'Comprometido con los valores éticos y sociales, con una visión integral del territorio y el bien común, incorporando principios de responsabilidad ambiental y desarrollo sostenible'
+            'Actuar en colaboración con Ingenieros Agrimensores y otros profesionales afines, desarrollando tareas bajo supervisión profesional y de acuerdo con la normativa técnica y legal vigente',
+            'Realizar relevamientos topográficos, trazados de obras, procesamiento de datos geoespaciales y representación cartográfica, aplicando normas y estándares de calidad',
+            'Utilizar estaciones totales, sistemas GNSS, drones, software CAD, sistemas de información geográfica (SIG) y otras tecnologías aplicadas a la topografía y la geomática',
+            'Interpretar planos, operar instrumental técnico, gestionar datos territoriales y colaborar en equipos interdisciplinarios vinculados a obras civiles, estudios ambientales, catastro, agrimensura y planificación territorial',
+            'Desempeñarse con compromiso ético y social, incorporando una visión integral del territorio, el bien común, la responsabilidad ambiental y el desarrollo sostenible'
         ]
     },
     planEstudios: [
