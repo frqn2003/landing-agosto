@@ -1359,7 +1359,7 @@ const data = [
         nombre: "Tecnicatura Univ. en Secretariado Ejecutivo",
         descripcionCorta: "Vas a poder asistir a la alta dirección de cualquier organización, gestionando agenda, documentación y comunicaciones con eficiencia y profesionalismo.",
         descripcionLarga: "La Tecnicatura en Secretariado Ejecutivo forma profesionales con competencias para asistir a directivos y equipos de alta dirección en la gestión administrativa, la organización de la agenda, la redacción de comunicaciones y la coordinación de reuniones y eventos. Los egresados dominan herramientas digitales de productividad, protocolo empresarial y gestión documental, convirtiéndose en un soporte clave para el funcionamiento de cualquier organización.",
-        duracion: "2 años",
+        duracion: "2½ años",
         modalidad: 7,
         perfilEgresado: {
             items: [
