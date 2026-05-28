@@ -12,6 +12,7 @@ import ComparativaModalidades from "../componentes/landing/ComparativaModalidade
 import BeneficiosCarrusel from "../componentes/landing/BeneficiosCarrusel"
 import Financiacion from "../componentes/landing/Financiacion"
 import PromocionDinamica from "../componentes/landing/PromocionDinamica"
+import FormWhatsApp from "../componentes/landing/FormWhatsApp"
 
 export default function DetalleCarrera() {
     const { slug } = useParams()
@@ -19,6 +20,7 @@ export default function DetalleCarrera() {
     const carrera = data.find((c: any) => c.slug === slugLimpio)
     const [modalAbierto, setModalAbierto] = useState(false)
     const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 1024)
+    const [contactoTipo, setContactoTipo] = useState<'asesor' | 'whatsapp'>('whatsapp')
 
     useEffect(() => {
         const mq = window.matchMedia('(min-width: 1024px)')
@@ -218,11 +220,40 @@ export default function DetalleCarrera() {
                                         <p className="text-xs text-gray-400 italic mt-1">* Esta carrera no incluye cursado intensivo.</p>
                                     )}
                                 </div>
-                                <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                                {carrera?.codcar === 57 ? (
+                                    <>
+                                        <div className="flex gap-2">
+                                            <button
+                                                onClick={() => setContactoTipo('whatsapp')}
+                                                className={`flex-1 py-2 px-3 rounded-xl text-sm font-semibold border-2 transition-all cursor-pointer ${contactoTipo === 'whatsapp'
+                                                    ? 'bg-green-500 border-green-500 text-white'
+                                                    : 'bg-white border-gray-300 text-gray-500 hover:border-green-500'
+                                                    }`}
+                                            >
+                                                Por WhatsApp
+                                            </button>
+                                            <button
+                                                onClick={() => setContactoTipo('asesor')}
+                                                className={`flex-1 py-2 px-3 rounded-xl text-sm font-semibold border-2 transition-all cursor-pointer ${contactoTipo === 'asesor'
+                                                    ? 'bg-(--azul-ucasal) border-(--azul-ucasal) text-white'
+                                                    : 'bg-white border-gray-300 text-gray-500 hover:border-(--azul-ucasal)'
+                                                    }`}
+                                            >
+                                                Por asesor
+                                            </button>
+                                        </div>
+                                        {contactoTipo === 'whatsapp'
+                                            ? <FormWhatsApp codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                                            : <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                                        }
+                                    </>
+                                ) : (
+                                    <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                                )}
                             </div>
                         </div>
                     )}
-                    <PromocionDinamica/>
+                    <PromocionDinamica />
                     <ComparativaModalidades onSubPage={true} esPresencial={esPresencial} />
                     <BeneficiosCarrusel onSubPage={true} esPresencial={esPresencial} />
                     <Financiacion />
@@ -240,12 +271,42 @@ export default function DetalleCarrera() {
                         <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
                             <div>
                                 <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
-                                <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contactará</p>
+                                <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y se te contactará</p>
                                 {sinCursadoIntensivo && (
                                     <p className="text-xs text-gray-400 italic mt-1">* Esta carrera no incluye cursado intensivo.</p>
                                 )}
                             </div>
-                            <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                            {carrera?.codcar === 57 ? (
+                                <>
+                                    <div className="flex gap-2">
+                                        <button
+                                            onClick={() => setContactoTipo('whatsapp')}
+                                            className={`flex-1 py-2 px-3 rounded-xl text-sm font-semibold border-2 transition-all cursor-pointer ${contactoTipo === 'whatsapp'
+                                                ? 'bg-green-500 border-green-500 text-white'
+                                                : 'bg-white border-gray-300 text-gray-500 hover:border-green-500'
+                                                }`}
+                                        >
+                                            Por WhatsApp
+                                        </button>
+                                        <button
+                                            onClick={() => setContactoTipo('asesor')}
+                                            className={`flex-1 py-2 px-3 rounded-xl text-sm font-semibold border-2 transition-all cursor-pointer ${contactoTipo === 'asesor'
+                                                ? 'bg-(--azul-ucasal) border-(--azul-ucasal) text-white'
+                                                : 'bg-white border-gray-300 text-gray-500 hover:border-(--azul-ucasal)'
+                                                }`}
+                                        >
+                                            Por asesor
+                                        </button>
+
+                                    </div>
+                                    {contactoTipo === 'asesor'
+                                        ? <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                                        : <FormWhatsApp codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                                    }
+                                </>
+                            ) : (
+                                <Form codcarInicial={String(carrera?.codcar)} onSubPage={true} />
+                            )}
                         </div>
                     </aside>
                 )}

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getCarrerasApi, getCarreraApi } from '../../data/carrerasApi'
 import dataCarreras from '../../data/carreras'
 import intlTelInput from 'intl-tel-input'
 import 'intl-tel-input/build/css/intlTelInput.css'
 import { clarityEvent, clarityUpgrade } from '../../lib/clarity'
+import { useCarrerasCascada } from '../../hooks/useCarrerasCascada'
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -40,15 +40,6 @@ const TKP_MAP: Record<string, string> = {
 
 const BASE_URL = 'https://www.ucasal.edu.ar/landing/ingreso/carreras-agosto/'
 
-const FALLBACK_CARRERAS: any[] = [
-    {
-        codcar: 57,
-        modo: 1,
-        provincias: [
-            { id_provincia: 16, nombre_provincia: 'CASTAÑARES', id_sede: 1, nombre_sede: 'SALTA (Presencial)' }
-        ]
-    }
-]
 const RECAPTCHA_SITE_KEY = '6LfSBnAsAAAAANxuGFb77-exJXGHRWQGrCsGZMnr'
 let recaptchaPromise: Promise<any> | null = null
 
@@ -80,17 +71,38 @@ function cargarRecaptcha() {
 
 export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: string, onSubPage?: boolean }) {
     const navigate = useNavigate()
-    const [carreras, setCarreras] = useState<any[]>([])
-    const [apiCargando, setApiCargando] = useState(false)
-    const [modalidad, setModalidad] = useState("")
-    const [codcar, setCodcar] = useState(codcarInicial ?? '')
-    const [idProvincia, setIdProvincia] = useState('')
-    const [idSede, setIdSede] = useState('')
     const { register, handleSubmit, formState: { errors, isSubmitted }, watch, setValue } = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
             cbx_carrera: codcarInicial ?? '',
         }
+    })
+    const {
+        containerRef,
+        apiCargando,
+        codcar,
+        modalidad,
+        idProvincia,
+        idSede,
+        carrerasUnicas,
+        modos,
+        provincias,
+        sedes,
+        sedesOficiales,
+        tieneHome,
+        sedesHome,
+        carreraCompleta,
+        seleccionarCodcar,
+        seleccionarModalidad,
+        seleccionarProvincia,
+        seleccionarSede,
+    } = useCarrerasCascada({
+        codcarInicial,
+        onSubPage,
+        onModalidadChange: (v) => { setValue('cbx_modo', v, { shouldValidate: true }) },
+        onProvinciaChange: (v) => { setValue('cbx_provincia', v, { shouldValidate: true }) },
+        onSedeChange: (v) => { setValue('cbx_sede', v, { shouldValidate: true }) },
+        onCodcarChange: (v) => { setValue('cbx_carrera', v) },
     })
     const nombre = watch('nombre')
     const email = watch('email')
@@ -102,6 +114,10 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
     const [ddiPais, setDdiPais] = useState('')
     const formRef = useRef<HTMLFormElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
+    /* Sincronizar containerRef del hook con el form element */
+    useEffect(() => {
+        ;(containerRef as React.MutableRefObject<HTMLElement | null>).current = formRef.current
+    }, [])
     const itiRef = useRef<ReturnType<typeof intlTelInput> | null>(null)
     const urlParametros = new URLSearchParams(window.location.search)
     const parametros = {
@@ -116,68 +132,6 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
     }
 
 
-    const apiCargadaRef = useRef(false)
-    function cargarApi() {
-        if (apiCargadaRef.current) return
-        apiCargadaRef.current = true
-        setApiCargando(true)
-
-        if (codcarInicial) {
-            const modoInicial = String(dataCarreras.find(c => String(c.codcar) === codcarInicial)?.modalidad ?? 7)
-            getCarreraApi(codcarInicial, modoInicial)
-                .then(data => {
-                    const resultado = data ? [data] : []
-                    const merged = [...resultado]
-                    FALLBACK_CARRERAS.forEach(fallback => {
-                        const existe = resultado.some((c: any) => String(c.codcar) === String(fallback.codcar) && String(c.modo) === String(fallback.modo))
-                        if (!existe) merged.push(fallback)
-                    })
-                    setCarreras(merged)
-                    setApiCargando(false)
-                })
-                .catch(() => { setCarreras(FALLBACK_CARRERAS); setApiCargando(false) })
-            return
-        }
-        else {
-            getCarrerasApi().then(data => {
-                const merged = [...data]
-                FALLBACK_CARRERAS.forEach(fallback => {
-                    const existe = data.some((c: any) => String(c.codcar) === String(fallback.codcar) && String(c.modo) === String(fallback.modo))
-                    if (!existe) merged.push(fallback)
-                })
-                setCarreras(merged)
-                setApiCargando(false)
-            }).catch(() => { setCarreras(FALLBACK_CARRERAS); setApiCargando(false) })
-        }
-
-    }
-
-    /* Lógica de cargado de las carreras, modos, provincias y sedes en los select/inputs */
-
-    const carrerasUnicas = dataCarreras
-    const modos = [
-        ...new Map(
-            dataCarreras
-                .filter(c => String(c.codcar) === codcar)
-                .map(c => [String(c.modalidad), c])
-        ).values()
-    ]
-
-    const carreraSeleccionada = carreras.find(c => String(c.codcar) === codcar && String(c.modo) === modalidad)
-    const provincias: any[] = [
-        ...new Map(
-            (carreraSeleccionada?.provincias || [])
-                .filter((prov: any) => prov.id_provincia != null)
-                .map((prov: any) => [prov.id_provincia, prov])
-        ).values()
-    ]
-    const todasLasSedes = (carreraSeleccionada?.provincias || [])
-        .filter((sede: any) => String(sede.id_provincia) === idProvincia)
-    const sedesOficiales = todasLasSedes.filter((s: any) => s.id_sede !== 500)
-    const tieneHome = todasLasSedes.some((s: any) => s.id_sede === 500)
-    const sedesHome = todasLasSedes.filter((s: any) => s.id_sede === 500)
-    const sedes = todasLasSedes
-
     {/* Helper de estado visual */ }
     const claseBorde = (habilitado: boolean, completado: boolean) => {
         if (completado) return 'border-green-500'
@@ -186,7 +140,6 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         return 'border-gray-300'
     }
 
-    const carreraCompleta = !!codcar && !!modalidad && !!idProvincia && !!idSede
     const todosCompletos = !!carreraCompleta && !!nombre && !!email && !!ddiPais && !!codArea && !!tel
 
     useEffect(() => {
@@ -214,64 +167,24 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         }
     }, [])
 
-    useEffect(() => {
-        if (onSubPage) return
-        const handler = (e: Event) => {
-            const { codcar: cod } = (e as CustomEvent).detail
-            setCodcar(cod)
-            setValue('cbx_carrera', cod)
-        }
-        window.addEventListener('preselect-carrera', handler)
-        return () => window.removeEventListener('preselect-carrera', handler)
-    }, [])
-
+    /* Cargar reCAPTCHA cuando el form entra en viewport */
     useEffect(() => {
         const form = formRef.current
         if (!form) return
-
         const observer = new IntersectionObserver(
             entries => {
                 if (entries.some(entry => entry.isIntersecting)) {
                     cargarRecaptcha().catch(console.error)
-                    cargarApi()
                     observer.disconnect()
                 }
             },
             { rootMargin: '800px 0px' }
         )
-
         observer.observe(form)
         return () => observer.disconnect()
     }, [])
-
-    useEffect(() => {
-        if (codcar && modos.length === 1) {
-            const v = String(modos[0].modalidad)
-            setModalidad(v)
-            setValue('cbx_modo', v, { shouldValidate: true })
-            setIdProvincia('')
-            setIdSede('')
-        }
-    }, [codcar])
-
-    useEffect(() => {
-        if (provincias.length === 1) {
-            const v = String(provincias[0].id_provincia)
-            setIdProvincia(v)
-            setValue('cbx_provincia', v, { shouldValidate: true })
-            setIdSede('')
-        }
-    }, [modalidad, carreras])
-
-    useEffect(() => {
-        if (sedes.length === 1) {
-            const v = String(sedes[0].id_sede)
-            setIdSede(v)
-            setValue('cbx_sede', v, { shouldValidate: true })
-        }
-    }, [idProvincia])
     return (
-        <form ref={formRef} role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
+        <form ref={formRef as React.RefObject<HTMLFormElement>} role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
             autoComplete="on"
             onSubmit={handleSubmit(
                 async () => {
@@ -346,10 +259,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         disabled={!!codcarInicial}
                         value={codcar} onChange={e => {
                             setValue('cbx_carrera', e.target.value, { shouldValidate: true })
-                            setCodcar(e.target.value)
-                            setModalidad('')
-                            setIdProvincia('')
-                            setIdSede('')
+                            seleccionarCodcar(e.target.value)
                         }}
                     >
                         <option value="" defaultValue={'Seleccionar Carrera'}>Seleccionar Carrera</option>
@@ -367,9 +277,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         value={modalidad}
                         onChange={e => {
                             setValue('cbx_modo', e.target.value, { shouldValidate: true })
-                            setModalidad(e.target.value)
-                            setIdProvincia('')
-                            setIdSede('')
+                            seleccionarModalidad(e.target.value)
                         }}
                         disabled={!codcar}
                         required>
@@ -388,8 +296,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         value={idProvincia}
                         onChange={e => {
                             setValue('cbx_provincia', e.target.value, { shouldValidate: true })
-                            setIdProvincia(e.target.value)
-                            setIdSede('')
+                            seleccionarProvincia(e.target.value)
                         }}
                         required
                         disabled={!codcar || !modalidad}
@@ -412,7 +319,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         value={idSede}
                         onChange={e => {
                             setValue('cbx_sede', e.target.value, { shouldValidate: true })
-                            setIdSede(e.target.value)
+                            seleccionarSede(e.target.value)
                         }}
                         required
                         disabled={!codcar || !modalidad || !idProvincia}>
