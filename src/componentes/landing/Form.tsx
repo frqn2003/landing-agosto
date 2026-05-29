@@ -115,9 +115,10 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
     const formRef = useRef<HTMLFormElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
     /* Sincronizar containerRef del hook con el form element */
-    useEffect(() => {
-        ;(containerRef as React.MutableRefObject<HTMLElement | null>).current = formRef.current
-    }, [])
+    const setFormRef = (el: HTMLFormElement | null) => {
+        formRef.current = el
+        ;(containerRef as React.MutableRefObject<HTMLElement | null>).current = el
+    }
     const itiRef = useRef<ReturnType<typeof intlTelInput> | null>(null)
     const urlParametros = new URLSearchParams(window.location.search)
     const parametros = {
@@ -184,7 +185,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         return () => observer.disconnect()
     }, [])
     return (
-        <form ref={formRef as React.RefObject<HTMLFormElement>} role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
+        <form ref={setFormRef} role="form" id="pedidoinfo" method="post" encType="multipart/form-data" action="/postulantes_mail1.php"
             autoComplete="on"
             onSubmit={handleSubmit(
                 async () => {

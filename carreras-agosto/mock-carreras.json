@@ -1,0 +1,77 @@
+[
+  {
+    "codcar": 16,
+    "modo": 7,
+    "nombre_carrera": "ABOGACÍA (16)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 60, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 148, "nombre_sede": "BUENOS AIRES - BALCARCE" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 500, "nombre_sede": "BUENOS AIRES - BARKER (Home)" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 1, "nombre_sede": "SALTA - CENTRAL" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 500, "nombre_sede": "SALTA - ROSARIO DE CACHI (Home)" }
+    ]
+  },
+  {
+    "codcar": 23,
+    "modo": 7,
+    "nombre_carrera": "CONTADOR PÚBLICO (23)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 60, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 500, "nombre_sede": "BUENOS AIRES - EZEIZA (Home)" },
+      { "id_provincia": 3, "nombre_provincia": "Córdoba", "id_sede": 32, "nombre_sede": "CÓRDOBA - DELEGACIÓN RIO CUARTO" },
+      { "id_provincia": 3, "nombre_provincia": "Córdoba", "id_sede": 500, "nombre_sede": "CÓRDOBA - MINA CLAVERO (Home)" },
+      { "id_provincia": 20, "nombre_provincia": "Santa Fe", "id_sede": 62, "nombre_sede": "SANTA FE - DELEGACIÓN ROSARIO" },
+      { "id_provincia": 20, "nombre_provincia": "Santa Fe", "id_sede": 500, "nombre_sede": "SANTA FE - CORONDA (Home)" }
+    ]
+  },
+  {
+    "codcar": 45,
+    "modo": 7,
+    "nombre_carrera": "INGENIERÍA EN SISTEMAS (45)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 89, "nombre_sede": "BUENOS AIRES - QUILMES" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 500, "nombre_sede": "BUENOS AIRES - RAUCH (Home)" },
+      { "id_provincia": 11, "nombre_provincia": "Mendoza", "id_sede": 500, "nombre_sede": "MENDOZA - LUJÁN DE CUYO (Home)" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 1, "nombre_sede": "SALTA - CENTRAL" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 500, "nombre_sede": "SALTA - CAFAYATE (Home)" }
+    ]
+  },
+  {
+    "codcar": 67,
+    "modo": 7,
+    "nombre_carrera": "LICENCIATURA EN ADMINISTRACIÓN (67)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 60, "nombre_sede": "BUENOS AIRES - AVELLANEDA" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 500, "nombre_sede": "BUENOS AIRES - CASTELLI (Home)" },
+      { "id_provincia": 2, "nombre_provincia": "Catamarca", "id_sede": 131, "nombre_sede": "CATAMARCA - CATAMARCA" },
+      { "id_provincia": 2, "nombre_provincia": "Catamarca", "id_sede": 500, "nombre_sede": "CATAMARCA - TINOGASTA (Home)" },
+      { "id_provincia": 20, "nombre_provincia": "Santa Fe", "id_sede": 86, "nombre_sede": "SANTA FE - VENADO TUERTO" },
+      { "id_provincia": 20, "nombre_provincia": "Santa Fe", "id_sede": 500, "nombre_sede": "SANTA FE - GÁLVEZ (Home)" }
+    ]
+  },
+  {
+    "codcar": 89,
+    "modo": 7,
+    "nombre_carrera": "MEDICINA (89)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 148, "nombre_sede": "BUENOS AIRES - BALCARCE" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 500, "nombre_sede": "BUENOS AIRES - TANDIL (Home)" },
+      { "id_provincia": 3, "nombre_provincia": "Córdoba", "id_sede": 67, "nombre_sede": "CÓRDOBA - DEAN FUNES" },
+      { "id_provincia": 3, "nombre_provincia": "Córdoba", "id_sede": 500, "nombre_sede": "CÓRDOBA - VILLA CARLOS PAZ (Home)" },
+      { "id_provincia": 23, "nombre_provincia": "Tucumán", "id_sede": 81, "nombre_sede": "TUCUMÁN - S.M DE TUCUMÁN" },
+      { "id_provincia": 23, "nombre_provincia": "Tucumán", "id_sede": 500, "nombre_sede": "TUCUMÁN - MONTEROS (Home)" }
+    ]
+  },
+  {
+    "codcar": 102,
+    "modo": 7,
+    "nombre_carrera": "LICENCIATURA EN PSICOLOGÍA (102)",
+    "provincias": [
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 77, "nombre_sede": "BUENOS AIRES - OLIVOS" },
+      { "id_provincia": 1, "nombre_provincia": "Buenos Aires", "id_sede": 500, "nombre_sede": "BUENOS AIRES - PILA (Home)" },
+      { "id_provincia": 11, "nombre_provincia": "Mendoza", "id_sede": 500, "nombre_sede": "MENDOZA - POTRERILLOS (Home)" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 1, "nombre_sede": "SALTA - CENTRAL" },
+      { "id_provincia": 14, "nombre_provincia": "Salta", "id_sede": 500, "nombre_sede": "SALTA - ANIMANÁ (Home)" }
+    ]
+  }
+]

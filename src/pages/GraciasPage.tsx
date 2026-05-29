@@ -196,6 +196,7 @@ export default function GraciasPage() {
             {/* Botón de WhatsApp */}
             <a
                 target="_blank"
+                id='uki-bot'
                 rel="noopener noreferrer"
                 className="flex items-center justify-center mx-auto w-16 h-16 text-white transition-transform rounded-full hover:scale-110 animate-bounce"
                 href={`https://api.whatsapp.com/send/?phone=5493872589770&text=${encodeURIComponent('Hola, quiero más información sobre la carrera de ' + (carrera ?? ''))}&type=phone_number&app_absent=0`}

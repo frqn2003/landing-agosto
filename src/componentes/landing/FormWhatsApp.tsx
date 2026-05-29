@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useCarrerasCascada } from '../../hooks/useCarrerasCascada'
 import dataCarreras from '../../data/carreras'
+import { clarityEvent, clarityUpgrade } from '../../lib/clarity'
 
 const WHATSAPP_PHONE = '5493872589770'
 
@@ -209,31 +210,21 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
                 )
             }
             <div className="flex justify-center items-center text-center mt-6">
-                <button className='relative w-fit mx-auto items-center justify-center h-16 cursor-pointer group' type="button" onClick={abrirWhatsApp} disabled={!carreraCompleta}>
-                    <div className='absolute group -left-10 md:-left-6 top-0 z-20 group-hover:scale-110 transition-transform duration-800 group-hover:translate-x-55 md:group-hover:translate-x-60'>
-                        <img src={`https://ucasal.edu.ar/landing/ingreso/public/bot.jpeg`} className="w-16 h-16 rounded-full border border-green-300 group-hover:border-green-500 group-hover:animate-spin" alt="WhatsApp Chatbot" />
+                <button className='uki-bot relative w-fit mx-auto items-center justify-center h-16 cursor-pointer group' type="button" onClick={() => {
+                    abrirWhatsApp();
+                    clarityEvent('formulario-enviado-whatsapp')
+                    clarityUpgrade('conversion-whatsapp')
+                }} 
+                disabled={!carreraCompleta}
+                id='uki-bot'
+                >
+                    <div className='uki-bot absolute group -left-10 md:-left-6 top-0 z-20 group-hover:scale-110 transition-transform duration-800 group-hover:translate-x-62 md:group-hover:translate-x-75'>
+                        <img src={`https://ucasal.edu.ar/landing/ingreso/public/bot.jpeg`} className="w-16 h-16 rounded-full border border-green-300 group-hover:border-green-500 group-hover:ring-2 group-hover:ring-green-300/40" alt="WhatsApp Chatbot" />
                     </div>
-                    <div className='inline-flex botoncito text-sm md:text-base items-center gap-2 px-8 md:px-12 py-3.5 rounded-2xl border-2 border-green-300 text-black font-bold transition-all duration-00 cursor-pointer' style={{ '--botoncito-bg': 'var(--color-green-300)', '--botoncito-bg-secondary': 'var(--color-green-700)', '--botoncito-opacity': '1' } as React.CSSProperties}>
-                        Hablar con UKI-Bot
+                    <div className='uki-bot inline-flex botoncito text-sm md:text-base items-center gap-2 px-6 md:px-12 py-3.5 rounded-2xl border-2 border-green-300 text-black font-bold transition-all duration-300 cursor-pointer' style={{ '--botoncito-bg': 'var(--color-green-300)', '--botoncito-bg-secondary': 'var(--color-green-700)', '--botoncito-opacity': '1' } as React.CSSProperties}>
+                        Hablar con el ChatBot UKI
                     </div>
                 </button>
-                {/*                 <div
-                    className="animated-border"
-                    style={{ "--ab-thickness": "4px", "--ab-radius": "0.5rem" } as React.CSSProperties}
-                >
-                    <button
-                        type="button"
-                        disabled={!carreraCompleta}
-                        onClick={abrirWhatsApp}
-                        className={`ab-inner font-medium text-sm px-5 py-2.5 text-center transition-colors duration-200 ease-in-out scale-105 flex items-center gap-2 ${carreraCompleta ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-                    >
-                        <svg className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                            <path d="M12.05.02C5.495.02.02 5.495.02 12.05c0 2.12.553 4.107 1.518 5.835L.02 23.98l6.266-1.501A11.98 11.98 0 0012.05 24c6.555 0 12.03-5.475 12.03-12.03S18.605.02 12.05.02zm0 21.87a9.847 9.847 0 01-5.031-1.378l-.361-.214-3.741.896.952-3.638-.235-.374A9.826 9.826 0 012.19 12.05c0-5.44 4.421-9.861 9.86-9.861 5.44 0 9.861 4.421 9.861 9.861 0 5.44-4.421 9.86-9.861 9.86z" />
-                        </svg>
-                        Consultar por WhatsApp
-                    </button>
-                </div> */}
             </div>
         </div>
     )

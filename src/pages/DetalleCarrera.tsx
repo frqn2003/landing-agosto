@@ -56,6 +56,7 @@ export default function DetalleCarrera() {
     const modalidad = carrera?.modalidad == 7 ? 'Online' : carrera?.modalidad == 1 ? 'Presencial' : 'Presencial'
     const esPresencial = carrera?.modalidad === 1
     const sinCursadoIntensivo = carrera?.codcar === 244 || carrera?.codcar === 196 || carrera?.codcar === 57
+    const carrerasFormWhatsapp = carrera?.codcar === 57 || carrera?.codcar === 360 || carrera?.codcar === 355 || carrera?.codcar === 196
 
     const titulo = carrera?.nombre?.trim().split(' ') || []
     const tituloClase = titulo?.length >= 5 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(10)_forwards] overflow-hidden'
@@ -212,15 +213,15 @@ export default function DetalleCarrera() {
 
                     {!isDesktop && (
                         <div className="contenedor">
-                            <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
+                            <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-4 flex flex-col gap-4 shadow-sm">
                                 <div>
                                     <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
-                                    <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y un asesor te contactará</p>
+                                    <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y se te contactará</p>
                                     {sinCursadoIntensivo && (
                                         <p className="text-xs text-gray-400 italic mt-1">* Esta carrera no incluye cursado intensivo.</p>
                                     )}
                                 </div>
-                                {carrera?.codcar === 57 ? (
+                                {carrerasFormWhatsapp ? (
                                     <>
                                         <div className="flex gap-2">
                                             <button
@@ -271,12 +272,12 @@ export default function DetalleCarrera() {
                         <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
                             <div>
                                 <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
-                                <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y se te contactará</p>
+                                <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y se te contactará lo más pronto posible</p>
                                 {sinCursadoIntensivo && (
                                     <p className="text-xs text-gray-400 italic mt-1">* Esta carrera no incluye cursado intensivo.</p>
                                 )}
                             </div>
-                            {carrera?.codcar === 57 ? (
+                            {carrerasFormWhatsapp ? (
                                 <>
                                     <div className="flex gap-2">
                                         <button
