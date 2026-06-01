@@ -87,10 +87,12 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
         carrerasUnicas,
         modos,
         provincias,
-        sedes,
         sedesOficiales,
         tieneHome,
         sedesHome,
+        sedeSeleccionada,
+        idSedeReal,
+        getSedeValue,
         carreraCompleta,
         seleccionarCodcar,
         seleccionarModalidad,
@@ -223,7 +225,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             email,
                             carrera: dataCarreras.find(c => String(c.codcar) === codcar)?.nombre ?? '',
                             modalidad: modalidad === '7' ? 'Online' : 'Presencial',
-                            sede: sedes.find((s: { id_sede: string; nombre_sede: string }) => String(s.id_sede) === idSede)?.nombre_sede ?? '',
+                            sede: sedeSeleccionada?.nombre_sede ?? '',
                         }
                     })
                 },
@@ -243,6 +245,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
             <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}`} />
             <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}?id=404`} />
+            <input type="hidden" name="cbx_sede" value={idSedeReal} />
 
             {!onSubPage && (
                 <div className="flex justify-center">
@@ -312,14 +315,13 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="cbx_sede" id="cbx_sede" aria-label="Seleccionar Sede" tabIndex={0}
+                    <select name="cbx_sede_selector" id="cbx_sede" aria-label="Seleccionar Sede" tabIndex={0}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar && !!modalidad && !!idProvincia, !!idSede)}
                             ${!codcar || !modalidad || !idProvincia ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
                         `}
                         value={idSede}
                         onChange={e => {
-                            setValue('cbx_sede', e.target.value, { shouldValidate: true })
                             seleccionarSede(e.target.value)
                         }}
                         required
@@ -331,14 +333,14 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         {sedesOficiales.length > 0 && (
                             <optgroup label="Sedes disponibles">
                                 {sedesOficiales.map((s: { id_sede: string; nombre_sede: string }) => (
-                                    <option key={s.id_sede} value={s.id_sede}>{s.nombre_sede}</option>
+                                    <option key={getSedeValue(s)} value={getSedeValue(s)}>{s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}
                         {tieneHome && (
                             <optgroup label="Sin sede cerca (Home)">
                                 {sedesHome.map((s: { id_sede: string; nombre_sede: string }) => (
-                                    <option key={s.id_sede} value="500"> {s.nombre_sede}</option>
+                                    <option key={getSedeValue(s)} value={getSedeValue(s)}> {s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}

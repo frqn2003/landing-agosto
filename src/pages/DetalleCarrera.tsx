@@ -56,7 +56,7 @@ export default function DetalleCarrera() {
     const modalidad = carrera?.modalidad == 7 ? 'Online' : carrera?.modalidad == 1 ? 'Presencial' : 'Presencial'
     const esPresencial = carrera?.modalidad === 1
     const sinCursadoIntensivo = carrera?.codcar === 244 || carrera?.codcar === 196 || carrera?.codcar === 57
-    const carrerasFormWhatsapp = carrera?.codcar === 57 || carrera?.codcar === 360 || carrera?.codcar === 355 || carrera?.codcar === 196
+    const carrerasFormWhatsapp = carrera?.codcar === 57 || carrera?.codcar === 360 || carrera?.codcar === 355 || carrera?.codcar === 196 || carrera?.codcar === 14
 
     const titulo = carrera?.nombre?.trim().split(' ') || []
     const tituloClase = titulo?.length >= 5 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(10)_forwards] overflow-hidden'

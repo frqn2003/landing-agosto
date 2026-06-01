@@ -12,6 +12,10 @@ const FALLBACK_CARRERAS: any[] = [
     }
 ]
 
+function getSedeValue(sede: any) {
+    return `${sede.id_provincia}|${sede.id_sede}|${sede.nombre_sede}`
+}
+
 export interface UseCarrerasCascadaOptions {
     codcarInicial?: string
     onSubPage?: boolean
@@ -99,6 +103,8 @@ export function useCarrerasCascada({
     const tieneHome = todasLasSedes.some((s: any) => s.id_sede === 500)
     const sedesHome = todasLasSedes.filter((s: any) => s.id_sede === 500)
     const sedes = todasLasSedes
+    const sedeSeleccionada = sedes.find((s: any) => getSedeValue(s) === idSede)
+    const idSedeReal = sedeSeleccionada ? String(sedeSeleccionada.id_sede) : ''
     const carreraCompleta = !!codcar && !!modalidad && !!idProvincia && !!idSede
 
     /* Evento global preselect-carrera (solo en landing principal) */
@@ -152,11 +158,11 @@ export function useCarrerasCascada({
 
     useEffect(() => {
         if (sedes.length === 1) {
-            const v = String(sedes[0].id_sede)
+            const v = getSedeValue(sedes[0])
             setIdSede(v)
-            onSedeChange?.(v)
+            onSedeChange?.(String(sedes[0].id_sede))
         }
-    }, [idProvincia])
+    }, [idProvincia, carreras])
 
     /* Setters que resetean la cascada descendente */
     function seleccionarCodcar(val: string) {
@@ -179,6 +185,8 @@ export function useCarrerasCascada({
 
     function seleccionarSede(val: string) {
         setIdSede(val)
+        const sede = sedes.find((s: any) => getSedeValue(s) === val)
+        onSedeChange?.(sede ? String(sede.id_sede) : '')
     }
 
     return {
@@ -199,6 +207,9 @@ export function useCarrerasCascada({
         sedesOficiales,
         tieneHome,
         sedesHome,
+        sedeSeleccionada,
+        idSedeReal,
+        getSedeValue,
         carreraCompleta,
         /* setters */
         seleccionarCodcar,

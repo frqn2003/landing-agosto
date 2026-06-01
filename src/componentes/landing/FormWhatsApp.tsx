@@ -20,10 +20,11 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
         carrerasUnicas,
         modos,
         provincias,
-        sedes,
         sedesOficiales,
         tieneHome,
         sedesHome,
+        sedeSeleccionada,
+        getSedeValue,
         carreraCompleta,
         seleccionarCodcar,
         seleccionarModalidad,
@@ -47,7 +48,7 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
         const nombreCarrera = dataCarreras.find(c => String(c.codcar) === codcar)?.nombre ?? codcar
         const nombreModalidad = modalidad === '7' ? 'Online' : 'Presencial'
         const nombreProvincia = provincias.find((p: any) => String(p.id_provincia) === idProvincia)?.nombre_provincia ?? idProvincia
-        const nombreSede = sedes.find((s: any) => String(s.id_sede) === idSede)?.nombre_sede ?? idSede
+        const nombreSede = sedeSeleccionada?.nombre_sede ?? idSede
 
         const mensaje = `Hola, quiero más información sobre:\n- Carrera: ${nombreCarrera}\n- Modalidad: ${nombreModalidad}\n- Provincia: ${nombreProvincia}\n- Sede: ${nombreSede}`
         const url = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`
@@ -141,14 +142,14 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
                         {sedesOficiales.length > 0 && (
                             <optgroup label="Sedes disponibles">
                                 {sedesOficiales.map((s: { id_sede: string; nombre_sede: string }) => (
-                                    <option key={s.id_sede} value={s.id_sede}>{s.nombre_sede}</option>
+                                    <option key={getSedeValue(s)} value={getSedeValue(s)}>{s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}
                         {tieneHome && (
                             <optgroup label="Sin sede cerca (Home)">
                                 {sedesHome.map((s: { id_sede: string; nombre_sede: string }) => (
-                                    <option key={s.id_sede} value="500">{s.nombre_sede}</option>
+                                    <option key={getSedeValue(s)} value={getSedeValue(s)}>{s.nombre_sede}</option>
                                 ))}
                             </optgroup>
                         )}
