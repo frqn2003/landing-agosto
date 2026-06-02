@@ -7,8 +7,12 @@ import { HelmetProvider } from 'react-helmet-async'
 import { initClarity } from './lib/clarity.ts'
 
 if (typeof window !== 'undefined') {
-  requestIdleCallback?.(() => initClarity("wg7h7j7vya")) 
-    ?? setTimeout(() => initClarity("wg7h7j7vya"), 2000)
+  const init = () => initClarity("wg7h7j7vya")
+  if ('requestIdleCallback' in window && typeof window.requestIdleCallback === 'function') {
+    window.requestIdleCallback(init)
+  } else {
+    window.setTimeout(init, 2000)
+  }
 }
 
 createRoot(document.getElementById('root')!).render(

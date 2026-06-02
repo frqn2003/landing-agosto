@@ -5,6 +5,9 @@ import path from 'path'
 
 export default defineConfig({
   base: '/landing/ingreso/carreras-agosto/',   // <-- ajustar según la ruta real del servidor
+  build: {
+    target: 'es2018',
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
