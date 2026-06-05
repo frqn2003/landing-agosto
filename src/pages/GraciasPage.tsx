@@ -126,6 +126,35 @@ export default function GraciasPage() {
                 </div>
             )}
 
+            <div
+                className="bg-white rounded-2xl shadow-lg border border-gray-300 p-6 md:p-8 w-full max-w-md mb-10 text-black text-center"
+                style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.55s forwards' }}
+            >
+                <h2 className="text-2xl font-black mb-2">
+                    Promoción de Pago Anticipado
+                </h2>
+                <p className="text-5xl md:text-6xl font-black degrade-azul leading-none mb-1">
+                    100% OFF
+                </p>
+                <p className="text-xl font-bold mb-4">
+                    en la matrícula
+                </p>
+                <p className="text-sm mb-5">
+                    Si abonás las 7 cuotas adelantadas, accedés al beneficio.
+                </p>
+                <a
+                    href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto&utm_medium=gracias&utm_campaign=pago_anticipado"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="boton-cta inline-flex justify-center w-full"
+                >
+                    Inscribirme ahora
+                </a>
+                <p className="text-xs mt-4">
+                    Válido abonando de forma anticipada con cualquier medio de pago vigente en la institución.
+                </p>
+            </div>
+
             {/* Videos */}
             <div
                 className="bg-white rounded-2xl border border-gray-300 shadow-lg p-6 w-full max-w-md mb-5"

@@ -1637,7 +1637,7 @@ const data = [
             }
         ]
     },
-    /* {
+    {
         codcar: 401,
         slug: "licenciatura-en-corretaje-tasacion-y-administracion-de-consorcios",
         nombre: "Licenciatura en Corretaje, Tasación y Administración de Consorcios - CCC",
@@ -1692,7 +1692,7 @@ const data = [
                 ]
             }
         ]
-    } */
+    },
    {
     codcar: 57,
     slug: 'tecnicatura-universitaria-topografia-y-geomatica',
