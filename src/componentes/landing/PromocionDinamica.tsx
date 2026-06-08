@@ -13,7 +13,10 @@ function diasRestantes(fechaFin: string): number {
     return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
 }
 
-function textoFechaHasta(fechaFin: string, dias: number): string {
+function textoFechaHasta(fechaFin: string, dias: number, nombre?: string): string {
+    if(nombre === "promocion_mundial"){
+        return "Hasta el final del Mundial"
+    }
     const d = new Date(fechaFin)
     const dia = String(d.getDate()).padStart(2, "0")
     const mes = String(d.getMonth() + 1).padStart(2, "0")
@@ -58,21 +61,28 @@ export default function PromocionDinamica() {
     if (!promocion) {
         return (
             <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
-                <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-col items-center justify-center gap-4 z-20 rounded-lg bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center">
-                    <div className="flex flex-col gap-1.5 items-center">
-                        <span className="text-2xl sm:text-4xl font-black text-white leading-tight">
-                            Inscripciones abiertas
-                        </span>
-                        <span className="text-sm sm:text-base text-white/70 max-w-md">
-                            Más de 42.000 graduados avalan la calidad de nuestras carreras. Anotate hoy.
-                        </span>
+                <div className="flex items-stretch gap-2 sm:gap-4">
+                    <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-1 flex-col items-center justify-center gap-4 z-20 rounded-lg bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center relative">
+                        <div className="absolute left-4 flex w-8 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
+                            <span>★</span>
+                            <span>★</span>
+                            <span>★</span>
+                        </div>
+                        <div className="flex flex-col gap-1.5 items-center">
+                            <span className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                                Inscripciones abiertas
+                            </span>
+                            <span className="text-sm sm:text-base text-white/70 max-w-md">
+                                Más de 42.000 graduados avalan la calidad de nuestras carreras. Anotate hoy.
+                            </span>
+                        </div>
+                        <button
+                            onClick={() => { const el = document.getElementById('carreras'); if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' }) }}
+                            className="boton-cta text-sm whitespace-nowrap"
+                        >
+                            ¡Aprovechá ahora!
+                        </button>
                     </div>
-                    <button
-                        onClick={() => { const el = document.getElementById('carreras'); if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' }) }}
-                        className="boton-cta text-sm whitespace-nowrap"
-                    >
-                        ¡Aprovechá ahora!
-                    </button>
                 </div>
             </section>
         )
@@ -80,52 +90,62 @@ export default function PromocionDinamica() {
 
     return (
         <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
-            <div className="sm:px-6 px-2 py-6 sm:py-8 flex flex-row items-center justify-center gap-2 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal)">
-                {/* Izquierda: descuento */}
-                <div className="flex flex-col items-center text-center">
-                    {promocion.descuento && (
-                        <span className="text-5xl sm:text-8xl font-black text-white leading-none tracking-tighter">
+            <div className="flex items-stretch gap-2 sm:gap-4">
+                <div className="sm:px-6 px-2 py-6 sm:py-8 flex flex-1 flex-row items-center justify-center gap-2 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) relative">
+                    <div className="absolute left-4 flex w-8 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
+                        <span>★</span>
+                        <span>★</span>
+                        <span>★</span>
+                    </div>
+                    {/* Izquierda: descuento */}
+                    <div className="flex flex-col items-center text-center">
+                        {promocion.descuento && (
+                            <span className="text-5xl sm:text-8xl font-black text-white leading-none tracking-tighter">
+                                {promocion.descuento !== null ? (
+                                    <>
+                                        {promocion.descuento} OFF
+                                    </>
+                                ) : null}
+
+                            </span>
+                        )}
+                        <span className="text-xl sm:text-3xl font-bold text-white/90 leading-tight">
                             {promocion.descuento !== null ? (
                                 <>
-                                    {promocion.descuento} OFF
+                                    <span>en tu matrícula</span>
                                 </>
-                        ) : null}
-                            
+                            ) : (
+                                "Cuotas sin interés"
+                            )}
                         </span>
-                    )}
-                    <span className="text-xl sm:text-3xl font-bold text-white/90 leading-tight">
-                        {promocion.descuento !== null ? (
-                            <>
-                                <span>en tu matrícula</span>
-                            </>
-                        ) : (
-                            "Cuotas sin interés"
+                        {promocion.descuento && (
+                            <span className="text-sm text-white/60 mt-1">
+                                {textoFechaHasta(promocion.fecha_fin, dias, promocion.nombre === 'promocion_mundial' ? promocion.nombre : '')}
+                                {promocion.nombre === 'promocion_mundial' && (
+                                    <img src="./icons/copa.svg" alt="Copa" className="size-5 inline-block ml-1" />
+                                )}
+                            </span>
                         )}
-                    </span>
-                    {promocion.descuento && (
-                        <span className="text-sm text-white/60 mt-1">
-                            {textoFechaHasta(promocion.fecha_fin, dias)}
-                        </span>
-                    )}
-                </div>
-
-                {/* Derecha: contador + CTA */}
-                <div className="flex flex-col items-center gap-4">
-                    <div className="flex flex-col items-center bg-white/10 border border-white/20 rounded-xl px-6 py-3">
-                        <span className="text-white/60 text-xs uppercase tracking-widest mb-1">Quedan</span>
-                        <span className="text-5xl font-black text-white leading-none">
-                            {dias}
-                        </span>
-                        <span className="text-white/60 text-xs uppercase tracking-widest mt-1">
-                            {dias === 1 ? "día" : "días"}
-                        </span>
                     </div>
-                    <button
-                        onClick={() => { const el = document.getElementById('carreras'); if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' }) }}
-                        className="boton-cta text-sm whitespace-nowrap"
-                    >
-                        ¡Aprovechá ahora!
-                    </button>
+
+                    {/* Derecha: contador + CTA */}
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="flex flex-col items-center bg-white/10 border border-white/20 rounded-xl px-6 py-3">
+                            <span className="text-white/60 text-xs uppercase tracking-widest mb-1">Quedan</span>
+                            <span className="text-5xl font-black text-white leading-none">
+                                {dias}
+                            </span>
+                            <span className="text-white/60 text-xs uppercase tracking-widest mt-1">
+                                {dias === 1 ? "día" : "días"}
+                            </span>
+                        </div>
+                        <button
+                            onClick={() => { const el = document.getElementById('carreras'); if (el) window.scrollTo({ top: el.getBoundingClientRect().bottom + window.scrollY + 40, behavior: 'smooth' }) }}
+                            className="boton-cta text-sm whitespace-nowrap"
+                        >
+                            ¡Aprovechá ahora!
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
