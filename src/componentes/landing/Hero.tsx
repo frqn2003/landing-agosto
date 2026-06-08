@@ -82,13 +82,13 @@ export default function Hero() {
                     <div className="flex flex-col gap-2 sm:gap-8 lg:pl-4 items-center md:items-start w-full h-full justify-center sm:justify-left pt-4 sm:pt-0 z-30">
 
                         <h1 className="text-5xl lg:text-6xl xl:text-8xl 2xl:text-9xl font-black leading-none tracking-tight uppercase mt-6 flex flex-col w-full text-center md:text-left" style={{ fontFamily: "Museo Sans, sans-serif" }}>
-                            <span className="md:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(12)_forwards] mx-auto sm:mx-0">
+                            <span className="text-white  block overflow-hidden whitespace-nowrap animate-[typewriter_0.8s_steps(12)_forwards] mx-auto sm:mx-0">
                                 EMPEZÁ
                             </span>
-                            <span className="md:text-white text-(--azul-ucasal) block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
+                            <span className="text-white block overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_0.8s_forwards,fadeIn_0.05s_0.9s_forwards] mx-auto sm:mx-0">
                                 EN AGOSTO
                             </span>
-                            <p className='text-2xl md:text-4xl tracking-tight font-thin md:text-white text-(--azul-ucasal) lg:px-2 overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_1.4s_forwards,fadeIn_0.05s_1.5s_forwards]'>estudía online</p>
+                            <p className='text-2xl md:text-4xl tracking-tight font-thin text-white lg:px-2 overflow-hidden whitespace-nowrap opacity-0 animate-[typewriter_0.9s_steps(12)_1.4s_forwards,fadeIn_0.05s_1.5s_forwards]'>estudía online</p>
                         </h1>
                         <div className='flex flex-col gap-8 sm:gap-14 sm:text-left sm:justify-start sm:items-start justify-center text-center items-center h-full w-full'>
                             <div className='flex flex-col gap-2 h-full w-full max-md:items-end max-md:justify-end'>
