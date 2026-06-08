@@ -71,8 +71,8 @@ export default function Hero() {
     return (
         <>
         <Helmet>
-            <link rel="preload" href={`${import.meta.env.BASE_URL}/mundial/mobile.webp`} as="image" media="(max-width: 768px)" />
-            <link rel="preload" href={`${import.meta.env.BASE_URL}/mundial/desktop.webp`} as="image" media="(min-width: 769px)" />
+            <link rel="preload" href={`${import.meta.env.BASE_URL}encabezados/mundial/mobile.webp`} as="image" media="(max-width: 768px)" />
+            <link rel="preload" href={`${import.meta.env.BASE_URL}encabezados/mundial/desktop.webp`} as="image" media="(min-width: 769px)" />
         </Helmet>
         <section className="w-full flex items-center pt-4 px-4 contenedor" role="banner" aria-label="Banner principal">
             <div className="w-full h-[800px] sm:h-[760px] pt-4 pb-6 sm:p-12 rounded-2xl relative">
@@ -171,10 +171,10 @@ export default function Hero() {
                 </div>
                 <div className="absolute inset-0 rounded-2xl overflow-hidden">
                     <picture>
-                        <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}public/encabezados/mundial/desktop.webp`} />
-                        <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}public/encabezados/mundial/mobile.webp`} />
+                        <source media="(min-width: 769px)" srcSet={`${import.meta.env.BASE_URL}encabezados/mundial/desktop.webp`} />
+                        <source media="(max-width: 768px)" srcSet={`${import.meta.env.BASE_URL}encabezados/mundial/mobile.webp`} />
                         <img
-                            src={`${import.meta.env.BASE_URL}public/encabezados/mundial/desktop.jpg`}
+                            src={`${import.meta.env.BASE_URL}encabezados/mundial/desktop.webp`}
                             /* src={`/${carrera.codcar}.png`} */
                             alt="Hero"
                             className="w-full h-full object-cover object-center" fetchPriority='high'

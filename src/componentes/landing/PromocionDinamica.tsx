@@ -31,7 +31,7 @@ export default function PromocionDinamica() {
     const [cargando, setCargando] = useState(true)
 
     useEffect(() => {
-        fetch('https://www.ucasal.edu.ar/landing/ingreso/assets/datosLanding.json')
+        fetch('/landing/ingreso/assets/datosLanding.json')
             .then(r => r.json())
             .then(data => {
                 const ahora = new Date()
@@ -122,7 +122,7 @@ export default function PromocionDinamica() {
                             <span className="text-sm text-white/60 mt-1">
                                 {textoFechaHasta(promocion.fecha_fin, dias, promocion.nombre === 'promocion_mundial' ? promocion.nombre : '')}
                                 {promocion.nombre === 'promocion_mundial' && (
-                                    <img src="./icons/copa.svg" alt="Copa" className="size-5 inline-block ml-1" />
+                                    <img src="./icons/trionda.webp" alt="Copa" className="size-7 inline-block ml-1" />
                                 )}
                             </span>
                         )}
