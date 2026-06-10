@@ -63,7 +63,7 @@ export default function PromocionDinamica() {
             <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
                 <div className="flex items-stretch gap-2 sm:gap-4">
                     <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-1 flex-col items-center justify-center gap-4 z-20 rounded-lg bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center relative">
-                        <div className="absolute left-4 flex w-8 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
+                        <div className="absolute left-1 md:left-4 flex w-6 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
                             <span>★</span>
                             <span>★</span>
                             <span>★</span>
@@ -92,7 +92,7 @@ export default function PromocionDinamica() {
         <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
             <div className="flex items-stretch gap-2 sm:gap-4">
                 <div className="sm:px-6 px-2 py-6 sm:py-8 flex flex-1 flex-row items-center justify-center gap-2 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) relative">
-                    <div className="absolute left-4 flex w-8 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
+                    <div className="absolute left-1 md:left-4 flex w-6 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
                         <span>★</span>
                         <span>★</span>
                         <span>★</span>
@@ -109,7 +109,7 @@ export default function PromocionDinamica() {
 
                             </span>
                         )}
-                        <span className="text-xl sm:text-3xl font-bold text-white/90 leading-tight">
+                        <span className="text-lg sm:text-3xl font-bold text-white/90 leading-tight">
                             {promocion.descuento !== null ? (
                                 <>
                                     <span>en tu matrícula</span>
