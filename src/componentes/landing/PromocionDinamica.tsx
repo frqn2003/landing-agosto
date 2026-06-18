@@ -13,15 +13,12 @@ function diasRestantes(fechaFin: string): number {
     return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
 }
 
-function textoFechaHasta(fechaFin: string, dias: number, nombre?: string): string {
-    if(nombre === "promocion_mundial"){
-        return "Hasta el final del Mundial"
-    }
+function textoFechaHasta(fechaFin: string, dias: number): string {
     const d = new Date(fechaFin)
     const dia = String(d.getDate()).padStart(2, "0")
     const mes = String(d.getMonth() + 1).padStart(2, "0")
     const anio = String(d.getFullYear()).slice(2)
-    const sufijo = dias <= 7 ? " — ¡Últimos días!" : ""
+    const sufijo: string = dias <= 7 ? " — ¡Últimos días!" : ""
     return `Hasta el ${dia}/${mes}/${anio}${sufijo}`
 }
 
@@ -61,6 +58,9 @@ export default function PromocionDinamica() {
     if (!promocion) {
         return (
             <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
+                <p className="text-2xl lg:text-4xl font-semibold degrade-azul tracking-tight max-lg:text-center w-full mb-4">
+                    ¡Arrancó el <span className="degrade-rojo">mundial</span>, extendemos la promoción!
+                </p>
                 <div className="flex items-stretch gap-2 sm:gap-4">
                     <div className="sm:px-6 px-4 py-6 sm:py-8 flex flex-1 flex-col items-center justify-center gap-4 z-20 rounded-lg bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) text-center relative">
                         <div className="absolute left-1 md:left-4 flex w-6 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
@@ -90,6 +90,11 @@ export default function PromocionDinamica() {
 
     return (
         <section className="contenedor bg-center bg-cover relative mb-12" role="region" aria-label="Promoción vigente">
+            {promocion.nombre === 'promocion_mundial' && (
+                <p className="text-2xl lg:text-4xl font-semibold degrade-azul tracking-tight max-lg:text-center w-full">
+                    ¡Arrancó el <span className="degrade-rojo">mundial</span>, extendemos la promoción!
+                </p>
+            )}
             <div className="flex items-stretch gap-2 sm:gap-4">
                 <div className="sm:px-6 px-2 py-6 sm:py-8 flex flex-1 flex-row items-center justify-center gap-2 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) relative">
                     <div className="absolute left-1 md:left-4 flex w-6 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
@@ -103,13 +108,13 @@ export default function PromocionDinamica() {
                             <span className="text-5xl sm:text-8xl font-black text-white leading-none tracking-tighter">
                                 {promocion.descuento !== null ? (
                                     <>
-                                        {promocion.descuento} OFF
+                                        {promocion.descuento} <br className="flex md:hidden" /> OFF
                                     </>
                                 ) : null}
 
                             </span>
                         )}
-                        <span className="text-lg sm:text-3xl font-bold text-white/90 leading-tight">
+                        <span className="text-sm sm:text-3xl font-bold text-white/90 leading-tight">
                             {promocion.descuento !== null ? (
                                 <>
                                     <span>en tu matrícula</span>
@@ -119,10 +124,10 @@ export default function PromocionDinamica() {
                             )}
                         </span>
                         {promocion.descuento && (
-                            <span className="text-sm text-white/60 mt-1">
-                                {textoFechaHasta(promocion.fecha_fin, dias, promocion.nombre === 'promocion_mundial' ? promocion.nombre : '')}
+                            <span className="text-xs sm:text-sm text-white/60 mt-1">
+                                {textoFechaHasta(promocion.fecha_fin, dias)}
                                 {promocion.nombre === 'promocion_mundial' && (
-                                    <img src="./icons/trionda.webp" alt="Copa" className="size-7 inline-block ml-1" />
+                                    <img src="./icons/trionda.webp" alt="Copa" className="size-7 inline-block ml-2" />
                                 )}
                             </span>
                         )}

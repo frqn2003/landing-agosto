@@ -138,7 +138,7 @@ export default function GraciasPage() {
                     style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.55s forwards' }}
                 >
                     <h2 className="text-2xl font-black mb-2">
-                        Resuelve tu primer año
+                        Resolvé tu primer año
                     </h2>
                     <p className="text-5xl md:text-6xl font-black degrade-azul leading-none mb-1">
                         100% OFF

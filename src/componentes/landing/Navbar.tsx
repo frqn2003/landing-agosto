@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
+import data from "../../data/carreras";
+import { sanitizarTexto } from "../../lib/utils";
 
 function Navbar({ onSubPage }: { onSubPage?: boolean }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
@@ -86,6 +88,13 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
   if (location.pathname === '/') {
     fromLanding = false
   }
+  const { slug } = useParams()
+  const slugLimpio = slug ? sanitizarTexto(slug) : ''
+  const carreraActiva = data.find((c: any) => c.slug === slugLimpio)
+  const carrerasConCCC = carreraActiva?.codcar === 401 || carreraActiva?.codcar === 196
+  const urlInscripcion = carrerasConCCC
+    ? "https://www.ucasal.edu.ar/carreras/ccc-form.php"
+    : "https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto"
   return (
     <>
       {menuAbierto && (
@@ -158,7 +167,7 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
           </section>
 
           <div className="justify-end flex items-center">
-            <a href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto" target="_blank" rel="noopener noreferrer" className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</a>
+            <a href={urlInscripcion} target="_blank" rel="noopener noreferrer" className="boton-cta hidden lg:flex">¡Quiero Inscribirme!</a>
             {/* Botón mobile hamburguesa */}
             <button
               onClick={toggleMenu}
@@ -240,7 +249,7 @@ function Navbar({ onSubPage }: { onSubPage?: boolean }) {
             <li className="py-2 border-t border-gray-200 w-full">
               <button
                 className="mobile-nav-link justify-start items-start flex w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-(--rojo-ucasal) transition-colors font-semibold border-l-4 border-transparent hover:border-(--rojo-ucasal)"
-                onClick={() => { setMenuAbierto(false); window.open('https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto', '_blank', 'noopener,noreferrer') }}
+                onClick={() => { setMenuAbierto(false); window.open(urlInscripcion, '_blank', 'noopener,noreferrer') }}
               >
                 ¡Quiero Inscribirme!
               </button>

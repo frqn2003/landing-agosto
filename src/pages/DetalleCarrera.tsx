@@ -57,6 +57,10 @@ export default function DetalleCarrera() {
     const esPresencial = carrera?.modalidad === 1
     const sinCursadoIntensivo = carrera?.codcar === 244 || carrera?.codcar === 196 || carrera?.codcar === 57
     const carrerasFormWhatsapp = carrera?.codcar === 57 || carrera?.codcar === 360 || carrera?.codcar === 355 || carrera?.codcar === 196 || carrera?.codcar === 14
+    const carrerasConCCC = carrera?.codcar === 401 || carrera?.codcar === 196
+    const urlInscripcion = carrerasConCCC
+        ? "https://www.ucasal.edu.ar/carreras/ccc-form.php"
+        : "https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto"
 
     const titulo = carrera?.nombre?.trim().split(' ') || []
     const tituloClase = titulo?.length >= 5 ? 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl' : 'text-4xl lg:text-6xl xl:text-7xl 2xl:text-8xl animate-[typewriter_0.8s_steps(10)_forwards] overflow-hidden'
@@ -202,7 +206,7 @@ export default function DetalleCarrera() {
                             Ver plan de estudios
                         </button>
                         <a
-                            href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto"
+                            href={urlInscripcion}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-transparent text-(--azul-ucasal) font-bold text-xs sm:text-sm px-6 py-3 rounded-xl border-2 border-(--azul-ucasal) transition-all hover:bg-(--azul-ucasal) hover:text-white flex items-center"
