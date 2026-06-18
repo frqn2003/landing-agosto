@@ -436,6 +436,17 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </div>
                 </div>
             </div>
+            {/* ── PROTOTIPO: Precio por carrera (se muestra cuando el formulario está completo) ── */}
+            {todosCompletos && (
+                <div className="mt-4 mb-2 rounded-xl border-2 border-(--azul-ucasal)/30 bg-(--azul-ucasal)/5 p-4 flex flex-col gap-1 animate-[heroFadeInUp_0.4s_ease-out_forwards]">
+                    <p className="text-xs font-semibold text-(--azul-ucasal) uppercase tracking-widest mb-1">Matrícula y Aranceles</p>
+                    <div className="flex items-end gap-2">
+                        <span className="text-3xl font-black degrade-azul leading-none">$325.800</span>
+                        <span className="text-sm text-gray-500 mb-0.5">precio de matrícula, aranceles /mes</span>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-1">* Este valor es de referencia. El arancel definitivo puede variar según sede y modalidad.</p>
+                </div>
+            )}
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
                 Al enviar este formulario, aceptás nuestros <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad</button> y autorizás a UCASAL a utilizar tus datos para contactarte y brindarte información sobre carreras y propuestas académicas.
             </p>

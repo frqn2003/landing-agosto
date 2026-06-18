@@ -133,6 +133,19 @@ export default function GraciasPage() {
                 >
                     Inscribirme ahora
                 </a>
+                {/* ── PROTOTIPO: Precio de la carrera ── */}
+                <div
+                    className="bg-white rounded-2xl shadow-lg border-2 border-(--azul-ucasal)/30 p-6 md:p-8 w-full max-w-md mt-6 mb-4 text-black"
+                    style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.5s forwards' }}
+                >
+                    <p className="text-xs font-semibold text-(--azul-ucasal) uppercase tracking-widest mb-1">Matrícula y Aranceles</p>
+                    <div className="flex items-end gap-2">
+                        <span className="text-3xl font-black degrade-azul leading-none">$325.800</span>
+                        <span className="text-sm text-gray-500 mb-0.5">precio de matrícula, aranceles /mes</span>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-1">* Este valor es de referencia. El arancel definitivo puede variar según sede y modalidad.</p>
+                </div>
+
                 <div
                     className="bg-white rounded-2xl shadow-lg border border-gray-300 p-6 md:p-8 w-full max-w-md my-10 text-black text-center"
                     style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.55s forwards' }}
