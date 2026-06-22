@@ -2,6 +2,7 @@ const data = [
     // ── SEDE A ──
     {
         codcar: 16,
+        sector: 3,
         slug: "abogacia",
         nombre: "Abogacía",
         descripcionCorta: "Vas a poder asesorar, representar y defender en cualquier ámbito del derecho, con herramientas para actuar en el sector público, privado o judicial.",
@@ -95,6 +96,7 @@ const data = [
     },
     {
         codcar: 244,
+        sector: 3,
         slug: "corredor-inmobiliario-y-martillero-publico",
         nombre: "Corredor Inmobiliario y Martillero Público",
         descripcionCorta: "Vas a poder gestionar operaciones inmobiliarias, tasar propiedades y conducir remates públicos con habilitación profesional oficial.",
@@ -150,6 +152,7 @@ const data = [
     },
     {
         codcar: 14,
+        sector: 2,
         slug: "contador-publico",
         nombre: "Contador Público",
         descripcionCorta: "Vas a poder auditar, asesorar en impuestos y gestionar las finanzas de empresas u organismos: una de las carreras con mayor salida laboral del país.",
@@ -238,6 +241,7 @@ const data = [
     },
     {
         codcar: 360,
+        sector: 4,
         slug: "tecnicatura-en-seguridad-informatica",
         nombre: "Tecnicatura en Seguridad Informática",
         descripcionCorta: "Vas a poder proteger sistemas, redes y datos frente a amenazas digitales: una tecnicatura corta con una de las demandas laborales más altas del mercado.",
@@ -296,6 +300,7 @@ const data = [
     },
     {
         codcar: 355,
+        sector: 3,
         slug: "escribania",
         nombre: "Escribanía",
         descripcionCorta: "Vas a poder ejercer como escribano, autenticar actos jurídicos y garantizar la seguridad legal en transacciones civiles, comerciales e inmobiliarias.",
@@ -381,6 +386,7 @@ const data = [
     },
     {
         codcar: 11,
+        sector: 2,
         slug: "administracion-de-empresas",
         nombre: "Licenciatura en Administración de Empresas",
         descripcionCorta: "Vas a poder liderar organizaciones, gestionar equipos y tomar decisiones estratégicas en empresas privadas u organismos públicos de cualquier sector.",
@@ -471,6 +477,7 @@ const data = [
     },
     {
         codcar: 383,
+        sector: 4,
         slug: "tecnicatura-en-operaciones-mineras-e-industriales",
         nombre: "Tecnicatura en Operaciones Mineras e Industriales",
         descripcionCorta: "Vas a poder supervisar operaciones en industrias mineras y manufactureras, con inserción rápida en uno de los sectores más activos de la región.",
@@ -533,6 +540,7 @@ const data = [
     },
     {
         codcar: 138,
+        sector: 4,
         slug: "higiene-y-seguridad",
         nombre: "Licenciatura en Higiene y Seguridad",
         descripcionCorta: "Vas a poder diseñar planes de prevención y garantizar entornos laborales seguros: una carrera con altísima demanda en todos los sectores productivos.",
@@ -627,6 +635,7 @@ const data = [
     // ── SEDE B ──
     {
         codcar: 96,
+        sector: 2,
         slug: "tecnicatura-univ-en-gestion-de-calidad",
         nombre: "Tecnicatura Univ. en Gestión de Calidad",
         descripcionCorta: "Vas a poder implementar y auditar sistemas de gestión de calidad basados en normas ISO, con salida laboral inmediata en industrias y servicios.",
@@ -681,6 +690,7 @@ const data = [
     },
     {
         codcar: 336,
+        sector: 2,
         slug: "recursos-humanos",
         nombre: "Licenciatura en Recursos Humanos",
         descripcionCorta: "Vas a poder liderar la gestión del talento en cualquier organización: selección, capacitación, clima laboral y desarrollo de personas.",
@@ -765,6 +775,7 @@ const data = [
     },
     {
         codcar: 10,
+        sector: 2,
         slug: "economia",
         nombre: "Licenciatura en Economía",
         descripcionCorta: "Vas a poder analizar mercados, diseñar políticas económicas y asesorar en decisiones estratégicas en el sector público o privado.",
@@ -848,6 +859,7 @@ const data = [
     },
     {
         codcar: 15,
+        sector: 2,
         slug: "comercializacion",
         nombre: "Licenciatura en Comercialización",
         descripcionCorta: "Vas a poder diseñar estrategias de marketing y ventas, gestionar marcas y liderar equipos comerciales en empresas de cualquier sector.",
@@ -937,6 +949,7 @@ const data = [
     },
     {
         codcar: 161,
+        sector: 2,
         slug: "tec-universitaria-en-gestion-de-bancos-empresas-financieras-y-de-seguros",
         nombre: "Tecnicatura Univ. en Gestión de Bancos, Empresas Financieras y de Seguros",
         descripcionCorta: "Vas a poder trabajar en bancos, financieras y aseguradoras asesorando clientes, gestionando productos y operando en el sistema financiero.",
@@ -1002,6 +1015,7 @@ const data = [
     },
     {
         codcar: 363,
+        sector: 3,
         slug: "procuracion",
         nombre: "Procuración",
         descripcionCorta: "Vas a poder gestionar trámites y expedientes judiciales, trabajar en estudios jurídicos o tribunales y asistir en procesos legales de forma profesional.",
@@ -1066,6 +1080,7 @@ const data = [
     },
     {
         codcar: 378,
+        sector: 8,
         slug: "tecn-univ-en-organizacion-y-direccion-de-eventos-y-ceremonial",
         nombre: "Tecnicatura Univ. en Organización y Dirección de Eventos y Ceremonial",
         descripcionCorta: "Vas a poder planificar y coordinar eventos corporativos, sociales y oficiales con dominio del protocolo en una industria en pleno crecimiento.",
@@ -1127,6 +1142,7 @@ const data = [
     // ── SEDE C ──
     {
         codcar: 196,
+        sector: 3,
         slug: "licenciatura-en-seguridad",
         nombre: "Licenciatura en Seguridad - CCC",
         descripcionCorta: "Vas a poder gestionar la seguridad en organizaciones públicas o privadas, diseñar planes de prevención y liderar equipos en entornos complejos.",
@@ -1181,6 +1197,7 @@ const data = [
     },
     {
         codcar: 214,
+        sector: 2,
         slug: "comercio-internacional",
         nombre: "Licenciatura en Comercio Internacional",
         descripcionCorta: "Vas a poder gestionar exportaciones, importaciones y operaciones de comercio exterior, negociando en mercados globales con visión estratégica.",
@@ -1271,6 +1288,7 @@ const data = [
     },
     {
         codcar: 133,
+        sector: 2,
         slug: "administracion-agropecuaria",
         nombre: "Licenciatura en Administración Agropecuaria",
         descripcionCorta: "Vas a poder administrar empresas agropecuarias, tomar decisiones estratégicas sobre producción y maximizar la rentabilidad del campo de forma sustentable.",
@@ -1355,6 +1373,7 @@ const data = [
     },
     {
         codcar: 9,
+        sector: 2,
         slug: "tecnicatura-univ-en-secretariado-ejecutivo",
         nombre: "Tecnicatura Univ. en Secretariado Ejecutivo",
         descripcionCorta: "Vas a poder asistir a la alta dirección de cualquier organización, gestionando agenda, documentación y comunicaciones con eficiencia y profesionalismo.",
@@ -1413,6 +1432,7 @@ const data = [
     },
     {
         codcar: 250,
+        sector: 2,
         slug: "administracion-de-negocios-digitales",
         nombre: "Licenciatura en Administración de Negocios Digitales",
         descripcionCorta: "Vas a poder liderar la transformación digital de empresas, diseñar negocios en línea y tomar decisiones basadas en datos en un mercado en constante evolución.",
@@ -1495,6 +1515,7 @@ const data = [
     },
     {
         codcar: 175,
+        sector: 8,
         slug: "guia-universitario-de-turismo",
         nombre: "Guía Universitario de Turismo",
         descripcionCorta: "Vas a poder guiar experiencias turísticas en destinos nacionales e internacionales, combinando patrimonio, idiomas y atención al viajero.",
@@ -1559,6 +1580,7 @@ const data = [
     },
     {
         codcar: 58,
+        sector: 4,
         slug: "licenciatura-en-ciencia-de-datos",
         nombre: "Licenciatura en Ciencia de Datos",
         descripcionCorta: "Vas a poder extraer valor de grandes volúmenes de datos, aplicar machine learning e inteligencia artificial en empresas tecnológicas, financieras o de salud.",
@@ -1639,6 +1661,7 @@ const data = [
     },
     {
         codcar: 401,
+        sector: 3,
         slug: "licenciatura-en-corretaje-tasacion-y-administracion-de-consorcios",
         nombre: "Licenciatura en Corretaje, Tasación y Administración de Consorcios - CCC",
         descripcionCorta: "Vas a poder intermediar en operaciones inmobiliarias, tasar propiedades y administrar consorcios con respaldo jurídico y técnico.",
@@ -1695,6 +1718,7 @@ const data = [
     },
    {
     codcar: 57,
+    sector: 4,
     slug: 'tecnicatura-universitaria-topografia-y-geomatica',
     nombre: 'Tecnicatura Universitaria en Topografía y Geomática',
     modalidad: 1,

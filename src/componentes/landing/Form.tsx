@@ -9,6 +9,7 @@ import { useCarrerasCascada } from '../../hooks/useCarrerasCascada'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { formSchema } from "../../lib/schemas"
+import { Aranceles } from "./Aranceles"
 
 /* Para la siguiente landing que se haga, esto debería de ser consumido con el carreras.ts, sacamos el codcar y se le agrega el enviado al slug, tendría que ser como 'enviado/{slug}' */
 
@@ -35,7 +36,8 @@ const TKP_MAP: Record<string, string> = {
     '363': 'enviado/procuracion-distancia',
     '378': 'enviado/organizacion-direccion-eventos-ceremonial',
     '383': 'enviado/tecnicatura-operaciones-mineras',
-    '57': 'enviado/tecnicatura-universitaria-topografia-y-geomatica'
+    '57': 'enviado/tecnicatura-universitaria-topografia-y-geomatica',
+    '401': 'enviado/licenciatura-en-corretaje-tasacion-y-administracion-de-consorcios'
 }
 
 const BASE_URL = 'https://www.ucasal.edu.ar/landing/ingreso/carreras-agosto/'
@@ -144,6 +146,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
     }
 
     const todosCompletos = !!carreraCompleta && !!nombre && !!email && !!ddiPais && !!codArea && !!tel
+    const carreraSeleccionadaLocal = dataCarreras.find(c => String(c.codcar) === String(codcar))
+    const sectorCarrera = carreraSeleccionadaLocal?.sector
 
     useEffect(() => {
         if (phoneRef.current) {
@@ -437,15 +441,14 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 </div>
             </div>
             {/* ── PROTOTIPO: Precio por carrera (se muestra cuando el formulario está completo) ── */}
-            {todosCompletos && (
-                <div className="mt-4 mb-2 rounded-xl border-2 border-(--azul-ucasal)/30 bg-(--azul-ucasal)/5 p-4 flex flex-col gap-1 animate-[heroFadeInUp_0.4s_ease-out_forwards]">
-                    <p className="text-xs font-semibold text-(--azul-ucasal) uppercase tracking-widest mb-1">Matrícula y Aranceles</p>
-                    <div className="flex items-end gap-2">
-                        <span className="text-3xl font-black degrade-azul leading-none">$325.800</span>
-                        <span className="text-sm text-gray-500 mb-0.5">precio de matrícula, aranceles /mes</span>
-                    </div>
-                    <p className="text-xs text-gray-400 mt-1">* Este valor es de referencia. El arancel definitivo puede variar según sede y modalidad.</p>
-                </div>
+            {todosCompletos && sectorCarrera && (
+                <Aranceles
+                    codcar={codcar}
+                    modalidad={modalidad}
+                    idSede={idSedeReal}
+                    sector={sectorCarrera}
+                    enabled={todosCompletos && !!sectorCarrera && !!idSedeReal}
+                />
             )}
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
                 Al enviar este formulario, aceptás nuestros <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad</button> y autorizás a UCASAL a utilizar tus datos para contactarte y brindarte información sobre carreras y propuestas académicas.
