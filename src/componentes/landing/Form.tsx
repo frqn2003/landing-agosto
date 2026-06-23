@@ -228,7 +228,10 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             nombre,
                             email,
                             carrera: dataCarreras.find(c => String(c.codcar) === codcar)?.nombre ?? '',
-                            modalidad: modalidad === '7' ? 'Online' : 'Presencial',
+                            modo: modalidad,
+                            codcar: codcar,
+                            id_sede: idSedeReal,
+                            sector: sectorCarrera,
                             sede: sedeSeleccionada?.nombre_sede ?? '',
                         }
                     })
@@ -238,6 +241,8 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                 })}
             className={`bg-white rounded-lg shadow-2xl ${onSubPage ? 'px-6 py-4' : 'p-6'}`}>
             <input type="hidden" value="103" name="id_origen" />
+            <input type="hidden" name="cbx_sede" value={idSedeReal} />
+            <input type="hidden" name="sector" value={sectorCarrera} />
             <input type="hidden" value="postulantes" name="tabla" />
             <input type="hidden" id="agent" name="agent" value={parametros.userAgent || ''} />
             <input type="hidden" name="utm_source" value={parametros.utm_source || ''} />
@@ -249,7 +254,6 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             <input type="hidden" name="campaignid" value={parametros.campaignid || ''} />
             <input type="hidden" name="tkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}`} />
             <input type="hidden" name="fkp" value={`${BASE_URL}${onSubPage && TKP_MAP[codcar] ? TKP_MAP[codcar] : 'enviado-agosto'}?id=404`} />
-            <input type="hidden" name="cbx_sede" value={idSedeReal} />
 
             {!onSubPage && (
                 <div className="flex justify-center">
@@ -319,7 +323,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </select>
                 </div>
                 <div className="relative z-0 w-full group">
-                    <select name="cbx_sede_selector" id="cbx_sede" aria-label="Seleccionar Sede" tabIndex={0}
+                    <select id="cbx_sede" aria-label="Seleccionar Sede" tabIndex={0}
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
                             ${claseBorde(!!codcar && !!modalidad && !!idProvincia, !!idSede)}
                             ${!codcar || !modalidad || !idProvincia ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white '}
@@ -353,7 +357,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
             </div>
             <div className="flex flex-col gap-2 mt-4" id="datosPersonales">
 
-                <div className={`grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 `}>
+                <div className={`grid grid-cols-1 xl:grid-cols-2 gap-3 xl:gap-6 `}>
                     <div className={`relative z-0 w-full mb-1 group transition-all ease-in-out duration-150 ${carreraCompleta ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <input type="text" {...register("nombre")} id="nombre" tabIndex={0}
                             className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!nombre && !errors.nombre)}`}
@@ -384,7 +388,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </div>
                 </div>
 
-                <div className={`grid grid-cols-2 xl:flex xl:flex-row mt-2 gap-2 sm:gap-4 pb-4`}>
+                <div className={`grid grid-cols-2 2xl:flex 2xl:flex-row mt-2 gap-2 sm:gap-4 pb-4`}>
                     <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 pointer-events-none'}`}>
                         <div className="relative w-full group">
                             <input name="tipo_tel" type="hidden" value="cel" />
@@ -398,7 +402,7 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                         </div>
                     </div>
 
-                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 xl:w-1/3 w-full ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
+                    <div className={`relative z-0 mb-1 group transition-all ease-in-out duration-150 2xl:w-1/3 w-full ${codcar && modalidad && idProvincia && idSede ? 'bg-white border-gray-300 focus:ring-blue-600 focus:border-blue-600' : 'bg-gray-100 border-gray-200 text-gray-400 cursor-not-allowed opacity-75 z-10 pointer-events-none'}`}>
                         <div className="relative w-full group">
                             <input type="tel" id="cod" size={4} maxLength={4} pattern="[0-9]*" inputMode="numeric" tabIndex={0}
                                 className={`block w-full p-2 text-sm text-gray-900 bg-transparent border rounded-md appearance-none focus:outline-none focus:ring-0 peer ${claseBorde(carreraCompleta, !!codArea && !errors.cod_area)}`}
@@ -440,7 +444,6 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                     </div>
                 </div>
             </div>
-            {/* ── PROTOTIPO: Precio por carrera (se muestra cuando el formulario está completo) ── */}
             {todosCompletos && sectorCarrera && (
                 <Aranceles
                     codcar={codcar}

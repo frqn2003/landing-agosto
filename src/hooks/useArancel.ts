@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react'
 interface UseArancelOpciones {
     codcar: number | string,
     modalidad: number | string,
-    idSede: number | string, 
+    idSede: number | string,
     sector: number | string,
     enabled?: boolean
 }
 
-interface RespuestaArancel{
+interface RespuestaArancel {
     valorMatricula: number,
     valorFinal: number,
     porcentaje: number,
-    monto_pagar: number,    
+    monto_pagar: number,
     vencimiento: string,
     mesVencimiento: number,
     anio: number
@@ -41,7 +41,7 @@ export function useArancel({
     const [data, setData] = useState<RespuestaArancel | null>(null)
     const [cargando, setCargando] = useState(false)
     const [error, setError] = useState<string | null>(null)
- 
+
     useEffect(() => {
         if (!enabled || !codcar || !modalidad || !idSede || !sector) {
             setData(null)
@@ -49,29 +49,29 @@ export function useArancel({
             setError(null)
             return
         }
- 
+
         const key = `${codcar}|${modalidad}|${idSede}|${sector}`
         const cached = cacheAranceles.get(key)
- 
+
         if (cached) {
             setData(cached)
             setCargando(false)
             setError(null)
             return
         }
- 
+
         const controller = new AbortController()
         const params = new URLSearchParams({
-            sede: String(idSede),
+            lugar: String(idSede),
             sector: String(sector),
             carrera: String(codcar),
             modo: String(modalidad),
             concepto: '50',
         })
- 
+
         setCargando(true)
         setError(null)
- 
+
         fetch(`https://sistemasweb.ucasal.edu.ar/v1/boleta/get-amount-pay?tdocu=DNI-LE-LC&ndocu=11111111&${params.toString()}`, {
             signal: controller.signal,
         })
@@ -90,10 +90,10 @@ export function useArancel({
                 setError(err.message || 'No se pudo consultar el arancel')
                 setCargando(false)
             })
- 
+
         return () => controller.abort()
     }, [codcar, modalidad, idSede, sector, enabled])
- 
+
     return {
         valorMatricula: data?.valorMatricula ?? null,
         valorFinal: data?.valorFinal ?? null,

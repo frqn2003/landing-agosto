@@ -153,7 +153,7 @@ export default function DetalleCarrera() {
             <div className="py-10 flex flex-col lg:flex-row items-start bg-white">
 
                 {/* ── COLUMNA PRINCIPAL ── */}
-                <div className="flex flex-col gap-10 w-full lg:w-[65%]">
+                <div className="flex flex-col gap-10 w-full lg:w-[60%]">
 
                     {/* Descripción larga */}
                     <div className="contenedor flex flex-col gap-3">
@@ -273,7 +273,7 @@ export default function DetalleCarrera() {
                 {/* ── FORMULARIO LATERAL (solo desktop) ── */}
                 {isDesktop && (
                     <aside className="w-full lg:w-[40%] lg:sticky lg:top-24 mr-12 md:mr-24">
-                        <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
+                        <div className="bg-(--azul-ucasal)/5 border-2 border-(--azul-ucasal)/20 rounded-2xl p-6 px-4 flex flex-col gap-5 shadow-sm max-h-[calc(100vh-7rem)] overflow-y-auto">
                             <div>
                                 <h3 className="text-xl font-black degrade-azul">¿Te interesa {carrera?.nombre}?</h3>
                                 <p className="text-sm text-gray-500 mt-1">Dejanos tus datos y se te contactará lo más pronto posible</p>
