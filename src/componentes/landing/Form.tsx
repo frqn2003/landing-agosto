@@ -229,9 +229,6 @@ export default function Form({ codcarInicial, onSubPage }: { codcarInicial?: str
                             email,
                             carrera: dataCarreras.find(c => String(c.codcar) === codcar)?.nombre ?? '',
                             modo: modalidad,
-                            codcar: codcar,
-                            id_sede: idSedeReal,
-                            sector: sectorCarrera,
                             sede: sedeSeleccionada?.nombre_sede ?? '',
                         }
                     })

@@ -1,7 +1,6 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import Footer from '../componentes/landing/Footer'
-import { Aranceles } from '../componentes/landing/Aranceles'
 
 interface FormState {
     nombre?: string
@@ -9,9 +8,6 @@ interface FormState {
     carrera?: string
     sede?: string
     modo?: string
-    codcar?: string
-    id_sede?: string
-    sector?: string
 }
 
 export default function GraciasPage() {
@@ -19,7 +15,7 @@ export default function GraciasPage() {
     const navigate = useNavigate()
     const { tkpSlug: _tkpSlug } = useParams<{ tkpSlug?: string }>()
     const state = (location.state as FormState) ?? {}
-    const { nombre, email, carrera, modo, sede, codcar, id_sede, sector } = state
+    const { nombre, email, carrera, modo, sede } = state
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'instant' })
@@ -129,19 +125,6 @@ export default function GraciasPage() {
                         </ul>
                     </div>
                 )}
-
-                {/* Precio de la carrera */}
-                {codcar && modo && id_sede && sector &&
-                <div className='max-w-md'>
-                    <Aranceles
-                        codcar={codcar}
-                        modalidad={modo}
-                        idSede={id_sede}
-                        sector={sector}
-                        enabled={!!sector && !!id_sede}
-                    />
-                </div>
-                }
                 <a
                     href="https://www.ucasal.edu.ar/inscripciones/?utm_source=landing_agosto&utm_medium=gracias"
                     target="_blank"

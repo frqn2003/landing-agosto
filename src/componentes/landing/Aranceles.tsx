@@ -14,7 +14,7 @@ export function Aranceles(ArancelesProps: ArancelesProps) {
         modalidad: ArancelesProps.modalidad,
         idSede: ArancelesProps.idSede,
         sector: ArancelesProps.sector,
-        enabled: true,
+        enabled: ArancelesProps.enabled ?? true,
     })
     return (
         <section className="border-(--azul-ucasal) px-6 py-4 rounded-lg border bg-white">
@@ -31,8 +31,15 @@ export function Aranceles(ArancelesProps: ArancelesProps) {
                         <span className="degrade-azul"> ${valorFinal?.toLocaleString('es-AR')}</span>}
 
                     </h2>
-                    {porcentaje && porcentaje > 0 && <p className="text-base">{porcentaje}% de descuento aplicado</p>}
-                    <p className="text-xs text-gray-500">*Precio unicamente para la matrícula, las cuotas se pagan cada mes de tu cursado</p>
+                    {porcentaje && porcentaje > 0 && (
+                        <p className="text-base">
+                            {porcentaje}% OFF
+                            {data?.vencimiento && (
+                                <> hasta {data.vencimiento.slice(0, 10).split('-').reverse().join('/')}</>
+                            )}
+                        </p>
+                    )}
+                    <p className="text-xs text-gray-500 italic">Precio correspondiente únicamente a matrícula. Se abonan cuotas mensuales durante el cursado. Beneficio exclusivo para nuevos ingresantes.</p>
                 </div>
             }
             {cargando &&

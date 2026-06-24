@@ -95,6 +95,11 @@ export default function PromocionDinamica() {
                     ¡Arrancó el <span className="degrade-rojo">mundial</span>, extendemos la promoción!
                 </p>
             )}
+            {promocion.nombre === 'promo_mesi' && (
+                <p className="text-2xl lg:text-4xl font-semibold degrade-azul tracking-tight max-lg:text-center w-full">
+                    ¡Arrancó el <span className="degrade-rojo">mundial</span>, ¡Aprovechá la promoción!
+                </p>
+            )}
             <div className="flex items-stretch gap-2 sm:gap-4">
                 <div className="sm:px-6 px-2 py-6 sm:py-8 flex flex-1 flex-row items-center justify-center gap-2 sm:gap-12 z-20 bg-cover bg-center rounded-lg border-2 border-black bg-linear-to-r from-(--azul-ucasal) to-(--azul-dark-ucasal) relative">
                     <div className="absolute left-1 md:left-4 flex w-6 sm:w-10 shrink-0 flex-col items-center justify-center gap-1 text-xl sm:text-2xl text-yellow-300" aria-hidden="true">
@@ -126,9 +131,9 @@ export default function PromocionDinamica() {
                         {promocion.descuento && (
                             <span className="text-xs sm:text-sm text-white/60 mt-1">
                                 {textoFechaHasta(promocion.fecha_fin, dias)}
-                                {promocion.nombre === 'promocion_mundial' && (
+                                {promocion.nombre === 'promocion_mundial' || promocion.nombre === 'promocion_mesi' ? (
                                     <img src="./icons/trionda.webp" alt="Copa" className="size-7 inline-block ml-2" />
-                                )}
+                                ) : null}
                             </span>
                         )}
                     </div>
