@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useCarrerasCascada } from '../../hooks/useCarrerasCascada'
 import dataCarreras from '../../data/carreras'
 import { clarityEvent, clarityUpgrade } from '../../lib/clarity'
+import { Aranceles } from './Aranceles'
 
 const WHATSAPP_PHONE = '5493872589770'
 
@@ -26,6 +27,7 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
         sedeSeleccionada,
         getSedeValue,
         carreraCompleta,
+        idSedeReal,
         seleccionarCodcar,
         seleccionarModalidad,
         seleccionarProvincia,
@@ -54,6 +56,10 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
         const url = `https://api.whatsapp.com/send/?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(mensaje)}&type=phone_number&app_absent=0`
         window.open(url, '_blank', 'noopener,noreferrer')
     }
+
+    const todosCompletos = !!carreraCompleta
+    const carreraSeleccionadaLocal = dataCarreras.find(c => String(c.codcar) === String(codcar))
+    const sectorCarrera = carreraSeleccionadaLocal?.sector
 
     return (
         <div ref={setContainerRef} className={`bg-white rounded-lg shadow-2xl ${onSubPage ? 'px-6 py-4' : 'p-6'}`}>
@@ -128,10 +134,10 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
                     <select
                         aria-label="Seleccionar Sede"
                         className={`block w-full mt-1 p-2 border shadow-sm focus:outline-none text-xs sm:text-sm [&>option]:text-gray-900
-                            ${claseBorde(!!codcar && !!modalidad && !!idProvincia, !!idSede)}
+                            ${claseBorde(!!codcar && !!modalidad && !!idProvincia, !!idSedeReal)}
                             ${!codcar || !modalidad || !idProvincia ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-white'}
                         `}
-                        value={idSede}
+                        value={idSedeReal}
                         onChange={e => seleccionarSede(e.target.value)}
                         disabled={!codcar || !modalidad || !idProvincia}
                     >
@@ -156,6 +162,15 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
                     </select>
                 </div>
             </div>
+            {todosCompletos && sectorCarrera &&
+                <Aranceles
+                    codcar={codcar}
+                    modalidad={modalidad}
+                    idSede={idSedeReal}
+                    sector={sectorCarrera}
+                    enabled={todosCompletos && !!sectorCarrera && !!idSedeReal}
+                />
+            }
             <p className="text-[10px] md:text-xs mt-1 inline-block text-gray-600">
                 Al enviar este formulario, aceptás nuestros <button onClick={() => setModalOpen(true)} className="inline-block text-blue-500 cursor-pointer" type="button"> T&eacute;rminos y Condiciones de Privacidad</button> y autorizás a UCASAL a utilizar tus datos para contactarte y brindarte información sobre carreras y propuestas académicas.
             </p>
@@ -215,9 +230,9 @@ export default function FormWhatsApp({ codcarInicial, onSubPage }: { codcarInici
                     abrirWhatsApp();
                     clarityEvent('formulario-enviado-whatsapp')
                     clarityUpgrade('conversion-whatsapp')
-                }} 
-                disabled={!carreraCompleta}
-                id='uki-bot'
+                }}
+                    disabled={!carreraCompleta}
+                    id='uki-bot'
                 >
                     <div className='uki-bot absolute group -left-10 md:-left-6 top-0 z-20 group-hover:scale-110 transition-transform duration-800 group-hover:translate-x-62 md:group-hover:translate-x-75'>
                         <img src={`https://ucasal.edu.ar/landing/ingreso/public/bot.jpeg`} className="w-16 h-16 rounded-full border border-green-300 group-hover:border-green-500 group-hover:ring-2 group-hover:ring-green-300/40" alt="WhatsApp Chatbot" />

@@ -6,8 +6,8 @@ interface FormState {
     nombre?: string
     email?: string
     carrera?: string
-    modalidad?: string
     sede?: string
+    modo?: string
 }
 
 export default function GraciasPage() {
@@ -15,20 +15,20 @@ export default function GraciasPage() {
     const navigate = useNavigate()
     const { tkpSlug: _tkpSlug } = useParams<{ tkpSlug?: string }>()
     const state = (location.state as FormState) ?? {}
-    const { nombre, email, carrera, modalidad, sede } = state
+    const { nombre, email, carrera, modo, sede } = state
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'instant' })
     }, [])
 
     const nombreMostrado = nombre?.split(' ')[0] ?? 'futuro estudiante'
-
+    const modalidad = modo === '7' ? 'Online' : 'Presencial'
     return (
         <section className='min-h-screen'>
-            <div className="contenedor h-full bg-linear-to-br from-blue-400 via-white to-red-400 flex flex-col items-center justify-center pt-16">
+            <div className="contenedor h-full bg-linear-to-br from-blue-400 via-white to-red-400 flex flex-col items-center justify-center pt-16 gap-8">
 
                 {/* Icono check animado */}
-                <div className="relative mb-8">
+                <div className="relative">
                     <div className="w-24 h-24 rounded-full bg-(--azul-ucasal) flex items-center justify-center shadow-2xl animate-[heroFadeInUp_0.5s_ease-out_forwards]">
                         <svg className="size-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
@@ -38,7 +38,7 @@ export default function GraciasPage() {
                 </div>
 
                 {/* Título */}
-                <div className="text-center max-w-xl mb-5" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.2s forwards' }}>
+                <div className="text-center max-w-xl" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.2s forwards' }}>
                     <h1 className="text-4xl md:text-5xl font-extrabold degrade-azul mb-3">
                         ¡Gracias, {nombreMostrado}!
                     </h1>
@@ -50,7 +50,7 @@ export default function GraciasPage() {
                 {/* Card con datos del formulario */}
                 {(carrera || email || sede) && (
                     <div
-                        className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8 w-full max-w-md mb-10"
+                        className="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8 w-full max-w-md"
                         style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.4s forwards' }}
                     >
                         <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-4">Resumen de tu solicitud</h2>
@@ -133,8 +133,7 @@ export default function GraciasPage() {
                 >
                     Inscribirme ahora
                 </a>
-                <div
-                    className="bg-white rounded-2xl shadow-lg border border-gray-300 p-6 md:p-8 w-full max-w-md my-10 text-black text-center"
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-300 p-6 md:p-8 w-full max-w-md text-black text-center"
                     style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.55s forwards' }}
                 >
                     <h2 className="text-2xl font-black mb-2">
@@ -155,16 +154,14 @@ export default function GraciasPage() {
                 </div>
 
                 {/* Videos */}
-                <div
-                    className="bg-white rounded-2xl border border-gray-300 shadow-lg p-6 w-full max-w-md mb-5"
-                    style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.6s forwards' }}
+                <div className="bg-white rounded-2xl border border-gray-300 shadow-lg p-6 w-full max-w-md" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.6s forwards' }}
                 >
                     <h2 className="text-sm font-semibold text-gray-400 text-center uppercase tracking-widest mb-4">¡Conocé como es la plataforma virtual!</h2>
                     <video src={`${import.meta.env.BASE_URL}/plataforma.webm`} controls className="w-full rounded-lg"></video>
                 </div>
 
                 {/* Redes sociales */}
-                <div className="flex flex-col items-center gap-3 mb-6" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.7s forwards' }}>
+                <div className="flex flex-col items-center gap-3" style={{ opacity: 0, animation: 'heroFadeInUp 0.6s ease-out 0.7s forwards' }}>
                     <p className="text-sm font-semibold text-gray-500 uppercase tracking-widest">Seguinos en redes</p>
                     <div className="flex items-center gap-4">
                         <a href="https://www.facebook.com/Ucasal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="size-10 rounded-full bg-white shadow border border-gray-100 flex items-center justify-center text-gray-600 hover:text-[#1877F2] hover:border-[#1877F2] transition-colors">
